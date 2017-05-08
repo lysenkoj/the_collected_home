@@ -2,77 +2,99 @@ const bcrypt = require('bcrypt');
 const db = require('APP/db')
 
 const categoriesToSeed = [
-  {name: 'Accessories'},
-  {name: 'Vehicles'},
-  {name: 'Real Estate'},
-  {name: 'Apparel'},
-  {name: 'Services'},
-  {name: 'Attorney', meta_category_id: 5},
-  {name: 'Bodyguard', meta_category_id: 5},
-  {name: 'Accountant', meta_category_id: 5},
-  {name: 'Chauffuer', meta_category_id: 5},
-  {name: 'Pilot', meta_category_id: 5},
-  {name: 'Butler', meta_category_id: 5},
-  {name: 'Social Media Reps', meta_category_id: 5},
-  {name: 'Suit', meta_category_id: 4},
-  {name: 'Ties', meta_category_id: 4},
-  {name: 'Pocket Squares', meta_category_id: 4},
-  {name: 'Fake Tanner', meta_category_id: 1},
-  {name: 'Watches', meta_category_id: 1},
-  {name: 'Toupees', meta_category_id: 1},
-  {name: 'Jets', meta_category_id: 2},
-  {name: 'Yachts', meta_category_id: 2},
-  {name: 'Cars', meta_category_id: 2},
-  {name: 'Motorcycles', meta_category_id: 2},
-  {name: 'Helicopters', meta_category_id: 2},
-  {name: "Mansions", meta_category_id: 3},
-  {name: "Walls", meta_category_id: 3},
-  {name: "Casinos", meta_category_id: 3},
-  {name: "Hotels", meta_category_id: 3},
-  {name: "Islands", meta_category_id: 3},
-  {name: "Golf Courses", meta_category_id: 3}
+  {name: 'Furniture'}, // meta_category_id: 1
+  {name: 'Lighting'}, // meta_category_id: 2
+  {name: 'Decor'}, // meta_category_id: 3
+  {name: 'Bedding'}, // meta_category_id: 4
+  {name: 'Fabric and Wallpaper'}, // meta_category_id: 5
+  {name: 'Garden and Outdoor'}, // meta_category_id: 6
+  {name: 'Gifts'}, // meta_category_id: 7
+  {name: 'Seating', meta_category_id: 1}, // category_id: 8
+  {name: 'Ottomans and Stools', meta_category_id: 1}, // category_id: 9
+  {name: 'Tables', meta_category_id: 1}, // category_id: 10
+  {name: 'Storage', meta_category_id: 1}, // category_id: 11
+  {name: 'Sofas', meta_category_id: 1}, // category_id: 12
+  {name: 'Mirrors', meta_category_id: 1}, // category_id: 13
+  {name: 'Beds', meta_category_id: 1}, // category_id: 14
+  {name: 'Chandeliers and Flush Mounts', meta_category_id: 2}, // category_id: 15
+  {name: 'Floor Lamps', meta_category_id: 2}, // category_id: 16
+  {name: 'Sconses', meta_category_id: 2}, // category_id: 17
+  {name: 'TableLamps', meta_category_id: 2}, // category_id: 18
+  {name: 'Accents', meta_category_id: 3}, // category_id: 19
+  {name: 'Sculpture', meta_category_id: 3}, // category_id: 20
+  {name: 'Trays and Vases', meta_category_id: 3}, // category_id: 21
+  {name: 'Boxes', meta_category_id: 3}, // category_id: 22
+  {name: 'Pillows and Throws', meta_category_id: 3}, // category_id: 23
+  {name: "Catchall and Bowls", meta_category_id: 3}, // category_id: 24
+  {name: "Fragrance", meta_category_id: 3}, // category_id: 25
+  {name: "Tabletop", meta_category_id: 3}, // category_id: 26
+  {name: "Art", meta_category_id: 3}, // category_id: 27
+  {name: "Rugs", meta_category_id: 3}, // category_id: 28
+  {name: "Pet Accesories", meta_category_id: 3}, // category_id: 29
+  {name: "Superluxe", meta_category_id: 3}, // category_id: 30
+  {name: "Games and Sport", meta_category_id: 3}, // category_id: 31
+  {name: "Desk and Stationary", meta_category_id: 3}, // category_id: 32
+  {name: "Pillows and Shams", meta_category_id: 4}, // category_id: 33
+  {name: "Coverlets", meta_category_id: 4}, // category_id: 34
+  {name: "Throws", meta_category_id: 4}, // category_id: 35
+  {name: "Wallpaper", meta_category_id: 5}, // category_id: 36
+  {name: "Indoor and Outdoor", meta_category_id: 5}, // category_id: 37
+  {name: "Leather and Hides", meta_category_id: 5}, // category_id: 38
+  {name: "Pillows and Shams", meta_category_id: 5}, // category_id: 39
+  {name: "Outdoor Pillows", meta_category_id: 5}, // category_id: 40
+  {name: "Outdoor Furniture", meta_category_id: 6}, // category_id: 41
+  {name: "Outdoor Pillows", meta_category_id: 6}, // category_id: 42
+  {name: "Outdoor Decor", meta_category_id: 6}, // category_id: 43
+  {name: "Pet Accesories", meta_category_id: 7}, // category_id: 44
+  {name: "Fragrances", meta_category_id: 7}, // category_id: 45
+  {name: "Books", meta_category_id: 7}, // category_id: 46
+  {name: "Keychains", meta_category_id: 7}, // category_id: 47
+  {name: "Desk and Stationary", meta_category_id: 7}, // category_id: 48
+  {name: "For Him", meta_category_id: 7}, // category_id: 49
+  {name: "For Her", meta_category_id: 7}, // category_id: 50
+  {name: "Toys and Games", meta_category_id: 7} // category_id: 51
 ];
 
 const productsToSeed = [
-  {sku: 9154950247, quantity: 1, name: 'Castle in Loire Valley', imageUrl: '/images/castle.jpg', price: 12500000, location: 'France', description: 'Better than a dream-come-true, this Castle and Chateau in the Loire Valley in France is simply one of the finest properties anywhere in Europe. Entirely private and free of any French government landmark rights, this 79 acre (32 hectare) estate features a completely-restored, 33,000 square foot chateau, made up of a 16th century castle that was later expanded to the current chateau in the 18th century. A four-year, recently-completed renovation project has restored the chateau to its original glory. And yet, the conveniences of the modern world have been added, providing all-new electrical, plumbing, heating and electronics. There is so much history attached to the chateau from French royalty to its occupation by German forces in the second world war. Today, the chateau and its surrounding property capture the elegance of yesterday, but with modern living conveniences.', isVisible: 'visible'},
-  {sku: 4435561075, quantity: 1, name: 'Penthouse at Ocean Drive', imageUrl: '/images/miami.jpg', price: 6000000, location: 'Miami', description: 'Contemporary lines and a sleek white canvas meets art deco sensibility and beautiful terrazzo floors. The seemingly endless circular terrace hugs this ocean front home illuminating every room with sunshine or moonlight. Over forty five hundred square feet facing the Atlantic Ocean and boasting five spacious bedrooms and five and a half bathrooms, makes this residence one of a kind.'},
-  {sku: 7662992825, quantity: 1, name: 'The Bradbury Estate', imageUrl: '/images/bradbury.jpg', price: 72000000, location: 'Sonoma Valley, CA', description: 'This regal masterpiece in guard-gated Bradbury Estates, sits on a promontory with unparalleled city, canyon and ocean views. The location was ranked by Forbes as one of the most expensive ZIP codes in America. This sprawling compound with multiple structures was magnificently realized after more than 8 years of construction by consummate craftsmen with meticulous attention to detail, using only the finest materials from around the world. The Main House is approximately 30,000 square feet plus 3,000 square feet of Loggias, 2 Master Suites, a 2 story Library, Chef’s Kitchen with pizza oven, a walk-in butler’s pantry, both walk-in refrigerator and freezer. Additionally featured is a large 3D Theater, 2,000-bottle Wine Cellar, Elevator, and a poker room with its own bar and built-in humidor. There is close to one acre of porches, decks, loggias, and walkways hewn of French limestone. One is brought to the Main House, elevated in a Palladian Neo-Classical style by way of a dramatic 600-foot Blue Stone private entry drive that ends in a circular flow entrance that allows for 60-foot truck access, or multiple limousines. This once in a lifetime trophy property with the highest level of artistic craftsmanship, state of the art engineering, and consummate attention to detail has never before been offered for sale; it belongs in the portfolio of the most astute collector.'},
-  {sku: 7487601920, quantity: 90, name: 'Aerodyne 021', manufacturer: 'Richard Mille', price: 272629, description: 'expensive'},
-  {sku: 1598092930, quantity: 50, name: 'Black Caviar Bang', manufacturer: 'Hublot', size: 'Huge', color: 'Black', price: 895860, description: 'more expensive'},
-  {sku: 6848737699, quantity: 30, name: 'Perpetual Calendar Platinum 2499', manufacturer: 'Patek Philippe', price: 3483900, description: 'most expensive'},
-  {sku: 5886712343, quantity: 50, name: 'Great Wall of China', imageUrl: '/images/Great-Wall-of-China_05.jpg', price: 10000000, location: 'China, various', description: 'CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA'},
-  {sku: 7220153663, quantity: 50, name: 'US-Mexico Wall', imageUrl: '/images/fence3.jpg', price: 1, location: 'US Southern Border', description: 'Mexico is paying for it!'},
-  {sku: 2118098049, quantity: 50, name: 'The Wall', imageUrl: '/images/game-of-thrones-wall.jpg', price: 70000000, location: 'Westeros', description: 'Winter is Coming, so keep those nasty white walkers at bay with this lovely full-size wall! Night\'s Watch sold separately.'},
-  {sku: 2478457506, quantity: 1, name: 'Trump Tower', imageUrl: '/images/homepage-bg-tower.jpg', price: 230000000, location: 'New York, NY', description: 'Could be yours!'},
-  {sku: 7909034199, quantity: 1, name: 'Marina Bay Sands', imageUrl: '/images/800px-Marina_Bay_Sands_in_the_evening_-_20101120.jpg', price: 888888888, location: 'Singapore', description: 'Three towers for the price of one!'},
-  {sku: 9370961945, quantity: 1, name: 'Big Cash Casino', imageUrl: '/images/bigCashCasino.jpg', price: 64000000, location: 'Atlantic City', description: 'It may come as no surprise that one of Atlantic City’s greatest draws is its casinos. Atlantic City gaming action comes in virtually every variety. Big Cash Casino is your chance to own part of the action!'},
-  {sku: 8078504454, quantity: 1, name: 'Sands Casino', imageUrl: '/images/SandsCasino.jpg', price: 100000000, location: 'Las Vegas', description: 'Own the historic Sands!'},
-  {sku: 6025238950, quantity: 1, name: 'Turtle Island', imageUrl: '/images/turtle-island.jpg', price: 20000000, location: 'Cayman Islands', description: 'The only island for true turtle lovers!'},
-  {sku: 1448780803, quantity: 1, name: 'Madagascar', imageUrl: '/images/baobab-ducks-000060800218_small.jpg', price: 11000000000, location: 'Africa', description: 'Actually a country but sure you can buy it!'},
-  {sku: 3525016095, quantity: 1, name: 'Cypress Point', imageUrl: '/images/cypress-point.jpg', price: 250000000, location: 'Pebble Beach, CA', description: 'One of the best golf courses named after a tree.'},
-  {sku: 6612167910, quantity: 1, name: 'Augusta National Golf Club', imageUrl: '/images/hole-16_0-1024x64072.jpg', price: 190000000, location: 'Augusta, GA', description: 'Golf course named after little-known ancient Etruscan monarch.'},
+  {sku: 1700800001, quantity: 1, name: 'Castle in Loire Valley', imageUrl: '/images/castle.jpg', price: 12500000, location: 'France', description: 'Better than a dream-come-true, this Castle and Chateau in the Loire Valley in France is simply one of the finest properties anywhere in Europe. Entirely private and free of any French government landmark rights, this 79 acre (32 hectare) estate features a completely-restored, 33,000 square foot chateau, made up of a 16th century castle that was later expanded to the current chateau in the 18th century. A four-year, recently-completed renovation project has restored the chateau to its original glory. And yet, the conveniences of the modern world have been added, providing all-new electrical, plumbing, heating and electronics. There is so much history attached to the chateau from French royalty to its occupation by German forces in the second world war. Today, the chateau and its surrounding property capture the elegance of yesterday, but with modern living conveniences.', isVisible: 'visible'},
+  {sku: 1700900002, quantity: 1, name: 'Penthouse at Ocean Drive', imageUrl: '/images/miami.jpg', price: 6000000, location: 'Miami', description: 'Contemporary lines and a sleek white canvas meets art deco sensibility and beautiful terrazzo floors. The seemingly endless circular terrace hugs this ocean front home illuminating every room with sunshine or moonlight. Over forty five hundred square feet facing the Atlantic Ocean and boasting five spacious bedrooms and five and a half bathrooms, makes this residence one of a kind.'},
+  {sku: 1701100003, quantity: 1, name: 'The Bradbury Estate', imageUrl: '/images/bradbury.jpg', price: 72000000, location: 'Sonoma Valley, CA', description: 'This regal masterpiece in guard-gated Bradbury Estates, sits on a promontory with unparalleled city, canyon and ocean views. The location was ranked by Forbes as one of the most expensive ZIP codes in America. This sprawling compound with multiple structures was magnificently realized after more than 8 years of construction by consummate craftsmen with meticulous attention to detail, using only the finest materials from around the world. The Main House is approximately 30,000 square feet plus 3,000 square feet of Loggias, 2 Master Suites, a 2 story Library, Chef’s Kitchen with pizza oven, a walk-in butler’s pantry, both walk-in refrigerator and freezer. Additionally featured is a large 3D Theater, 2,000-bottle Wine Cellar, Elevator, and a poker room with its own bar and built-in humidor. There is close to one acre of porches, decks, loggias, and walkways hewn of French limestone. One is brought to the Main House, elevated in a Palladian Neo-Classical style by way of a dramatic 600-foot Blue Stone private entry drive that ends in a circular flow entrance that allows for 60-foot truck access, or multiple limousines. This once in a lifetime trophy property with the highest level of artistic craftsmanship, state of the art engineering, and consummate attention to detail has never before been offered for sale; it belongs in the portfolio of the most astute collector.'},
+  {sku: 1701300004, quantity: 1, name: 'Aerodyne 021', manufacturer: 'Richard Mille', price: 272629, description: 'expensive'},
+  {sku: 1701500005, quantity: 1, name: 'Black Caviar Bang', manufacturer: 'Hublot', size: 'Huge', color: 'Black', price: 895860, description: 'more expensive'},
+  {sku: 1701700006, quantity: 1, name: 'Perpetual Calendar Platinum 2499', manufacturer: 'Patek Philippe', price: 3483900, description: 'most expensive'},
+  {sku: 1700800007, quantity: 1, name: 'Great Wall of China', imageUrl: '/images/Great-Wall-of-China_05.jpg', price: 10000000, location: 'China, various', description: 'CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA'},
+  {sku: 1700900008, quantity: 1, name: 'US-Mexico Wall', imageUrl: '/images/fence3.jpg', price: 1, location: 'US Southern Border', description: 'Mexico is paying for it!'},
+  {sku: 1700900009, quantity: 1, name: 'The Wall', imageUrl: '/images/game-of-thrones-wall.jpg', price: 70000000, location: 'Westeros', description: 'Winter is Coming, so keep those nasty white walkers at bay with this lovely full-size wall! Night\'s Watch sold separately.'},
+  {sku: 1701300010, quantity: 1, name: 'Trump Tower', imageUrl: '/images/homepage-bg-tower.jpg', price: 230000000, location: 'New York, NY', description: 'Could be yours!'},
+  {sku: 1701300011, quantity: 1, name: 'Marina Bay Sands', imageUrl: '/images/800px-Marina_Bay_Sands_in_the_evening_-_20101120.jpg', price: 888888888, location: 'Singapore', description: 'Three towers for the price of one!'},
+  {sku: 1701400012, quantity: 1, name: 'Big Cash Casino', imageUrl: '/images/bigCashCasino.jpg', price: 64000000, location: 'Atlantic City', description: 'It may come as no surprise that one of Atlantic City’s greatest draws is its casinos. Atlantic City gaming action comes in virtually every variety. Big Cash Casino is your chance to own part of the action!'},
+  {sku: 1701800013, quantity: 1, name: 'Sands Casino', imageUrl: '/images/SandsCasino.jpg', price: 100000000, location: 'Las Vegas', description: 'Own the historic Sands!'},
+  {sku: 1700900014, quantity: 1, name: 'Turtle Island', imageUrl: '/images/turtle-island.jpg', price: 20000000, location: 'Cayman Islands', description: 'The only island for true turtle lovers!'},
+  {sku: 1700900015, quantity: 1, name: 'Madagascar', imageUrl: '/images/baobab-ducks-000060800218_small.jpg', price: 11000000000, location: 'Africa', description: 'Actually a country but sure you can buy it!'},
+  {sku: 1700900016, quantity: 1, name: 'Cypress Point', imageUrl: '/images/cypress-point.jpg', price: 250000000, location: 'Pebble Beach, CA', description: 'One of the best golf courses named after a tree.'},
+  {sku: 1700900017, quantity: 1, name: 'Augusta National Golf Club', imageUrl: '/images/hole-16_0-1024x64072.jpg', price: 190000000, location: 'Augusta, GA', description: 'Golf course named after little-known ancient Etruscan monarch.'},
 ];
 
 
 
 const categoryProductsToSeed = [
-  {product_sku: 9154950247, category_id: 24},
-  {product_sku: 4435561075, category_id: 24},
-  {product_sku: 7662992825, category_id: 24},
-  {product_sku: 7487601920, category_id: 17},
-  {product_sku: 1598092930, category_id: 17},
-  {product_sku: 6848737699, category_id: 17},
-  {product_sku: 5886712343, category_id: 25},
-  {product_sku: 7220153663, category_id: 25},
-  {product_sku: 2118098049, category_id: 25},
-  {product_sku: 2478457506, category_id: 27},
-  {product_sku: 7909034199, category_id: 27},
-  {product_sku: 9370961945, category_id: 26},
-  {product_sku: 8078504454, category_id: 26},
-  {product_sku: 6025238950, category_id: 28},
-  {product_sku: 1448780803, category_id: 28},
-  {product_sku: 3525016095, category_id: 29},
-  {product_sku: 6612167910, category_id: 29}
+  {product_sku: 1700800001, category_id: 8},
+  {product_sku: 1700900002, category_id: 9},
+  {product_sku: 1701100003, category_id: 11},
+  {product_sku: 1701300004, category_id: 13},
+  {product_sku: 1701500005, category_id: 15},
+  {product_sku: 1701700006, category_id: 17},
+  {product_sku: 1700800007, category_id: 8},
+  {product_sku: 1700900008, category_id: 9},
+  {product_sku: 1700900009, category_id: 9},
+  {product_sku: 1701300010, category_id: 13},
+  {product_sku: 1701300011, category_id: 13},
+  {product_sku: 1701400012, category_id: 14},
+  {product_sku: 1701800013, category_id: 18},
+  {product_sku: 1700900014, category_id: 9},
+  {product_sku: 1700900015, category_id: 9},
+  {product_sku: 1700900016, category_id: 9},
+  {product_sku: 1700900017, category_id: 9}
 ];
 
 const usersToSeed = [
@@ -84,13 +106,6 @@ const usersToSeed = [
   {firstName: 'Yeezy', lastName: 'West', email: 'shyboy77@hotmail.com', password: 'tswift'}
 ];
 
-const reviewsToSeed = [
-  {text: 'Wow this product was so amaze, love it, lulz', summary: 'best thing ever', stars: 5, user_id: 1, date: '2016-10-31', product_sku: productsToSeed[0].sku},
-  {text: 'Worst thing ever, will never buy, terrible', summary: 'THE WORST', stars: 1, user_id: 2, date: '2016-08-19', product_sku: productsToSeed[0].sku},
-  {text: 'This changed my life, hooray, I have no soul', summary: 'meh', stars: 3, user_id: 3, date: '2016-01-03', product_sku: productsToSeed[1].sku},
-  {text: 'This product has ALL the best things', summary: 'Love it!', stars: 5, user_id: 2, date: '2016-09-24', product_sku: productsToSeed[1].sku},
-  {text: 'Decided to write this review instead of tweeting about this product', summary: 'loser product', stars: 2, user_id: 4, date: '2015-04-04', product_sku: productsToSeed[2].sku}
-];
 
 const addressesToSeed = [
   {name: 'Alec Friedman', street1: '55 Comm Ave', street2: 'Apt 6A', city: 'Boston', state: 'MA', zip: '02140', user_id: 1},
@@ -120,7 +135,6 @@ const orderItemsToSeed = [
 
 const seedCategories = () => db.Promise.mapSeries(categoriesToSeed, category => db.model('categories').create(category));
 const seedUsers = () => db.Promise.mapSeries(usersToSeed, user => db.model('users').create(user));
-const seedReviews = () => db.Promise.mapSeries(reviewsToSeed, review => db.model('reviews').create(review));
 const seedProducts = () => db.Promise.mapSeries(productsToSeed, product => db.model('products').create(product));
 const seedAddresses = () => db.Promise.mapSeries(addressesToSeed, address => db.model('addresses').create(address));
 const seedCategoryProducts = () => db.Promise.mapSeries(categoryProductsToSeed, categoryProduct => db.model('CategoryProduct').create(categoryProduct));
@@ -138,8 +152,6 @@ db.didSync
   .then(products => console.log(`Seeded ${products.length} products OK`))
   .then(seedCategoryProducts)
   .then(categoryProducts => console.log(`Seeded ${categoryProducts.length} categoryProducts OK`))
-  .then(seedReviews)
-  .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
   .then(seedAddresses)
   .then(addresses => console.log(`Seeded ${addresses.length} addresses OK`))
   .then(seedOrders)
