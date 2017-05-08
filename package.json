@@ -1,7 +1,7 @@
 {
-  "name": "greatshopper",
+  "name": "thecollectedhome",
   "version": "0.0.1",
-  "description": "A happy little Trump store.",
+  "description": "An online marketplace for unique home decor with original stories.",
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass  app/assets/main/ -o public/stylesheets",
@@ -18,19 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/queerviolet/bones.git"
+    "url": "git+https://github.com/lysenkoj/the_collected_home"
   },
   "keywords": [
     "react",
     "redux",
-    "skeleton"
+    "ecommerce"
   ],
-  "author": "Ashi Krishnan <me@ashi.works>",
+  "author": "Jordan Lysenko <lysenkoj@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/queerviolet/bones/issues"
+    "url": "https://github.com/lysenkoj/the_collected_home/issues"
   },
-  "homepage": "https://github.com/queerviolet/bones#readme",
+  "homepage": "https://github.com/lysenkoj/the_collected_home#readme",
   "dependencies": {
     "axios": "^0.15.2",
     "babel": "^6.5.2",
