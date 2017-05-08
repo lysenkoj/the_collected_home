@@ -65,7 +65,7 @@ const Product = db.define('products', {
 		img: function() {
 			return (this.imageUrl) ?
 				this.imageUrl :
-				'/images/default.jpg'
+				'/images/Image-Coming-Soon-Placeholder.png'
 		}
 	}
 

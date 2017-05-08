@@ -11,7 +11,7 @@ require('APP/.env.js');
 
 var Payment = React.createClass({
     mixins: [ReactScriptLoaderMixin],
-    
+
     getInitialState: function() {
     	return {
     		scriptLoading: true,
@@ -92,7 +92,7 @@ var Payment = React.createClass({
 							  <input type="submit" className="submit" value="Submit Payment" />
 							</form>
 						</div>
-	   		}  
+	   		}
     		  <div>
                 <p> You will be able to review your order on the next screen</p>
               </div>

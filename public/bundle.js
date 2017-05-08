@@ -31508,17 +31508,17 @@
 	
 	var _Payment2 = _interopRequireDefault(_Payment);
 	
-	var _Confirmation = __webpack_require__(580);
+	var _Confirmation = __webpack_require__(579);
 	
 	var _Confirmation2 = _interopRequireDefault(_Confirmation);
 	
-	var _AfterOrderSubmit = __webpack_require__(581);
+	var _AfterOrderSubmit = __webpack_require__(580);
 	
 	var _AfterOrderSubmit2 = _interopRequireDefault(_AfterOrderSubmit);
 	
-	var _enterHooks = __webpack_require__(582);
+	var _enterHooks = __webpack_require__(581);
 	
-	var _leaveHooks = __webpack_require__(583);
+	var _leaveHooks = __webpack_require__(582);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -53058,7 +53058,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(579);
+	// require('APP/.env.js');
+	
 	
 	/* -----------------     COMPONENT     ------------------ */
 	
@@ -53326,18 +53327,6 @@
 /* 579 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-	
-	process.env["FACEBOOK_CLIENT_ID"] = "abcd";
-	process.env["FACEBOOK_CLIENT_SECRET"] = "1234";
-	process.env["GOOGLE_CONSUMER_KEY"] = "311991622447-kdqmfugt3ekt21e95vi07m8u3dls3v2j.apps.googleusercontent.com";
-	process.env["GOOGLE_CONSUMER_SECRET"] = "zEpcea9n_3ehzbPJ7vxmy-Re";
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 580 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -53499,7 +53488,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Confirmation);
 
 /***/ },
-/* 581 */
+/* 580 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53615,7 +53604,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, null)(AfterOrderSubmit);
 
 /***/ },
-/* 582 */
+/* 581 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53679,7 +53668,7 @@
 	};
 
 /***/ },
-/* 583 */
+/* 582 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
