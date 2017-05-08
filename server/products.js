@@ -15,7 +15,6 @@ const customProductRoutes = require('express').Router()
 const Category = db.model("categories");
 const User = db.model("users");
 const Product = db.model("products");
-const Review = db.model("reviews");
 
 customProductRoutes.get("/", function(req, res, next) {
 
@@ -67,7 +66,7 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
       });
       let productArray = [...products, ...matches]
       // NOTE: lots of console errors because of duplicates
-      //				Need to filter out in order to  
+      //				Need to filter out in order to
 
       return res.json(productArray);
     })
@@ -99,14 +98,14 @@ customProductRoutes.put("/:sku", function(req, res, next) {
 
 	mustBeAdmin(req)
 		.then(userAdmin => {
-			userAdmin.data.isAdmin ? 
+			userAdmin.data.isAdmin ?
 			Product.update(req.body, {
 					where: {
 						sku: req.params.sku
 					}
 			})
 			: res.status(403).send('You do not have administrative privileges')
-		})			
+		})
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);
 });
@@ -116,13 +115,13 @@ customProductRoutes.post("/", function(req, res, next) {
 	mustBeAdmin(req)
 		.then(userAdmin => {
 			console.log("AAAAAAA")
-			userAdmin.data.isAdmin ? 
+			userAdmin.data.isAdmin ?
 			Product.create({
 				  name: req.body.name,
-			      sku: req.body.sku, 
-			      quantity: req.body.quantity, 
-			      imageUrl: req.body.imageUrl, 
-			      price: req.body.price, 
+			      sku: req.body.sku,
+			      quantity: req.body.quantity,
+			      imageUrl: req.body.imageUrl,
+			      price: req.body.price,
 			      description: req.body.description
 			})
 			: res.status(403).send('You do not have administrative privileges')
@@ -135,7 +134,7 @@ customProductRoutes.delete("/:sku", function(req, res, next) {
 
 	mustBeAdmin(req)
 		.then(userAdmin => {
-			userAdmin.data.isAdmin ? 
+			userAdmin.data.isAdmin ?
 			Product.destroy({
 					where: {
 						sku: req.params.sku

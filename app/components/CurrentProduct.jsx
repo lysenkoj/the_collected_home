@@ -22,13 +22,13 @@ const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescr
 		<info>
 			<ContentEditable
                 html={`<h3>${ currentProduct.name }</h3>`}
-                disabled={!(user && user.isAdmin)}      
+                disabled={!(user && user.isAdmin)}
                 onChange={changeNameField}
               />
 			<h5>SKU { currentProduct.sku }</h5>
 			<ContentEditable
                 html={`<h4>${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>`}
-                disabled={!(user && user.isAdmin)}      
+                disabled={!(user && user.isAdmin)}
                 onChange={changePriceField}
               />
 			<form onSubmit={ addToCart }>
@@ -44,29 +44,14 @@ const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescr
 			<h4>PRODUCT DETAILS</h4>
 			<ContentEditable
                 html={`<p>${ currentProduct.description }</p>`}
-                disabled={!(user && user.isAdmin)}      
+                disabled={!(user && user.isAdmin)}
                 onChange={changeDescriptionField}
               />
 		</description>
-		<reviews>
-			<h4>REVIEWS</h4>
-			{
-				currentProduct.reviews && currentProduct.reviews.length ?
-					currentProduct.reviews.map((review, index) => {
-						return (
-							<Review key={index} review={review} />
-						);
-					})
-					: 
-						<div>
-							<p>Be the first to review this product!</p>
-						</div>	
-			}	
-		</reviews>
-		{(user && user.isAdmin && (state.name || state.description || state.price || state.description) && <footer className="footery"><div><button onClick={modifyProduct}>Save Changes</button></div></footer>)}   
+		{(user && user.isAdmin && (state.name || state.description || state.price || state.description) && <footer className="footery"><div><button onClick={modifyProduct}>Save Changes</button></div></footer>)}
 	</div>
 )
-	
+
 
 
 /* -----------------    STATEFUL REACT COMPONENT     ------------------ */
@@ -96,14 +81,14 @@ class CurrentProduct extends Component {
 	changeNameField(evt) {
 		evt.preventDefault();
 		var name = evt.target.value.slice(4,-5)
-		// console.log(name) 
+		// console.log(name)
 		this.setState({ name })
 	}
 
 	changeDescriptionField(evt) {
 		evt.preventDefault();
 		var description = evt.target.value.slice(3,-4)
-		// console.log(description) 
+		// console.log(description)
 		this.setState({ description })
 	}
 
