@@ -24,7 +24,7 @@ class Navigbar extends React.Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">
-              <img id="logo" src="/GreatShopperWithBack.svg"/>
+              {/*<img id="logo" src="/GreatShopperWithBack.svg"/>*/}
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
@@ -41,31 +41,7 @@ class Navigbar extends React.Component {
         </span>
         <Navbar.Collapse>
           <Nav title="Departments">
-            <NavDropdown title="Vehicles" id="vehicles-nav">
-              {this.props.categories.filter((category) => {
-                return category.meta_category_id === 2
-              }).map(category => (
-                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-              ))
-              }
-            </NavDropdown>
-            <NavDropdown title="Real Estate" id="real-estate-nav">
-              {this.props.categories.filter((category) => {
-                return category.meta_category_id === 3
-              }).map(category => (
-                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-              ))
-              }
-            </NavDropdown>
-            <NavDropdown title="Apparel" id="apparel-nav">
-              {this.props.categories.filter((category) => {
-                return category.meta_category_id === 4
-              }).map(category => (
-                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-              ))
-              }
-            </NavDropdown>
-            <NavDropdown title="Accessories" id="accessories-nav">
+            <NavDropdown title="Furniture" id="furniture-nav">
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 1
               }).map(category => (
@@ -73,9 +49,49 @@ class Navigbar extends React.Component {
               ))
               }
             </NavDropdown>
-            <NavDropdown title="Services" id="services-nav">
+            <NavDropdown title="Lighting" id="lighting-nav">
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 2
+              }).map(category => (
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
+              ))
+              }
+            </NavDropdown>
+            <NavDropdown title="Decor" id="decor-nav">
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 3
+              }).map(category => (
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
+              ))
+              }
+            </NavDropdown>
+            <NavDropdown title="Bedding" id="bedding-nav">
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 4
+              }).map(category => (
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
+              ))
+              }
+            </NavDropdown>
+            <NavDropdown title="Fabric and Wallpaper" id="fabric-and-wallpaper-nav">
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 5
+              }).map(category => (
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
+              ))
+              }
+            </NavDropdown>
+            <NavDropdown title="Garden and Outdoor" id="garden-and-outdoor-nav">
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 6
+              }).map(category => (
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
+              ))
+              }
+            </NavDropdown>
+            <NavDropdown title="Gifts" id="gifts-nav">
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 7
               }).map(category => (
                 <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
               ))

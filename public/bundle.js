@@ -31705,11 +31705,7 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Navbar.Brand,
 	            null,
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/' },
-	              _react2.default.createElement('img', { id: 'logo', src: '/GreatShopperWithBack.svg' })
-	            )
+	            _react2.default.createElement(_reactRouter.Link, { to: '/' })
 	          ),
 	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	        ),
@@ -31727,58 +31723,7 @@
 	            { title: 'Departments' },
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
-	              { title: 'Vehicles', id: 'vehicles-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 2;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Real Estate', id: 'real-estate-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 3;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Apparel', id: 'apparel-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 4;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Accessories', id: 'accessories-nav' },
+	              { title: 'Furniture', id: 'furniture-nav' },
 	              this.props.categories.filter(function (category) {
 	                return category.meta_category_id === 1;
 	              }).map(function (category) {
@@ -31795,9 +31740,94 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactBootstrap.NavDropdown,
-	              { title: 'Services', id: 'services-nav' },
+	              { title: 'Lighting', id: 'lighting-nav' },
+	              this.props.categories.filter(function (category) {
+	                return category.meta_category_id === 2;
+	              }).map(function (category) {
+	                return _react2.default.createElement(
+	                  _reactRouterBootstrap.LinkContainer,
+	                  { key: category.id, to: '/' + category.name },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    null,
+	                    category.name
+	                  )
+	                );
+	              })
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { title: 'Decor', id: 'decor-nav' },
+	              this.props.categories.filter(function (category) {
+	                return category.meta_category_id === 3;
+	              }).map(function (category) {
+	                return _react2.default.createElement(
+	                  _reactRouterBootstrap.LinkContainer,
+	                  { key: category.id, to: '/' + category.name },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    null,
+	                    category.name
+	                  )
+	                );
+	              })
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { title: 'Bedding', id: 'bedding-nav' },
+	              this.props.categories.filter(function (category) {
+	                return category.meta_category_id === 4;
+	              }).map(function (category) {
+	                return _react2.default.createElement(
+	                  _reactRouterBootstrap.LinkContainer,
+	                  { key: category.id, to: '/' + category.name },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    null,
+	                    category.name
+	                  )
+	                );
+	              })
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { title: 'Fabric and Wallpaper', id: 'fabric-and-wallpaper-nav' },
 	              this.props.categories.filter(function (category) {
 	                return category.meta_category_id === 5;
+	              }).map(function (category) {
+	                return _react2.default.createElement(
+	                  _reactRouterBootstrap.LinkContainer,
+	                  { key: category.id, to: '/' + category.name },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    null,
+	                    category.name
+	                  )
+	                );
+	              })
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { title: 'Garden and Outdoor', id: 'garden-and-outdoor-nav' },
+	              this.props.categories.filter(function (category) {
+	                return category.meta_category_id === 6;
+	              }).map(function (category) {
+	                return _react2.default.createElement(
+	                  _reactRouterBootstrap.LinkContainer,
+	                  { key: category.id, to: '/' + category.name },
+	                  _react2.default.createElement(
+	                    _reactBootstrap.MenuItem,
+	                    null,
+	                    category.name
+	                  )
+	                );
+	              })
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.NavDropdown,
+	              { title: 'Gifts', id: 'gifts-nav' },
+	              this.props.categories.filter(function (category) {
+	                return category.meta_category_id === 7;
 	              }).map(function (category) {
 	                return _react2.default.createElement(
 	                  _reactRouterBootstrap.LinkContainer,
@@ -50998,60 +51028,18 @@
 	        null,
 	        _react2.default.createElement(
 	          _reactBootstrap.Carousel.Item,
-	          null,
-	          _react2.default.createElement(_reactBootstrap.Image, { width: 900, height: 500, alt: '900x500', src: '/images/default.jpg', responsive: true }),
-	          _react2.default.createElement(
-	            _reactBootstrap.Carousel.Caption,
-	            null,
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'First slide label'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-	            )
-	          )
+	          { className: 'carouselImgContainer' },
+	          _react2.default.createElement(_reactBootstrap.Image, { className: 'carouselImg', src: '/images/front-page-1.jpg', responsive: true })
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Carousel.Item,
-	          null,
-	          _react2.default.createElement(_reactBootstrap.Image, { width: 900, height: 500, alt: '900x500', src: '/images/default.jpg', responsive: true }),
-	          _react2.default.createElement(
-	            _reactBootstrap.Carousel.Caption,
-	            null,
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Second slide label'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-	            )
-	          )
+	          { className: 'carouselImgContainer' },
+	          _react2.default.createElement(_reactBootstrap.Image, { className: 'carouselImg', src: '/images/front-page-2.jpg', responsive: true })
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Carousel.Item,
-	          null,
-	          _react2.default.createElement(_reactBootstrap.Image, { width: 900, height: 500, alt: '900x500', src: '/images/default.jpg', responsive: true }),
-	          _react2.default.createElement(
-	            _reactBootstrap.Carousel.Caption,
-	            null,
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Third slide label'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-	            )
-	          )
+	          { className: 'carouselImgContainer' },
+	          _react2.default.createElement(_reactBootstrap.Image, { className: 'carouselImg', src: '/images/front-page-3.jpg', responsive: true })
 	        )
 	      );
 	    }
@@ -51192,26 +51180,6 @@
 					onChange: changeDescriptionField
 				})
 			),
-			_react2.default.createElement(
-				'reviews',
-				null,
-				_react2.default.createElement(
-					'h4',
-					null,
-					'REVIEWS'
-				),
-				currentProduct.reviews && currentProduct.reviews.length ? currentProduct.reviews.map(function (review, index) {
-					return _react2.default.createElement(_Review2.default, { key: index, review: review });
-				}) : _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'p',
-						null,
-						'Be the first to review this product!'
-					)
-				)
-			),
 			user && user.isAdmin && (state.name || state.description || state.price || state.description) && _react2.default.createElement(
 				'footer',
 				{ className: 'footery' },
@@ -51263,7 +51231,7 @@
 			value: function changeNameField(evt) {
 				evt.preventDefault();
 				var name = evt.target.value.slice(4, -5);
-				// console.log(name) 
+				// console.log(name)
 				this.setState({ name: name });
 			}
 		}, {
@@ -51271,7 +51239,7 @@
 			value: function changeDescriptionField(evt) {
 				evt.preventDefault();
 				var description = evt.target.value.slice(3, -4);
-				// console.log(description) 
+				// console.log(description)
 				this.setState({ description: description });
 			}
 		}, {
@@ -53327,6 +53295,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+	
+	// NEED TO UPDATE LATER
 	
 	process.env["FACEBOOK_CLIENT_ID"] = "abcd";
 	process.env["FACEBOOK_CLIENT_SECRET"] = "1234";
