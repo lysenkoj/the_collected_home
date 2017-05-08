@@ -1,0 +1,14 @@
+#currentProduct {
+	margin-bottom: 150px;
+	min-height: 400px;
+  clear: both;
+  
+	.mainPhoto {
+		display: inline-block;
+		width: 50%
+	}
+
+	info {
+		display: inline-block;
+	}
+}
