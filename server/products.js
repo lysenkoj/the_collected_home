@@ -86,8 +86,7 @@ customProductRoutes.get("/:sku", function(req, res, next) {
 	Product.findOne({
 		where: {
 			sku: req.params.sku
-		},
-		include: [Review]
+		}
 	})
 		.then(product => res.json(product))
 		.catch(next)

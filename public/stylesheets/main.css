@@ -10,6 +10,22 @@
   background-color: #f5f5f5;
   text-align: center; }
 
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: horizontal; }
+
+.socialList {
+  display: flex;
+  list-style-type: none;
+  margin: 0; }
+
+.socialIcon {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  margin-right: 5px; }
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -40,13 +56,6 @@ body {
     width: 50%; }
   #currentProduct info {
     display: inline-block; }
-
-.review details {
-  display: inline-block;
-  width: 30%; }
-
-.review #review-text {
-  display: inline-block; }
 
 .productThumbnail {
   width: 300px;

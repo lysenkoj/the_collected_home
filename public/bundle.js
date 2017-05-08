@@ -50919,6 +50919,46 @@
 	              "p",
 	              { className: "text-muted" },
 	              "Place sticky footer content here."
+	            ),
+	            _react2.default.createElement(
+	              "ul",
+	              { className: "socialList" },
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "https://www.claricekingdesigns.com/" },
+	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/CKDLogo.png" })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "https://www.instagram.com/" },
+	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/instaIcon.png" })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "https://www.facebook.com/" },
+	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/facebookIcon.jpg" })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "https://www.twitter.com/" },
+	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/twitterIcon.png" })
+	                )
+	              )
 	            )
 	          )
 	        )
@@ -51069,10 +51109,6 @@
 	var _reactRedux = __webpack_require__(172);
 	
 	var _reactBootstrap = __webpack_require__(306);
-	
-	var _Review = __webpack_require__(564);
-	
-	var _Review2 = _interopRequireDefault(_Review);
 	
 	var _Notification = __webpack_require__(565);
 	
@@ -51332,78 +51368,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CurrentProduct);
 
 /***/ },
-/* 564 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactBootstrap = __webpack_require__(306);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var makeStars = function makeStars(num) {
-		var stars = [];
-		for (var i = 0; i < num; i++) {
-			stars.push(_react2.default.createElement(_reactBootstrap.Glyphicon, { key: '' + i, glyph: 'star' }));
-		}
-		return stars;
-	};
-	
-	exports.default = function (_ref) {
-		var review = _ref.review;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'review comp-container' },
-			_react2.default.createElement(
-				'details',
-				null,
-				_react2.default.createElement(
-					'summary',
-					null,
-					review.summary
-				),
-				_react2.default.createElement(
-					'h6',
-					null,
-					'Date purchased: ',
-					review.date
-				),
-				_react2.default.createElement(
-					'span',
-					null,
-					'Stars:',
-					makeStars(review.stars)
-				),
-				_react2.default.createElement(
-					'h6',
-					null,
-					'Upvotes: ',
-					review.upVotes
-				),
-				_react2.default.createElement(
-					'h6',
-					null,
-					'Downvotes: ',
-					review.downVotes
-				)
-			),
-			_react2.default.createElement(
-				'p',
-				{ id: 'review-text' },
-				review.text
-			)
-		);
-	};
-
-/***/ },
+/* 564 */,
 /* 565 */
 /***/ function(module, exports, __webpack_require__) {
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Image } from 'react-bootstrap';
-import Review from './Review';
 import Notification from './Notification';
 import { addItem } from '../reducers/cart';
 import ContentEditable from "react-contenteditable";
