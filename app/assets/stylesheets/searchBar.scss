@@ -9,6 +9,18 @@
   border: none;
 }
 
+.searchBtn:focus{
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.searchBtn:hover{
+  border:none;
+  background-color: #fff;
+  color: #fff;
+}
+
 #searchImg {
   width: 20px;
   height: auto;
@@ -18,7 +30,7 @@ div, .navbar-form{
   border: none;
 }
 
-input, .searchContainer, .form-control {
+input, .form-control {
   border: none;
   border-bottom: black 1px solid;
   box-shadow: none;

@@ -50596,6 +50596,11 @@
 	      'form',
 	      { onSubmit: onSearch },
 	      _react2.default.createElement(
+	        _reactBootstrap.Button,
+	        { className: 'searchBtn searchContainer', type: 'submit' },
+	        _react2.default.createElement('img', { id: 'searchImg', src: '/images/searchIcon.png' })
+	      ),
+	      _react2.default.createElement(
 	        _reactBootstrap.FormGroup,
 	        null,
 	        _react2.default.createElement(
@@ -50603,11 +50608,6 @@
 	          { id: 'searchBar' },
 	          _react2.default.createElement(_reactBootstrap.FormControl, { className: 'searchContainer', type: 'text', placeholder: 'Search', onChange: captureInput })
 	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Button,
-	        { className: 'searchBtn searchContainer', type: 'submit' },
-	        _react2.default.createElement('img', { id: 'searchImg', src: '/images/search-icon-md.png' })
 	      )
 	    )
 	  );

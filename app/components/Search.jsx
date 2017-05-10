@@ -10,14 +10,14 @@ const DumbSearch = ({ onSearch, captureInput }) => (
 
   <Navbar.Form>
     <form onSubmit={ onSearch }>
+      <Button className="searchBtn searchContainer" type="submit">
+        <img id="searchImg" src="/images/searchIcon.png" />
+      </Button>
       <FormGroup>
         <InputGroup id="searchBar">
           <FormControl className="searchContainer" type="text" placeholder="Search" onChange={ captureInput }/>
         </InputGroup>
       </FormGroup>
-      <Button className="searchBtn searchContainer" type="submit">
-        <img id="searchImg" src="/images/search-icon-md.png" />
-      </Button>
     </form>
   </Navbar.Form>
 
