@@ -31698,152 +31698,30 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
-	        { inverse: true, collapseOnSelect: true, style: this.props.user && this.props.user.isAdmin ? { backgroundColor: "maroon" } : { backgroundColor: "black" } },
+	        { className: 'navContainer', inverse: true, collapseOnSelect: true, style: this.props.user && this.props.user.isAdmin ? { backgroundColor: "maroon" } : { backgroundColor: "white" } },
 	        _react2.default.createElement(
-	          _reactBootstrap.Navbar.Header,
-	          null,
+	          'div',
+	          { className: 'topNav' },
+	          _react2.default.createElement(_Search2.default, null),
 	          _react2.default.createElement(
-	            _reactBootstrap.Navbar.Brand,
-	            null,
-	            _react2.default.createElement(_reactRouter.Link, { to: '/' })
-	          ),
-	          _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
-	        ),
-	        _react2.default.createElement(_Search2.default, null),
-	        _react2.default.createElement(
-	          'span',
-	          { style: { color: "white" } },
-	          this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : ''
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Navbar.Collapse,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Nav,
-	            { title: 'Departments' },
+	            _reactRouter.Link,
+	            { to: '/', className: 'mainLogo' },
+	            ' ',
 	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Furniture', id: 'furniture-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 1;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Lighting', id: 'lighting-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 2;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Decor', id: 'decor-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 3;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Bedding', id: 'bedding-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 4;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Fabric and Wallpaper', id: 'fabric-and-wallpaper-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 5;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Garden and Outdoor', id: 'garden-and-outdoor-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 6;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.NavDropdown,
-	              { title: 'Gifts', id: 'gifts-nav' },
-	              this.props.categories.filter(function (category) {
-	                return category.meta_category_id === 7;
-	              }).map(function (category) {
-	                return _react2.default.createElement(
-	                  _reactRouterBootstrap.LinkContainer,
-	                  { key: category.id, to: '/' + category.name },
-	                  _react2.default.createElement(
-	                    _reactBootstrap.MenuItem,
-	                    null,
-	                    category.name
-	                  )
-	                );
-	              })
+	              'div',
+	              null,
+	              'CLARICE KING'
 	            )
 	          ),
+	          ' ',
 	          _react2.default.createElement(
 	            _reactBootstrap.Nav,
-	            { pullRight: true },
+	            { pullRight: true, className: 'navLogIn' },
+	            _react2.default.createElement(
+	              'span',
+	              { style: { color: "black" } },
+	              this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
+	            ),
 	            _react2.default.createElement(
 	              _reactRouterBootstrap.LinkContainer,
 	              { to: '/admin' },
@@ -31884,6 +31762,137 @@
 	                _reactBootstrap.NavItem,
 	                null,
 	                'Login'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'bottomNav' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Navbar.Collapse,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Nav,
+	              { title: 'Departments' },
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Furniture', id: 'furniture-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 1;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Lighting', id: 'lighting-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 2;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Decor', id: 'decor-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 3;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Bedding', id: 'bedding-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 4;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Fabric and Wallpaper', id: 'fabric-and-wallpaper-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 5;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Garden and Outdoor', id: 'garden-and-outdoor-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 6;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.NavDropdown,
+	                { title: 'Gifts', id: 'gifts-nav' },
+	                this.props.categories.filter(function (category) {
+	                  return category.meta_category_id === 7;
+	                }).map(function (category) {
+	                  return _react2.default.createElement(
+	                    _reactRouterBootstrap.LinkContainer,
+	                    { key: category.id, to: '/' + category.name },
+	                    _react2.default.createElement(
+	                      _reactBootstrap.MenuItem,
+	                      null,
+	                      category.name
+	                    )
+	                  );
+	                })
 	              )
 	            )
 	          )
@@ -50592,7 +50601,7 @@
 	        _react2.default.createElement(
 	          _reactBootstrap.InputGroup,
 	          { id: 'searchBar' },
-	          _react2.default.createElement(_reactBootstrap.FormControl, { className: 'searchContainer', type: 'text', placeholder: 'Winner!', onChange: captureInput })
+	          _react2.default.createElement(_reactBootstrap.FormControl, { className: 'searchContainer', type: 'text', placeholder: 'Search', onChange: captureInput })
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -50914,7 +50923,7 @@
 	          { className: "footer" },
 	          _react2.default.createElement(
 	            "div",
-	            { className: "container" },
+	            { className: "footerContainer" },
 	            _react2.default.createElement(
 	              "p",
 	              { className: "text-muted" },
@@ -51571,29 +51580,53 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'Products'
+	      'div',
+	      { className: 'categoryMap' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/' },
+	        'HOME'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        '//'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        'Current Meta Category'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        '//'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        'Current Sub Category'
+	      )
 	    ),
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'gallery' },
 	      selectedProducts && selectedProducts.length ? selectedProducts && selectedProducts.map(function (product) {
 	        return _react2.default.createElement(
-	          'div',
-	          { className: 'productThumbnail', key: product.sku },
+	          _reactRouter.Link,
+	          { to: 'product/' + product.sku, className: 'productThumbnail', key: product.sku },
+	          _react2.default.createElement('img', { className: 'imgThumb', src: product.img }),
 	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: 'product/' + product.sku },
+	            'div',
+	            { className: 'productThumbInfoContainer' },
 	            _react2.default.createElement(
 	              'h4',
-	              null,
+	              { id: 'productName' },
 	              product.name
 	            ),
-	            _react2.default.createElement('img', { className: 'imgThumb', src: product.img }),
 	            _react2.default.createElement(
 	              'p',
-	              null,
+	              { id: 'productPrice' },
 	              'Price: $',
 	              product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 	            )

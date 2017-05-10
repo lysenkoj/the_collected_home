@@ -10,7 +10,7 @@
   background-color: #f5f5f5;
   text-align: center; }
 
-.container {
+.footerContainer {
   display: flex;
   justify-content: space-around;
   flex-direction: horizontal; }
@@ -57,17 +57,45 @@ body {
   #currentProduct info {
     display: inline-block; }
 
-.productThumbnail {
-  width: 300px;
-  height: 300px; }
-
 .gallery {
   display: flex;
   flex-wrap: wrap; }
 
+.categoryMap {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  background-color: lightgreen;
+  align-items: center;
+  padding-left: 10px; }
+
+.productThumbnail {
+  display: flex;
+  width: 280px;
+  height: 460px;
+  background-color: pink;
+  flex-direction: column;
+  margin: 10px; }
+
 .imgThumb {
-  width: 150px;
-  height: auto; }
+  width: 280px;
+  height: 360px; }
+
+.productThumbInfoContainer {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: purple;
+  width: 100%;
+  height: 100px;
+  align-self: flex-end; }
+
+#productName {
+  width: 100%; }
+
+#productPrice {
+  width: 100%; }
 
 .cart {
   margin-bottom: 150px;
@@ -76,18 +104,30 @@ body {
 
 #searchBar {
   display: inline-flex;
+  border-bottom: 1px black;
   height: 34px; }
 
 .searchBtn {
-  border-top-left-radius: 0px;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 0px;
-  height: 34px; }
+  border: none; }
 
 #searchImg {
   width: 20px;
   height: auto; }
+
+div, .navbar-form {
+  border: none; }
+
+input, .searchContainer, .form-control {
+  border: none;
+  border-bottom: black 1px solid;
+  box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.form-control:focus {
+  border-bottom: grey 1px solid;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
 
 .notification {
   height: 50px;
@@ -116,11 +156,36 @@ body {
 .comp-container {
   margin-bottom: 150px; }
 
-#logo {
-  height: 100px; }
-
 .navbar {
-  margin-bottom: 0; }
+  display: flex;
+  margin-bottom: 0;
+  flex-direction: column;
+  border: none; }
+
+.mainLogo {
+  display: flex;
+  align-items: center; }
+
+.topNav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px; }
+
+.bottomNav {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background-color: lightpink; }
+
+.navLogIn {
+  display: flex;
+  align-items: center; }
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
 
 .carousel-indicators {
   visibility: hidden; }

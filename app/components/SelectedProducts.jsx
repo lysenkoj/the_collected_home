@@ -7,17 +7,24 @@ import { Link } from 'react-router';
 function SelectedProducts({ selectedProducts }){
  return (
   <div>
-   <h3>Products</h3>
+    {/*make this dynamic and linked*/}
+   <div className="categoryMap">
+     <Link to={'/'}>HOME</Link>
+     <div>//</div>
+     <div>Current Meta Category</div>
+     <div>//</div>
+     <div>Current Sub Category</div>
+   </div>
    <div className="gallery">
      { (selectedProducts && selectedProducts.length) ? (
        selectedProducts && selectedProducts.map(product => (
-         <div className="productThumbnail" key={product.sku}>
-          <Link to={`product/${product.sku}`}>
-            <h4>{product.name}</h4>
-            <img className="imgThumb" src={product.img} />
-            <p>Price: ${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
-          </Link>
-         </div>
+         <Link to={`product/${product.sku}`} className="productThumbnail" key={product.sku}>
+          <img className="imgThumb" src={product.img} />
+          <div className="productThumbInfoContainer">
+            <h4 id="productName">{product.name}</h4>
+            <p id="productPrice">Price: ${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+          </div>
+         </Link>
        ))
      ): <p>No products found</p>}
    </div>

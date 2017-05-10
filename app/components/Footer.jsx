@@ -11,7 +11,7 @@ export default class Footer extends Component {
     return (
       <div>
         <footer className="footer">
-          <div className="container">
+          <div className="footerContainer">
             <p className="text-muted">Place sticky footer content here.</p>
             <ul className="socialList">
               <li>
