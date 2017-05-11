@@ -51178,8 +51178,17 @@
 	        { className: 'featuredContainer' },
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/featured' },
-	          _react2.default.createElement('img', { src: 'images/Image-Coming-Soon-Placeholder.png' })
+	          { to: '/featured', className: 'featuredLink' },
+	          _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'label' },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              'SHOP NOW'
+	            )
+	          )
 	        )
 	      );
 	    }

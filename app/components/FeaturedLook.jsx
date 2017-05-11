@@ -10,9 +10,12 @@ export default class FeaturedLook extends Component {
   render() {
     return(
       <div className="featuredContainer">
-        <Link to="/featured">
+        <Link to="/featured" className="featuredLink">
         {/*THE IMG WILL HAVE THE NAME OF THE LOOK AND SHOP NOW ON IT*/}
-          <img src="images/Image-Coming-Soon-Placeholder.png"/>
+          <img className="featuredPhoto" src="images/featuredTemp.jpg"/>
+          <div className="label">
+            <span>SHOP NOW</span>
+          </div>
         </Link>
       </div>
     )
