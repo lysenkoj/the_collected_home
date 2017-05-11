@@ -23305,7 +23305,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchAndGoToQueriedProducts = exports.fetchAndGoToProducts = exports.deloadProducts = undefined;
+	exports.fetchAndGoToFeaturedProducts = exports.fetchAndGoToQueriedProducts = exports.fetchAndGoToProducts = exports.deloadProducts = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(205);
@@ -23320,6 +23320,7 @@
 	
 	var SELECT_PRODUCTS = 'SELECT_PRODUCTS';
 	var SEARCH_FOR_PRODUCTS = 'SEARCH_FOR_PRODUCTS';
+	var SELECT_FEATURED_PRODUCTS = 'SELECT_FEATURED_PRODUCTS';
 	var DELOAD = 'DELOAD';
 	
 	/* ------------   ACTION CREATORS     ------------------ */
@@ -23331,6 +23332,13 @@
 	var searchForProducts = function searchForProducts(products) {
 	  return {
 	    type: SEARCH_FOR_PRODUCTS,
+	    products: products
+	  };
+	};
+	
+	var selectFeaturedProducts = function selectFeaturedProducts(products) {
+	  return {
+	    type: SELECT_FEATURED_PRODUCTS,
 	    products: products
 	  };
 	};
@@ -23353,6 +23361,9 @@
 	      return action.products;
 	
 	    case SEARCH_FOR_PRODUCTS:
+	      return action.products;
+	
+	    case SELECT_FEATURED_PRODUCTS:
 	      return action.products;
 	
 	    case DELOAD:
@@ -23380,6 +23391,14 @@
 	      _reactRouter.browserHistory.push('/search/' + search);
 	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
+	    });
+	  };
+	};
+	
+	var fetchAndGoToFeaturedProducts = exports.fetchAndGoToFeaturedProducts = function fetchAndGoToFeaturedProducts() {
+	  return function (dispatch) {
+	    _axios2.default.get('api/products/featured').then(function (products) {
+	      dispatch(selectFeaturedProducts(products.data));
 	    });
 	  };
 	};
@@ -31464,7 +31483,7 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _CurrentProduct = __webpack_require__(563);
+	var _CurrentProduct = __webpack_require__(564);
 	
 	var _CurrentProduct2 = _interopRequireDefault(_CurrentProduct);
 	
@@ -31549,6 +31568,7 @@
 	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
 	      ),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
 	    )
 	  );
@@ -51000,6 +51020,10 @@
 	
 	var _Carousel2 = _interopRequireDefault(_Carousel);
 	
+	var _FeaturedLook = __webpack_require__(563);
+	
+	var _FeaturedLook2 = _interopRequireDefault(_FeaturedLook);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51007,6 +51031,15 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// import Instafeed from 'instafeed.js';
+	
+	// var feed = new Instafeed({
+	//         get: 'tagged',
+	//         tagName: 'awesome',
+	//         clientId: 'YOUR_CLIENT_ID'
+	//     });
+	//     feed.run();
 	
 	var Main = function (_Component) {
 	  _inherits(Main, _Component);
@@ -51023,7 +51056,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'main-container' },
-	        _react2.default.createElement(_Carousel2.default, null)
+	        _react2.default.createElement(_FeaturedLook2.default, null),
+	        _react2.default.createElement('div', null),
+	        _react2.default.createElement('div', { id: 'instafeed' })
 	      );
 	    }
 	  }]);
@@ -51101,6 +51136,62 @@
 
 /***/ },
 /* 563 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(230);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var FeaturedLook = function (_Component) {
+	  _inherits(FeaturedLook, _Component);
+	
+	  function FeaturedLook(props) {
+	    _classCallCheck(this, FeaturedLook);
+	
+	    return _possibleConstructorReturn(this, (FeaturedLook.__proto__ || Object.getPrototypeOf(FeaturedLook)).call(this, props));
+	  }
+	
+	  _createClass(FeaturedLook, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'featuredContainer' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/featured' },
+	          _react2.default.createElement('img', { src: 'images/Image-Coming-Soon-Placeholder.png' })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return FeaturedLook;
+	}(_react.Component);
+	
+	exports.default = FeaturedLook;
+
+/***/ },
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51377,7 +51468,6 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CurrentProduct);
 
 /***/ },
-/* 564 */,
 /* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -53591,7 +53681,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.loadQueriedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
 	
 	var _store = __webpack_require__(202);
 	
@@ -53638,6 +53728,10 @@
 		var params = _ref4.params;
 	
 		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
+	};
+	
+	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
 	};
 	
 	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {

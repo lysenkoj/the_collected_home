@@ -56,6 +56,8 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
     include: [Product]
   });
 
+
+
   Promise.all([queryProductModel, queryCategoryModel])
     .spread((products, categories) => {
       let matches = [];
@@ -73,7 +75,18 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
 		.catch(next);
 });
 
+//featured
 
+customProductRoutes.get("/featured", function(req,res,next) {
+  console.log("HERE IN THE PRODUCT ROUTES")
+  const featured = Product.findAll({
+    where: {
+      featured: true
+    }
+  })
+  .then(product =>res.json(product))
+  .catch(next)
+});
 
 // name of product, manufacturer, location, word in description
 
@@ -92,6 +105,8 @@ customProductRoutes.get("/:sku", function(req, res, next) {
 		.catch(next)
 
 });
+
+
 
 customProductRoutes.put("/:sku", function(req, res, next) {
 

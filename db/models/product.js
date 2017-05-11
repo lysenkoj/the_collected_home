@@ -54,6 +54,12 @@ const Product = db.define('products', {
 		type: Sequelize.TEXT
 	},
 
+  featured: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: "false"
+  },
+
 	isVisible: {
 		type: Sequelize.ENUM("discontinued", "hidden", "visible"),
 		allowNull: false,

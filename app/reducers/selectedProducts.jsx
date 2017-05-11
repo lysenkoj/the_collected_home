@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 
 const SELECT_PRODUCTS = 'SELECT_PRODUCTS';
 const SEARCH_FOR_PRODUCTS = 'SEARCH_FOR_PRODUCTS';
+const SELECT_FEATURED_PRODUCTS = 'SELECT_FEATURED_PRODUCTS';
 const DELOAD = 'DELOAD';
 
 
@@ -17,6 +18,11 @@ const searchForProducts = products => ({
   type: SEARCH_FOR_PRODUCTS,
   products
 });
+
+const selectFeaturedProducts = products => ({
+  type: SELECT_FEATURED_PRODUCTS,
+  products
+})
 
 export const deloadProducts = () => ({
   type: DELOAD
@@ -32,6 +38,9 @@ export default function reducer (state = [], action) {
       return action.products;
 
     case SEARCH_FOR_PRODUCTS:
+      return action.products;
+
+    case SELECT_FEATURED_PRODUCTS:
       return action.products;
 
     case DELOAD:
@@ -63,4 +72,13 @@ export const fetchAndGoToQueriedProducts = search => {
       })
       .catch(err => console.error('Fetching product failed', err))
   }
+}
+
+export const fetchAndGoToFeaturedProducts = () => {
+  return dispatch => {
+    axios.get(`api/products/featured`)
+      .then(products => {
+        dispatch(selectFeaturedProducts(products.data))
+      });
+  };
 }

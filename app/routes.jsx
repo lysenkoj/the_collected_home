@@ -22,7 +22,7 @@ import Confirmation from './components/Confirmation';
 import AfterOrderSubmit from './components/AfterOrderSubmit';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
-import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
+import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
 /* -----------------    ON-LEAVE HOOKS     ------------------ */
 import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onAdminLeave, deloadSingleCharge} from './leave-hooks';
 
@@ -45,6 +45,7 @@ export default () => (
         <Route path="/checkout/aftersubmit" component={AfterOrderSubmit} onLeave={deloadSingleCharge} />
       </Route>
       <Route path="/search/:query" component={SelectedProducts} onEnter={loadQueriedProducts} />
+      <Route path="/featured" component={SelectedProducts} onEnter={loadFeaturedProducts} onLeave={deloadCategoryProducts} />
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} onLeave={deloadCategoryProducts} />
     </Route>
   </Router>
