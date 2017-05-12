@@ -26,6 +26,11 @@ const Product = db.define('products', {
 	},
 
 	imageUrl: {
+		type: Sequelize.ARRAY(Sequelize.STRING),
+    defualtValue: ['/images/Image-Coming-Soon-Placeholder.png']
+	},
+
+  mainImg: {
 		type: Sequelize.STRING
 	},
 
@@ -75,6 +80,16 @@ const Product = db.define('products', {
 		}
 	}
 
-});
+}
+
+);
+
+Product.hook('beforeValidate', function(product, options) {
+  product.mainImg = 'happy'
+})
+
+Product.hook('afterValidate', function(product, options) {
+  product.mainImg = product.imageUrl[0];
+})
 
 module.exports = Product;

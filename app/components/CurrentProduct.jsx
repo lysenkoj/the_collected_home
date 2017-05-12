@@ -15,38 +15,48 @@ const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescr
 		{
 			notify ? <Notification /> : ''
 		}
+    <div className="thumbnailContainer">
+      { (currentProduct && currentProduct.img) ? (
+        currentProduct && currentProduct.img.map((image, index) => (
+        <img className="thumbnail" key={index} src={ image }/>
+        ))
+      ) : <p>No images found</p>
+      }
+    </div>
 		<photo>
-			<Image className="mainPhoto" src={ currentProduct && currentProduct.img } responsive />
+			<Image className="mainPhoto" src={currentProduct && currentProduct.mainImg} responsive />
 		</photo>
-		<info>
-			<ContentEditable
-                html={`<h3>${ currentProduct.name }</h3>`}
-                disabled={!(user && user.isAdmin)}
-                onChange={changeNameField}
-              />
-			<h5>SKU { currentProduct.sku }</h5>
-			<ContentEditable
-                html={`<h4>${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>`}
-                disabled={!(user && user.isAdmin)}
-                onChange={changePriceField}
-              />
-			<form onSubmit={ addToCart }>
-				<select onChange={ changeAmnt } name="dropdown">
-					<option value="1" defaultValue>1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-				</select>
-				<button type="submit">Add To Cart</button>
-			</form>
-		</info>
-		<description>
-			<h4>PRODUCT DETAILS</h4>
-			<ContentEditable
-                html={`<p>${ currentProduct.description }</p>`}
-                disabled={!(user && user.isAdmin)}
-                onChange={changeDescriptionField}
-              />
-		</description>
+    <div className="infoContainer">
+      <info>
+        <ContentEditable
+                  html={`<h3>${ currentProduct.name }</h3>`}
+                  disabled={!(user && user.isAdmin)}
+                  onChange={changeNameField}
+                />
+        <h5>SKU { currentProduct.sku }</h5>
+        <ContentEditable
+                  html={`<h4>${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>`}
+                  disabled={!(user && user.isAdmin)}
+                  onChange={changePriceField}
+                />
+        <form onSubmit={ addToCart }>
+          <select onChange={ changeAmnt } name="dropdown">
+            <option value="1" defaultValue>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <button type="submit">Add To Cart</button>
+        </form>
+      </info>
+      <description>
+        <h4>PRODUCT DETAILS</h4>
+        <ContentEditable
+                  html={`<p>${ currentProduct.description }</p>`}
+                  disabled={!(user && user.isAdmin)}
+                  onChange={changeDescriptionField}
+                />
+      </description>
+    </div>
 		{(user && user.isAdmin && (state.name || state.description || state.price || state.description) && <footer className="footery"><div><button onClick={modifyProduct}>Save Changes</button></div></footer>)}
 	</div>
 )

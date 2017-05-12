@@ -19,7 +19,7 @@ function SelectedProducts({ selectedProducts }){
      { (selectedProducts && selectedProducts.length) ? (
        selectedProducts && selectedProducts.map(product => (
          <Link to={`product/${product.sku}`} className="productThumbnail" key={product.sku}>
-          <img className="imgThumb" src={product.img} />
+          <img className="imgThumb" src={product.img[0]} />
           <div className="productThumbInfoContainer">
             <h4 id="productName">{product.name}</h4>
             <p id="productPrice">Price: ${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>

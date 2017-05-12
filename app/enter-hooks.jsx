@@ -24,6 +24,7 @@ export const loadCategories = () => {
 };
 
 export const loadCategoryProducts = ({ params }) => {
+  console.log(params)
 	store.dispatch(fetchAndGoToProducts(params.categoryName));
 };
 

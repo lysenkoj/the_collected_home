@@ -96,14 +96,33 @@ p {
   font-size: 1.5em; }
 
 #currentProduct {
+  display: flex;
   margin-bottom: 150px;
   min-height: 400px;
   clear: both; }
   #currentProduct .mainPhoto {
     display: inline-block;
-    width: 50%; }
+    width: auto;
+    height: 600px; }
   #currentProduct info {
     display: inline-block; }
+  #currentProduct .infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  #currentProduct .thumbnailContainer {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    background-color: pink;
+    align-items: center; }
+  #currentProduct .thumbnail {
+    width: calc(100% - 10px);
+    height: auto;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px; }
 
 .gallery {
   display: flex;
@@ -221,9 +240,16 @@ input, .form-control {
   border: none;
   color: black; }
 
+.navbar-inverse .navbar-nav > li > a {
+  color: black; }
+
 .navbar-inverse .navbar-nav > li > a:hover {
-  color: black;
+  color: #9d9d9d;
   background-color: transparent; }
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+  color: #9d9d9d;
+  background-color: #fff; }
 
 .mainLogo {
   display: flex;
@@ -235,6 +261,13 @@ input, .form-control {
   font-size: 1.3em;
   letter-spacing: 2px;
   color: black; }
+
+.mainLogo:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: black;
+  text-decoration: none; }
 
 .mainLogo:hover {
   color: black;
@@ -249,7 +282,7 @@ input, .form-control {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  height: 60px; }
+  height: 80px; }
 
 .bottomNav {
   display: flex;
