@@ -10,7 +10,7 @@ import {updateProduct} from '../reducers/currentProduct'
 
 
 // NOTE: IF YOU EDIT THE TAG INSIDE HTML OF CONTENTEDITABLE, MAKE SURE TO UPDATE THE SLICE IN THE CHANGE____FIELD FNS TO THE NEW SIZE
-const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescriptionField, changePriceField, user, currentProduct, categories, addToCart, changeAmnt, notify }) => (
+const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField, changeDescriptionField, changePriceField, user, currentProduct, categories, addToCart, changeAmnt, notify }) => (
 	<div id="currentProduct">
 		{
 			notify ? <Notification /> : ''
@@ -18,13 +18,16 @@ const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescr
     <div className="thumbnailContainer">
       { (currentProduct && currentProduct.img) ? (
         currentProduct && currentProduct.img.map((image, index) => (
-        <img className="thumbnail" key={index} src={ image }/>
+        <img className="thumbnail" key={index} src={ image } onClick={selectImage}/>
         ))
       ) : <p>No images found</p>
       }
     </div>
 		<photo>
+      {state.mainImg ?
+      <Image className="mainPhoto" src={state.mainImg} responsive /> :
 			<Image className="mainPhoto" src={currentProduct && currentProduct.mainImg} responsive />
+      }
 		</photo>
     <div className="infoContainer">
       <info>
@@ -74,7 +77,8 @@ class CurrentProduct extends Component {
 			name: "",
 			description: "",
 			price: "",
-			imageUrl: ""
+			imageUrl: "",
+      mainImg: null
 		};
 		this.addToCart = this.addToCart.bind(this);
 		this.changeAmnt = this.changeAmnt.bind(this);
@@ -85,7 +89,15 @@ class CurrentProduct extends Component {
 
 		this.modifyProduct = this.modifyProduct.bind(this);
 
+    this.selectMainImg = this.selectMainImg.bind(this);
+
 	}
+
+  selectMainImg(evt) {
+    evt.preventDefault();
+    let mainImg = evt.target.src.slice(21);
+    this.setState({ mainImg })
+  }
 
 	changeNameField(evt) {
 		evt.preventDefault();
@@ -145,6 +157,7 @@ class CurrentProduct extends Component {
 				state={this.state}
 				categories={categories}
 				modifyProduct={this.modifyProduct}
+        selectImage={this.selectMainImg}
 			/>
 		)
 	}

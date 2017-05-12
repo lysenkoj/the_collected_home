@@ -51255,7 +51255,8 @@
 	
 	// NOTE: IF YOU EDIT THE TAG INSIDE HTML OF CONTENTEDITABLE, MAKE SURE TO UPDATE THE SLICE IN THE CHANGE____FIELD FNS TO THE NEW SIZE
 	var DumbCurrentProduct = function DumbCurrentProduct(_ref) {
-		var modifyProduct = _ref.modifyProduct,
+		var selectImage = _ref.selectImage,
+		    modifyProduct = _ref.modifyProduct,
 		    state = _ref.state,
 		    changeNameField = _ref.changeNameField,
 		    changeDescriptionField = _ref.changeDescriptionField,
@@ -51274,7 +51275,7 @@
 				'div',
 				{ className: 'thumbnailContainer' },
 				currentProduct && currentProduct.img ? currentProduct && currentProduct.img.map(function (image, index) {
-					return _react2.default.createElement('img', { className: 'thumbnail', key: index, src: image });
+					return _react2.default.createElement('img', { className: 'thumbnail', key: index, src: image, onClick: selectImage });
 				}) : _react2.default.createElement(
 					'p',
 					null,
@@ -51284,7 +51285,7 @@
 			_react2.default.createElement(
 				'photo',
 				null,
-				_react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: currentProduct && currentProduct.mainImg, responsive: true })
+				state.mainImg ? _react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: state.mainImg, responsive: true }) : _react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: currentProduct && currentProduct.mainImg, responsive: true })
 			),
 			_react2.default.createElement(
 				'div',
@@ -51384,7 +51385,8 @@
 				name: "",
 				description: "",
 				price: "",
-				imageUrl: ""
+				imageUrl: "",
+				mainImg: null
 			};
 			_this.addToCart = _this.addToCart.bind(_this);
 			_this.changeAmnt = _this.changeAmnt.bind(_this);
@@ -51395,10 +51397,19 @@
 	
 			_this.modifyProduct = _this.modifyProduct.bind(_this);
 	
+			_this.selectMainImg = _this.selectMainImg.bind(_this);
+	
 			return _this;
 		}
 	
 		_createClass(CurrentProduct, [{
+			key: 'selectMainImg',
+			value: function selectMainImg(evt) {
+				evt.preventDefault();
+				var mainImg = evt.target.src.slice(21);
+				this.setState({ mainImg: mainImg });
+			}
+		}, {
 			key: 'changeNameField',
 			value: function changeNameField(evt) {
 				evt.preventDefault();
@@ -51473,7 +51484,8 @@
 					changePriceField: this.changePriceField,
 					state: this.state,
 					categories: categories,
-					modifyProduct: this.modifyProduct
+					modifyProduct: this.modifyProduct,
+					selectImage: this.selectMainImg
 				});
 			}
 		}]);
