@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 function SelectedProducts({ selectedProducts }){
  return (
-  <div>
+  <div className="selectedProductsMain">
     {/*make this dynamic and linked*/}
    <div className="categoryMap">
      <Link to={'/'}>HOME</Link>

@@ -51754,7 +51754,7 @@
 	
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'selectedProductsMain' },
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'categoryMap' },

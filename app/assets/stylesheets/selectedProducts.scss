@@ -1,7 +1,13 @@
+.selectedProductsMain{
+ min-height: 100%;
+ margin-bottom: 150px;
+}
+
 .gallery{
   display: flex;
   flex-wrap: wrap;
 }
+
 .categoryMap{
   display:flex;
   height: 40px;

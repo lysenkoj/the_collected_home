@@ -216,6 +216,10 @@ h5 {
 #shippingDetails {
   font-size: 1.2em; }
 
+.selectedProductsMain {
+  min-height: 100%;
+  margin-bottom: 150px; }
+
 .gallery {
   display: flex;
   flex-wrap: wrap; }
