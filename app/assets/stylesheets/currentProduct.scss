@@ -1,6 +1,12 @@
+.currentProductContainer{
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 #currentProduct {
   display: flex;
-	margin-bottom: 150px;
+	margin-bottom: 100px;
 	min-height: 400px;
   clear: both;
 
@@ -17,7 +23,8 @@
   .infoContainer{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    flex-grow: 1;
+    padding: 10px;
     justify-content: center;
   }
 
@@ -41,4 +48,62 @@
   .thumbnail:hover{
     border: 1px solid grey;
   }
+
+  .addToCart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 140px;
+  }
+
+  .itemInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 440px;
+  }
+
+  .productName{
+    flex-grow: 1;
+  }
+
+  .productSku{
+    flex-grow: 0;
+  }
+
+  .productDescription{
+    flex-grow: 4;
+  }
+
+  .productSize{
+    flex-grow: 0;
+  }
+
+  #cartButton{
+    width: 250px;
+    height: 50px;
+    margin: 10px;
+    font-family: 'woodfordbourne-bold';
+    font-size: 1em;
+  }
+  #cartSelector{
+    width: 50px;
+    height: 50px;
+  }
+
 }
+  .shippingInfo{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px 0px 40px;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  #infoEmail{
+    font-size: 1.2em;
+  }
+
+  #shippingDetails{
+    font-size: 1.2em;
+  }

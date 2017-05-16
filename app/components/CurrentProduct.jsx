@@ -30,34 +30,39 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
       }
 		</photo>
     <div className="infoContainer">
-      <info>
-        <ContentEditable
-                  html={`<h3>${ currentProduct.name }</h3>`}
+      <info className="itemInfo">
+        <ContentEditable className="productName"
+                  html={`<h2>${ currentProduct.name }</h2>`}
                   disabled={!(user && user.isAdmin)}
                   onChange={changeNameField}
                 />
-        <h5>SKU { currentProduct.sku }</h5>
-        <ContentEditable
-                  html={`<h4>${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>`}
+        <h5 className="productSku">SKU { currentProduct.sku }</h5>
+        <ContentEditable className=""
+                  html={`<h3> $ ${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h3>`}
                   disabled={!(user && user.isAdmin)}
                   onChange={changePriceField}
                 />
-        <form onSubmit={ addToCart }>
-          <select onChange={ changeAmnt } name="dropdown">
-            <option value="1" defaultValue>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-          <button type="submit">Add To Cart</button>
-        </form>
-      </info>
-      <description>
-        <h4>PRODUCT DETAILS</h4>
-        <ContentEditable
+        <ContentEditable className="productDescription"
                   html={`<p>${ currentProduct.description }</p>`}
                   disabled={!(user && user.isAdmin)}
                   onChange={changeDescriptionField}
                 />
+        <ContentEditable className="productSize"
+                  html={`<p>${currentProduct.size }</p>`}
+                  disabled={!(user && user.isAdmin)}
+                  onChange={changeDescriptionField}
+                />
+      </info>
+      <description className="addToCart">
+        <h4>Quantity</h4>
+        <form onSubmit={ addToCart }>
+          <select id="cartSelector" onChange={ changeAmnt } name="dropdown">
+            <option value="1" defaultValue>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <button id="cartButton" type="submit">ADD TO CART</button>
+        </form>
       </description>
     </div>
 		{(user && user.isAdmin && (state.name || state.description || state.price || state.description) && <footer className="footery"><div><button onClick={modifyProduct}>Save Changes</button></div></footer>)}
@@ -145,20 +150,26 @@ class CurrentProduct extends Component {
 	render() {
 		const { categories, user, currentProduct } = this.props;
 		return (
-			<DumbCurrentProduct
-				currentProduct={ currentProduct }
-				addToCart={ this.addToCart }
-				changeAmnt={ this.changeAmnt }
-				notify={ this.state.notify }
-				user={ user}
-				changeNameField={ this.changeNameField }
-				changeDescriptionField={ this.changeDescriptionField }
-				changePriceField={ this.changePriceField }
-				state={this.state}
-				categories={categories}
-				modifyProduct={this.modifyProduct}
-        selectImage={this.selectMainImg}
-			/>
+      <div className="currentProductContainer">
+        <DumbCurrentProduct
+          currentProduct={ currentProduct }
+          addToCart={ this.addToCart }
+          changeAmnt={ this.changeAmnt }
+          notify={ this.state.notify }
+          user={ user}
+          changeNameField={ this.changeNameField }
+          changeDescriptionField={ this.changeDescriptionField }
+          changePriceField={ this.changePriceField }
+          state={this.state}
+          categories={categories}
+          modifyProduct={this.modifyProduct}
+          selectImage={this.selectMainImg}
+        />
+        <div className="shippingInfo">
+          <p id="infoEmail">For product information please contact us at info@clariceking.com.</p>
+          <p id="shippingDetails">We ship everywhere! We prefer to quote shipping after we know your location and are able to research the best method. The quote will be emailed for your approval 24-48 hours after your online purchase and will be billed separately. If you are not happy with the quote, you may arrange your own shipping, or cancel the purchase.• You may also feel free to contact us at info@clariceking.com for a shipping quote before purchasing.</p>
+        </div>
+      </div>
 		)
 	}
 }

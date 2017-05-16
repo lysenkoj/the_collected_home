@@ -1,19 +1,16 @@
 .footer {
+  display: flex;
+  justify-content: space-around;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 140px;
   background-color: #f5f5f5;
-  text-align: center; }
-
-.footerContainer {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: horizontal; }
+  text-align: center;
+  align-items: center; }
 
 .socialList {
   display: flex;
@@ -21,10 +18,41 @@
   margin: 0; }
 
 .socialIcon {
-  width: 25px;
-  height: 25px;
-  margin-left: 5px;
-  margin-right: 5px; }
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.subscribeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px; }
+
+#subscribe {
+  align-self: flex-start; }
+
+#newsletterPerk {
+  font-size: 1.2em;
+  text-align: start;
+  margin-top: 5px; }
+
+.newsletterForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 460px;
+  height: 60px; }
+
+#newsletterInput {
+  height: 60px;
+  width: 300px;
+  border: none;
+  padding: 10px; }
+
+#newsletterButton {
+  height: 50px;
+  width: 130px; }
 
 .main-container {
   display: flex;
@@ -95,9 +123,29 @@ p {
   font-family: 'crimson_textroman';
   font-size: 1.5em; }
 
+h1 {
+  font-family: 'woodfordbourne-bold'; }
+
+h2 {
+  font-family: 'woodfordbourne-bold'; }
+
+h3 {
+  font-family: 'woodfordbourne-bold'; }
+
+h4 {
+  font-family: 'woodfordbourne-bold'; }
+
+h5 {
+  font-family: 'woodfordbourne-bold'; }
+
+.currentProductContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; }
+
 #currentProduct {
   display: flex;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
   min-height: 400px;
   clear: both; }
   #currentProduct .mainPhoto {
@@ -109,7 +157,8 @@ p {
   #currentProduct .infoContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    flex-grow: 1;
+    padding: 10px;
     justify-content: center; }
   #currentProduct .thumbnailContainer {
     display: flex;
@@ -126,6 +175,46 @@ p {
     border: 1px solid #fff; }
   #currentProduct .thumbnail:hover {
     border: 1px solid grey; }
+  #currentProduct .addToCart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 140px; }
+  #currentProduct .itemInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 440px; }
+  #currentProduct .productName {
+    flex-grow: 1; }
+  #currentProduct .productSku {
+    flex-grow: 0; }
+  #currentProduct .productDescription {
+    flex-grow: 4; }
+  #currentProduct .productSize {
+    flex-grow: 0; }
+  #currentProduct #cartButton {
+    width: 250px;
+    height: 50px;
+    margin: 10px;
+    font-family: 'woodfordbourne-bold';
+    font-size: 1em; }
+  #currentProduct #cartSelector {
+    width: 50px;
+    height: 50px; }
+
+.shippingInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 40px 0px 40px;
+  width: 100%;
+  margin-bottom: 50px; }
+
+#infoEmail {
+  font-size: 1.2em; }
+
+#shippingDetails {
+  font-size: 1.2em; }
 
 .gallery {
   display: flex;

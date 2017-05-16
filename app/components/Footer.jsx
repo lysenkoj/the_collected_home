@@ -11,8 +11,14 @@ export default class Footer extends Component {
     return (
       <div>
         <footer className="footer">
-          <div className="footerContainer">
-            <p className="text-muted">Place sticky footer content here.</p>
+            <div className="subscribeContainer">
+              <h5 id="subscribe">SUBSCRIBE</h5>
+              <form className="newsletterForm">
+                <input id="newsletterInput"type="text" placeholder="Enter Your Email Address..."></input>
+                <button id="newsletterButton" type="submit">SIGN UP</button>
+              </form>
+              <p id="newsletterPerk">Sign up and recieve first dibs on all new product</p>
+            </div>
             <ul className="socialList">
               <li>
                 <a href="https://www.claricekingdesigns.com/">
@@ -35,8 +41,6 @@ export default class Footer extends Component {
                 </a>
               </li>
             </ul>
-
-          </div>
        </footer>
       </div>
     )

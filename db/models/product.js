@@ -44,7 +44,9 @@ const Product = db.define('products', {
 	},
 
 	size: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: '1 x 1 x 1" H'
 	},
 
 	location: {

@@ -50947,50 +50947,65 @@
 	          { className: "footer" },
 	          _react2.default.createElement(
 	            "div",
-	            { className: "footerContainer" },
+	            { className: "subscribeContainer" },
 	            _react2.default.createElement(
-	              "p",
-	              { className: "text-muted" },
-	              "Place sticky footer content here."
+	              "h5",
+	              { id: "subscribe" },
+	              "SUBSCRIBE"
 	            ),
 	            _react2.default.createElement(
-	              "ul",
-	              { className: "socialList" },
+	              "form",
+	              { className: "newsletterForm" },
+	              _react2.default.createElement("input", { id: "newsletterInput", type: "text", placeholder: "Enter Your Email Address..." }),
 	              _react2.default.createElement(
-	                "li",
-	                null,
-	                _react2.default.createElement(
-	                  "a",
-	                  { href: "https://www.claricekingdesigns.com/" },
-	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/CKDLogo.png" })
-	                )
-	              ),
+	                "button",
+	                { id: "newsletterButton", type: "submit" },
+	                "SIGN UP"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "p",
+	              { id: "newsletterPerk" },
+	              "Sign up and recieve first dibs on all new product"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "ul",
+	            { className: "socialList" },
+	            _react2.default.createElement(
+	              "li",
+	              null,
 	              _react2.default.createElement(
-	                "li",
-	                null,
-	                _react2.default.createElement(
-	                  "a",
-	                  { href: "https://www.instagram.com/" },
-	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/instaIcon.png" })
-	                )
-	              ),
+	                "a",
+	                { href: "https://www.claricekingdesigns.com/" },
+	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/CKDLogo.png" })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
 	              _react2.default.createElement(
-	                "li",
-	                null,
-	                _react2.default.createElement(
-	                  "a",
-	                  { href: "https://www.facebook.com/" },
-	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/facebookIcon.jpg" })
-	                )
-	              ),
+	                "a",
+	                { href: "https://www.instagram.com/" },
+	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/instaIcon.png" })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
 	              _react2.default.createElement(
-	                "li",
-	                null,
-	                _react2.default.createElement(
-	                  "a",
-	                  { href: "https://www.twitter.com/" },
-	                  _react2.default.createElement("img", { className: "socialIcon", src: "/images/twitterIcon.png" })
-	                )
+	                "a",
+	                { href: "https://www.facebook.com/" },
+	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/facebookIcon.jpg" })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement(
+	                "a",
+	                { href: "https://www.twitter.com/" },
+	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/twitterIcon.png" })
 	              )
 	            )
 	          )
@@ -51218,7 +51233,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -51255,262 +51270,285 @@
 	
 	// NOTE: IF YOU EDIT THE TAG INSIDE HTML OF CONTENTEDITABLE, MAKE SURE TO UPDATE THE SLICE IN THE CHANGE____FIELD FNS TO THE NEW SIZE
 	var DumbCurrentProduct = function DumbCurrentProduct(_ref) {
-		var selectImage = _ref.selectImage,
-		    modifyProduct = _ref.modifyProduct,
-		    state = _ref.state,
-		    changeNameField = _ref.changeNameField,
-		    changeDescriptionField = _ref.changeDescriptionField,
-		    changePriceField = _ref.changePriceField,
-		    user = _ref.user,
-		    currentProduct = _ref.currentProduct,
-		    categories = _ref.categories,
-		    addToCart = _ref.addToCart,
-		    changeAmnt = _ref.changeAmnt,
-		    notify = _ref.notify;
-		return _react2.default.createElement(
-			'div',
-			{ id: 'currentProduct' },
-			notify ? _react2.default.createElement(_Notification2.default, null) : '',
-			_react2.default.createElement(
-				'div',
-				{ className: 'thumbnailContainer' },
-				currentProduct && currentProduct.img ? currentProduct && currentProduct.img.map(function (image, index) {
-					return _react2.default.createElement('img', { className: 'thumbnail', key: index, src: image, onClick: selectImage });
-				}) : _react2.default.createElement(
-					'p',
-					null,
-					'No images found'
-				)
-			),
-			_react2.default.createElement(
-				'photo',
-				null,
-				state.mainImg ? _react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: state.mainImg, responsive: true }) : _react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: currentProduct && currentProduct.mainImg, responsive: true })
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'infoContainer' },
-				_react2.default.createElement(
-					'info',
-					null,
-					_react2.default.createElement(_reactContenteditable2.default, {
-						html: '<h3>' + currentProduct.name + '</h3>',
-						disabled: !(user && user.isAdmin),
-						onChange: changeNameField
-					}),
-					_react2.default.createElement(
-						'h5',
-						null,
-						'SKU ',
-						currentProduct.sku
-					),
-					_react2.default.createElement(_reactContenteditable2.default, {
-						html: '<h4>' + (currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')) + '</h4>',
-						disabled: !(user && user.isAdmin),
-						onChange: changePriceField
-					}),
-					_react2.default.createElement(
-						'form',
-						{ onSubmit: addToCart },
-						_react2.default.createElement(
-							'select',
-							{ onChange: changeAmnt, name: 'dropdown' },
-							_react2.default.createElement(
-								'option',
-								{ value: '1', defaultValue: true },
-								'1'
-							),
-							_react2.default.createElement(
-								'option',
-								{ value: '2' },
-								'2'
-							),
-							_react2.default.createElement(
-								'option',
-								{ value: '3' },
-								'3'
-							)
-						),
-						_react2.default.createElement(
-							'button',
-							{ type: 'submit' },
-							'Add To Cart'
-						)
-					)
-				),
-				_react2.default.createElement(
-					'description',
-					null,
-					_react2.default.createElement(
-						'h4',
-						null,
-						'PRODUCT DETAILS'
-					),
-					_react2.default.createElement(_reactContenteditable2.default, {
-						html: '<p>' + currentProduct.description + '</p>',
-						disabled: !(user && user.isAdmin),
-						onChange: changeDescriptionField
-					})
-				)
-			),
-			user && user.isAdmin && (state.name || state.description || state.price || state.description) && _react2.default.createElement(
-				'footer',
-				{ className: 'footery' },
-				_react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'button',
-						{ onClick: modifyProduct },
-						'Save Changes'
-					)
-				)
-			)
-		);
+	  var selectImage = _ref.selectImage,
+	      modifyProduct = _ref.modifyProduct,
+	      state = _ref.state,
+	      changeNameField = _ref.changeNameField,
+	      changeDescriptionField = _ref.changeDescriptionField,
+	      changePriceField = _ref.changePriceField,
+	      user = _ref.user,
+	      currentProduct = _ref.currentProduct,
+	      categories = _ref.categories,
+	      addToCart = _ref.addToCart,
+	      changeAmnt = _ref.changeAmnt,
+	      notify = _ref.notify;
+	  return _react2.default.createElement(
+	    'div',
+	    { id: 'currentProduct' },
+	    notify ? _react2.default.createElement(_Notification2.default, null) : '',
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'thumbnailContainer' },
+	      currentProduct && currentProduct.img ? currentProduct && currentProduct.img.map(function (image, index) {
+	        return _react2.default.createElement('img', { className: 'thumbnail', key: index, src: image, onClick: selectImage });
+	      }) : _react2.default.createElement(
+	        'p',
+	        null,
+	        'No images found'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'photo',
+	      null,
+	      state.mainImg ? _react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: state.mainImg, responsive: true }) : _react2.default.createElement(_reactBootstrap.Image, { className: 'mainPhoto', src: currentProduct && currentProduct.mainImg, responsive: true })
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'infoContainer' },
+	      _react2.default.createElement(
+	        'info',
+	        { className: 'itemInfo' },
+	        _react2.default.createElement(_reactContenteditable2.default, { className: 'productName',
+	          html: '<h2>' + currentProduct.name + '</h2>',
+	          disabled: !(user && user.isAdmin),
+	          onChange: changeNameField
+	        }),
+	        _react2.default.createElement(
+	          'h5',
+	          { className: 'productSku' },
+	          'SKU ',
+	          currentProduct.sku
+	        ),
+	        _react2.default.createElement(_reactContenteditable2.default, { className: '',
+	          html: '<h3> $ ' + (currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')) + '</h3>',
+	          disabled: !(user && user.isAdmin),
+	          onChange: changePriceField
+	        }),
+	        _react2.default.createElement(_reactContenteditable2.default, { className: 'productDescription',
+	          html: '<p>' + currentProduct.description + '</p>',
+	          disabled: !(user && user.isAdmin),
+	          onChange: changeDescriptionField
+	        }),
+	        _react2.default.createElement(_reactContenteditable2.default, { className: 'productSize',
+	          html: '<p>' + currentProduct.size + '</p>',
+	          disabled: !(user && user.isAdmin),
+	          onChange: changeDescriptionField
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'description',
+	        { className: 'addToCart' },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Quantity'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: addToCart },
+	          _react2.default.createElement(
+	            'select',
+	            { id: 'cartSelector', onChange: changeAmnt, name: 'dropdown' },
+	            _react2.default.createElement(
+	              'option',
+	              { value: '1', defaultValue: true },
+	              '1'
+	            ),
+	            _react2.default.createElement(
+	              'option',
+	              { value: '2' },
+	              '2'
+	            ),
+	            _react2.default.createElement(
+	              'option',
+	              { value: '3' },
+	              '3'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { id: 'cartButton', type: 'submit' },
+	            'ADD TO CART'
+	          )
+	        )
+	      )
+	    ),
+	    user && user.isAdmin && (state.name || state.description || state.price || state.description) && _react2.default.createElement(
+	      'footer',
+	      { className: 'footery' },
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: modifyProduct },
+	          'Save Changes'
+	        )
+	      )
+	    )
+	  );
 	};
 	
 	/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
 	
 	var CurrentProduct = function (_Component) {
-		_inherits(CurrentProduct, _Component);
+	  _inherits(CurrentProduct, _Component);
 	
-		function CurrentProduct(props) {
-			_classCallCheck(this, CurrentProduct);
+	  function CurrentProduct(props) {
+	    _classCallCheck(this, CurrentProduct);
 	
-			var _this = _possibleConstructorReturn(this, (CurrentProduct.__proto__ || Object.getPrototypeOf(CurrentProduct)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CurrentProduct.__proto__ || Object.getPrototypeOf(CurrentProduct)).call(this, props));
 	
-			_this.state = {
-				quantity: 1,
-				notify: false,
-				name: "",
-				description: "",
-				price: "",
-				imageUrl: "",
-				mainImg: null
-			};
-			_this.addToCart = _this.addToCart.bind(_this);
-			_this.changeAmnt = _this.changeAmnt.bind(_this);
+	    _this.state = {
+	      quantity: 1,
+	      notify: false,
+	      name: "",
+	      description: "",
+	      price: "",
+	      imageUrl: "",
+	      mainImg: null
+	    };
+	    _this.addToCart = _this.addToCart.bind(_this);
+	    _this.changeAmnt = _this.changeAmnt.bind(_this);
 	
-			_this.changeNameField = _this.changeNameField.bind(_this);
-			_this.changeDescriptionField = _this.changeDescriptionField.bind(_this);
-			_this.changePriceField = _this.changePriceField.bind(_this);
+	    _this.changeNameField = _this.changeNameField.bind(_this);
+	    _this.changeDescriptionField = _this.changeDescriptionField.bind(_this);
+	    _this.changePriceField = _this.changePriceField.bind(_this);
 	
-			_this.modifyProduct = _this.modifyProduct.bind(_this);
+	    _this.modifyProduct = _this.modifyProduct.bind(_this);
 	
-			_this.selectMainImg = _this.selectMainImg.bind(_this);
+	    _this.selectMainImg = _this.selectMainImg.bind(_this);
 	
-			return _this;
-		}
+	    return _this;
+	  }
 	
-		_createClass(CurrentProduct, [{
-			key: 'selectMainImg',
-			value: function selectMainImg(evt) {
-				evt.preventDefault();
-				var mainImg = evt.target.src.slice(21);
-				this.setState({ mainImg: mainImg });
-			}
-		}, {
-			key: 'changeNameField',
-			value: function changeNameField(evt) {
-				evt.preventDefault();
-				var name = evt.target.value.slice(4, -5);
-				// console.log(name)
-				this.setState({ name: name });
-			}
-		}, {
-			key: 'changeDescriptionField',
-			value: function changeDescriptionField(evt) {
-				evt.preventDefault();
-				var description = evt.target.value.slice(3, -4);
-				// console.log(description)
-				this.setState({ description: description });
-			}
-		}, {
-			key: 'changePriceField',
-			value: function changePriceField(evt) {
-				evt.preventDefault();
-				var price = evt.target.value.slice(4, -5);
-				this.setState({ price: price });
-			}
-		}, {
-			key: 'addToCart',
-			value: function addToCart(evt) {
-				evt.preventDefault();
-				this.setState({ notify: true });
-				this.props.add(this.props.currentProduct, this.state.quantity);
-			}
-		}, {
-			key: 'changeAmnt',
-			value: function changeAmnt(evt) {
-				var quantity = +evt.target.value;
-				this.setState({ quantity: quantity });
-			}
-		}, {
-			key: 'modifyProduct',
-			value: function modifyProduct() {
-				var output = { sku: this.props.currentProduct.sku };
+	  _createClass(CurrentProduct, [{
+	    key: 'selectMainImg',
+	    value: function selectMainImg(evt) {
+	      evt.preventDefault();
+	      var mainImg = evt.target.src.slice(21);
+	      this.setState({ mainImg: mainImg });
+	    }
+	  }, {
+	    key: 'changeNameField',
+	    value: function changeNameField(evt) {
+	      evt.preventDefault();
+	      var name = evt.target.value.slice(4, -5);
+	      // console.log(name)
+	      this.setState({ name: name });
+	    }
+	  }, {
+	    key: 'changeDescriptionField',
+	    value: function changeDescriptionField(evt) {
+	      evt.preventDefault();
+	      var description = evt.target.value.slice(3, -4);
+	      // console.log(description)
+	      this.setState({ description: description });
+	    }
+	  }, {
+	    key: 'changePriceField',
+	    value: function changePriceField(evt) {
+	      evt.preventDefault();
+	      var price = evt.target.value.slice(4, -5);
+	      this.setState({ price: price });
+	    }
+	  }, {
+	    key: 'addToCart',
+	    value: function addToCart(evt) {
+	      evt.preventDefault();
+	      this.setState({ notify: true });
+	      this.props.add(this.props.currentProduct, this.state.quantity);
+	    }
+	  }, {
+	    key: 'changeAmnt',
+	    value: function changeAmnt(evt) {
+	      var quantity = +evt.target.value;
+	      this.setState({ quantity: quantity });
+	    }
+	  }, {
+	    key: 'modifyProduct',
+	    value: function modifyProduct() {
+	      var output = { sku: this.props.currentProduct.sku };
 	
-				if (this.state.name) {
-					output.name = this.state.name;
-				}
-				if (this.state.description) {
-					output.description = this.state.description;
-				}
-				if (this.state.price) {
-					output.price = this.state.price;
-				}
-				if (this.state.imageUrl) {
-					output.imageUrl = this.state.imageUrl;
-				}
+	      if (this.state.name) {
+	        output.name = this.state.name;
+	      }
+	      if (this.state.description) {
+	        output.description = this.state.description;
+	      }
+	      if (this.state.price) {
+	        output.price = this.state.price;
+	      }
+	      if (this.state.imageUrl) {
+	        output.imageUrl = this.state.imageUrl;
+	      }
 	
-				this.props.changeProduct(output);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var _props = this.props,
-				    categories = _props.categories,
-				    user = _props.user,
-				    currentProduct = _props.currentProduct;
+	      this.props.changeProduct(output);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          categories = _props.categories,
+	          user = _props.user,
+	          currentProduct = _props.currentProduct;
 	
-				return _react2.default.createElement(DumbCurrentProduct, {
-					currentProduct: currentProduct,
-					addToCart: this.addToCart,
-					changeAmnt: this.changeAmnt,
-					notify: this.state.notify,
-					user: user,
-					changeNameField: this.changeNameField,
-					changeDescriptionField: this.changeDescriptionField,
-					changePriceField: this.changePriceField,
-					state: this.state,
-					categories: categories,
-					modifyProduct: this.modifyProduct,
-					selectImage: this.selectMainImg
-				});
-			}
-		}]);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'currentProductContainer' },
+	        _react2.default.createElement(DumbCurrentProduct, {
+	          currentProduct: currentProduct,
+	          addToCart: this.addToCart,
+	          changeAmnt: this.changeAmnt,
+	          notify: this.state.notify,
+	          user: user,
+	          changeNameField: this.changeNameField,
+	          changeDescriptionField: this.changeDescriptionField,
+	          changePriceField: this.changePriceField,
+	          state: this.state,
+	          categories: categories,
+	          modifyProduct: this.modifyProduct,
+	          selectImage: this.selectMainImg
+	        }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'shippingInfo' },
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'infoEmail' },
+	            'For product information please contact us at info@clariceking.com.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'shippingDetails' },
+	            'We ship everywhere! We prefer to quote shipping after we know your location and are able to research the best method. The quote will be emailed for your approval 24-48 hours after your online purchase and will be billed separately. If you are not happy with the quote, you may arrange your own shipping, or cancel the purchase.\u2022 You may also feel free to contact us at info@clariceking.com for a shipping quote before purchasing.'
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-		return CurrentProduct;
+	  return CurrentProduct;
 	}(_react.Component);
 	
 	/* -----------------    CONTAINER     ------------------ */
 	
 	
 	var mapStateToProps = function mapStateToProps(_ref2) {
-		var categories = _ref2.categories,
-		    user = _ref2.user,
-		    currentProduct = _ref2.currentProduct;
-		return { categories: categories, user: user, currentProduct: currentProduct };
+	  var categories = _ref2.categories,
+	      user = _ref2.user,
+	      currentProduct = _ref2.currentProduct;
+	  return { categories: categories, user: user, currentProduct: currentProduct };
 	};
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {
-			add: function add(product, quantity) {
-				return dispatch((0, _cart.addItem)(product, quantity));
-			},
-			changeProduct: function changeProduct(product) {
-				return dispatch((0, _currentProduct.updateProduct)(product));
-			}
-		};
+	  return {
+	    add: function add(product, quantity) {
+	      return dispatch((0, _cart.addItem)(product, quantity));
+	    },
+	    changeProduct: function changeProduct(product) {
+	      return dispatch((0, _currentProduct.updateProduct)(product));
+	    }
+	  };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CurrentProduct);

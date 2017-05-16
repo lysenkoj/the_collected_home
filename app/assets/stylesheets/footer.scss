@@ -1,19 +1,16 @@
 .footer {
+  display: flex;
+  justify-content: space-around;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 140px;
   background-color: #f5f5f5;
   text-align: center;
-}
-.footerContainer{
-  display: flex;
-  justify-content: space-around;
-  flex-direction: horizontal;
+  align-items: center;
 }
 
 .socialList {
@@ -22,8 +19,46 @@
   margin: 0;
 }
 .socialIcon {
-  width: 25px;
-  height: 25px;
-  margin-left: 5px;
-  margin-right: 5px;
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
+
+.subscribeContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+}
+
+#subscribe{
+  align-self: flex-start;
+}
+
+#newsletterPerk{
+  font-size: 1.2em;
+  text-align: start;
+  margin-top: 5px;
+}
+
+.newsletterForm{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 460px;
+  height: 60px;
+}
+
+#newsletterInput{
+  height: 60px;
+  width: 300px;
+  border: none;
+  padding: 10px;
+}
+
+#newsletterButton{
+  height: 50px;
+  width: 130px;
+}
+
