@@ -51781,37 +51781,41 @@
 	      _react2.default.createElement(
 	        'div',
 	        null,
-	        'Current Sub Category'
+	        selectedProducts && selectedProducts.length ? console.log(selectedProducts[0].CategoryProduct) : null
 	      )
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'gallery' },
-	      selectedProducts && selectedProducts.length ? selectedProducts && selectedProducts.map(function (product) {
-	        return _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: 'product/' + product.sku, className: 'productThumbnail', key: product.sku },
-	          _react2.default.createElement('img', { className: 'imgThumb', src: product.img[0] }),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'productThumbInfoContainer' },
+	      { className: 'galleryContainer' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'gallery' },
+	        selectedProducts && selectedProducts.length ? selectedProducts && selectedProducts.map(function (product) {
+	          return _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: 'product/' + product.sku, className: 'productThumbnail', key: product.sku },
+	            _react2.default.createElement('img', { className: 'imgThumb', src: product.img[0] }),
 	            _react2.default.createElement(
-	              'h4',
-	              { id: 'productName' },
-	              product.name
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              { id: 'productPrice' },
-	              'Price: $',
-	              product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	              'div',
+	              { className: 'productThumbInfoContainer' },
+	              _react2.default.createElement(
+	                'h3',
+	                { id: 'productName' },
+	                product.name.toUpperCase()
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                { id: 'productPrice' },
+	                '$',
+	                product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	              )
 	            )
-	          )
-	        );
-	      }) : _react2.default.createElement(
-	        'p',
-	        null,
-	        'No products found'
+	          );
+	        }) : _react2.default.createElement(
+	          'p',
+	          null,
+	          'No products found'
+	        )
 	      )
 	    )
 	  );

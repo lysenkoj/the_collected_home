@@ -1,50 +1,239 @@
-.selectedProductsMain{
- min-height: 100%;
- margin-bottom: 150px;
+/* ----- DESKTOP ----- */
+
+@media(min-width: 1026px){
+  .selectedProductsMain{
+    min-height: 100%;
+    margin-bottom: 150px;
+  }
+
+  .galleryContainer{
+    display: flex;
+  }
+
+  .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-around;
+  }
+
+  .categoryMap{
+    display:flex;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 2vw;
+    border-top: 1px solid black;
+    font-family: 'woodfordbourne-bold';
+  }
+
+  .productThumbnail {
+    display: flex;
+    width: 30vw;
+    height: calc(30vw + 8vw);
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .productThumbnail:hover{
+    text-decoration: none;
+  }
+
+  .imgThumb{
+    width: 30vw;
+    height: 30vw;
+  }
+
+  .productThumbInfoContainer{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 8vw;
+    align-self: flex-end;
+    background-color: lightblue;
+  }
+
+  #productName{
+    width:100%;
+    color: grey;
+    letter-spacing: 2px;
+  }
+
+  #productName:hover{
+    text-decoration: none;
+  }
+
+  #productPrice{
+    width: 100%;
+    font-size: 1.5em;
+    color: grey;
+  }
+
+  #productPrice{
+    text-decoration: none;
+  }
 }
 
-.gallery{
-  display: flex;
-  flex-wrap: wrap;
+
+/* ----- MEDIUM ----- */
+@media(min-width: 750px) and (max-width:1025px){
+  .selectedProductsMain{
+    min-height: 100%;
+    margin-bottom: 150px;
+  }
+
+  .galleryContainer{
+    display: flex;
+  }
+
+  .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-around;
+  }
+
+  .categoryMap{
+    display:flex;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+    padding-left: 10px;
+    border-top: 1px solid black;
+    margin-bottom: 2vw;
+    font-family: 'woodfordbourne-bold';
+  }
+
+  .productThumbnail {
+    display: flex;
+    width: 45vw;
+    height: calc(45vw + 12vw);
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .productThumbnail:hover{
+    text-decoration: none;
+  }
+
+  .imgThumb{
+    width: 45vw;
+    height: 45vw;
+  }
+
+  .productThumbInfoContainer{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 12vw;
+    align-self: flex-end;
+    background-color: pink;
+  }
+
+  #productName{
+    width:100%;
+    color: grey;
+    letter-spacing: 2px;
+  }
+
+  #productName:hover{
+    text-decoration: none;
+  }
+
+  #productPrice{
+    width: 100%;
+    font-size: 1.5em;
+    color: grey;
+  }
+
+  #productPrice{
+    text-decoration: none;
+  }
 }
 
-.categoryMap{
-  display:flex;
-  height: 40px;
-  width: 100%;
-  background-color: lightgreen;
-  align-items: center;
-  padding-left: 10px;
-}
 
-.productThumbnail {
-  display: flex;
-  width: 280px;
-  height: 460px;
-  background-color: pink;
-  flex-direction: column;
-  margin: 10px;
-}
-.imgThumb{
-  width: 280px;
-  height: 360px;
-}
 
-.productThumbInfoContainer{
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: purple;
-  width: 100%;
-  height: 100px;
-  align-self: flex-end;
-}
 
-#productName{
-  width:100%;
-}
+/* ----- SMALL ----- */
+@media(max-width:749px){
+  .selectedProductsMain{
+    min-height: 100%;
+    margin-bottom: 150px;
+  }
 
-#productPrice{
-  width: 100%;
+  .galleryContainer{
+    display: flex;
+  }
+
+  .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-around;
+  }
+
+  .categoryMap{
+    display:flex;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+    padding-left: 10px;
+    border-top: 1px solid black;
+    margin-bottom: 2vw;
+    justify-content: center;
+    font-family: 'woodfordbourne-bold';
+  }
+
+  .productThumbnail {
+    display: flex;
+    width: 90vw;
+    height: calc(90vw + 20vw);
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .productThumbnail:hover{
+    text-decoration: none;
+  }
+
+  .imgThumb{
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .productThumbInfoContainer{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 20vw;
+    align-self: flex-end;
+    background-color: yellowgreen;
+  }
+
+  #productName{
+    width:100%;
+    color: grey;
+    letter-spacing: 2px;
+  }
+
+  #productName:hover{
+    text-decoration: none;
+  }
+
+  #productPrice{
+    width: 100%;
+    font-size: 1.5em;
+    color: grey;
+  }
+
+  #productPrice{
+    text-decoration: none;
+  }
 }
