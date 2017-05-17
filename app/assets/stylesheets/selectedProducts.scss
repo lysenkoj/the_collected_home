@@ -28,6 +28,16 @@
     font-family: 'woodfordbourne-bold';
   }
 
+  .categoryMap, a{
+    color: black;
+    text-decoration: none;
+  }
+
+  .categoryMap, a:hover{
+    color: black;
+    text-decoration: none;
+  }
+
   .productThumbnail {
     display: flex;
     width: 30vw;
@@ -105,6 +115,16 @@
     border-top: 1px solid black;
     margin-bottom: 2vw;
     font-family: 'woodfordbourne-bold';
+  }
+
+  .categoryMap, a{
+    color: black;
+    text-decoration: none;
+  }
+
+  .categoryMap, a:hover{
+    color: black;
+    text-decoration: none;
   }
 
   .productThumbnail {
@@ -187,6 +207,17 @@
     margin-bottom: 2vw;
     justify-content: center;
     font-family: 'woodfordbourne-bold';
+    font-size: 1.2em;
+  }
+
+  .categoryMap, a{
+    color: black;
+    text-decoration: none;
+  }
+
+  .categoryMap, a:hover{
+    color: black;
+    text-decoration: none;
   }
 
   .productThumbnail {

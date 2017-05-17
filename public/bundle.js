@@ -51737,6 +51737,8 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -51747,84 +51749,99 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
 	/* -----------------    COMPONENT     ------------------ */
 	
-	function SelectedProducts(_ref) {
-	  var selectedProducts = _ref.selectedProducts;
+	var SelectedProducts = function (_React$Component) {
+	  _inherits(SelectedProducts, _React$Component);
 	
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'selectedProductsMain' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'categoryMap' },
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/' },
-	        'HOME'
-	      ),
-	      _react2.default.createElement(
+	  function SelectedProducts(props) {
+	    _classCallCheck(this, SelectedProducts);
+	
+	    return _possibleConstructorReturn(this, (SelectedProducts.__proto__ || Object.getPrototypeOf(SelectedProducts)).call(this, props));
+	  }
+	
+	  _createClass(SelectedProducts, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        '//'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        'Current Meta Category'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        '//'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        selectedProducts && selectedProducts.length ? console.log(selectedProducts[0].CategoryProduct) : null
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'galleryContainer' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'gallery' },
-	        selectedProducts && selectedProducts.length ? selectedProducts && selectedProducts.map(function (product) {
-	          return _react2.default.createElement(
+	        { className: 'selectedProductsMain' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'categoryMap' },
+	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: 'product/' + product.sku, className: 'productThumbnail', key: product.sku },
-	            _react2.default.createElement('img', { className: 'imgThumb', src: product.img[0] }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'productThumbInfoContainer' },
-	              _react2.default.createElement(
-	                'h3',
-	                { id: 'productName' },
-	                product.name.toUpperCase()
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                { id: 'productPrice' },
-	                '$',
-	                product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-	              )
+	            { to: '/' },
+	            'HOME'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            '//'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            console.log(this.props)
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            this.props.params && this.props.params.categoryName ? '' + this.props.params.categoryName : null
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'galleryContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'gallery' },
+	            this.props.selectedProducts && this.props.selectedProducts.length ? this.props.selectedProducts && this.props.selectedProducts.map(function (product) {
+	              return _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: 'product/' + product.sku, className: 'productThumbnail', key: product.sku },
+	                _react2.default.createElement('img', { className: 'imgThumb', src: product.img[0] }),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productThumbInfoContainer' },
+	                  _react2.default.createElement(
+	                    'h3',
+	                    { id: 'productName' },
+	                    product.name.toUpperCase()
+	                  ),
+	                  _react2.default.createElement(
+	                    'p',
+	                    { id: 'productPrice' },
+	                    '$',
+	                    product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	                  )
+	                )
+	              );
+	            }) : _react2.default.createElement(
+	              'p',
+	              null,
+	              'No products found'
 	            )
-	          );
-	        }) : _react2.default.createElement(
-	          'p',
-	          null,
-	          'No products found'
+	          )
 	        )
-	      )
-	    )
-	  );
-	}
+	      );
+	    }
+	  }]);
+	
+	  return SelectedProducts;
+	}(_react2.default.Component);
 	
 	/* -----------------    CONTAINER     ------------------ */
 	
-	var mapStateToProps = function mapStateToProps(_ref2) {
-	  var selectedProducts = _ref2.selectedProducts;
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  var selectedProducts = _ref.selectedProducts,
+	      categories = _ref.categories;
 	  return { selectedProducts: selectedProducts };
 	};
 	var mapDispatchToProps = function mapDispatchToProps() {
