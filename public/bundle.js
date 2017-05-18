@@ -31707,13 +31707,37 @@
 	  function Navigbar(props) {
 	    _classCallCheck(this, Navigbar);
 	
-	    return _possibleConstructorReturn(this, (Navigbar.__proto__ || Object.getPrototypeOf(Navigbar)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Navigbar.__proto__ || Object.getPrototypeOf(Navigbar)).call(this, props));
 	
-	    // this.renderLoginSignup = this.renderLoginSignup.bind(this);
-	    // this.renderLogout = this.renderLogout.bind(this);
+	    _this.toggleNavDrop = _this.toggleNavDrop.bind(_this);
+	    _this.toggleMobileNav = _this.toggleMobileNav.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(Navigbar, [{
+	    key: 'toggleNavDrop',
+	    value: function toggleNavDrop(evt) {
+	      /*----------- Toggle Current Dropdown ---------------*/
+	      var link = evt.currentTarget;
+	      link.childNodes[1].style.display === 'flex' ? link.childNodes[1].style.display = 'none' : link.childNodes[1].style.display = 'flex';
+	      /*----------- Reset Dropdowns ---------------*/
+	      var getAll = function getAll() {
+	        return document.querySelectorAll('div.dropdownMenu');
+	      };
+	      var allDivs = getAll();
+	
+	      allDivs.forEach(function (div) {
+	        if (div !== link.childNodes[1]) {
+	          div.style.display = 'none';
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'toggleMobileNav',
+	    value: function toggleMobileNav() {
+	      console.log("HEEEEEELLLLLLOOOOOOO!!!!!!");
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -31737,56 +31761,23 @@
 	              'The Collected Home'
 	            )
 	          ),
-	          ' ',
 	          _react2.default.createElement(
-	            _reactBootstrap.Nav,
-	            { pullRight: true, className: 'navLogIn' },
+	            'div',
+	            { className: 'userContainer' },
 	            _react2.default.createElement(
-	              'span',
-	              { style: { color: "black" } },
-	              this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
-	            ),
-	            _react2.default.createElement(
-	              _reactRouterBootstrap.LinkContainer,
-	              { to: '/admin' },
+	              'div',
+	              { className: 'shoppingContainer' },
+	              _react2.default.createElement('img', { id: 'shoppingImg', src: 'images/shopping-cart.png' }),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavItem,
-	                null,
-	                this.props.user && this.props.user.isAdmin && "Admin Panel"
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactRouterBootstrap.LinkContainer,
-	              { to: '/orders/' + (this.props.user && this.props.user.id) },
-	              _react2.default.createElement(
-	                _reactBootstrap.NavItem,
-	                null,
-	                this.props.user && "Your Orders"
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactRouterBootstrap.LinkContainer,
-	              { to: '/cart' },
-	              _react2.default.createElement(
-	                _reactBootstrap.NavItem,
-	                null,
-	                'Cart (',
-	                this.props.cart && this.props.cart.length,
-	                ')'
-	              )
-	            ),
-	            this.props.user && this.props.user.email ? _react2.default.createElement(
-	              _reactBootstrap.NavItem,
-	              { onClick: this.props.signout },
-	              'Sign Out'
-	            ) : _react2.default.createElement(
-	              _reactRouterBootstrap.LinkContainer,
-	              { to: '/login' },
-	              _react2.default.createElement(
-	                _reactBootstrap.NavItem,
+	                'h5',
 	                null,
 	                'Login'
 	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'welcomeBanner' },
+	              this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
 	            )
 	          )
 	        ),
@@ -31794,125 +31785,224 @@
 	          'div',
 	          { className: 'bottomNav' },
 	          _react2.default.createElement(
-	            _reactBootstrap.Navbar.Collapse,
-	            null,
+	            'div',
+	            { className: 'mobileButton', onClick: this.toggleMobileNav },
+	            _react2.default.createElement('img', { id: 'menuIcon', src: '/images/menu-icon.png' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'navLinkContainer' },
 	            _react2.default.createElement(
-	              _reactBootstrap.Nav,
-	              { title: 'Departments' },
+	              'div',
+	              { className: 'navCategory', id: 'furnitureNav', onClick: this.toggleNavDrop },
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'FURNITURE', id: 'furniture-nav' },
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'FURNITURE'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'dropdownMenu', id: 'furnitureDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 1;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
 	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'navCategory', id: 'lightingNav', onClick: this.toggleNavDrop },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'LIGHTING'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'LIGHTING', id: 'lighting-nav' },
+	                'div',
+	                { className: 'dropdownMenu', id: 'lightingDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 2;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
 	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'navCategory', id: 'decorNav', onClick: this.toggleNavDrop },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'DECOR'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'DECOR', id: 'decor-nav' },
+	                'div',
+	                { className: 'dropdownMenu', id: 'decorDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 3;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
 	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'navCategory', id: 'beddingNav', onClick: this.toggleNavDrop },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'BEDDING'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'BEDDING', id: 'bedding-nav' },
+	                'div',
+	                { className: 'dropdownMenu', id: 'beddingDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 4;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
 	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'navCategory', id: 'fabricAndWallpaperNav', onClick: this.toggleNavDrop },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'FABRIC AND WALLPAPER'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'FABRIC AND WALLPAPER', id: 'fabric-and-wallpaper-nav' },
+	                'div',
+	                { className: 'dropdownMenu', id: 'fabricAndWallpaperDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 5;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
 	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'navCategory', id: 'gardenAndOutdoorNav', onClick: this.toggleNavDrop },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'GARDEN AND OUTDOOR'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'GARDEN AND OUTDOOR', id: 'garden-and-outdoor-nav' },
+	                'div',
+	                { className: 'dropdownMenu', id: 'gardenAndOutdoorDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 6;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
 	                })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'navCategory', id: 'giftsNav', onClick: this.toggleNavDrop },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'navLink' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  null,
+	                  'GIFTS'
+	                ),
+	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
 	              _react2.default.createElement(
-	                _reactBootstrap.NavDropdown,
-	                { title: 'GIFTS', id: 'gifts-nav' },
+	                'div',
+	                { className: 'dropdownMenu', id: 'giftsDrop' },
 	                this.props.categories.filter(function (category) {
 	                  return category.meta_category_id === 7;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterBootstrap.LinkContainer,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
-	                      _reactBootstrap.MenuItem,
-	                      null,
+	                      'div',
+	                      { className: 'dropDownItem' },
 	                      category.name
 	                    )
 	                  );
@@ -50986,7 +51076,7 @@
 	              null,
 	              _react2.default.createElement(
 	                "a",
-	                { href: "https://www.instagram.com/" },
+	                { href: "https://www.instagram.com/claricekinghome/" },
 	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/instaIcon.png" })
 	              )
 	            ),
@@ -50995,7 +51085,7 @@
 	              null,
 	              _react2.default.createElement(
 	                "a",
-	                { href: "https://www.facebook.com/" },
+	                { href: "https://www.facebook.com/ClariceKingHome/" },
 	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/facebookIcon.jpg" })
 	              )
 	            ),
@@ -51004,8 +51094,13 @@
 	              null,
 	              _react2.default.createElement(
 	                "a",
-	                { href: "https://www.twitter.com/" },
+	                { href: "https://twitter.com/ClariceKingHome/" },
 	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/twitterIcon.png" })
+	              ),
+	              _react2.default.createElement(
+	                "a",
+	                { href: "https://www.pinterest.com/claricekinghome/" },
+	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/pinterestIcon.png" })
 	              )
 	            )
 	          )

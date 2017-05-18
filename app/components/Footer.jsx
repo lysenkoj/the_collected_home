@@ -26,18 +26,21 @@ export default class Footer extends Component {
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/">
+                <a href="https://www.instagram.com/claricekinghome/">
                   <img className="socialIcon" src="/images/instaIcon.png" />
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/">
+                <a href="https://www.facebook.com/ClariceKingHome/">
                   <img className="socialIcon" src="/images/facebookIcon.jpg" />
                 </a>
               </li>
               <li>
-                <a href="https://www.twitter.com/">
+                <a href="https://twitter.com/ClariceKingHome/">
                   <img className="socialIcon" src="/images/twitterIcon.png" />
+                </a>
+                <a href="https://www.pinterest.com/claricekinghome/">
+                  <img className="socialIcon" src="/images/pinterestIcon.png" />
                 </a>
               </li>
             </ul>

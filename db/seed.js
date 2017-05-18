@@ -19,7 +19,7 @@ const categoriesToSeed = [
   {name: 'Chandeliers and Flush Mounts', meta_category_id: 2}, // category_id: 15
   {name: 'Floor Lamps', meta_category_id: 2}, // category_id: 16
   {name: 'Sconses', meta_category_id: 2}, // category_id: 17
-  {name: 'TableLamps', meta_category_id: 2}, // category_id: 18
+  {name: 'Table Lamps', meta_category_id: 2}, // category_id: 18
   {name: 'Accents', meta_category_id: 3}, // category_id: 19
   {name: 'Sculpture', meta_category_id: 3}, // category_id: 20
   {name: 'Trays and Vases', meta_category_id: 3}, // category_id: 21
