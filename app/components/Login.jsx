@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
+
 export const Login = ({ login }) => (
   <div>
 

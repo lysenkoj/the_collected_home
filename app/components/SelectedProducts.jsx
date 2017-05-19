@@ -15,10 +15,9 @@ class SelectedProducts extends React.Component {
       <div className="selectedProductsMain">
         {/*make this dynamic and linked*/}
       <div className="categoryMap">
-        <Link to={'/'}>HOME</Link>
-        <div>//</div>
-        <div>{console.log(this.props)}</div>
-        <div>{(this.props.params && this.props.params.categoryName) ? `${this.props.params.categoryName}` : null}</div>
+        <Link className="mapItem" to={'/'}>HOME</Link>
+        <div className="mapItem">//</div>
+        <div className="mapItem">{(this.props.params && this.props.params.categoryName) ? `${this.props.params.categoryName}` : 'SEARCH RESULT:'}</div>
       </div>
       <div className="galleryContainer">
         <div className="gallery">

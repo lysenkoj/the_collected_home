@@ -6,21 +6,17 @@ import { connect } from 'react-redux';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
-const DumbSearch = ({ onSearch, captureInput }) => (
+const DumbSearch = ({ onSearch, captureInput, toggleSearch }) => (
 
-  <Navbar.Form>
-    <form onSubmit={ onSearch }>
-      <Button className="searchBtn searchContainer" type="submit">
-        <img id="searchImg" src="/images/searchIcon.png" />
-      </Button>
-      <FormGroup>
-        <InputGroup id="searchBar">
-          <FormControl className="searchContainer" type="text" placeholder="Search" onChange={ captureInput }/>
-        </InputGroup>
-      </FormGroup>
-    </form>
-  </Navbar.Form>
-
+<div className="searchContainer">
+  <img id="searchImg" src="/images/searchIcon.png" onClick={ toggleSearch } />
+  <form className="searchBar" onSubmit={ onSearch }>
+    <input id="searchInput" type="text" placeholder="Search" onChange={ captureInput }/>
+    <button className ="searchBtn" type="submit">
+      <div className="arrow-right"></div>
+    </button>
+  </form>
+</div>
 );
 
 /* -----------------    STATEFUL REACT COMPONENT     ------------------ */
@@ -34,6 +30,7 @@ class Search extends Component {
     };
     this.captureInput = this.captureInput.bind(this);
     this.onSearch = this.onSearch.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
   }
 
   captureInput(evt)  {
@@ -50,11 +47,23 @@ class Search extends Component {
     }
   }
 
+  toggleSearch(){
+    const selectSearchBar = function(){
+      return document.querySelector('form.searchBar')
+    };
+    const searchBarDiv = selectSearchBar();
+
+    (searchBarDiv.style.display === 'flex') ?
+    searchBarDiv.style.display = 'none' : searchBarDiv.style.display = 'flex';
+
+  }
+
   render() {
     return (
       <DumbSearch
         onSearch={ this.onSearch }
         captureInput={ this.captureInput }
+        toggleSearch={ this.toggleSearch }
       />
     );
   }

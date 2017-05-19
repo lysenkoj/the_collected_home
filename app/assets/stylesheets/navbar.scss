@@ -23,10 +23,6 @@
       background-color: #fff;
   }
 
-  .navbar-form{
-    width: 33vw;
-  }
-
   .mainLogo{
     display:flex;
     width: 33vw;
@@ -62,35 +58,66 @@
   .userContainer{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 15vw;
-    margin-left: calc(33vw - 15vw);
+    width: 25vw;
+  }
+
+  .userPanel{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2vw;
+  }
+
+  #signOut{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #signOut:hover{
+    cursor: pointer;
+  }
+
+  #login{
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   #welcomeBanner{
-   width: 100%;
    text-align: center;
    font-family: 'crimson_textroman';
   }
 
+  #cartLink{
+    display:flex;
+    margin-right: 5px;
+  }
+
   .shoppingContainer{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
   }
 
   #shoppingImg{
     width: 30px;
-    height: auto;
+    height: 30px;
+  }
+
+  #orderContainer{
+    display: flex;
+    margin-left: 5px;
   }
 
   .topNav{
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 80px;
+    height: 90px;
   }
 
   .bottomNav{
@@ -206,6 +233,10 @@
     color: black;
   }
 
+  .navbar-form{
+    width: 33vw;
+  }
+
   .navbar-inverse .navbar-nav>li>a {
       color: black;
   }
@@ -249,6 +280,66 @@
     font-family: 'crimsontext-semibold';
     font-size: 0.8em;
     letter-spacing: 3px;
+  }
+
+
+  .userContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 32vw;
+  }
+
+  .userPanel{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2vw;
+  }
+
+
+  #signOut{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #signOut:hover{
+    cursor: pointer;
+  }
+
+  #login{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #welcomeBanner{
+   text-align: center;
+   font-family: 'crimson_textroman';
+  }
+
+  #cartLink{
+    display:flex;
+    margin-right: 5px;
+  }
+
+  .shoppingContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #shoppingImg{
+    width: 30px;
+    height: 30px;
+  }
+
+   #orderContainer{
+    display: flex;
+    margin-left: 5px;
   }
 
   .topNav{
@@ -364,12 +455,16 @@
 /* -------------------- SMALL ----------------------- */
 
 @media(max-width:749px){
-    .navbar {
+ .navbar {
     display: flex;
     margin-bottom: 0;
     flex-direction: column;
     border: none;
     color: black;
+  }
+
+  .navbar-form{
+    width: 33vw;
   }
 
   .navbar-inverse .navbar-nav>li>a {
@@ -391,6 +486,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    order: 1;
     flex-grow: 3;
     font-family: 'aleo-regular';
     font-size: 1.3em;
@@ -417,11 +513,76 @@
     letter-spacing: 3px;
   }
 
+
+  .userContainer{
+    display: flex;
+    order: 2;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 35px;
+  }
+
+  .userPanel{
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 35px;
+  }
+  #signOut{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #signOut:hover{
+    cursor: pointer;
+  }
+
+  #login{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #welcomeBanner{
+   width: 50%;
+   order: 1;
+   text-align: start;
+   margin-left: 2vw;
+   font-family: 'crimson_textroman';
+  }
+
+  #cartLink{
+    display: flex;
+    margin-right: 5px;
+  }
+
+  .shoppingContainer{
+    order: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+    margin-right: 4vw;
+  }
+
+  #shoppingImg{
+    width: 30px;
+    height: 30px;
+  }
+
+  #orderContainer{
+    display: flex;
+    margin-left: 5px;
+  }
+
   .topNav{
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     width: 100%;
-    height: 100px;
+    height: 175px;
   }
 
   .bottomNav{
@@ -433,11 +594,17 @@
 
   .mobileButton{
     display: flex;
-    border: 1px solid black;
+    border-bottom: 3px solid black;
+    border-right: 3px solid black;
+    border-left: 3px solid black;
     padding-top: 5px;
     padding-bottom: 5px;
     align-items: center;
     justify-content: center;
+  }
+
+  .mobileButton:hover{
+    cursor: pointer;
   }
 
   #menuIcon{
@@ -486,15 +653,19 @@
 
   .dropdownMenu{
     display: flex;
-    position: absolute;
-    align-self: flex-start;
     background-color: white;
-    margin-top: 40px;
-    flex-direction: column;
+    width: 100vw;
+    flex-direction: row;
+    flex-wrap: wrap;
     border: 1px solid black;
     padding: 5px;
     font-family:'crimson_textroman';
     z-index: 2;
+  }
+
+  .dropDownItem{
+    width: 32vw;
+    text-align: center;
   }
 
 

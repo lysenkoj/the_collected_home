@@ -38,6 +38,11 @@
     text-decoration: none;
   }
 
+  .mapItem{
+    margin-left: 0.25vw;
+    margin-right: 0.25vw;
+  }
+
   .productThumbnail {
     display: flex;
     width: 30vw;
@@ -126,6 +131,11 @@
     text-decoration: none;
   }
 
+.mapItem{
+    margin-left: 0.25vw;
+    margin-right: 0.25vw;
+  }
+
   .productThumbnail {
     display: flex;
     width: 45vw;
@@ -206,6 +216,11 @@
     justify-content: center;
     font-family: 'woodfordbourne-bold';
     font-size: 1.2em;
+  }
+
+  .mapItem{
+    margin-left: 0.25vw;
+    margin-right: 0.25vw;
   }
 
   .categoryMap, a{

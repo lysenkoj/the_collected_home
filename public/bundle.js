@@ -31735,7 +31735,12 @@
 	  }, {
 	    key: 'toggleMobileNav',
 	    value: function toggleMobileNav() {
-	      console.log("HEEEEEELLLLLLOOOOOOO!!!!!!");
+	      var selectNav = function selectNav() {
+	        return document.querySelector('div.navLinkContainer');
+	      };
+	      var navDiv = selectNav();
+	
+	      navDiv.style.display === 'flex' ? navDiv.style.display = 'none' : navDiv.style.display = 'flex';
 	    }
 	  }, {
 	    key: 'render',
@@ -31766,18 +31771,89 @@
 	            { className: 'userContainer' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'shoppingContainer' },
-	              _react2.default.createElement('img', { id: 'shoppingImg', src: 'images/shopping-cart.png' }),
+	              { className: 'userPanel' },
 	              _react2.default.createElement(
-	                'h5',
-	                null,
-	                'Login'
+	                'div',
+	                { className: 'shoppingContainer' },
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/cart' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { id: 'cartLink' },
+	                    _react2.default.createElement('img', { id: 'shoppingImg', src: 'images/shopping-cart.png' }),
+	                    _react2.default.createElement(
+	                      'h5',
+	                      null,
+	                      '(',
+	                      this.props.cart && this.props.cart.length,
+	                      ')'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  _react2.default.createElement(
+	                    'h5',
+	                    null,
+	                    '//'
+	                  )
+	                ),
+	                this.props.user && this.props.user.email ? _react2.default.createElement(
+	                  'div',
+	                  { id: 'signOut', onClick: this.props.signout },
+	                  _react2.default.createElement(
+	                    'h5',
+	                    null,
+	                    'Sign Out'
+	                  )
+	                ) : _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { id: 'login', to: '/login' },
+	                  _react2.default.createElement(
+	                    'h5',
+	                    null,
+	                    'Login'
+	                  )
+	                ),
+	                this.props.user ? _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  _react2.default.createElement(
+	                    'h5',
+	                    null,
+	                    '//'
+	                  )
+	                ) : null,
+	                this.props.user ? _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { id: 'orderContainer', to: '/orders/' + (this.props.user && this.props.user.id) },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { id: 'orderButton' },
+	                    _react2.default.createElement(
+	                      'h5',
+	                      null,
+	                      this.props.user && "Your Orders"
+	                    )
+	                  )
+	                ) : null
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { id: 'welcomeBanner' },
+	                this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
+	              ),
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/admin' },
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  this.props.user && this.props.user.isAdmin && "Admin Panel"
+	                )
 	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { id: 'welcomeBanner' },
-	              this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
 	            )
 	          )
 	        ),
@@ -50702,26 +50778,20 @@
 	
 	var DumbSearch = function DumbSearch(_ref) {
 	  var onSearch = _ref.onSearch,
-	      captureInput = _ref.captureInput;
+	      captureInput = _ref.captureInput,
+	      toggleSearch = _ref.toggleSearch;
 	  return _react2.default.createElement(
-	    _reactBootstrap.Navbar.Form,
-	    null,
+	    'div',
+	    { className: 'searchContainer' },
+	    _react2.default.createElement('img', { id: 'searchImg', src: '/images/searchIcon.png', onClick: toggleSearch }),
 	    _react2.default.createElement(
 	      'form',
-	      { onSubmit: onSearch },
+	      { className: 'searchBar', onSubmit: onSearch },
+	      _react2.default.createElement('input', { id: 'searchInput', type: 'text', placeholder: 'Search', onChange: captureInput }),
 	      _react2.default.createElement(
-	        _reactBootstrap.Button,
-	        { className: 'searchBtn searchContainer', type: 'submit' },
-	        _react2.default.createElement('img', { id: 'searchImg', src: '/images/searchIcon.png' })
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.FormGroup,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.InputGroup,
-	          { id: 'searchBar' },
-	          _react2.default.createElement(_reactBootstrap.FormControl, { className: 'searchContainer', type: 'text', placeholder: 'Search', onChange: captureInput })
-	        )
+	        'button',
+	        { className: 'searchBtn', type: 'submit' },
+	        _react2.default.createElement('div', { className: 'arrow-right' })
 	      )
 	    )
 	  );
@@ -50742,6 +50812,7 @@
 	    };
 	    _this.captureInput = _this.captureInput.bind(_this);
 	    _this.onSearch = _this.onSearch.bind(_this);
+	    _this.toggleSearch = _this.toggleSearch.bind(_this);
 	    return _this;
 	  }
 	
@@ -50763,11 +50834,22 @@
 	      }
 	    }
 	  }, {
+	    key: 'toggleSearch',
+	    value: function toggleSearch() {
+	      var selectSearchBar = function selectSearchBar() {
+	        return document.querySelector('form.searchBar');
+	      };
+	      var searchBarDiv = selectSearchBar();
+	
+	      searchBarDiv.style.display === 'flex' ? searchBarDiv.style.display = 'none' : searchBarDiv.style.display = 'flex';
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(DumbSearch, {
 	        onSearch: this.onSearch,
-	        captureInput: this.captureInput
+	        captureInput: this.captureInput,
+	        toggleSearch: this.toggleSearch
 	      });
 	    }
 	  }]);
@@ -51872,23 +51954,18 @@
 	          { className: 'categoryMap' },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/' },
+	            { className: 'mapItem', to: '/' },
 	            'HOME'
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'mapItem' },
 	            '//'
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            null,
-	            console.log(this.props)
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            this.props.params && this.props.params.categoryName ? '' + this.props.params.categoryName : null
+	            { className: 'mapItem' },
+	            this.props.params && this.props.params.categoryName ? '' + this.props.params.categoryName : 'SEARCH RESULT:'
 	          )
 	        ),
 	        _react2.default.createElement(

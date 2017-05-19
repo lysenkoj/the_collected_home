@@ -52,15 +52,18 @@
   }
 
   #newsletterInput{
+    border: 3px solid black;
     height: 60px;
     width: 300px;
-    border: none;
     padding: 10px;
   }
 
   #newsletterButton{
     height: 50px;
     width: 130px;
+    color: white;
+    border: none;
+    background-color: black;
   }
 }
 
@@ -118,15 +121,18 @@
   }
 
   #newsletterInput{
+    border: 3px solid black;
     height: 60px;
     width: 300px;
-    border: none;
     padding: 10px;
   }
 
   #newsletterButton{
     height: 50px;
     width: 130px;
+    color: white;
+    border: none;
+    background-color: black;
   }
 }
 
@@ -187,14 +193,17 @@
   }
 
   #newsletterInput{
+    border: 3px solid black;
     height: 10vw;
     width: 70vw;
-    border: none;
     padding: 10px;
   }
 
   #newsletterButton{
     height: 8vw;
     width: 20vw;
+    color: white;
+    border: none;
+    background-color: black;
   }
 }

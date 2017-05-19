@@ -36,7 +36,13 @@ class Navigbar extends React.Component {
   }
 
   toggleMobileNav(){
-    console.log("HEEEEEELLLLLLOOOOOOO!!!!!!")
+    const selectNav = function(){
+      return document.querySelector('div.navLinkContainer')
+    };
+    const navDiv = selectNav();
+
+    (navDiv.style.display === 'flex') ?
+    navDiv.style.display = 'none' : navDiv.style.display = 'flex';
   }
 
   render(){
@@ -49,17 +55,47 @@ class Navigbar extends React.Component {
             <div id="tagline">The Collected Home</div>
           </Link>
           <div className="userContainer">
-            <div className="shoppingContainer">
-              <img id="shoppingImg" src="images/shopping-cart.png"/>
-              <h5>Login</h5>
-            </div>
-            <div id="welcomeBanner">
-            {
-                this.props.user ?
-                  `Welcome back, ${this.props.user.firstName || this.props.user.email}!`
-                :
-                  'Guest'
-              }
+            <div className="userPanel">
+              <div className="shoppingContainer">
+                <Link to="/cart">
+                  <div id="cartLink">
+                    <img id="shoppingImg" src="images/shopping-cart.png"/>
+                    <h5>({this.props.cart && this.props.cart.length})</h5>
+                  </div>
+                </Link>
+                <div><h5>//</h5></div>
+                {
+                  this.props.user && this.props.user.email ?
+                  <div id="signOut" onClick={this.props.signout}><h5>Sign Out</h5></div> :
+                  <Link id="login" to='/login'><h5>Login</h5></Link>
+                }
+                {
+                  this.props.user ?
+                  <div><h5>//</h5></div> :
+                  null
+                }
+                { this.props.user ?
+                  <Link id="orderContainer" to={`/orders/${this.props.user && this.props.user.id}`}>
+                    <div id="orderButton">
+                      <h5>{this.props.user && "Your Orders"}</h5>
+                    </div>
+                  </Link> :
+                  null
+                }
+              </div>
+              <div id="welcomeBanner">
+              {
+                  this.props.user ?
+                    `Welcome back, ${this.props.user.firstName || this.props.user.email}!`
+                  :
+                    'Guest'
+                }
+              </div>
+              <Link to="/admin">
+                <div>
+                  {this.props.user && this.props.user.isAdmin && "Admin Panel"}
+                </div>
+              </Link>
             </div>
           </div>
           {/*<Nav pullRight className="navLogIn">
@@ -183,70 +219,6 @@ class Navigbar extends React.Component {
               </div>
             </div>
           </div>
-          {/*<Navbar.Collapse>
-            <Nav title="Departments">
-              <div className="topCategories">
-                <NavDropdown title="FURNITURE" id="furniture-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 1
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-                <NavDropdown title="LIGHTING" id="lighting-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 2
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-                <NavDropdown title="DECOR" id="decor-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 3
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-                <NavDropdown title="BEDDING" id="bedding-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 4
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-              </div>
-              <div className="bottomCategories">
-                <NavDropdown title="FABRIC AND WALLPAPER" id="fabric-and-wallpaper-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 5
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-                <NavDropdown title="GARDEN AND OUTDOOR" id="garden-and-outdoor-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 6
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-                <NavDropdown title="GIFTS" id="gifts-nav">
-                  {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 7
-                  }).map(category => (
-                    <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
-                  ))
-                  }
-                </NavDropdown>
-              </div>
-            </Nav>
-          </Navbar.Collapse>*/}
         </div>
       </Navbar>
     )
