@@ -241,83 +241,271 @@ h4 {
 h5 {
   font-family: 'woodfordbourne-bold'; }
 
-.currentProductContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%; }
-
-#currentProduct {
-  display: flex;
-  margin-bottom: 100px;
-  min-height: 400px;
-  clear: both; }
-  #currentProduct .mainPhoto {
-    display: inline-block;
-    width: auto;
-    height: 600px; }
-  #currentProduct info {
-    display: inline-block; }
-  #currentProduct .infoContainer {
+/* -------------------- LARGE ----------------------- */
+@media (min-width: 1026px) {
+  .currentProductContainer {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    padding: 10px;
-    justify-content: center; }
-  #currentProduct .thumbnailContainer {
+    min-height: 100%;
+    margin-bottom: 40px; }
+  #currentProduct {
+    display: flex;
+    margin-bottom: 100px;
+    min-height: 400px;
+    clear: both; }
+    #currentProduct .mainPhoto {
+      display: inline-block;
+      width: auto;
+      height: 600px; }
+    #currentProduct info {
+      display: inline-block; }
+    #currentProduct .infoContainer {
+      display: flex;
+      width: 30vw;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 10px;
+      justify-content: center; }
+    #currentProduct .thumbnailContainer {
+      display: flex;
+      flex-direction: column;
+      width: 120px;
+      align-items: center; }
+    #currentProduct .thumbnail {
+      width: calc(100% - 10px);
+      height: auto;
+      padding: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding: 2px;
+      border: 1px solid #fff; }
+    #currentProduct .thumbnail:hover {
+      border: 1px solid grey; }
+    #currentProduct .addToCart {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 140px; }
+    #currentProduct .itemInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 440px; }
+    #currentProduct .productName {
+      flex-grow: 1; }
+    #currentProduct .productSku {
+      flex-grow: 0; }
+    #currentProduct .productDescription {
+      flex-grow: 4; }
+    #currentProduct .productSize {
+      flex-grow: 0; }
+    #currentProduct #cartButton {
+      width: 17vw;
+      height: 50px;
+      margin-left: 10px;
+      margin-right: 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-family: 'woodfordbourne-bold';
+      font-size: 1em;
+      background-color: black;
+      border: none;
+      color: white; }
+    #currentProduct #cartSelector {
+      width: 50px;
+      height: 50px; }
+  .shippingInfo {
     display: flex;
     flex-direction: column;
-    width: 120px;
-    align-items: center; }
-  #currentProduct .thumbnail {
-    width: calc(100% - 10px);
-    height: auto;
-    padding: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 2px;
-    border: 1px solid #fff; }
-  #currentProduct .thumbnail:hover {
-    border: 1px solid grey; }
-  #currentProduct .addToCart {
+    padding: 0px 40px 0px 40px;
+    width: 100%;
+    margin-bottom: 50px; }
+  #infoEmail {
+    font-size: 1.2em; }
+  #shippingDetails {
+    font-size: 1.2em; } }
+
+/* -------------------- MEDIUM ----------------------- */
+@media (min-width: 750px) and (max-width: 1025px) {
+  .currentProductContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 140px; }
-  #currentProduct .itemInfo {
+    min-height: 100%;
+    margin-bottom: 40px; }
+  #currentProduct {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    height: 440px; }
-  #currentProduct .productName {
-    flex-grow: 1; }
-  #currentProduct .productSku {
-    flex-grow: 0; }
-  #currentProduct .productDescription {
-    flex-grow: 4; }
-  #currentProduct .productSize {
-    flex-grow: 0; }
-  #currentProduct #cartButton {
-    width: 250px;
-    height: 50px;
-    margin: 10px;
-    font-family: 'woodfordbourne-bold';
-    font-size: 1em; }
-  #currentProduct #cartSelector {
-    width: 50px;
-    height: 50px; }
+    margin-bottom: 20px;
+    min-height: 400px;
+    clear: both; }
+    #currentProduct .mainPhoto {
+      display: inline-block;
+      order: 1;
+      width: 100%;
+      height: auto; }
+    #currentProduct info {
+      display: inline-block; }
+    #currentProduct .infoContainer {
+      display: flex;
+      flex-direction: row;
+      order: 3;
+      flex-grow: 1;
+      padding: 10px;
+      justify-content: center; }
+    #currentProduct .thumbnailContainer {
+      display: flex;
+      order: 2;
+      flex-direction: row;
+      width: 100vw;
+      align-items: center;
+      justify-content: center; }
+    #currentProduct .thumbnail {
+      height: 100px;
+      width: auto;
+      margin-top: 20px;
+      margin-left: 5px;
+      margin-right: 5px;
+      border: 1px solid #fff; }
+    #currentProduct .thumbnail:hover {
+      border: 1px solid grey; }
+    #currentProduct .addToCart {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: flex-start;
+      width: 320px;
+      height: 140px; }
+    #currentProduct .addToCart h4 {
+      align-self: flex-start; }
+    #currentProduct .itemInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: calc(100% - 320px);
+      height: 300px; }
+    #currentProduct .productName {
+      flex-grow: 1; }
+    #currentProduct .productSku {
+      flex-grow: 0; }
+    #currentProduct .productDescription {
+      flex-grow: 4;
+      width: 100vw; }
+    #currentProduct .productSize {
+      flex-grow: 0; }
+    #currentProduct #cartButton {
+      width: 250px;
+      height: 50px;
+      margin: 10px;
+      font-family: 'woodfordbourne-bold';
+      font-size: 1em;
+      background-color: black;
+      border: none;
+      color: white; }
+    #currentProduct #cartSelector {
+      width: 50px;
+      height: 50px; }
+  .shippingInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px 0px 40px;
+    width: 100%;
+    margin-bottom: 50px; }
+  #infoEmail {
+    font-size: 1.2em; }
+  #shippingDetails {
+    font-size: 1.2em; } }
 
-.shippingInfo {
-  display: flex;
-  flex-direction: column;
-  padding: 0px 40px 0px 40px;
-  width: 100%;
-  margin-bottom: 50px; }
-
-#infoEmail {
-  font-size: 1.2em; }
-
-#shippingDetails {
-  font-size: 1.2em; }
+/* -------------------- SMALL ----------------------- */
+@media (max-width: 749px) {
+  .currentProductContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin-bottom: 80px; }
+  #currentProduct {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    min-height: 400px;
+    clear: both; }
+    #currentProduct .mainPhoto {
+      display: inline-block;
+      order: 1;
+      width: 100%;
+      height: auto; }
+    #currentProduct info {
+      display: inline-block; }
+    #currentProduct .infoContainer {
+      display: flex;
+      flex-direction: row;
+      order: 3;
+      flex-grow: 1;
+      padding: 10px;
+      justify-content: center; }
+    #currentProduct .thumbnailContainer {
+      display: flex;
+      order: 2;
+      flex-direction: row;
+      width: 100vw;
+      align-items: center;
+      justify-content: center; }
+    #currentProduct .thumbnail {
+      height: 100px;
+      width: auto;
+      margin-top: 20px;
+      margin-left: 5px;
+      margin-right: 5px;
+      border: 1px solid #fff; }
+    #currentProduct .thumbnail:hover {
+      border: 1px solid grey; }
+    #currentProduct .addToCart {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-self: flex-start;
+      width: 320px;
+      height: 140px; }
+    #currentProduct .addToCart h4 {
+      align-self: flex-start; }
+    #currentProduct .itemInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: calc(100% - 320px);
+      height: 300px; }
+    #currentProduct .productName {
+      flex-grow: 1; }
+    #currentProduct .productSku {
+      flex-grow: 0; }
+    #currentProduct .productDescription {
+      flex-grow: 4;
+      width: 100vw; }
+    #currentProduct .productSize {
+      flex-grow: 0; }
+    #currentProduct #cartButton {
+      width: 250px;
+      height: 50px;
+      margin: 10px;
+      font-family: 'woodfordbourne-bold';
+      font-size: 1em;
+      background-color: black;
+      border: none;
+      color: white; }
+    #currentProduct #cartSelector {
+      width: 50px;
+      height: 50px; }
+  .shippingInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px 0px 40px;
+    width: 100%;
+    margin-bottom: 50px; }
+  #infoEmail {
+    font-size: 1.2em; }
+  #shippingDetails {
+    font-size: 1.2em; } }
 
 /* ----- DESKTOP ----- */
 @media (min-width: 1026px) {
