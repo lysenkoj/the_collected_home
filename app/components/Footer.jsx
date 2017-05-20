@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 
 export default class Footer extends Component {
@@ -11,6 +12,43 @@ export default class Footer extends Component {
     return (
       <div>
         <footer className="footer">
+          <div className="footerTop">
+            <div className="footerLinks">
+              <div className="interiorDesign">
+                <h5 className="footerTitle">INTERIOR DESIGN</h5>
+                {/*should this be a form on this site or the portfolio site???*/}
+                <a id="portfolioLink"href="https://www.claricekingdesigns.com/designservices">
+                  <h6 className="footerLink">DESIGN SERVICES</h6>
+                </a>
+                <a id="portfolioLink"href="https://www.claricekingdesigns.com/">
+                  <h6 className="footerLink">PORTFOLIO</h6>
+                </a>
+              </div>
+              <div className="aboutUs">
+                <h5 className="footerTitle">ABOUT US</h5>
+                <Link to="/story">
+                  <h6 className="footerLink">OUR STORY</h6>
+                </Link>
+                <Link to="/press">
+                  <h6 className="footerLink">PRESS</h6>
+                </Link>
+                <Link to="/testimonials">
+                  <h6 className="footerLink">TESTIMONIALS</h6>
+                </Link>
+              </div>
+              <div className="help">
+                <h5 className="footerTitle">HELP</h5>
+                <Link to="/contact">
+                  <h6 className="footerLink">CONTACT</h6>
+                </Link>
+                <Link to="/faq">
+                  <h6 className="footerLink">FAQ</h6>
+                </Link>
+                <Link to="/shipping">
+                  <h6 className="footerLink">SHIPPING & RETURNS</h6>
+                </Link>
+              </div>
+            </div>
             <div className="subscribeContainer">
               <h5 id="subscribe">SUBSCRIBE</h5>
               <form className="newsletterForm">
@@ -19,6 +57,8 @@ export default class Footer extends Component {
               </form>
               <p id="newsletterPerk">Sign up and recieve first dibs on all new product</p>
             </div>
+          </div>
+          <div className="footerBottom">
             <ul className="socialList">
               <li>
                 <a href="https://www.claricekingdesigns.com/">
@@ -44,6 +84,7 @@ export default class Footer extends Component {
                 </a>
               </li>
             </ul>
+          </div>
        </footer>
       </div>
     )

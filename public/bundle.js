@@ -51079,7 +51079,7 @@
 /* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -51090,6 +51090,8 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(230);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -51109,80 +51111,191 @@
 	  }
 	
 	  _createClass(Footer, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
+	        'div',
 	        null,
 	        _react2.default.createElement(
-	          "footer",
-	          { className: "footer" },
+	          'footer',
+	          { className: 'footer' },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "subscribeContainer" },
+	            'div',
+	            { className: 'footerTop' },
 	            _react2.default.createElement(
-	              "h5",
-	              { id: "subscribe" },
-	              "SUBSCRIBE"
-	            ),
-	            _react2.default.createElement(
-	              "form",
-	              { className: "newsletterForm" },
-	              _react2.default.createElement("input", { id: "newsletterInput", type: "text", placeholder: "Enter Your Email Address..." }),
+	              'div',
+	              { className: 'footerLinks' },
 	              _react2.default.createElement(
-	                "button",
-	                { id: "newsletterButton", type: "submit" },
-	                "SIGN UP"
+	                'div',
+	                { className: 'interiorDesign' },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: 'footerTitle' },
+	                  'INTERIOR DESIGN'
+	                ),
+	                _react2.default.createElement(
+	                  'a',
+	                  { id: 'portfolioLink', href: 'https://www.claricekingdesigns.com/designservices' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'DESIGN SERVICES'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'a',
+	                  { id: 'portfolioLink', href: 'https://www.claricekingdesigns.com/' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'PORTFOLIO'
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'aboutUs' },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: 'footerTitle' },
+	                  'ABOUT US'
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/story' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'OUR STORY'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/press' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'PRESS'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/testimonials' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'TESTIMONIALS'
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'help' },
+	                _react2.default.createElement(
+	                  'h5',
+	                  { className: 'footerTitle' },
+	                  'HELP'
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/contact' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'CONTACT'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/faq' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'FAQ'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/shipping' },
+	                  _react2.default.createElement(
+	                    'h6',
+	                    { className: 'footerLink' },
+	                    'SHIPPING & RETURNS'
+	                  )
+	                )
 	              )
 	            ),
 	            _react2.default.createElement(
-	              "p",
-	              { id: "newsletterPerk" },
-	              "Sign up and recieve first dibs on all new product"
+	              'div',
+	              { className: 'subscribeContainer' },
+	              _react2.default.createElement(
+	                'h5',
+	                { id: 'subscribe' },
+	                'SUBSCRIBE'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { className: 'newsletterForm' },
+	                _react2.default.createElement('input', { id: 'newsletterInput', type: 'text', placeholder: 'Enter Your Email Address...' }),
+	                _react2.default.createElement(
+	                  'button',
+	                  { id: 'newsletterButton', type: 'submit' },
+	                  'SIGN UP'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                { id: 'newsletterPerk' },
+	                'Sign up and recieve first dibs on all new product'
+	              )
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "ul",
-	            { className: "socialList" },
+	            'div',
+	            { className: 'footerBottom' },
 	            _react2.default.createElement(
-	              "li",
-	              null,
+	              'ul',
+	              { className: 'socialList' },
 	              _react2.default.createElement(
-	                "a",
-	                { href: "https://www.claricekingdesigns.com/" },
-	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/CKDLogo.png" })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "li",
-	              null,
-	              _react2.default.createElement(
-	                "a",
-	                { href: "https://www.instagram.com/claricekinghome/" },
-	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/instaIcon.png" })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "li",
-	              null,
-	              _react2.default.createElement(
-	                "a",
-	                { href: "https://www.facebook.com/ClariceKingHome/" },
-	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/facebookIcon.jpg" })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "li",
-	              null,
-	              _react2.default.createElement(
-	                "a",
-	                { href: "https://twitter.com/ClariceKingHome/" },
-	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/twitterIcon.png" })
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'https://www.claricekingdesigns.com/' },
+	                  _react2.default.createElement('img', { className: 'socialIcon', src: '/images/CKDLogo.png' })
+	                )
 	              ),
 	              _react2.default.createElement(
-	                "a",
-	                { href: "https://www.pinterest.com/claricekinghome/" },
-	                _react2.default.createElement("img", { className: "socialIcon", src: "/images/pinterestIcon.png" })
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'https://www.instagram.com/claricekinghome/' },
+	                  _react2.default.createElement('img', { className: 'socialIcon', src: '/images/instaIcon.png' })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'https://www.facebook.com/ClariceKingHome/' },
+	                  _react2.default.createElement('img', { className: 'socialIcon', src: '/images/facebookIcon.jpg' })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'https://twitter.com/ClariceKingHome/' },
+	                  _react2.default.createElement('img', { className: 'socialIcon', src: '/images/twitterIcon.png' })
+	                ),
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: 'https://www.pinterest.com/claricekinghome/' },
+	                  _react2.default.createElement('img', { className: 'socialIcon', src: '/images/pinterestIcon.png' })
+	                )
 	              )
 	            )
 	          )

@@ -2,18 +2,66 @@
   .footer {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 140px;
+    height: 270px;
     background-color: #f5f5f5;
     text-align: center;
     align-items: center; }
+  .footerTop {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; }
+  .footerBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100px; }
+  .footerLinks {
+    display: flex;
+    width: 50%;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px; }
+  .footerLink {
+    margin-bottom: 2px; }
+  .footerTitle {
+    color: black;
+    margin-top: 15px; }
+  .interiorDesign {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px; }
+  .help {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px; }
+  .aboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px; }
   .socialList {
     display: flex;
+    padding-top: 20px;
     list-style-type: none;
     margin: 0; }
   .socialIcon {
@@ -24,10 +72,12 @@
   .subscribeContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 500px; }
+    align-items: flex-start;
+    width: 480px;
+    padding-top: 20px; }
   #subscribe {
-    align-self: flex-start; }
+    align-self: flex-start;
+    margin-top: 15px; }
   #newsletterPerk {
     font-size: 1.2em;
     text-align: start;
@@ -36,16 +86,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 460px;
+    width: 440px;
     height: 60px; }
   #newsletterInput {
     border: 3px solid black;
     height: 60px;
-    width: 300px;
+    width: 290px;
     padding: 10px; }
   #newsletterButton {
     height: 50px;
-    width: 130px;
+    width: 120px;
     color: white;
     border: none;
     background-color: black; } }
@@ -54,18 +104,70 @@
   .footer {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 140px;
+    height: 270px;
     background-color: #f5f5f5;
     text-align: center;
     align-items: center; }
+  .footerTop {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; }
+  .footerBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100px; }
+  .footerLinks {
+    display: flex;
+    width: 50%;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px; }
+  .footerLink {
+    margin-bottom: 2px; }
+  .footerTitle {
+    color: black;
+    margin-top: 15px;
+    text-align: -webkit-auto; }
+  .interiorDesign {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px;
+    text-align: -webkit-auto; }
+  .help {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px;
+    text-align: -webkit-auto; }
+  .aboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px;
+    text-align: -webkit-auto; }
   .socialList {
     display: flex;
+    padding-top: 20px;
     list-style-type: none;
     margin: 0; }
   .socialIcon {
@@ -76,10 +178,12 @@
   .subscribeContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 500px; }
+    align-items: flex-start;
+    width: 480px;
+    padding-top: 20px; }
   #subscribe {
-    align-self: flex-start; }
+    align-self: flex-start;
+    margin-top: 15px; }
   #newsletterPerk {
     font-size: 1.2em;
     text-align: start;
@@ -88,16 +192,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 460px;
+    width: 440px;
     height: 60px; }
   #newsletterInput {
     border: 3px solid black;
     height: 60px;
-    width: 300px;
+    width: 290px;
     padding: 10px; }
   #newsletterButton {
     height: 50px;
-    width: 130px;
+    width: 120px;
     color: white;
     border: none;
     background-color: black; } }
@@ -113,15 +217,67 @@
     left: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 200px;
+    height: 440px;
     background-color: #f5f5f5;
     text-align: center;
     align-items: center; }
+  .footerTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%; }
+  .footerBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px; }
+  .footerLinks {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px; }
+  .footerLink {
+    margin-bottom: 2px; }
+  .footerTitle {
+    color: black;
+    margin-top: 15px;
+    text-align: -webkit-auto; }
+  .interiorDesign {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px;
+    text-align: -webkit-auto; }
+  .help {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px;
+    text-align: -webkit-auto; }
+  .aboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    align-items: flex-start;
+    height: 170px;
+    text-align: -webkit-auto; }
   .socialList {
     display: flex;
+    padding: 0;
     list-style-type: none;
-    margin: 0;
-    padding-left: 0; }
+    margin: 0; }
   .socialIcon {
     width: 35px;
     height: 35px;
@@ -130,29 +286,30 @@
   .subscribeContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100vw; }
+    align-items: flex-start;
+    height: 170px; }
   #subscribe {
     align-self: flex-start;
-    margin-left: 3vw; }
+    margin-top: 15px; }
   #newsletterPerk {
     font-size: 1.2em;
-    margin-top: 5px;
-    align-self: flex-start;
-    margin-left: 3vw; }
+    text-align: start;
+    margin-top: 5px; }
   .newsletterForm {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    height: 10vw; }
+    justify-content: space-between;
+    width: 70vw;
+    height: 60px; }
   #newsletterInput {
     border: 3px solid black;
-    height: 10vw;
-    width: 70vw;
+    height: 60px;
+    width: 60vw;
     padding: 10px; }
   #newsletterButton {
-    height: 8vw;
+    height: 50px;
     width: 20vw;
+    margin-left: 1vw;
     color: white;
     border: none;
     background-color: black; } }
@@ -239,6 +396,9 @@ h4 {
   font-family: 'woodfordbourne-bold'; }
 
 h5 {
+  font-family: 'woodfordbourne-bold'; }
+
+h6 {
   font-family: 'woodfordbourne-bold'; }
 
 /* -------------------- LARGE ----------------------- */
