@@ -53260,7 +53260,7 @@
 	    key: 'toggleCategory',
 	    value: function toggleCategory(evt) {
 	      evt.preventDefault();
-	      var id = evt.target.firstChild.nodeValue;
+	      var id = evt.target.firstChild.nodeValue.slice(0, 4);
 	
 	      var getId = function getId() {
 	        return document.querySelector('#' + id);
@@ -53334,7 +53334,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  'div',
-	                  { className: 'categoryContainer', id: '' + category.name, key: category.id },
+	                  { className: 'categoryContainer', id: '' + category.name.slice(0, 4), key: category.id },
 	                  _this2.props.categories.filter(function (newCategory) {
 	                    return newCategory.meta_category_id === category.id;
 	                  }).map(function (newCategory) {

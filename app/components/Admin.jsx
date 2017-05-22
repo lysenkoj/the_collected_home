@@ -30,7 +30,7 @@ class Admin extends Component{
 
   toggleCategory(evt){
     evt.preventDefault()
-    const id = evt.target.firstChild.nodeValue;
+    const id = evt.target.firstChild.nodeValue.slice(0, 4);
 
     const getId = function(){
       return document.querySelector(`#${id}`);
@@ -84,7 +84,7 @@ class Admin extends Component{
             ).map(category =>
             <div className="eachCategory" key={category.id}>
               <h5 className="categoryToggle" onClick={ this.toggleCategory }>{category.name}</h5>
-              <div className="categoryContainer" id={`${category.name}`} key={category.id}>
+              <div className="categoryContainer" id={`${category.name.slice(0, 4)}`} key={category.id}>
                 {
                  this.props.categories.filter( newCategory => (
                    newCategory.meta_category_id === category.id
