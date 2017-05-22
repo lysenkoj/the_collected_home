@@ -385,21 +385,27 @@ p {
   font-size: 1.5em; }
 
 h1 {
+  color: black;
   font-family: 'woodfordbourne-bold'; }
 
 h2 {
+  color: black;
   font-family: 'woodfordbourne-bold'; }
 
 h3 {
+  color: black;
   font-family: 'woodfordbourne-bold'; }
 
 h4 {
+  color: black;
   font-family: 'woodfordbourne-bold'; }
 
 h5 {
+  color: black;
   font-family: 'woodfordbourne-bold'; }
 
 h6 {
+  color: black;
   font-family: 'woodfordbourne-bold'; }
 
 /* -------------------- LARGE ----------------------- */
@@ -1626,3 +1632,118 @@ h6 {
   font-family: 'aleo-regular';
   src: url("../webfonts/Aleo/aleo-regular-webfont.eot");
   src: url("../webfonts/Aleo/aleo-regular-webfont.woff") format("woff"), url("../webfonts/Aleo/aleo-regular-webfont.woff2") format("woff2"), url("../webfonts/Aleo/aleo-regular-webfont.ttf") format("truetype"), url("../webfonts/Aleo/aleo-regular-webfont.svg") format("svg"); }
+
+.adminPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 270px;
+  width: 100%; }
+
+.panelContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%; }
+
+.categoryPanel {
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+
+.eachCategory {
+  margin-top: 0.8vw;
+  margin-bottom: 0.8vw; }
+
+.categoryContainer {
+  display: none;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  outline: 2px dashed black; }
+
+.categoryToggle:hover {
+  cursor: pointer; }
+
+.editButton {
+  align-self: center;
+  margin: 20px;
+  width: 20vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  height: 60px;
+  font-family: 'woodfordbourne-bold';
+  color: white;
+  background-color: black;
+  border: none;
+  letter-spacing: 1px; }
+
+.categoryThumb {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 1vw;
+  width: 30%;
+  height: 40px;
+  background-color: black; }
+
+.categoryThumb h5 {
+  color: white; }
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1vw;
+  width: 30%;
+  height: 40px;
+  color: black;
+  background-color: white;
+  outline: 2px dashed black;
+  border: none;
+  font-family: 'woodfordbourne-bold'; }
+
+.productPanel {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color: lightsalmon; }
+
+.panelButton {
+  width: 30vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  height: 30px;
+  font-family: 'woodfordbourne-bold';
+  color: white;
+  background-color: black;
+  border: none;
+  letter-spacing: 1px; }
+
+.panelButton:focus {
+  outline: none; }
+
+.deleteButton {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 26px;
+  height: 26px;
+  padding-top: 3px;
+  border-radius: 50%;
+  font-family: 'woodfordbourne-bold';
+  font-size: 0.8em;
+  color: white;
+  background-color: black;
+  border: 2px solid white; }
+
+.deleteButton:focus {
+  outline: none; }
+
+.deleteButton h5 {
+  color: white;
+  position: relative;
+  top: -9px;
+  left: 0px; }

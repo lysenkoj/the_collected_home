@@ -53231,6 +53231,15 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	/*
+	
+	IMPORTANT SAVE FOR LATER!!!!!
+	SWAP OUT TRUE ON LINE 54
+	(this.props.user && this.props.user.isAdmin)
+	
+	
+	*/
+	
 	/* -----------------    COMPONENT     ------------------ */
 	
 	var Admin = function (_Component) {
@@ -53243,10 +53252,25 @@
 	
 	    _this.makeCategory = _this.makeCategory.bind(_this);
 	    _this.makeProduct = _this.makeProduct.bind(_this);
+	    _this.toggleCategory = _this.toggleCategory.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Admin, [{
+	    key: 'toggleCategory',
+	    value: function toggleCategory(evt) {
+	      evt.preventDefault();
+	      var id = evt.target.firstChild.nodeValue;
+	
+	      var getId = function getId() {
+	        return document.querySelector('#' + id);
+	      };
+	
+	      var categoryDiv = getId();
+	
+	      categoryDiv.style.display === 'flex' ? categoryDiv.style.display = 'none' : categoryDiv.style.display = 'flex';
+	    }
+	  }, {
 	    key: 'makeCategory',
 	    value: function makeCategory(evt) {
 	      evt.preventDefault();
@@ -53276,181 +53300,94 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'order comp-container' },
+	        { className: 'adminPage' },
 	        _react2.default.createElement(
 	          'h3',
 	          null,
-	          'Admin Panel'
+	          'ADMIN PANEL'
 	        ),
-	        this.props.user && this.props.user.isAdmin ? _react2.default.createElement(
+	        true ? _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'panelContainer' },
 	          _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'categoryPanel' },
 	            _react2.default.createElement(
-	              'p',
+	              'h4',
 	              null,
-	              'Create New Category'
+	              'CATEGORIES'
 	            ),
-	            _react2.default.createElement(
-	              'form',
-	              { onSubmit: this.makeCategory },
-	              _react2.default.createElement(
+	            this.props.categories && this.props.categories.filter(function (category) {
+	              return category.id === 1 || category.id === 2 || category.id === 3 || category.id === 4 || category.id === 5 || category.id === 6 || category.id === 7;
+	            }).map(function (category) {
+	              return _react2.default.createElement(
 	                'div',
-	                { className: 'form-group' },
+	                { className: 'eachCategory', key: category.id },
 	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Category Name:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'categoryName' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Meta Category:'
+	                  'h5',
+	                  { className: 'categoryToggle', onClick: _this2.toggleCategory },
+	                  category.name
 	                ),
 	                _react2.default.createElement(
-	                  'select',
-	                  { name: 'metaCategory' },
+	                  'div',
+	                  { className: 'categoryContainer', id: '' + category.name, key: category.id },
+	                  _this2.props.categories.filter(function (newCategory) {
+	                    return newCategory.meta_category_id === category.id;
+	                  }).map(function (newCategory) {
+	                    return _react2.default.createElement(
+	                      'div',
+	                      { className: 'categoryThumb', key: newCategory.id },
+	                      _react2.default.createElement(
+	                        'button',
+	                        { className: 'deleteButton' },
+	                        _react2.default.createElement(
+	                          'h5',
+	                          null,
+	                          'X'
+	                        )
+	                      ),
+	                      _react2.default.createElement(
+	                        'h5',
+	                        null,
+	                        newCategory.name.toUpperCase()
+	                      )
+	                    );
+	                  }),
 	                  _react2.default.createElement(
-	                    'option',
-	                    { value: '1' },
-	                    'Accessories'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: '4' },
-	                    'Apparel'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: '3' },
-	                    'Real Estate'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: '5' },
-	                    'Services'
-	                  ),
-	                  _react2.default.createElement(
-	                    'option',
-	                    { value: '2' },
-	                    'Vehicles'
+	                    'button',
+	                    { className: 'addButton' },
+	                    'ADD CATEGORY'
 	                  )
 	                )
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit' },
-	                'Create'
-	              )
+	              );
+	            }),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'editButton' },
+	              'EDIT'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'productPanel' },
 	            _react2.default.createElement(
-	              'p',
-	              null,
-	              'Create New Product'
+	              'button',
+	              { className: 'panelButton' },
+	              'CREATE NEW PRODUCT'
 	            ),
 	            _react2.default.createElement(
-	              'form',
-	              { onSubmit: this.makeProduct },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Product Name:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'productName' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Category:'
-	                ),
-	                _react2.default.createElement(
-	                  'select',
-	                  { name: 'category' },
-	                  this.props.categories && this.props.categories.filter(function (category) {
-	                    return category.id !== 1 && category.id !== 2 && category.id !== 3 && category.id !== 4 && category.id !== 5;
-	                  }).map(function (category) {
-	                    return _react2.default.createElement(
-	                      'option',
-	                      { value: '' + category.id },
-	                      category.name
-	                    );
-	                  })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'SKU:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'sku' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Quantity:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'quantity' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Image URL:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'imageUrl' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Price:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'price' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                _react2.default.createElement(
-	                  'label',
-	                  null,
-	                  'Description:'
-	                ),
-	                _react2.default.createElement('input', { type: 'text', name: 'description' })
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit' },
-	                'Create'
-	              )
+	              'button',
+	              { className: 'panelButton' },
+	              'EDIT PRODUCT'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'panelButton' },
+	              'DELETE PRODUCT'
 	            )
 	          )
 	        ) : _react2.default.createElement('h3', null)
