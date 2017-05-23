@@ -73,6 +73,16 @@ class Admin extends Component{
     })
   }
 
+  UploadImageContainer(evt){
+    evt.preventDefault();
+    const getUploader = function(){
+      return document.querySelector('div.previewComponent');
+    }
+    let uploader = getUploader();
+
+    uploader.style.display = 'inline';
+  }
+
   makeCategory(evt){
     evt.preventDefault();
     this.props.createCategory(evt.target.categoryName.value,
@@ -171,73 +181,26 @@ class Admin extends Component{
               <label>Quantity:</label>
               <input type="text"  name="quantity"/>
             </div>
-            <imageUpload />
             <div className="form-group">
               <label>Price:</label>
               <input type="text"  name="price"/>
             </div>
+            <div>
+              <button onClick={this.UploadImageContainer}>
+                UPLOAD IMAGE
+              </button>
+              <input type="checkbox" id="imageUploaded" name="upload" value="image" disabled="disabled" checked=""/>
+              <label htmlFor="imageUploaded">IMAGE UPLOADED</label>
+            </div>
             <div className="form-group">
               <label>Description:</label>
-              <input type="text"  name="description"/>
+              <textarea type="text"  name="description" cols="40" rows="5"/>
             </div>
             <button type="submit">Create</button>
           </form>
+          <ImageUpload />
           </div>
         </div>
-        {/*<div>
-        <p>Create New Category</p>
-        <form onSubmit={ this.makeCategory }>
-          <div className="form-group">
-            <label>Category Name:</label>
-            <input type="text"  name="categoryName"/>
-          </div>
-          <div className="form-group">
-            <label>Meta Category:</label>
-              <select name="metaCategory">{
-                this.props.categories && this.props.categories.filter( category => (
-                  (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6) || (category.id === 7))
-                ).map(category => <option value={`${category.id}`}>{category.name}</option>)}
-              </select>
-          </div>
-          <button type="submit">Create</button>
-        </form>
-        </div>
-        <div>
-        <p>Create New Product</p>
-        <form onSubmit={ this.makeProduct }>
-          <div className="form-group">
-            <label>Product Name:</label>
-            <input type="text"  name="productName"/>
-          </div>
-          <div className="form-group">
-            <label>Category:</label>
-              <select name="category">
-                {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6) && (category.id !== 7))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
-              </select>
-          </div>
-          <div className="form-group">
-            <label>SKU:</label>
-            <input type="text"  name="sku"/>
-          </div>
-          <div className="form-group">
-            <label>Quantity:</label>
-            <input type="text"  name="quantity"/>
-          </div>
-          <div className="form-group">
-            <label>Image URL:</label>
-            <input type="text"  name="imageUrl"/>
-          </div>
-          <div className="form-group">
-            <label>Price:</label>
-            <input type="text"  name="price"/>
-          </div>
-          <div className="form-group">
-            <label>Description:</label>
-            <input type="text"  name="description"/>
-          </div>
-          <button type="submit">Create</button>
-        </form>
-        </div>*/}
        </div>
 
        :

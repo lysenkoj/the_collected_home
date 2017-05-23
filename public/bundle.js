@@ -53303,6 +53303,17 @@
 	      });
 	    }
 	  }, {
+	    key: 'UploadImageContainer',
+	    value: function UploadImageContainer(evt) {
+	      evt.preventDefault();
+	      var getUploader = function getUploader() {
+	        return document.querySelector('div.previewComponent');
+	      };
+	      var uploader = getUploader();
+	
+	      uploader.style.display = 'inline';
+	    }
+	  }, {
 	    key: 'makeCategory',
 	    value: function makeCategory(evt) {
 	      evt.preventDefault();
@@ -53519,7 +53530,6 @@
 	                  ),
 	                  _react2.default.createElement('input', { type: 'text', name: 'quantity' })
 	                ),
-	                _react2.default.createElement('imageUpload', null),
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'form-group' },
@@ -53532,20 +53542,36 @@
 	                ),
 	                _react2.default.createElement(
 	                  'div',
+	                  null,
+	                  _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.UploadImageContainer },
+	                    'UPLOAD IMAGE'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'checkbox', id: 'imageUploaded', name: 'upload', value: 'image', disabled: 'disabled', checked: '' }),
+	                  _react2.default.createElement(
+	                    'label',
+	                    { htmlFor: 'imageUploaded' },
+	                    'IMAGE UPLOADED'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
 	                  { className: 'form-group' },
 	                  _react2.default.createElement(
 	                    'label',
 	                    null,
 	                    'Description:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', name: 'description' })
+	                  _react2.default.createElement('textarea', { type: 'text', name: 'description', cols: '40', rows: '5' })
 	                ),
 	                _react2.default.createElement(
 	                  'button',
 	                  { type: 'submit' },
 	                  'Create'
 	                )
-	              )
+	              ),
+	              _react2.default.createElement(_imageUpload2.default, null)
 	            )
 	          )
 	        ) : _react2.default.createElement('h3', null)
@@ -54303,7 +54329,11 @@
 	
 	/* -----------------    DUMB COMPONENT     ------------------ */
 	
-	var DumbUploader = function DumbUploader() {
+	var DumbUploader = function DumbUploader(_ref) {
+	  var _handleSubmit = _ref._handleSubmit,
+	      _handleImageChange = _ref._handleImageChange,
+	      state = _ref.state,
+	      closeImageUploader = _ref.closeImageUploader;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'previewComponent' },
@@ -54315,22 +54345,31 @@
 	      _react2.default.createElement('input', { className: 'fileInput',
 	        type: 'file',
 	        onChange: function onChange(e) {
-	          return undefined._handleImageChange(e);
+	          return _handleImageChange(e);
 	        } }),
 	      _react2.default.createElement(
 	        'button',
 	        { className: 'submitButton',
 	          type: 'submit',
 	          onClick: function onClick(e) {
-	            return undefined._handleSubmit(e);
+	            return _handleSubmit(e);
 	          } },
 	        'Upload Image'
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { className: 'submitButton', onClick: closeImageUploader },
+	        'Cancel'
 	      )
 	    ),
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'imgPreview' },
-	      $imagePreview
+	      state.imagePreviewUrl ? _react2.default.createElement('img', { src: state.imagePreviewUrl }) : _react2.default.createElement(
+	        'div',
+	        { className: 'previewText' },
+	        'Please select an Image for Preview'
+	      )
 	    )
 	  );
 	};
@@ -54349,6 +54388,7 @@
 	
 	    _this._handleSubmit = _this._handleSubmit.bind(_this);
 	    _this._handleImageChange = _this._handleImageChange.bind(_this);
+	    _this.closeImageUploader = _this.closeImageUploader.bind(_this);
 	    return _this;
 	  }
 	
@@ -54375,28 +54415,24 @@
 	          imagePreviewUrl: reader.result
 	        });
 	      };
-	
 	      reader.readAsDataURL(file);
+	    }
+	  }, {
+	    key: 'closeImageUploader',
+	    value: function closeImageUploader(evt) {
+	      evt.preventDefault();
+	      var el = evt.currentTarget.parentNode.parentNode;
+	
+	      el.style.display = 'none';
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var imagePreviewUrl = this.state.imagePreviewUrl;
-	
-	      var $imagePreview = null;
-	      if (imagePreviewUrl) {
-	        $imagePreview = _react2.default.createElement('img', { src: imagePreviewUrl });
-	      } else {
-	        $imagePreview = _react2.default.createElement(
-	          'div',
-	          { className: 'previewText' },
-	          'Please select an Image for Preview'
-	        );
-	      }
-	
 	      return _react2.default.createElement(DumbUploader, {
 	        _handleSubmit: this._handleSubmit,
-	        _handleImageChange: this._handleImageChange
+	        _handleImageChange: this._handleImageChange,
+	        state: this.state,
+	        closeImageUploader: this.closeImageUploader
 	      });
 	    }
 	  }]);

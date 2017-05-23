@@ -3,18 +3,24 @@ import { connect } from 'react-redux';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
-const DumbUploader = () => (
+const DumbUploader = ({_handleSubmit, _handleImageChange, state, closeImageUploader}) => (
   <div className="previewComponent">
     <form onSubmit={(e)=>this._handleSubmit(e)}>
       <input className="fileInput"
         type="file"
-        onChange={(e)=>this._handleImageChange(e)} />
+        onChange={(e)=>_handleImageChange(e)} />
       <button className="submitButton"
         type="submit"
-        onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+        onClick={(e)=>_handleSubmit(e)}>Upload Image
+      </button>
+      <button className="submitButton" onClick={closeImageUploader}>
+        Cancel
+      </button>
     </form>
     <div className="imgPreview">
-      {$imagePreview}
+      {
+        (state.imagePreviewUrl) ? <img src={state.imagePreviewUrl} /> : <div className="previewText">Please select an Image for Preview</div>
+        }
     </div>
   </div>
 );
@@ -28,6 +34,7 @@ class ImageUpload extends Component {
 
   this._handleSubmit = this._handleSubmit.bind(this);
   this._handleImageChange = this._handleImageChange.bind(this);
+  this.closeImageUploader = this.closeImageUploader.bind(this);
   }
 
   _handleSubmit(e) {
@@ -48,23 +55,23 @@ class ImageUpload extends Component {
         imagePreviewUrl: reader.result
       });
     }
-
     reader.readAsDataURL(file)
   }
 
-  render() {
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    } else {
-      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-    }
+  closeImageUploader(evt){
+    evt.preventDefault();
+    const el = evt.currentTarget.parentNode.parentNode;
 
+    el.style.display = 'none';
+  }
+
+  render() {
     return (
       <DumbUploader
         _handleSubmit = { this._handleSubmit }
         _handleImageChange = { this._handleImageChange }
+        state = { this.state }
+        closeImageUploader = { this.closeImageUploader }
       />
     );
   }

@@ -31,8 +31,13 @@
   outline: 2px dashed black;
 }
 
+.categoryToggle{
+  text-align: center;
+}
+
 .categoryToggle:hover{
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .editButton{

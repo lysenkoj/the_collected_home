@@ -1,8 +1,15 @@
 .previewComponent{
-  width: 50%;
-  height: 500px;
+  display: none;
   background-color: purple;
+  position: fixed;
+  width: 550px;
+  height: 350px;
+  top: 50%;
+  left: 50%;
+  margin-top: -225px;
+  margin-left: -175px;
 }
+
 .fileInput{
   border-bottom: 4px solid lightgray;
   border-right: 4px solid lightgray;
@@ -12,6 +19,7 @@
   margin: 15px;
   cursor: pointer;
 }
+
 .imgPreview{
   text-align: center;
   margin: 5px 15px;
@@ -26,6 +34,7 @@
     height: 100%;
   }
 }
+
 .previewText{
   width: 100%;
   margin-top: 20px;
