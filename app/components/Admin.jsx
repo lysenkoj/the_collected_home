@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Button } from 'react-bootstrap';
 import { addCategory } from '../reducers/categories'
-import { addProduct } from '../reducers/currentProduct'
+import { addProduct } from '../reducers/currentProduct';
+import ImageUpload from './imageUpload';
 
 /*
 
@@ -23,9 +23,13 @@ class Admin extends Component{
 
   constructor(props) {
       super(props);
+
       this.makeCategory = this.makeCategory.bind(this);
       this.makeProduct = this.makeProduct.bind(this);
       this.toggleCategory = this.toggleCategory.bind(this);
+      this.toggleFormOn = this.toggleFormOn.bind(this);
+      this.toggleFormOff = this.toggleFormOff.bind(this);
+      this.toggleEdit = this.toggleEdit.bind(this);
   }
 
   toggleCategory(evt){
@@ -41,6 +45,32 @@ class Admin extends Component{
     (categoryDiv.style.display === 'flex') ?
     categoryDiv.style.display = 'none' : categoryDiv.style.display = 'flex';
 
+  }
+
+  toggleFormOn(evt){
+    evt.preventDefault();
+    const id = evt.currentTarget;
+    id.nextSibling.style.display = 'flex';
+  }
+
+  toggleFormOff(evt){
+    evt.preventDefault();
+    const id = evt.currentTarget.parentNode.parentNode;
+    id.style.display = 'none';
+  }
+
+  toggleEdit(evt){
+    evt.preventDefault();
+    let deleteButtons = [];
+    const parentDiv = evt.currentTarget.parentNode;
+
+    parentDiv.childNodes.forEach( node => {
+      (node.childNodes[0].className === 'deleteButton') ? deleteButtons.push(node.childNodes[0]) : null
+    })
+
+    deleteButtons.forEach(button => {
+      (button.style.display === 'inline') ? button.style.display = 'none' : button.style.display = 'inline';
+    })
   }
 
   makeCategory(evt){
@@ -95,18 +125,65 @@ class Admin extends Component{
                   </div>
                  )
                 }
-                <button className="addButton">ADD CATEGORY</button>
+                <button className="addButton" onClick={this.toggleFormOn}>ADD CATEGORY</button>
+                <div id='categoryForm'>
+                  <form onSubmit={ this.makeCategory }>
+                    <div className="formMeta">
+                      <label>Meta Category:</label>
+                        <select name="metaCategory">{
+                          this.props.categories && this.props.categories.filter( category => (
+                            (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6) || (category.id === 7))
+                          ).map(category => <option value={`${category.id}`}>{category.name}</option>)}
+                        </select>
+                    </div>
+                    <div className="formInput">
+                      <label>Category Name:</label>
+                      <input type="text"  name="categoryName"/>
+                    </div>
+                    <button className="formButton" type="submit" onClick={this.toggleFormOff}>Create</button>
+                    <button className="formButton" onClick={this.toggleFormOff}>Cancel</button>
+                  </form>
+                </div>
+                <button className="editButton" onClick={this.toggleEdit}>EDIT</button>
               </div>
             </div>)
           }
-          <button className="editButton">EDIT</button>
         </div>
         <div className="productPanel">
-          <button className ="panelButton">CREATE NEW PRODUCT</button>
-          <button className ="panelButton">EDIT PRODUCT</button>
-          <button className ="panelButton">DELETE PRODUCT</button>
+          <div>
+          <p>Create New Product</p>
+          <form onSubmit={ this.makeProduct }>
+            <div className="form-group">
+              <label>Product Name:</label>
+              <input type="text"  name="productName"/>
+            </div>
+            <div className="form-group">
+              <label>Category:</label>
+                <select name="category">
+                  {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6) && (category.id !== 7))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
+                </select>
+            </div>
+            <div className="form-group">
+              <label>SKU:</label>
+              <input type="text"  name="sku"/>
+            </div>
+            <div className="form-group">
+              <label>Quantity:</label>
+              <input type="text"  name="quantity"/>
+            </div>
+            <imageUpload />
+            <div className="form-group">
+              <label>Price:</label>
+              <input type="text"  name="price"/>
+            </div>
+            <div className="form-group">
+              <label>Description:</label>
+              <input type="text"  name="description"/>
+            </div>
+            <button type="submit">Create</button>
+          </form>
+          </div>
         </div>
-
         {/*<div>
         <p>Create New Category</p>
         <form onSubmit={ this.makeCategory }>

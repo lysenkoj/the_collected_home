@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import { fetchAndGoToQueriedProducts } from '../reducers/selectedProducts';
 import { connect } from 'react-redux';
 
