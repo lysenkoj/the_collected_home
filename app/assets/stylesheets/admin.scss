@@ -15,6 +15,9 @@
 
 .categoryPanel{
   display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
   flex-direction: column;
   width: 100%;
 }
@@ -31,9 +34,6 @@
   outline: 2px dashed black;
 }
 
-.categoryToggle{
-  text-align: center;
-}
 
 .categoryToggle:hover{
   cursor: pointer;
@@ -142,8 +142,44 @@
 
 .productPanel{
   display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid black;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
-  background-color: lightsalmon;
+
+  h4{
+    align-self: flex-start;
+  }
+
+  label{
+    color: black;
+    margin-right: 10px;
+  }
+
+  button{
+    font-family: 'woodfordbourne-bold';
+    background-color: black;
+    border:none;
+    color: white;
+    width: 75px;
+    height: 35px;
+  }
+}
+
+#imageButton{
+  margin-bottom: 10px;
+
+  button{
+    margin-right: 10px;
+    width: 130px;
+    height: 35px;
+  }
+
+  input{
+    margin-right: 10px;
+  }
 }
 
 .panelButton{

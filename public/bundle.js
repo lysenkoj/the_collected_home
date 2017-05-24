@@ -53256,7 +53256,8 @@
 	        quantity: '',
 	        imageUrl: {},
 	        price: '',
-	        description: ''
+	        description: '',
+	        size: ''
 	      },
 	      category: {
 	        id: '8'
@@ -53276,6 +53277,7 @@
 	    _this.categoryUpdate = _this.categoryUpdate.bind(_this);
 	    _this.quantityUpdate = _this.quantityUpdate.bind(_this);
 	    _this.priceUpdate = _this.priceUpdate.bind(_this);
+	    _this.sizeUpdate = _this.sizeUpdate.bind(_this);
 	    _this.descriptionUpdate = _this.descriptionUpdate.bind(_this);
 	    _this._handleSubmit = _this._handleSubmit.bind(_this);
 	    _this._handleImageChange = _this._handleImageChange.bind(_this);
@@ -53286,8 +53288,10 @@
 	    key: 'toggleCategory',
 	    value: function toggleCategory(evt) {
 	      evt.preventDefault();
-	      var id = evt.target.firstChild.nodeValue.slice(0, 4);
+	      var id = evt.target.firstChild.nodeValue.slice(0, 4).toLowerCase();
+	      id = id.charAt(0).toUpperCase() + id.slice(1);
 	
+	      console.log(id);
 	      var getId = function getId() {
 	        return document.querySelector('#' + id);
 	      };
@@ -53334,7 +53338,7 @@
 	      };
 	      var uploader = getUploader();
 	
-	      uploader.style.display = 'inline';
+	      uploader.style.display = 'flex';
 	    }
 	  }, {
 	    key: 'makeCategory',
@@ -53345,16 +53349,13 @@
 	  }, {
 	    key: 'makeProduct',
 	    value: function makeProduct(evt) {
-	      evt.preventDefault();
-	
 	      var product = this.state.product;
 	
 	      var categoryProduct = {
 	        id: this.state.category.id,
 	        sku: this.state.product.sku
 	      };
-	
-	      this.props.createProduct(product, categoryProduct);
+	      // this.props.createProduct(product, categoryProduct);
 	      console.log('PRODUCT CREATED SUCCESFULLY!!!');
 	    }
 	  }, {
@@ -53427,10 +53428,29 @@
 	      });
 	    }
 	  }, {
+	    key: 'sizeUpdate',
+	    value: function sizeUpdate(evt) {
+	      evt.preventDefault();
+	      var newSize = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.size = newSize;
+	        return previousState;
+	      });
+	    }
+	  }, {
 	    key: '_handleSubmit',
 	    value: function _handleSubmit(e) {
 	      e.preventDefault();
 	      // TODO: do something with -> this.state.file
+	      var el = e.currentTarget.parentNode.parentNode;
+	
+	      el.style.display = 'none';
+	
+	      var checkBox = function checkBox() {
+	        return document.querySelector('#imageUploaded');
+	      };
+	      var check = checkBox();
+	      check.checked = 'checked';
 	      console.log('handle uploading-', this.state.product.imageUrl.file);
 	    }
 	  }, {
@@ -53466,7 +53486,7 @@
 	          null,
 	          'ADMIN PANEL'
 	        ),
-	        this.props.user && this.props.user.isAdmin ? _react2.default.createElement(
+	        true ? _react2.default.createElement(
 	          'div',
 	          { className: 'panelContainer' },
 	          _react2.default.createElement(
@@ -53486,7 +53506,7 @@
 	                _react2.default.createElement(
 	                  'h5',
 	                  { className: 'categoryToggle', onClick: _this3.toggleCategory },
-	                  category.name
+	                  category.name.toUpperCase()
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -53590,7 +53610,7 @@
 	              null,
 	              _react2.default.createElement(
 	                'form',
-	                { onSubmit: this.createProduct },
+	                null,
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'form-group' },
@@ -53665,18 +53685,15 @@
 	                ),
 	                _react2.default.createElement(
 	                  'div',
-	                  null,
-	                  _react2.default.createElement(
-	                    'button',
-	                    { onClick: this.UploadImageContainer },
-	                    'UPLOAD IMAGE'
-	                  ),
-	                  _react2.default.createElement('input', { type: 'checkbox', id: 'imageUploaded', name: 'upload', value: 'image', disabled: 'disabled', checked: '' }),
+	                  { className: 'form-group' },
 	                  _react2.default.createElement(
 	                    'label',
-	                    { htmlFor: 'imageUploaded' },
-	                    'IMAGE UPLOADED'
-	                  )
+	                    null,
+	                    'Size:'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'text', name: 'size', onChange: function onChange(evt) {
+	                      return _this3.sizeUpdate(evt);
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -53691,9 +53708,24 @@
 	                    } })
 	                ),
 	                _react2.default.createElement(
+	                  'div',
+	                  { id: 'imageButton' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.UploadImageContainer },
+	                    'UPLOAD IMAGE'
+	                  ),
+	                  _react2.default.createElement('input', { type: 'checkbox', id: 'imageUploaded', name: 'upload', value: 'image', disabled: 'disabled', checked: '' }),
+	                  _react2.default.createElement(
+	                    'label',
+	                    { htmlFor: 'imageUploaded' },
+	                    'IMAGE UPLOADED'
+	                  )
+	                ),
+	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'submit' },
-	                  'Create'
+	                  { type: 'submit', onSubmit: this.makeProduct },
+	                  'CREATE'
 	                )
 	              ),
 	              _react2.default.createElement(_imageUpload2.default, { _handleImageChange: this._handleImageChange, _handleSubmit: this._handleSubmit, imgUrl: this.state.product.imageUrl })
@@ -54452,8 +54484,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
 	/* -----------------    DUMB COMPONENT     ------------------ */
 	
 	var DumbUploader = function DumbUploader(_ref) {
@@ -54476,17 +54506,17 @@
 	        } }),
 	      _react2.default.createElement(
 	        'button',
-	        _defineProperty({ className: 'submitButton',
+	        { className: 'submitButton',
 	          type: 'submit',
 	          onClick: function onClick(e) {
 	            return _handleSubmit(e);
-	          } }, 'onClick', closeImageUploader),
-	        'Upload Image'
+	          } },
+	        'UPLOAD IMAGE'
 	      ),
 	      _react2.default.createElement(
 	        'button',
 	        { className: 'submitButton', onClick: closeImageUploader },
-	        'Cancel'
+	        'CANCEL'
 	      )
 	    ),
 	    _react2.default.createElement(
@@ -54509,34 +54539,11 @@
 	  function ImageUpload(props) {
 	    _classCallCheck(this, ImageUpload);
 	
-	    // this._handleSubmit = this._handleSubmit.bind(this);
-	    // this._handleImageChange = this._handleImageChange.bind(this);
 	    var _this = _possibleConstructorReturn(this, (ImageUpload.__proto__ || Object.getPrototypeOf(ImageUpload)).call(this, props));
 	
 	    _this.closeImageUploader = _this.closeImageUploader.bind(_this);
 	    return _this;
 	  }
-	
-	  // _handleSubmit(e) {
-	  //   e.preventDefault();
-	  //   // TODO: do something with -> this.state.file
-	  //   console.log('handle uploading-', this.state.file);
-	  // }
-	
-	  // _handleImageChange(e) {
-	  //   e.preventDefault();
-	
-	  //   let reader = new FileReader();
-	  //   let file = e.target.files[0];
-	
-	  //   reader.onloadend = () => {
-	  //     this.setState({
-	  //       file: file,
-	  //       imagePreviewUrl: reader.result
-	  //     });
-	  //   }
-	  //   reader.readAsDataURL(file)
-	  // }
 	
 	  _createClass(ImageUpload, [{
 	    key: 'closeImageUploader',

@@ -30,7 +30,8 @@ class Admin extends Component{
           quantity: '',
           imageUrl: {},
           price: '',
-          description: ''
+          description: '',
+          size: ''
         },
         category: {
           id: '8',
@@ -50,6 +51,7 @@ class Admin extends Component{
       this.categoryUpdate = this.categoryUpdate.bind(this);
       this.quantityUpdate = this.quantityUpdate.bind(this);
       this.priceUpdate = this.priceUpdate.bind(this);
+      this.sizeUpdate = this.sizeUpdate.bind(this);
       this.descriptionUpdate = this.descriptionUpdate.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
       this._handleImageChange = this._handleImageChange.bind(this);
@@ -57,8 +59,10 @@ class Admin extends Component{
 
   toggleCategory(evt){
     evt.preventDefault()
-    const id = evt.target.firstChild.nodeValue.slice(0, 4);
+    let id = evt.target.firstChild.nodeValue.slice(0, 4).toLowerCase();
+    id = id.charAt(0).toUpperCase() + id.slice(1);
 
+    console.log(id);
     const getId = function(){
       return document.querySelector(`#${id}`);
     };
@@ -103,7 +107,7 @@ class Admin extends Component{
     }
     let uploader = getUploader();
 
-    uploader.style.display = 'inline';
+    uploader.style.display = 'flex';
   }
 
   makeCategory(evt){
@@ -113,16 +117,13 @@ class Admin extends Component{
   }
 
   makeProduct(evt){
-    evt.preventDefault();
-
     var product = this.state.product;
 
     var categoryProduct = {
       id: this.state.category.id,
       sku: this.state.product.sku
     }
-
-    this.props.createProduct(product, categoryProduct);
+    // this.props.createProduct(product, categoryProduct);
     console.log('PRODUCT CREATED SUCCESFULLY!!!')
   }
 
@@ -186,9 +187,27 @@ class Admin extends Component{
     });
   }
 
+  sizeUpdate(evt){
+    evt.preventDefault();
+    const newSize = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.size = newSize;
+      return previousState;
+    });
+  }
+
   _handleSubmit(e) {
     e.preventDefault();
     // TODO: do something with -> this.state.file
+    const el = e.currentTarget.parentNode.parentNode;
+
+    el.style.display = 'none';
+
+    const checkBox = function(){
+      return document.querySelector('#imageUploaded')
+    }
+    const check = checkBox();
+    check.checked = 'checked';
     console.log('handle uploading-', this.state.product.imageUrl.file);
   }
 
@@ -214,7 +233,7 @@ class Admin extends Component{
     <div className="adminPage">
      <h3>ADMIN PANEL</h3>
      {
-      (this.props.user && this.props.user.isAdmin) ?
+      (true) ?
       <div className="panelContainer">
         <div className="categoryPanel">
           <h4>CATEGORIES</h4>
@@ -223,7 +242,7 @@ class Admin extends Component{
               (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6) || (category.id === 7))
             ).map(category =>
             <div className="eachCategory" key={category.id}>
-              <h5 className="categoryToggle" onClick={ this.toggleCategory }>{category.name}</h5>
+              <h5 className="categoryToggle" onClick={ this.toggleCategory }>{category.name.toUpperCase()}</h5>
               <div className="categoryContainer" id={`${category.name.slice(0, 4)}`} key={category.id}>
                 {
                  this.props.categories.filter( newCategory => (
@@ -262,7 +281,7 @@ class Admin extends Component{
         <div className="productPanel">
           <h4>PRODUCTS</h4>
           <div>
-          <form onSubmit={ this.createProduct }>
+          <form>
             <div className="form-group">
               <label>Product Name:</label>
               <input type="text"  name="productName" onChange={(evt) => this.nameUpdate(evt)}/>
@@ -285,18 +304,22 @@ class Admin extends Component{
               <label>Price:</label>
               <input type="text"  name="price" onChange={(evt) => this.priceUpdate(evt)}/>
             </div>
-            <div>
+            <div className="form-group">
+              <label>Size:</label>
+              <input type="text"  name="size" onChange={(evt) => this.sizeUpdate(evt)}/>
+            </div>
+            <div className="form-group">
+              <label>Description:</label>
+              <textarea type="text"  name="description" cols="40" rows="5" onChange={(evt) => this.descriptionUpdate(evt)}/>
+            </div>
+            <div id="imageButton">
               <button onClick={this.UploadImageContainer}>
                 UPLOAD IMAGE
               </button>
               <input type="checkbox" id="imageUploaded" name="upload" value="image" disabled="disabled" checked=""/>
               <label htmlFor="imageUploaded">IMAGE UPLOADED</label>
             </div>
-            <div className="form-group">
-              <label>Description:</label>
-              <textarea type="text"  name="description" cols="40" rows="5" onChange={(evt) => this.descriptionUpdate(evt)}/>
-            </div>
-            <button type="submit">Create</button>
+            <button type="submit" onSubmit={this.makeProduct}>CREATE</button>
           </form>
           <ImageUpload _handleImageChange={this._handleImageChange} _handleSubmit={this._handleSubmit} imgUrl={this.state.product.imageUrl} />
           </div>

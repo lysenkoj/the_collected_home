@@ -11,10 +11,10 @@ const DumbUploader = ({_handleSubmit, _handleImageChange, closeImageUploader, im
         onChange={(e)=>_handleImageChange(e)} />
       <button className="submitButton"
         type="submit"
-        onClick={(e)=>_handleSubmit(e)} onClick={closeImageUploader}>Upload Image
+        onClick={(e)=>_handleSubmit(e)}>UPLOAD IMAGE
       </button>
       <button className="submitButton" onClick={closeImageUploader}>
-        Cancel
+        CANCEL
       </button>
     </form>
     <div className="imgPreview">
@@ -31,31 +31,8 @@ class ImageUpload extends Component {
   constructor(props) {
     super(props);
 
-  // this._handleSubmit = this._handleSubmit.bind(this);
-  // this._handleImageChange = this._handleImageChange.bind(this);
   this.closeImageUploader = this.closeImageUploader.bind(this);
   }
-
-  // _handleSubmit(e) {
-  //   e.preventDefault();
-  //   // TODO: do something with -> this.state.file
-  //   console.log('handle uploading-', this.state.file);
-  // }
-
-  // _handleImageChange(e) {
-  //   e.preventDefault();
-
-  //   let reader = new FileReader();
-  //   let file = e.target.files[0];
-
-  //   reader.onloadend = () => {
-  //     this.setState({
-  //       file: file,
-  //       imagePreviewUrl: reader.result
-  //     });
-  //   }
-  //   reader.readAsDataURL(file)
-  // }
 
   closeImageUploader(evt){
     evt.preventDefault();
