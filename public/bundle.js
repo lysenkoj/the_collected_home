@@ -29764,7 +29764,6 @@
 	var updateProduct = exports.updateProduct = function updateProduct(product) {
 	  return function (dispatch) {
 	    _axios2.default.put('/api/products/' + product.sku, product).then(function () {
-	      // console.log("pets are mini children")
 	      dispatch(fetchAndGoToProduct(product.sku));
 	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
@@ -53250,12 +53249,32 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).call(this, props));
 	
+	    _this.state = {
+	      product: {
+	        name: '',
+	        sku: '',
+	        quantity: '',
+	        imageUrl: '',
+	        price: '',
+	        description: ''
+	      },
+	      category: {
+	        id: '8'
+	
+	      }
+	    };
+	
 	    _this.makeCategory = _this.makeCategory.bind(_this);
 	    _this.makeProduct = _this.makeProduct.bind(_this);
+	    _this.checkProduct = _this.checkProduct.bind(_this);
 	    _this.toggleCategory = _this.toggleCategory.bind(_this);
 	    _this.toggleFormOn = _this.toggleFormOn.bind(_this);
 	    _this.toggleFormOff = _this.toggleFormOff.bind(_this);
 	    _this.toggleEdit = _this.toggleEdit.bind(_this);
+	    _this.nameUpdate = _this.nameUpdate.bind(_this);
+	    _this.skuUpdate = _this.skuUpdate.bind(_this);
+	    _this.categoryUpdate = _this.categoryUpdate.bind(_this);
+	    _this.descriptionUpdate = _this.descriptionUpdate.bind(_this);
 	    return _this;
 	  }
 	
@@ -53339,6 +53358,55 @@
 	      };
 	
 	      this.props.createProduct(product, categoryProduct);
+	    }
+	  }, {
+	    key: 'checkProduct',
+	    value: function checkProduct(evt) {
+	      evt.preventDefault();
+	      console.log(this.state);
+	    }
+	
+	    /*---------------- FORM ONCHANGE FUNCTIONS ------------------*/
+	
+	  }, {
+	    key: 'nameUpdate',
+	    value: function nameUpdate(evt) {
+	      evt.preventDefault();
+	      var newName = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.name = newName;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'skuUpdate',
+	    value: function skuUpdate(evt) {
+	      evt.preventDefault();
+	      var newSKU = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.sku = newSKU;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'categoryUpdate',
+	    value: function categoryUpdate(evt) {
+	      evt.preventDefault();
+	      var newCategory = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.category.id = newCategory;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'descriptionUpdate',
+	    value: function descriptionUpdate(evt) {
+	      evt.preventDefault();
+	      var newDescription = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.description = newDescription;
+	        return previousState;
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -53468,16 +53536,16 @@
 	            'div',
 	            { className: 'productPanel' },
 	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PRODUCTS'
+	            ),
+	            _react2.default.createElement(
 	              'div',
 	              null,
 	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Create New Product'
-	              ),
-	              _react2.default.createElement(
 	                'form',
-	                { onSubmit: this.makeProduct },
+	                { onSubmit: this.checkProduct },
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'form-group' },
@@ -53486,7 +53554,9 @@
 	                    null,
 	                    'Product Name:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', name: 'productName' })
+	                  _react2.default.createElement('input', { type: 'text', name: 'productName', onChange: function onChange(evt) {
+	                      return _this2.nameUpdate(evt);
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -53498,7 +53568,9 @@
 	                  ),
 	                  _react2.default.createElement(
 	                    'select',
-	                    { name: 'category' },
+	                    { name: 'category', onChange: function onChange(evt) {
+	                        return _this2.categoryUpdate(evt);
+	                      } },
 	                    this.props.categories && this.props.categories.filter(function (category) {
 	                      return category.id !== 1 && category.id !== 2 && category.id !== 3 && category.id !== 4 && category.id !== 5 && category.id !== 6 && category.id !== 7;
 	                    }).map(function (category) {
@@ -53518,7 +53590,9 @@
 	                    null,
 	                    'SKU:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', name: 'sku' })
+	                  _react2.default.createElement('input', { type: 'text', name: 'sku', onChange: function onChange(evt) {
+	                      return _this2.skuUpdate(evt);
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -53563,7 +53637,9 @@
 	                    null,
 	                    'Description:'
 	                  ),
-	                  _react2.default.createElement('textarea', { type: 'text', name: 'description', cols: '40', rows: '5' })
+	                  _react2.default.createElement('textarea', { type: 'text', name: 'description', cols: '40', rows: '5', onChange: function onChange(evt) {
+	                      return _this2.descriptionUpdate(evt);
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  'button',

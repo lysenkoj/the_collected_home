@@ -65,7 +65,6 @@ export const updateProduct = product => {
   return dispatch => {
     axios.put(`/api/products/${product.sku}`, product)
       .then(() => {
-        // console.log("pets are mini children")
         dispatch(fetchAndGoToProduct(product.sku))
       })
       .catch(err => console.error('Fetching product failed', err))

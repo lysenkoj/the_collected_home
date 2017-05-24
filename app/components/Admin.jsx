@@ -23,13 +23,32 @@ class Admin extends Component{
 
   constructor(props) {
       super(props);
+      this.state = {
+        product : {
+          name: '',
+          sku: '',
+          quantity: '',
+          imageUrl: '',
+          price: '',
+          description: ''
+        },
+        category: {
+          id: '8',
+
+        }
+      }
 
       this.makeCategory = this.makeCategory.bind(this);
       this.makeProduct = this.makeProduct.bind(this);
+      this.checkProduct = this.checkProduct.bind(this);
       this.toggleCategory = this.toggleCategory.bind(this);
       this.toggleFormOn = this.toggleFormOn.bind(this);
       this.toggleFormOff = this.toggleFormOff.bind(this);
       this.toggleEdit = this.toggleEdit.bind(this);
+      this.nameUpdate = this.nameUpdate.bind(this);
+      this.skuUpdate = this.skuUpdate.bind(this);
+      this.categoryUpdate = this.categoryUpdate.bind(this);
+      this.descriptionUpdate = this.descriptionUpdate.bind(this);
   }
 
   toggleCategory(evt){
@@ -109,6 +128,48 @@ class Admin extends Component{
     this.props.createProduct(product, categoryProduct);
   }
 
+  checkProduct(evt){
+    evt.preventDefault();
+    console.log(this.state)
+  }
+
+  /*---------------- FORM ONCHANGE FUNCTIONS ------------------*/
+  nameUpdate(evt){
+    evt.preventDefault();
+    const newName = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.name = newName;
+      return previousState;
+    });
+  }
+
+  skuUpdate(evt){
+    evt.preventDefault();
+    const newSKU = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.sku = newSKU;
+      return previousState;
+    });
+  }
+
+  categoryUpdate(evt){
+    evt.preventDefault();
+    const newCategory = evt.target.value;
+    this.setState((previousState) => {
+      previousState.category.id = newCategory;
+      return previousState;
+    });
+  }
+
+  descriptionUpdate(evt){
+    evt.preventDefault();
+    const newDescription = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.description = newDescription;
+      return previousState;
+    });
+  }
+
  render(){
    return (
     <div className="adminPage">
@@ -160,22 +221,22 @@ class Admin extends Component{
           }
         </div>
         <div className="productPanel">
+          <h4>PRODUCTS</h4>
           <div>
-          <p>Create New Product</p>
-          <form onSubmit={ this.makeProduct }>
+          <form onSubmit={ this.checkProduct }>
             <div className="form-group">
               <label>Product Name:</label>
-              <input type="text"  name="productName"/>
+              <input type="text"  name="productName" onChange={(evt) => this.nameUpdate(evt)}/>
             </div>
             <div className="form-group">
               <label>Category:</label>
-                <select name="category">
+                <select name="category" onChange={(evt) => this.categoryUpdate(evt)}>
                   {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6) && (category.id !== 7))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
                 </select>
             </div>
             <div className="form-group">
               <label>SKU:</label>
-              <input type="text"  name="sku"/>
+              <input type="text"  name="sku" onChange={(evt) => this.skuUpdate(evt)}/>
             </div>
             <div className="form-group">
               <label>Quantity:</label>
@@ -194,7 +255,7 @@ class Admin extends Component{
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea type="text"  name="description" cols="40" rows="5"/>
+              <textarea type="text"  name="description" cols="40" rows="5" onChange={(evt) => this.descriptionUpdate(evt)}/>
             </div>
             <button type="submit">Create</button>
           </form>
