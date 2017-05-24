@@ -28,7 +28,7 @@ class Admin extends Component{
           name: '',
           sku: '',
           quantity: '',
-          imageUrl: '',
+          imageUrl: {},
           price: '',
           description: ''
         },
@@ -48,7 +48,11 @@ class Admin extends Component{
       this.nameUpdate = this.nameUpdate.bind(this);
       this.skuUpdate = this.skuUpdate.bind(this);
       this.categoryUpdate = this.categoryUpdate.bind(this);
+      this.quantityUpdate = this.quantityUpdate.bind(this);
+      this.priceUpdate = this.priceUpdate.bind(this);
       this.descriptionUpdate = this.descriptionUpdate.bind(this);
+      this._handleSubmit = this._handleSubmit.bind(this);
+      this._handleImageChange = this._handleImageChange.bind(this);
   }
 
   toggleCategory(evt){
@@ -111,21 +115,15 @@ class Admin extends Component{
   makeProduct(evt){
     evt.preventDefault();
 
-    var product = {
-      name: evt.target.productName.value,
-      sku: evt.target.sku.value,
-      quantity: evt.target.quantity.value,
-      imageUrl: evt.target.imageUrl.value,
-      price: evt.target.price.value,
-      description: evt.target.description.value
-    }
+    var product = this.state.product;
 
     var categoryProduct = {
-      id: evt.target.category.value,
-      sku: evt.target.sku.value
+      id: this.state.category.id,
+      sku: this.state.product.sku
     }
 
     this.props.createProduct(product, categoryProduct);
+    console.log('PRODUCT CREATED SUCCESFULLY!!!')
   }
 
   checkProduct(evt){
@@ -161,6 +159,24 @@ class Admin extends Component{
     });
   }
 
+  quantityUpdate(evt){
+    evt.preventDefault();
+    const newQuantity = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.quantity = newQuantity;
+      return previousState;
+    });
+  }
+
+  priceUpdate(evt){
+    evt.preventDefault();
+    const newPrice = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.price = newPrice;
+      return previousState;
+    });
+  }
+
   descriptionUpdate(evt){
     evt.preventDefault();
     const newDescription = evt.target.value;
@@ -170,12 +186,35 @@ class Admin extends Component{
     });
   }
 
+  _handleSubmit(e) {
+    e.preventDefault();
+    // TODO: do something with -> this.state.file
+    console.log('handle uploading-', this.state.product.imageUrl.file);
+  }
+
+  _handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState((previousState) => {
+        previousState.product.imageUrl = {
+          file: file,
+          imagePreviewUrl: reader.result
+        }
+      });
+    }
+    reader.readAsDataURL(file)
+  }
+
  render(){
    return (
     <div className="adminPage">
      <h3>ADMIN PANEL</h3>
      {
-      (true) ?
+      (this.props.user && this.props.user.isAdmin) ?
       <div className="panelContainer">
         <div className="categoryPanel">
           <h4>CATEGORIES</h4>
@@ -223,7 +262,7 @@ class Admin extends Component{
         <div className="productPanel">
           <h4>PRODUCTS</h4>
           <div>
-          <form onSubmit={ this.checkProduct }>
+          <form onSubmit={ this.createProduct }>
             <div className="form-group">
               <label>Product Name:</label>
               <input type="text"  name="productName" onChange={(evt) => this.nameUpdate(evt)}/>
@@ -240,11 +279,11 @@ class Admin extends Component{
             </div>
             <div className="form-group">
               <label>Quantity:</label>
-              <input type="text"  name="quantity"/>
+              <input type="text"  name="quantity" onChange={(evt) => this.quantityUpdate(evt)}/>
             </div>
             <div className="form-group">
               <label>Price:</label>
-              <input type="text"  name="price"/>
+              <input type="text"  name="price" onChange={(evt) => this.priceUpdate(evt)}/>
             </div>
             <div>
               <button onClick={this.UploadImageContainer}>
@@ -259,7 +298,7 @@ class Admin extends Component{
             </div>
             <button type="submit">Create</button>
           </form>
-          <ImageUpload />
+          <ImageUpload _handleImageChange={this._handleImageChange} _handleSubmit={this._handleSubmit} imgUrl={this.state.product.imageUrl} />
           </div>
         </div>
        </div>

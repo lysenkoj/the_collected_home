@@ -53254,7 +53254,7 @@
 	        name: '',
 	        sku: '',
 	        quantity: '',
-	        imageUrl: '',
+	        imageUrl: {},
 	        price: '',
 	        description: ''
 	      },
@@ -53274,7 +53274,11 @@
 	    _this.nameUpdate = _this.nameUpdate.bind(_this);
 	    _this.skuUpdate = _this.skuUpdate.bind(_this);
 	    _this.categoryUpdate = _this.categoryUpdate.bind(_this);
+	    _this.quantityUpdate = _this.quantityUpdate.bind(_this);
+	    _this.priceUpdate = _this.priceUpdate.bind(_this);
 	    _this.descriptionUpdate = _this.descriptionUpdate.bind(_this);
+	    _this._handleSubmit = _this._handleSubmit.bind(_this);
+	    _this._handleImageChange = _this._handleImageChange.bind(_this);
 	    return _this;
 	  }
 	
@@ -53343,21 +53347,15 @@
 	    value: function makeProduct(evt) {
 	      evt.preventDefault();
 	
-	      var product = {
-	        name: evt.target.productName.value,
-	        sku: evt.target.sku.value,
-	        quantity: evt.target.quantity.value,
-	        imageUrl: evt.target.imageUrl.value,
-	        price: evt.target.price.value,
-	        description: evt.target.description.value
-	      };
+	      var product = this.state.product;
 	
 	      var categoryProduct = {
-	        id: evt.target.category.value,
-	        sku: evt.target.sku.value
+	        id: this.state.category.id,
+	        sku: this.state.product.sku
 	      };
 	
 	      this.props.createProduct(product, categoryProduct);
+	      console.log('PRODUCT CREATED SUCCESFULLY!!!');
 	    }
 	  }, {
 	    key: 'checkProduct',
@@ -53399,6 +53397,26 @@
 	      });
 	    }
 	  }, {
+	    key: 'quantityUpdate',
+	    value: function quantityUpdate(evt) {
+	      evt.preventDefault();
+	      var newQuantity = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.quantity = newQuantity;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'priceUpdate',
+	    value: function priceUpdate(evt) {
+	      evt.preventDefault();
+	      var newPrice = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.price = newPrice;
+	        return previousState;
+	      });
+	    }
+	  }, {
 	    key: 'descriptionUpdate',
 	    value: function descriptionUpdate(evt) {
 	      evt.preventDefault();
@@ -53409,9 +53427,36 @@
 	      });
 	    }
 	  }, {
+	    key: '_handleSubmit',
+	    value: function _handleSubmit(e) {
+	      e.preventDefault();
+	      // TODO: do something with -> this.state.file
+	      console.log('handle uploading-', this.state.product.imageUrl.file);
+	    }
+	  }, {
+	    key: '_handleImageChange',
+	    value: function _handleImageChange(e) {
+	      var _this2 = this;
+	
+	      e.preventDefault();
+	
+	      var reader = new FileReader();
+	      var file = e.target.files[0];
+	
+	      reader.onloadend = function () {
+	        _this2.setState(function (previousState) {
+	          previousState.product.imageUrl = {
+	            file: file,
+	            imagePreviewUrl: reader.result
+	          };
+	        });
+	      };
+	      reader.readAsDataURL(file);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
+	      var _this3 = this;
 	
 	      return _react2.default.createElement(
 	        'div',
@@ -53421,7 +53466,7 @@
 	          null,
 	          'ADMIN PANEL'
 	        ),
-	        true ? _react2.default.createElement(
+	        this.props.user && this.props.user.isAdmin ? _react2.default.createElement(
 	          'div',
 	          { className: 'panelContainer' },
 	          _react2.default.createElement(
@@ -53440,13 +53485,13 @@
 	                { className: 'eachCategory', key: category.id },
 	                _react2.default.createElement(
 	                  'h5',
-	                  { className: 'categoryToggle', onClick: _this2.toggleCategory },
+	                  { className: 'categoryToggle', onClick: _this3.toggleCategory },
 	                  category.name
 	                ),
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'categoryContainer', id: '' + category.name.slice(0, 4), key: category.id },
-	                  _this2.props.categories.filter(function (newCategory) {
+	                  _this3.props.categories.filter(function (newCategory) {
 	                    return newCategory.meta_category_id === category.id;
 	                  }).map(function (newCategory) {
 	                    return _react2.default.createElement(
@@ -53470,7 +53515,7 @@
 	                  }),
 	                  _react2.default.createElement(
 	                    'button',
-	                    { className: 'addButton', onClick: _this2.toggleFormOn },
+	                    { className: 'addButton', onClick: _this3.toggleFormOn },
 	                    'ADD CATEGORY'
 	                  ),
 	                  _react2.default.createElement(
@@ -53478,7 +53523,7 @@
 	                    { id: 'categoryForm' },
 	                    _react2.default.createElement(
 	                      'form',
-	                      { onSubmit: _this2.makeCategory },
+	                      { onSubmit: _this3.makeCategory },
 	                      _react2.default.createElement(
 	                        'div',
 	                        { className: 'formMeta' },
@@ -53490,7 +53535,7 @@
 	                        _react2.default.createElement(
 	                          'select',
 	                          { name: 'metaCategory' },
-	                          _this2.props.categories && _this2.props.categories.filter(function (category) {
+	                          _this3.props.categories && _this3.props.categories.filter(function (category) {
 	                            return category.id === 1 || category.id === 2 || category.id === 3 || category.id === 4 || category.id === 5 || category.id === 6 || category.id === 7;
 	                          }).map(function (category) {
 	                            return _react2.default.createElement(
@@ -53513,19 +53558,19 @@
 	                      ),
 	                      _react2.default.createElement(
 	                        'button',
-	                        { className: 'formButton', type: 'submit', onClick: _this2.toggleFormOff },
+	                        { className: 'formButton', type: 'submit', onClick: _this3.toggleFormOff },
 	                        'Create'
 	                      ),
 	                      _react2.default.createElement(
 	                        'button',
-	                        { className: 'formButton', onClick: _this2.toggleFormOff },
+	                        { className: 'formButton', onClick: _this3.toggleFormOff },
 	                        'Cancel'
 	                      )
 	                    )
 	                  ),
 	                  _react2.default.createElement(
 	                    'button',
-	                    { className: 'editButton', onClick: _this2.toggleEdit },
+	                    { className: 'editButton', onClick: _this3.toggleEdit },
 	                    'EDIT'
 	                  )
 	                )
@@ -53545,7 +53590,7 @@
 	              null,
 	              _react2.default.createElement(
 	                'form',
-	                { onSubmit: this.checkProduct },
+	                { onSubmit: this.createProduct },
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'form-group' },
@@ -53555,7 +53600,7 @@
 	                    'Product Name:'
 	                  ),
 	                  _react2.default.createElement('input', { type: 'text', name: 'productName', onChange: function onChange(evt) {
-	                      return _this2.nameUpdate(evt);
+	                      return _this3.nameUpdate(evt);
 	                    } })
 	                ),
 	                _react2.default.createElement(
@@ -53569,7 +53614,7 @@
 	                  _react2.default.createElement(
 	                    'select',
 	                    { name: 'category', onChange: function onChange(evt) {
-	                        return _this2.categoryUpdate(evt);
+	                        return _this3.categoryUpdate(evt);
 	                      } },
 	                    this.props.categories && this.props.categories.filter(function (category) {
 	                      return category.id !== 1 && category.id !== 2 && category.id !== 3 && category.id !== 4 && category.id !== 5 && category.id !== 6 && category.id !== 7;
@@ -53591,7 +53636,7 @@
 	                    'SKU:'
 	                  ),
 	                  _react2.default.createElement('input', { type: 'text', name: 'sku', onChange: function onChange(evt) {
-	                      return _this2.skuUpdate(evt);
+	                      return _this3.skuUpdate(evt);
 	                    } })
 	                ),
 	                _react2.default.createElement(
@@ -53602,7 +53647,9 @@
 	                    null,
 	                    'Quantity:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', name: 'quantity' })
+	                  _react2.default.createElement('input', { type: 'text', name: 'quantity', onChange: function onChange(evt) {
+	                      return _this3.quantityUpdate(evt);
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -53612,7 +53659,9 @@
 	                    null,
 	                    'Price:'
 	                  ),
-	                  _react2.default.createElement('input', { type: 'text', name: 'price' })
+	                  _react2.default.createElement('input', { type: 'text', name: 'price', onChange: function onChange(evt) {
+	                      return _this3.priceUpdate(evt);
+	                    } })
 	                ),
 	                _react2.default.createElement(
 	                  'div',
@@ -53638,7 +53687,7 @@
 	                    'Description:'
 	                  ),
 	                  _react2.default.createElement('textarea', { type: 'text', name: 'description', cols: '40', rows: '5', onChange: function onChange(evt) {
-	                      return _this2.descriptionUpdate(evt);
+	                      return _this3.descriptionUpdate(evt);
 	                    } })
 	                ),
 	                _react2.default.createElement(
@@ -53647,7 +53696,7 @@
 	                  'Create'
 	                )
 	              ),
-	              _react2.default.createElement(_imageUpload2.default, null)
+	              _react2.default.createElement(_imageUpload2.default, { _handleImageChange: this._handleImageChange, _handleSubmit: this._handleSubmit, imgUrl: this.state.product.imageUrl })
 	            )
 	          )
 	        ) : _react2.default.createElement('h3', null)
@@ -54403,20 +54452,22 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	/* -----------------    DUMB COMPONENT     ------------------ */
 	
 	var DumbUploader = function DumbUploader(_ref) {
 	  var _handleSubmit = _ref._handleSubmit,
 	      _handleImageChange = _ref._handleImageChange,
-	      state = _ref.state,
-	      closeImageUploader = _ref.closeImageUploader;
+	      closeImageUploader = _ref.closeImageUploader,
+	      imgUrl = _ref.imgUrl;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'previewComponent' },
 	    _react2.default.createElement(
 	      'form',
 	      { onSubmit: function onSubmit(e) {
-	          return undefined._handleSubmit(e);
+	          return _handleSubmit(e);
 	        } },
 	      _react2.default.createElement('input', { className: 'fileInput',
 	        type: 'file',
@@ -54425,11 +54476,11 @@
 	        } }),
 	      _react2.default.createElement(
 	        'button',
-	        { className: 'submitButton',
+	        _defineProperty({ className: 'submitButton',
 	          type: 'submit',
 	          onClick: function onClick(e) {
 	            return _handleSubmit(e);
-	          } },
+	          } }, 'onClick', closeImageUploader),
 	        'Upload Image'
 	      ),
 	      _react2.default.createElement(
@@ -54441,7 +54492,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'imgPreview' },
-	      state.imagePreviewUrl ? _react2.default.createElement('img', { src: state.imagePreviewUrl }) : _react2.default.createElement(
+	      imgUrl.imagePreviewUrl ? _react2.default.createElement('img', { src: imgUrl.imagePreviewUrl }) : _react2.default.createElement(
 	        'div',
 	        { className: 'previewText' },
 	        'Please select an Image for Preview'
@@ -54458,42 +54509,36 @@
 	  function ImageUpload(props) {
 	    _classCallCheck(this, ImageUpload);
 	
+	    // this._handleSubmit = this._handleSubmit.bind(this);
+	    // this._handleImageChange = this._handleImageChange.bind(this);
 	    var _this = _possibleConstructorReturn(this, (ImageUpload.__proto__ || Object.getPrototypeOf(ImageUpload)).call(this, props));
 	
-	    _this.state = { file: '', imagePreviewUrl: '' };
-	
-	    _this._handleSubmit = _this._handleSubmit.bind(_this);
-	    _this._handleImageChange = _this._handleImageChange.bind(_this);
 	    _this.closeImageUploader = _this.closeImageUploader.bind(_this);
 	    return _this;
 	  }
 	
+	  // _handleSubmit(e) {
+	  //   e.preventDefault();
+	  //   // TODO: do something with -> this.state.file
+	  //   console.log('handle uploading-', this.state.file);
+	  // }
+	
+	  // _handleImageChange(e) {
+	  //   e.preventDefault();
+	
+	  //   let reader = new FileReader();
+	  //   let file = e.target.files[0];
+	
+	  //   reader.onloadend = () => {
+	  //     this.setState({
+	  //       file: file,
+	  //       imagePreviewUrl: reader.result
+	  //     });
+	  //   }
+	  //   reader.readAsDataURL(file)
+	  // }
+	
 	  _createClass(ImageUpload, [{
-	    key: '_handleSubmit',
-	    value: function _handleSubmit(e) {
-	      e.preventDefault();
-	      // TODO: do something with -> this.state.file
-	      console.log('handle uploading-', this.state.file);
-	    }
-	  }, {
-	    key: '_handleImageChange',
-	    value: function _handleImageChange(e) {
-	      var _this2 = this;
-	
-	      e.preventDefault();
-	
-	      var reader = new FileReader();
-	      var file = e.target.files[0];
-	
-	      reader.onloadend = function () {
-	        _this2.setState({
-	          file: file,
-	          imagePreviewUrl: reader.result
-	        });
-	      };
-	      reader.readAsDataURL(file);
-	    }
-	  }, {
 	    key: 'closeImageUploader',
 	    value: function closeImageUploader(evt) {
 	      evt.preventDefault();
@@ -54505,9 +54550,9 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(DumbUploader, {
-	        _handleSubmit: this._handleSubmit,
-	        _handleImageChange: this._handleImageChange,
-	        state: this.state,
+	        _handleSubmit: this.props._handleSubmit,
+	        _handleImageChange: this.props._handleImageChange,
+	        imgUrl: this.props.imgUrl,
 	        closeImageUploader: this.closeImageUploader
 	      });
 	    }
