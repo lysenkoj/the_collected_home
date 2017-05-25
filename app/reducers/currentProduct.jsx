@@ -5,6 +5,7 @@ import {browserHistory} from "react-router";
 
 const LOAD_PRODUCT = 'LOAD_PRODUCT';
 const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
+const SAVE_PHOTO = 'SAVE_PHOTO';
 // const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 
@@ -19,6 +20,10 @@ const loadProduct = product => ({
 //   type: UPDATE_PRODUCT,
 //   product
 // });
+export const savePhoto = (photo) => ({
+  type: SAVE_PHOTO,
+  photo
+})
 
 export const clearProduct = () => ({
   type: CLEAR_PRODUCT
@@ -35,6 +40,9 @@ export default function reducer (previousState = {}, action) {
 
     case CLEAR_PRODUCT:
       return {};
+
+    case SAVE_PHOTO:
+      return action.photo;
 
     // case UPDATE_PRODUCT:
     //   return Object.assign({}, previousState, action.product}
@@ -80,5 +88,28 @@ export const addProduct = (product, categoryProduct) => {
       })
       .then(browserHistory.push(`/product/${product.sku}`))
       .catch(err => console.error('Fetching product failed', err))
+  }
+}
+fetch("/echo/json/",
+{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({a: 1, b: 2})
+})
+
+export const addPhoto = (image) => {
+  return dispatch => {
+    axios.post(`api/upload`, image, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(image => {
+          dispatch(savePhoto(image.data))
+        })
+      // .catch(err => console.error('Photo Failed to Post', err))
   }
 }

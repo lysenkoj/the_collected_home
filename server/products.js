@@ -75,6 +75,8 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
 		.catch(next);
 });
 
+
+
 //featured
 
 customProductRoutes.get("/featured", function(req,res,next) {
@@ -128,7 +130,6 @@ customProductRoutes.post("/", function(req, res, next) {
 
 	mustBeAdmin(req)
 		.then(userAdmin => {
-			console.log("AAAAAAA")
 			userAdmin.data.isAdmin ?
 			Product.create({
 				  name: req.body.name,
@@ -143,6 +144,7 @@ customProductRoutes.post("/", function(req, res, next) {
 		.then(product => res.json(product))
 		.catch(next);
 });
+
 
 customProductRoutes.delete("/:sku", function(req, res, next) {
 

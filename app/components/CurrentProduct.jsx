@@ -4,7 +4,7 @@ import { Image } from 'react-bootstrap';
 import Notification from './Notification';
 import { addItem } from '../reducers/cart';
 import ContentEditable from "react-contenteditable";
-import {updateProduct} from '../reducers/currentProduct'
+import {updateProduct} from '../reducers/currentProduct';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 

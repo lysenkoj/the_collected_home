@@ -8,6 +8,8 @@ const passport = require('passport')
 const path = require('path');
 var sass = require('node-sass');
 
+
+
 // Bones has a symlink from node_modules/APP to the root of the app.
 // That means that we can require paths relative to the app root by
 // saying require('APP/whatever').
@@ -16,6 +18,7 @@ var sass = require('node-sass');
 const pkg = require('APP')
 
 const app = express()
+
 
 
 if (!pkg.isProduction && !pkg.isTesting) {
@@ -38,13 +41,15 @@ module.exports = app
   // To send again the response cookie to the client we need to
   // update the session object.
   //console.log("SESSIoN:        ", req.session)
-  
+
   req.session.renewSession = Date.now();
   next();
-  })
+})
+
+
 
   // Body parsing middleware
-  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.urlencoded({ extended: true, type:'text/html' }))
   .use(bodyParser.json())
 
   // Authentication middleware

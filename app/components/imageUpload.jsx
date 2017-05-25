@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 /* -----------------    DUMB COMPONENT     ------------------ */
 
 const DumbUploader = ({_handleSubmit, _handleImageChange, closeImageUploader, imgUrl}) => (
@@ -8,6 +9,7 @@ const DumbUploader = ({_handleSubmit, _handleImageChange, closeImageUploader, im
     <form onSubmit={(e)=>_handleSubmit(e)}>
       <input className="fileInput"
         type="file"
+        name="images"
         onChange={(e)=>_handleImageChange(e)} />
       <button className="submitButton"
         type="submit"
@@ -55,6 +57,8 @@ class ImageUpload extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = () => ({
+
+});
 
 export default connect(null, mapDispatchToProps)(ImageUpload);

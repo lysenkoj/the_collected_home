@@ -56,21 +56,3 @@ export default () => (
       // <Route path="/products/:selected" component={}
 
 
-
-//==========================
-// BELOW CODE FROM BONES
-//==========================
-// import Login from './components/Login';
-// import WhoAmI from './components/WhoAmI';
-
-// const ExampleApp = connect(
-//   ({ auth }) => ({ user: auth })
-// ) (
-//   ({ user, children }) =>
-//     <div>
-//       <nav>
-//         {user ? <WhoAmI/> : <Login/>}
-//       </nav>
-//       {children}
-//     </div>
-// )

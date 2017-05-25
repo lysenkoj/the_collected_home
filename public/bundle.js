@@ -29684,7 +29684,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addProduct = exports.updateProduct = exports.fetchAndGoToProduct = exports.clearProduct = undefined;
+	exports.addPhoto = exports.addProduct = exports.updateProduct = exports.fetchAndGoToProduct = exports.clearProduct = exports.savePhoto = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(205);
@@ -29699,6 +29699,7 @@
 	
 	var LOAD_PRODUCT = 'LOAD_PRODUCT';
 	var CLEAR_PRODUCT = 'CLEAR_PRODUCT';
+	var SAVE_PHOTO = 'SAVE_PHOTO';
 	// const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 	
 	
@@ -29715,6 +29716,12 @@
 	//   type: UPDATE_PRODUCT,
 	//   product
 	// });
+	var savePhoto = exports.savePhoto = function savePhoto(photo) {
+	  return {
+	    type: SAVE_PHOTO,
+	    photo: photo
+	  };
+	};
 	
 	var clearProduct = exports.clearProduct = function clearProduct() {
 	  return {
@@ -29735,6 +29742,9 @@
 	
 	    case CLEAR_PRODUCT:
 	      return {};
+	
+	    case SAVE_PHOTO:
+	      return action.photo;
 	
 	    // case UPDATE_PRODUCT:
 	    //   return Object.assign({}, previousState, action.product}
@@ -29780,6 +29790,27 @@
 	    }).then(_reactRouter.browserHistory.push('/product/' + product.sku)).catch(function (err) {
 	      return console.error('Fetching product failed', err);
 	    });
+	  };
+	};
+	fetch("/echo/json/", {
+	  headers: {
+	    'Accept': 'application/json',
+	    'Content-Type': 'application/json'
+	  },
+	  method: "POST",
+	  body: JSON.stringify({ a: 1, b: 2 })
+	});
+	
+	var addPhoto = exports.addPhoto = function addPhoto(image) {
+	  return function (dispatch) {
+	    _axios2.default.post('api/upload', image, {
+	      headers: {
+	        'Content-Type': 'multipart/form-data'
+	      }
+	    }).then(function (image) {
+	      dispatch(savePhoto(image.data));
+	    });
+	    // .catch(err => console.error('Photo Failed to Post', err))
 	  };
 	};
 
@@ -31576,25 +31607,6 @@
 	//  <Route path="/confirmation" component={Confirmation} />
 	
 	// <Route path="/products/:selected" component={}
-	
-	
-	//==========================
-	// BELOW CODE FROM BONES
-	//==========================
-	// import Login from './components/Login';
-	// import WhoAmI from './components/WhoAmI';
-	
-	// const ExampleApp = connect(
-	//   ({ auth }) => ({ user: auth })
-	// ) (
-	//   ({ user, children }) =>
-	//     <div>
-	//       <nav>
-	//         {user ? <WhoAmI/> : <Login/>}
-	//       </nav>
-	//       {children}
-	//     </div>
-	// )
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
 	
@@ -53451,6 +53463,9 @@
 	      };
 	      var check = checkBox();
 	      check.checked = 'checked';
+	
+	      //ROUTE NO WORKING
+	      this.props.savePhoto(this.state.product.imageUrl.file);
 	      console.log('handle uploading-', this.state.product.imageUrl.file);
 	    }
 	  }, {
@@ -53754,6 +53769,9 @@
 	    },
 	    createProduct: function createProduct(product, categoryProduct) {
 	      return dispatch((0, _currentProduct.addProduct)(product, categoryProduct));
+	    },
+	    savePhoto: function savePhoto(photo) {
+	      return dispatch((0, _currentProduct.addPhoto)(photo));
 	    }
 	  };
 	};
@@ -54501,6 +54519,7 @@
 	        } },
 	      _react2.default.createElement('input', { className: 'fileInput',
 	        type: 'file',
+	        name: 'images',
 	        onChange: function onChange(e) {
 	          return _handleImageChange(e);
 	        } }),

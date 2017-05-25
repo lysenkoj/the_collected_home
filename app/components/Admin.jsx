@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { addCategory } from '../reducers/categories'
 import { addProduct } from '../reducers/currentProduct';
 import ImageUpload from './imageUpload';
+import { addPhoto } from '../reducers/currentProduct';
 
 /*
 
@@ -208,6 +209,9 @@ class Admin extends Component{
     }
     const check = checkBox();
     check.checked = 'checked';
+
+    //ROUTE NO WORKING
+    this.props.savePhoto(this.state.product.imageUrl.file);
     console.log('handle uploading-', this.state.product.imageUrl.file);
   }
 
@@ -341,7 +345,8 @@ const mapStateToProps = ({ user , categories}) => ({ user , categories});
 
 const mapDispatchToProps = (dispatch) => ({
   createCategory: (categoryName, metaCategory) => dispatch(addCategory(categoryName, metaCategory)),
-  createProduct: (product, categoryProduct) => dispatch(addProduct(product, categoryProduct))
+  createProduct: (product, categoryProduct) => dispatch(addProduct(product, categoryProduct)),
+  savePhoto: (photo) => dispatch(addPhoto(photo))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);

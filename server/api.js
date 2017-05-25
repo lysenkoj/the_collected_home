@@ -3,6 +3,7 @@
 const db = require('APP/db')
 const api = module.exports = require('express').Router()
 
+
 api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
@@ -14,6 +15,7 @@ api
   .use('/orders', require('./orders'))
   .use('/order_items', require('./order_items'))
   .use('/category_products', require('./category_products'))
+  .use('/upload', require('./upload'))
 
 
 // Send along any errors
