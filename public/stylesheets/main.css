@@ -325,9 +325,29 @@
   margin-bottom: 270px;
   clear: both; }
 
+.categoryFeatureContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.categoryFeature {
+  display: flex;
+  justify-content: center;
+  width: 30vw;
+  height: 30vw;
+  position: relative; }
+  .categoryFeature img {
+    width: 100%;
+    height: auto; }
+  .categoryFeature .label {
+    top: 75%; }
+
 .featuredContainer {
   height: 600px;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
 
 .featuredLink {
   display: flex;
@@ -355,7 +375,7 @@
   font-family: 'woodfordbourne-bold'; }
 
 .featuredLink .label {
-  top: 50%; }
+  top: 75%; }
 
 .label:hover {
   color: black; }

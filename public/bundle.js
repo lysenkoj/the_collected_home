@@ -53360,44 +53360,48 @@
 	        { className: 'main-container' },
 	        _react2.default.createElement(_FeaturedLook2.default, null),
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/Ottomans and Stools', className: 'categoryFeature1' },
-	          _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
+	          'div',
+	          { className: 'categoryFeatureContainer' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'label' },
+	            _reactRouter.Link,
+	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
+	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
-	              'span',
-	              null,
-	              'SHOP NOW'
+	              'div',
+	              { className: 'label' },
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'SHOP NOW'
+	              )
 	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/Table Lamps', className: 'categoryFeature1' },
-	          _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
+	          ),
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'label' },
+	            _reactRouter.Link,
+	            { to: '/Table Lamps', className: 'categoryFeature' },
+	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
-	              'span',
-	              null,
-	              'SHOP NOW'
+	              'div',
+	              { className: 'label' },
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'SHOP NOW'
+	              )
 	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/Pillows and Shams', className: 'categoryFeature1' },
-	          _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
+	          ),
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'label' },
+	            _reactRouter.Link,
+	            { to: '/Pillows and Shams', className: 'categoryFeature' },
+	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
-	              'span',
-	              null,
-	              'SHOP NOW'
+	              'div',
+	              { className: 'label' },
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'SHOP NOW'
+	              )
 	            )
 	          )
 	        )
