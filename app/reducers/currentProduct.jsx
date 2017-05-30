@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {browserHistory} from "react-router";
+import request from 'superagent';
+
+
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -90,23 +93,18 @@ export const addProduct = (product, categoryProduct) => {
       .catch(err => console.error('Fetching product failed', err))
   }
 }
-fetch("/echo/json/",
-{
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({a: 1, b: 2})
-})
+
 
 export const addPhoto = (image) => {
   return dispatch => {
-    axios.post(`api/upload`, image, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
+    request
+      .post('api/upload')
+      .attach('images', 'public/images')
+      .end(function(err, res){
+        if(err) {
+          console.log("Error: " + err);
+        }
+  })
       .then(image => {
           dispatch(savePhoto(image.data))
         })
