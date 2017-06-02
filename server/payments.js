@@ -1,7 +1,7 @@
 'use strict'
 
 require('APP/.env.js');
-const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const db = require('APP/db')
 
 const Order = db.model("orders");
@@ -11,7 +11,7 @@ const { formatDate }  = require("./utils")
 
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
-const paymentRoutes = require('express').Router() 
+const paymentRoutes = require('express').Router()
 const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
 const wellknown = require('nodemailer-wellknown');
@@ -19,7 +19,7 @@ const wellknown = require('nodemailer-wellknown');
 const transport = nodemailer.createTransport({
     service: 'AOL',
     auth: {
-        user: process.env.EMAIL_USERNAME, 
+        user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD
     }
 });
@@ -28,7 +28,7 @@ const transport = nodemailer.createTransport({
 
 
 paymentRoutes.get("/:id/:paymentid", function(req, res, next){
-	
+
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
@@ -49,11 +49,11 @@ paymentRoutes.get("/:id/:paymentid", function(req, res, next){
 				res.json(publicData);
 			}
 		});
-}); 
+});
 
 
 paymentRoutes.post("/:token", function(req, res, next){
-
+  console.log(req)
 	const createStripePromise = paymentData => {
 		return new Promise((resolve, reject) => {
 			stripe.charges.create(paymentData, (err, charge) => {
@@ -73,7 +73,7 @@ paymentRoutes.post("/:token", function(req, res, next){
 	createStripePromise(orderDataForStripe)
 		.then(charge => {
 			if (charge.id) {
-				Address.findOrCreate({ 
+				Address.findOrCreate({
 					where: {
 						name: orderDataFromStore.shippingAddress.name,
 						street1: orderDataFromStore.shippingAddress.street1,
@@ -83,7 +83,7 @@ paymentRoutes.post("/:token", function(req, res, next){
 						zip: orderDataFromStore.shippingAddress.zip,
 						email: orderDataFromStore.shippingAddress.email,
 						user_id: orderDataFromStore.user_id
-					} 
+					}
 				})
 					.spread((address, changed) => {
 						return address
@@ -94,7 +94,7 @@ paymentRoutes.post("/:token", function(req, res, next){
 							submitDate: formatDate(),
 							user_id: orderDataFromStore.user_id,
 							address_id: address.dataValues.id,
-							payment_id: charge.id							
+							payment_id: charge.id
 						}
 						return Order.create(newOrder)
 					})
@@ -122,7 +122,7 @@ paymentRoutes.post("/:token", function(req, res, next){
 						.catch(next)
 					}
 				res.json(charge)
-			}) 
+			})
 		.catch(err => {
 			res.json(err)
 		})

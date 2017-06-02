@@ -17,9 +17,9 @@ export default class Footer extends Component {
               <div className="interiorDesign">
                 <h5 className="footerTitle">INTERIOR DESIGN</h5>
                 {/*should this be a form on this site or the portfolio site???*/}
-                <a id="portfolioLink"href="https://www.claricekingdesigns.com/designservices">
+                <Link to='/design' id="portfolioLink">
                   <h6 className="footerLink">DESIGN SERVICES</h6>
-                </a>
+                </Link>
                 <a id="portfolioLink"href="https://www.claricekingdesigns.com/">
                   <h6 className="footerLink">PORTFOLIO</h6>
                 </a>

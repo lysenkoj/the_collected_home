@@ -25,7 +25,7 @@ var Payment = React.createClass({
 
     onScriptLoaded: function() {
       this.setState({ scriptLoading: false });
-     	Stripe.setPublishableKey(process.env.STRIPE_TEST_PUBLISHABLE_SECRET);
+     	Stripe.setPublishableKey(process.env.STRIPE_PUBLISHABLE_KEY);
     },
 
     onScriptError: function() {
@@ -58,7 +58,7 @@ var Payment = React.createClass({
 
     render: function() {
       return (
-     		<div>
+     		<div className="paymentContainer">
 	     		{
 	     			(this.state.scriptLoading) ?
 	     			<h3>Payment form loading...</h3> :

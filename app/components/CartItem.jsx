@@ -25,7 +25,7 @@ export default class CartItem extends Component {
       <Link to={`/product/${item.product.sku}`}>
         <product className="carted-product">
           <h4>{item.product.name}</h4>
-          <img src={item.product.img} />
+          <img src={item.product.img[0]} />
         </product>
       </Link>
       <item-details>

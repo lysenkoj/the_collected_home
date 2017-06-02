@@ -20,6 +20,7 @@ import Admin from './components/Admin';
 import Payment from './components/Payment';
 import Confirmation from './components/Confirmation';
 import AfterOrderSubmit from './components/AfterOrderSubmit';
+import DesignServices from './components/DesignServices';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
@@ -38,6 +39,7 @@ export default () => (
       <Route path="/order/:orderNumber" component={SelectedOrder} onEnter={onOrderSelect} onLeave={onOrderLeave}/>
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} onLeave={onProductLeave} />
       <Route path="/cart" component={Cart} />
+      <Route path="/design" component={DesignServices} />
       <Route path="/checkout" component={Checkout} >
         <Route path="/checkout/shipping" component={Shipping} />
         <Route path="/checkout/payment" component={Payment} />

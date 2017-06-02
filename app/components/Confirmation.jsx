@@ -16,9 +16,9 @@ class Confirmation extends Component {
 
 	sendOrder(evt) {
 		evt.preventDefault();
-		
+
 		const { user_id, shippingAddress, order_items, receipt_email, amount  } = this.props;
-		
+
 		const orderDataForStripe = {
 			amount,
 			receipt_email,
@@ -40,7 +40,7 @@ class Confirmation extends Component {
 	render() {
 		const { cart, amount } = this.props;
 		return(
-			<div>
+			<div className="confirmationContainer">
 				<p>YOU WILL BE CHARGED: { amount }</p>
 				<h3>stripe token: {this.props.params.token}</h3>
 				<h3>MAKE SHOPPING GREAT AGAIN</h3>
@@ -60,7 +60,7 @@ class Confirmation extends Component {
 // transaction_total: calculate this from the cart
 
 
-const mapState = ({ cart, shippingAddress, user }) => { 
+const mapState = ({ cart, shippingAddress, user }) => {
 	const order_items = cart.map(item => {
 		return {
 			quantity: item.quantity,

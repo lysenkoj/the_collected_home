@@ -882,10 +882,13 @@ h6 {
   #productPrice {
     text-decoration: none; } }
 
-.cart {
-  margin-bottom: 150px;
+.cartContainer {
+  margin-bottom: 270px;
   min-height: 400px;
   clear: both; }
+
+.checkoutContainer {
+  margin-bottom: 270px; }
 
 /* -------------------- LARGE ----------------------- */
 @media (min-width: 1026px) {
@@ -1085,7 +1088,7 @@ h6 {
     padding-left: 3vw; }
 
 .comp-container {
-  margin-bottom: 150px; }
+  margin-bottom: 270px; }
 
 /* -------------------- LARGE ----------------------- */
 @media (min-width: 1026px) {
@@ -1893,3 +1896,76 @@ h6 {
 .centerText {
   text-align: center;
   width: 500px; }
+
+.confirmationContainer {
+  margin-bottom: 270px; }
+
+.paymentContainer {
+  margin-bottom: 270px; }
+
+.afterOrderContainer {
+  margin-bottom: 270px; }
+
+.designContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 270px;
+  width: 100vw;
+  min-height: 100vh;
+  align-items: center; }
+  .designContainer input {
+    height: 30px; }
+  .designContainer button {
+    width: 33%;
+    align-self: center;
+    height: 50px;
+    color: white;
+    border: none;
+    background-color: black; }
+  .designContainer button:focus {
+    outline: none; }
+
+.designFormContainer {
+  display: flex;
+  width: 100vw;
+  height: 500px;
+  align-items: center;
+  justify-content: center; }
+
+.designForm {
+  display: flex;
+  flex-direction: column;
+  width: 66%; }
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+  .formRow h5 {
+    width: 100%; }
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  align-items: flex-start; }
+
+.numberInput {
+  margin-right: 5px; }
+
+#designFormName {
+  justify-content: space-between; }
+  #designFormName .inputGroup {
+    width: calc(50% - 10px);
+    margin: 0; }
+  #designFormName input {
+    width: 100%; }
+
+#designFormEmail input {
+  width: 100%; }
+
+#designFormPhone .inputGroup {
+  align-items: center; }
+
+#designFormPhone input {
+  margin: 0; }

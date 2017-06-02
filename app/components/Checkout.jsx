@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class Cart extends React.Component {
 	render(){
 		return (
-			<div className="comp-container">
+			<div className="checkoutContainer">
 				<h2>Checkout</h2>
 				<div>Items in your cart: { this.props.cart && this.props.cart.length }</div>
 				{ this.props.children }

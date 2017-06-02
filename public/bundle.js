@@ -32333,6 +32333,7 @@
 	/* ------------       DISPATCHERS     ------------------ */
 	
 	var submitOrder = exports.submitOrder = function submitOrder(orderDataForStripe, orderDataFromStore) {
+	  console.log(orderDataForStripe);
 	  return function (dispatch) {
 	    _axios2.default.post('/api/payments/' + orderDataForStripe.token, { orderDataForStripe: orderDataForStripe, orderDataFromStore: orderDataFromStore }).then(function (charge) {
 	
@@ -33547,6 +33548,10 @@
 	
 	var _AfterOrderSubmit2 = _interopRequireDefault(_AfterOrderSubmit);
 	
+	var _DesignServices = __webpack_require__(678);
+	
+	var _DesignServices2 = _interopRequireDefault(_DesignServices);
+	
 	var _enterHooks = __webpack_require__(591);
 	
 	var _leaveHooks = __webpack_require__(592);
@@ -33555,7 +33560,8 @@
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
 	
-	// import Account from './components/Account';
+	
+	/* -----------------    COMPONENTS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
@@ -33571,6 +33577,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
 	      _react2.default.createElement(
 	        _reactRouter.Route,
 	        { path: '/checkout', component: _Checkout2.default },
@@ -33592,8 +33599,7 @@
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
 	
-	
-	/* -----------------    COMPONENTS     ------------------ */
+	// import Account from './components/Account';
 
 /***/ },
 /* 312 */
@@ -53125,8 +53131,8 @@
 	                  'INTERIOR DESIGN'
 	                ),
 	                _react2.default.createElement(
-	                  'a',
-	                  { id: 'portfolioLink', href: 'https://www.claricekingdesigns.com/designservices' },
+	                  _reactRouter.Link,
+	                  { to: '/design', id: 'portfolioLink' },
 	                  _react2.default.createElement(
 	                    'h6',
 	                    { className: 'footerLink' },
@@ -54205,7 +54211,7 @@
 	
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'cart comp-container' },
+	    { className: 'cartContainer' },
 	    _react2.default.createElement(
 	      'h3',
 	      null,
@@ -54350,7 +54356,7 @@
 	              null,
 	              item.product.name
 	            ),
-	            _react2.default.createElement('img', { src: item.product.img })
+	            _react2.default.createElement('img', { src: item.product.img[0] })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -54459,7 +54465,7 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'comp-container' },
+					{ className: 'checkoutContainer' },
 					_react2.default.createElement(
 						'h2',
 						null,
@@ -55963,7 +55969,7 @@
 	
 	    onScriptLoaded: function onScriptLoaded() {
 	        this.setState({ scriptLoading: false });
-	        Stripe.setPublishableKey(process.env.STRIPE_TEST_PUBLISHABLE_SECRET);
+	        Stripe.setPublishableKey(process.env.STRIPE_PUBLISHABLE_KEY);
 	    },
 	
 	    onScriptError: function onScriptError() {
@@ -55997,7 +56003,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'paymentContainer' },
 	            this.state.scriptLoading ? _react2.default.createElement(
 	                'h3',
 	                null,
@@ -56217,6 +56223,8 @@
 	process.env["FACEBOOK_CLIENT_SECRET"] = "1234";
 	process.env["GOOGLE_CONSUMER_KEY"] = "311991622447-kdqmfugt3ekt21e95vi07m8u3dls3v2j.apps.googleusercontent.com";
 	process.env["GOOGLE_CONSUMER_SECRET"] = "zEpcea9n_3ehzbPJ7vxmy-Re";
+	process.env["STRIPE_PUBLISHABLE_KEY"] = "pk_test_KojVuT54tRytAjzXcGAFdIq7";
+	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
@@ -56300,7 +56308,7 @@
 	
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'confirmationContainer' },
 					_react2.default.createElement(
 						'p',
 						null,
@@ -56431,7 +56439,7 @@
 	
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'afterOrderContainer' },
 					charge && !charge.received ? _react2.default.createElement(
 						'span',
 						null,
@@ -56614,6 +56622,258 @@
 	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
 		_store2.default.dispatch((0, _charge.deloadCharge)());
 	};
+
+/***/ },
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(230);
+	
+	var _Carousel = __webpack_require__(570);
+	
+	var _Carousel2 = _interopRequireDefault(_Carousel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var DesignServices = function (_Component) {
+	  _inherits(DesignServices, _Component);
+	
+	  function DesignServices(props) {
+	    _classCallCheck(this, DesignServices);
+	
+	    return _possibleConstructorReturn(this, (DesignServices.__proto__ || Object.getPrototypeOf(DesignServices)).call(this, props));
+	  }
+	
+	  _createClass(DesignServices, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'designContainer' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'CLARICE KING DESIGN'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Interior Design and Decorating Services'
+	        ),
+	        _react2.default.createElement(_Carousel2.default, null),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'LET\'S MEET!'
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'Fill out the form below to get started. We\'ll send you a follow up email asking you for the information we need before our first phone call!'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'designFormContainer' },
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'designForm' },
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'designFormName', className: 'formRow' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'NAME'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroup' },
+	                _react2.default.createElement('input', { name: 'firstName', type: 'text', size: '20' }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  'First Name'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroup' },
+	                _react2.default.createElement('input', { name: 'lastName', type: 'text', size: '20' }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  'Last Name'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'designFormEmail', className: 'formRow' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'EMAIL ADDRESS'
+	              ),
+	              _react2.default.createElement('input', { name: 'email', type: 'text', size: '20' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'designFormPhone', className: 'formRow' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'PHONE'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroup' },
+	                _react2.default.createElement('input', { className: 'numberInput', name: 'areaCode', type: 'text', size: '3' }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '(***)'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroup' },
+	                _react2.default.createElement('input', { className: 'numberInput', name: 'firstThree', type: 'text', size: '3' }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '***'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroup' },
+	                _react2.default.createElement('input', { className: 'numberInput', name: 'lastFour', type: 'text', size: '4' }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '****'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              null,
+	              'SUBMIT'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return DesignServices;
+	}(_react.Component);
+	
+	exports.default = DesignServices;
 
 /***/ }
 /******/ ]);

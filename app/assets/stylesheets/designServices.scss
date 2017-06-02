@@ -1,0 +1,89 @@
+.designContainer{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 270px;
+  width: 100vw;
+  min-height: 100vh;
+  align-items: center;
+
+  input{
+    height: 30px;
+  }
+
+  button{
+    width: 33%;
+    align-self: center;
+    height: 50px;
+    color: white;
+    border: none;
+    background-color: black;
+  }
+
+  button:focus{
+    outline: none;
+  }
+}
+
+.designFormContainer{
+  display: flex;
+  width: 100vw;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+}
+
+.designForm{
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+}
+
+.formRow{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  h5{
+    width: 100%;
+  }
+}
+
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+  margin-right:5px;
+  align-items: flex-start;
+}
+
+.numberInput{
+    margin-right: 5px;
+}
+
+#designFormName{
+  justify-content: space-between;
+
+  .inputGroup{
+    width: calc(50% - 10px);
+    margin: 0;
+  }
+
+  input{
+    width: 100%;
+  }
+}
+
+#designFormEmail{
+  input{
+    width: 100%;
+  }
+}
+
+#designFormPhone{
+  .inputGroup{
+    align-items: center;
+  }
+
+  input{
+    margin:0;
+  }
+}
