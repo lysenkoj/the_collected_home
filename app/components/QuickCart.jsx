@@ -14,11 +14,11 @@ function Cart({ cart, remove, change, clear }){
     <div id="tab"/>
     <div id="tabBorder"/>
     <div className="quickCartContainer">
-      <h3>Your Cart</h3>
+      <h3 id='cartTitle'>YOUR CART</h3>
       {
         (cart && cart.length) ?
         <div>
-        <ul>
+        <ul className="quickCartList">
           {
             cart.map((item, index) => (
               <QuickCartItem
@@ -30,7 +30,7 @@ function Cart({ cart, remove, change, clear }){
             ))
           }
           </ul>
-          <div>Total price: ${
+          <h5 id='total'>Total price: ${
             cart.map(item => {
               return +item.product.price * +item.quantity;
             })
@@ -38,17 +38,19 @@ function Cart({ cart, remove, change, clear }){
                 return sum + current;
             }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
           }
+          </h5>
+          <div className="quickCartButtons">
+            <Link to="/cart">
+              <button>CART</button>
+            </Link>
+            <Link to="/checkout/shipping">
+              <button>CHECKOUT</button>
+            </Link>
+            <button onClick={clear}>CLEAR CART</button>
           </div>
-          <Link to="/cart">
-            <button>CART</button>
-          </Link>
-          <Link to="/checkout/shipping">
-            <button>CHECKOUT</button>
-          </Link>
-          <button onClick={clear}>CLEAR CART</button>
         </div>
         :
-        <h3>Your cart is empty!</h3>
+        <h3 id='emptyCart'>Your cart is empty!</h3>
       }
 
     </div>

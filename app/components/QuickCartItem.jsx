@@ -22,26 +22,28 @@ export default class QuickCartItem extends Component {
     const { item, remove } = this.props;
     return (
      <li className="quick-cart-item">
-      <Link to={`/product/${item.product.sku}`}>
-        <product className="carted-product">
-          <h4>{item.product.name}</h4>
-          <img src={item.product.img[0]} />
-        </product>
-      </Link>
-      <item-details>
-        <h4>${ item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>
-        <div>
-          <h6>Quantity:</h6>
-          <select value={item.quantity.toString()} onChange={ this.onItemQuantityChange } name="dropdown">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <button onClick= { () => { remove(item) }}><Glyphicon glyph="remove" /></button>
-      </item-details>
+      <button id='quickCartDelete' onClick= { () => { remove(item) }}><Glyphicon glyph="remove" /></button>
+      <div className="quickCartItem">
+        <Link to={`/product/${item.product.sku}`}>
+          <product className="carted-product">
+            <img src={item.product.img[0]} />
+          </product>
+        </Link>
+        <item-details>
+          <h5>{item.product.name}</h5>
+          <h5>${ item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h5>
+          <div>
+            <h6>Quantity:</h6>
+            <select value={item.quantity.toString()} onChange={ this.onItemQuantityChange } name="dropdown">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </item-details>
+      </div>
      </li>
     );
   }

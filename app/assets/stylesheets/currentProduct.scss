@@ -108,12 +108,14 @@
   .shippingInfo{
     display: flex;
     flex-direction: column;
-    padding: 0px 40px 0px 40px;
+    padding: 10px 40px 0px 40px;
     width: 100%;
     margin-bottom: 50px;
   }
 
   #infoEmail{
+    padding-top: 20px;
+    border-top: 2px solid grey;
     font-size: 1.2em;
   }
 
@@ -240,12 +242,14 @@
   .shippingInfo{
     display: flex;
     flex-direction: column;
-    padding: 0px 40px 0px 40px;
+    padding: 10px 40px 0px 40px;
     width: 100%;
     margin-bottom: 50px;
   }
 
   #infoEmail{
+    padding-top: 20px;
+    border-top: 2px solid grey;
     font-size: 1.2em;
   }
 
@@ -372,12 +376,14 @@
   .shippingInfo{
     display: flex;
     flex-direction: column;
-    padding: 0px 40px 0px 40px;
+    padding: 10px 40px 0px 40px;
     width: 100%;
     margin-bottom: 50px;
   }
 
   #infoEmail{
+    padding-top: 20px;
+    border-top: 2px solid grey;
     font-size: 1.2em;
   }
 

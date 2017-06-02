@@ -12,16 +12,32 @@
     width: 350px;
     min-height: 200px;
     max-height: 500px;
+    padding: 5px;
+  }
+
+  .quickCartList{
+    padding-left: 5px;
   }
 
   .quickCartContainer{
     flex-direction: column;
     overflow-y: auto;
+    width: 100%;
+
+    #total{
+      text-align: end;
+      padding-right: 5px;
+    }
   }
 
   .quick-cart-item{
     display: flex;
     list-style-type: none;
+    align-items: center;
+  }
+
+  .quickCartItem{
+    display: flex;
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
@@ -31,7 +47,7 @@
     width: calc(100% - 5px);
 
     img {
-      width: 50%;
+      width: 100%;
       height: auto;
     }
 
@@ -39,6 +55,41 @@
       display: inline-block;
       padding-left: 5px;
     }
+  }
+
+  .quickCartButtons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 60px;
+
+    button{
+      color: white;
+      background-color: black;
+      border: none;
+      width: 105px;
+      height: 40px;
+      font-family: 'woodfordbourne-bold';
+      letter-spacing: 1px;
+      font-size: 0.8em;
+    }
+
+    button:focus{
+      outline: none;
+    }
+  }
+
+  #quickCartDelete{
+    border: none;
+    background-color: black;
+    color: white;
+    margin-right: 5px;
+    width: 26px;
+    height: 26px;
+  }
+
+  #quickCartDelete:focus{
+    outline: none;
   }
 
   #tab{
@@ -63,6 +114,17 @@
     top: -11px;
     right: 73px;
     z-index: 4;
+  }
+
+  #cartTitle{
+    text-align: center;
+    width:100%;
+  }
+
+  #emptyCart{
+    text-align: center;
+    width: 100%;
+    margin-top: 46px;
   }
 }
 
@@ -80,16 +142,32 @@
     width: 350px;
     min-height: 200px;
     max-height: 500px;
+    padding: 5px;
+  }
+
+  .quickCartList{
+    padding-left: 5px;
   }
 
   .quickCartContainer{
     flex-direction: column;
     overflow-y: auto;
+    width: 100%;
+
+    #total{
+      text-align: end;
+      padding-right: 5px;
+    }
   }
 
   .quick-cart-item{
     display: flex;
     list-style-type: none;
+    align-items: center;
+  }
+
+  .quickCartItem{
+    display: flex;
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
@@ -99,7 +177,7 @@
     width: calc(100% - 5px);
 
     img {
-      width: 50%;
+      width: 100%;
       height: auto;
     }
 
@@ -107,6 +185,41 @@
       display: inline-block;
       padding-left: 5px;
     }
+  }
+
+  .quickCartButtons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 60px;
+
+    button{
+      color: white;
+      background-color: black;
+      border: none;
+      width: 105px;
+      height: 40px;
+      font-family: 'woodfordbourne-bold';
+      letter-spacing: 1px;
+      font-size: 0.8em;
+    }
+
+    button:focus{
+      outline: none;
+    }
+  }
+
+  #quickCartDelete{
+    border: none;
+    background-color: black;
+    color: white;
+    margin-right: 5px;
+    width: 26px;
+    height: 26px;
+  }
+
+  #quickCartDelete:focus{
+    outline: none;
   }
 
   #tab{
@@ -131,6 +244,17 @@
     top: -11px;
     right: 73px;
     z-index: 4;
+  }
+
+  #cartTitle{
+    text-align: center;
+    width:100%;
+  }
+
+  #emptyCart{
+    text-align: center;
+    width: 100%;
+    margin-top: 46px;
   }
 }
 
@@ -148,16 +272,32 @@
     width: 350px;
     min-height: 200px;
     max-height: 500px;
+    padding: 5px;
+  }
+
+  .quickCartList{
+    padding-left: 5px;
   }
 
   .quickCartContainer{
     flex-direction: column;
     overflow-y: auto;
+    width: 100%;
+
+    #total{
+      text-align: end;
+      padding-right: 5px;
+    }
   }
 
-  .quick-cart-item {
+  .quick-cart-item{
     display: flex;
     list-style-type: none;
+    align-items: center;
+  }
+
+  .quickCartItem{
+    display: flex;
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
@@ -167,7 +307,7 @@
     width: calc(100% - 5px);
 
     img {
-      width: 50%;
+      width: 100%;
       height: auto;
     }
 
@@ -175,6 +315,41 @@
       display: inline-block;
       padding-left: 5px;
     }
+  }
+
+  .quickCartButtons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 60px;
+
+    button{
+      color: white;
+      background-color: black;
+      border: none;
+      width: 105px;
+      height: 40px;
+      font-family: 'woodfordbourne-bold';
+      letter-spacing: 1px;
+      font-size: 0.8em;
+    }
+
+    button:focus{
+      outline: none;
+    }
+  }
+
+  #quickCartDelete{
+    border: none;
+    background-color: black;
+    color: white;
+    margin-right: 5px;
+    width: 26px;
+    height: 26px;
+  }
+
+  #quickCartDelete:focus{
+    outline: none;
   }
 
   #tab{
@@ -199,5 +374,16 @@
     top: -11px;
     right: 73px;
     z-index: 4;
+  }
+
+  #cartTitle{
+    text-align: center;
+    width:100%;
+  }
+
+  #emptyCart{
+    text-align: center;
+    width: 100%;
+    margin-top: 46px;
   }
 }

@@ -56937,15 +56937,15 @@
 	      { className: 'quickCartContainer' },
 	      _react2.default.createElement(
 	        'h3',
-	        null,
-	        'Your Cart'
+	        { id: 'cartTitle' },
+	        'YOUR CART'
 	      ),
 	      cart && cart.length ? _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
 	          'ul',
-	          null,
+	          { className: 'quickCartList' },
 	          cart.map(function (item, index) {
 	            return _react2.default.createElement(_QuickCartItem2.default, {
 	              key: index,
@@ -56956,8 +56956,8 @@
 	          })
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          null,
+	          'h5',
+	          { id: 'total' },
 	          'Total price: $',
 	          cart.map(function (item) {
 	            return +item.product.price * +item.quantity;
@@ -56966,31 +56966,35 @@
 	          }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 	        ),
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/cart' },
+	          'div',
+	          { className: 'quickCartButtons' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/cart' },
+	            _react2.default.createElement(
+	              'button',
+	              null,
+	              'CART'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/checkout/shipping' },
+	            _react2.default.createElement(
+	              'button',
+	              null,
+	              'CHECKOUT'
+	            )
+	          ),
 	          _react2.default.createElement(
 	            'button',
-	            null,
-	            'CART'
+	            { onClick: clear },
+	            'CLEAR CART'
 	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/checkout/shipping' },
-	          _react2.default.createElement(
-	            'button',
-	            null,
-	            'CHECKOUT'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: clear },
-	          'CLEAR CART'
 	        )
 	      ) : _react2.default.createElement(
 	        'h3',
-	        null,
+	        { id: 'emptyCart' },
 	        'Your cart is empty!'
 	      )
 	    )
@@ -57079,72 +57083,76 @@
 	        'li',
 	        { className: 'quick-cart-item' },
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/product/' + item.product.sku },
-	          _react2.default.createElement(
-	            'product',
-	            { className: 'carted-product' },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              item.product.name
-	            ),
-	            _react2.default.createElement('img', { src: item.product.img[0] })
-	          )
+	          'button',
+	          { id: 'quickCartDelete', onClick: function onClick() {
+	              remove(item);
+	            } },
+	          _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
 	        ),
 	        _react2.default.createElement(
-	          'item-details',
-	          null,
+	          'div',
+	          { className: 'quickCartItem' },
 	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            '$',
-	            item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
+	            _reactRouter.Link,
+	            { to: '/product/' + item.product.sku },
 	            _react2.default.createElement(
-	              'h6',
-	              null,
-	              'Quantity:'
-	            ),
-	            _react2.default.createElement(
-	              'select',
-	              { value: item.quantity.toString(), onChange: this.onItemQuantityChange, name: 'dropdown' },
-	              _react2.default.createElement(
-	                'option',
-	                { value: '1' },
-	                '1'
-	              ),
-	              _react2.default.createElement(
-	                'option',
-	                { value: '2' },
-	                '2'
-	              ),
-	              _react2.default.createElement(
-	                'option',
-	                { value: '3' },
-	                '3'
-	              ),
-	              _react2.default.createElement(
-	                'option',
-	                { value: '4' },
-	                '4'
-	              ),
-	              _react2.default.createElement(
-	                'option',
-	                { value: '5' },
-	                '5'
-	              )
+	              'product',
+	              { className: 'carted-product' },
+	              _react2.default.createElement('img', { src: item.product.img[0] })
 	            )
 	          ),
 	          _react2.default.createElement(
-	            'button',
-	            { onClick: function onClick() {
-	                remove(item);
-	              } },
-	            _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+	            'item-details',
+	            null,
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              item.product.name
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              '$',
+	              item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'h6',
+	                null,
+	                'Quantity:'
+	              ),
+	              _react2.default.createElement(
+	                'select',
+	                { value: item.quantity.toString(), onChange: this.onItemQuantityChange, name: 'dropdown' },
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: '1' },
+	                  '1'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: '2' },
+	                  '2'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: '3' },
+	                  '3'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: '4' },
+	                  '4'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: '5' },
+	                  '5'
+	                )
+	              )
+	            )
 	          )
 	        )
 	      );
