@@ -33690,6 +33690,10 @@
 	
 	var _reactRouterBootstrap = __webpack_require__(565);
 	
+	var _QuickCart = __webpack_require__(679);
+	
+	var _QuickCart2 = _interopRequireDefault(_QuickCart);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33710,6 +33714,7 @@
 	
 	    _this.toggleNavDrop = _this.toggleNavDrop.bind(_this);
 	    _this.toggleMobileNav = _this.toggleMobileNav.bind(_this);
+	    _this.toggleQuickCart = _this.toggleQuickCart.bind(_this);
 	    return _this;
 	  }
 	
@@ -33740,6 +33745,17 @@
 	      var navDiv = selectNav();
 	
 	      navDiv.style.display === 'flex' ? navDiv.style.display = 'none' : navDiv.style.display = 'flex';
+	    }
+	  }, {
+	    key: 'toggleQuickCart',
+	    value: function toggleQuickCart() {
+	      var getQuickCart = function getQuickCart() {
+	        return document.querySelector('div.quickCart');
+	      };
+	
+	      var quickCart = getQuickCart();
+	
+	      quickCart.style.display === 'flex' ? quickCart.style.display = 'none' : quickCart.style.display = 'flex';
 	    }
 	  }, {
 	    key: 'render',
@@ -33775,8 +33791,8 @@
 	                'div',
 	                { className: 'shoppingContainer' },
 	                _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { to: '/cart' },
+	                  'button',
+	                  { id: 'cartButton', onClick: this.toggleQuickCart },
 	                  _react2.default.createElement(
 	                    'div',
 	                    { id: 'cartLink' },
@@ -33790,6 +33806,7 @@
 	                    )
 	                  )
 	                ),
+	                _react2.default.createElement(_QuickCart2.default, null),
 	                _react2.default.createElement(
 	                  'div',
 	                  null,
@@ -56874,6 +56891,270 @@
 	}(_react.Component);
 	
 	exports.default = DesignServices;
+
+/***/ },
+/* 679 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _cart = __webpack_require__(293);
+	
+	var _reactRouter = __webpack_require__(230);
+	
+	var _QuickCartItem = __webpack_require__(680);
+	
+	var _QuickCartItem2 = _interopRequireDefault(_QuickCartItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	
+	function Cart(_ref) {
+	  var cart = _ref.cart,
+	      remove = _ref.remove,
+	      change = _ref.change,
+	      clear = _ref.clear;
+	
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'quickCart' },
+	    _react2.default.createElement('div', { id: 'tab' }),
+	    _react2.default.createElement('div', { id: 'tabBorder' }),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'quickCartContainer' },
+	      _react2.default.createElement(
+	        'h3',
+	        null,
+	        'Your Cart'
+	      ),
+	      cart && cart.length ? _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          cart.map(function (item, index) {
+	            return _react2.default.createElement(_QuickCartItem2.default, {
+	              key: index,
+	              item: item,
+	              remove: remove,
+	              change: change
+	            });
+	          })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Total price: $',
+	          cart.map(function (item) {
+	            return +item.product.price * +item.quantity;
+	          }).reduce(function (sum, current) {
+	            return sum + current;
+	          }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/cart' },
+	          _react2.default.createElement(
+	            'button',
+	            null,
+	            'CART'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/checkout/shipping' },
+	          _react2.default.createElement(
+	            'button',
+	            null,
+	            'CHECKOUT'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: clear },
+	          'CLEAR CART'
+	        )
+	      ) : _react2.default.createElement(
+	        'h3',
+	        null,
+	        'Your cart is empty!'
+	      )
+	    )
+	  );
+	}
+	
+	/* -----------------    CONTAINER     ------------------ */
+	
+	var mapStateToProps = function mapStateToProps(_ref2) {
+	  var cart = _ref2.cart;
+	  return { cart: cart };
+	};
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    remove: function remove(item) {
+	      return dispatch((0, _cart.removeItem)(item));
+	    },
+	    change: function change(product, quantity) {
+	      return dispatch((0, _cart.changeQuantity)(product, quantity));
+	    },
+	    clear: function clear() {
+	      return dispatch((0, _cart.clearCart)());
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
+
+/***/ },
+/* 680 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(230);
+	
+	var _reactBootstrap = __webpack_require__(314);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    DUMB COMPONENT     ------------------ */
+	
+	var QuickCartItem = function (_Component) {
+	  _inherits(QuickCartItem, _Component);
+	
+	  function QuickCartItem(props) {
+	    _classCallCheck(this, QuickCartItem);
+	
+	    var _this = _possibleConstructorReturn(this, (QuickCartItem.__proto__ || Object.getPrototypeOf(QuickCartItem)).call(this, props));
+	
+	    _this.onItemQuantityChange = _this.onItemQuantityChange.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(QuickCartItem, [{
+	    key: 'onItemQuantityChange',
+	    value: function onItemQuantityChange(evt) {
+	      evt.preventDefault();
+	      var quantity = +evt.target.value;
+	      this.props.change(this.props.item.product, quantity);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          item = _props.item,
+	          remove = _props.remove;
+	
+	      return _react2.default.createElement(
+	        'li',
+	        { className: 'quick-cart-item' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/product/' + item.product.sku },
+	          _react2.default.createElement(
+	            'product',
+	            { className: 'carted-product' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              item.product.name
+	            ),
+	            _react2.default.createElement('img', { src: item.product.img[0] })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'item-details',
+	          null,
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            '$',
+	            item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'h6',
+	              null,
+	              'Quantity:'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { value: item.quantity.toString(), onChange: this.onItemQuantityChange, name: 'dropdown' },
+	              _react2.default.createElement(
+	                'option',
+	                { value: '1' },
+	                '1'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '2' },
+	                '2'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '3' },
+	                '3'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '4' },
+	                '4'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: '5' },
+	                '5'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: function onClick() {
+	                remove(item);
+	              } },
+	            _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'remove' })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return QuickCartItem;
+	}(_react.Component);
+	
+	exports.default = QuickCartItem;
 
 /***/ }
 /******/ ]);

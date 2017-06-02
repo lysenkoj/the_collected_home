@@ -5,6 +5,7 @@ import Search from './Search';
 import { Link } from 'react-router';
 import { logout } from '../reducers/auth';
 import { LinkContainer } from 'react-router-bootstrap';
+import QuickCart from './QuickCart';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -15,6 +16,7 @@ class Navigbar extends React.Component {
 
     this.toggleNavDrop = this.toggleNavDrop.bind(this);
     this.toggleMobileNav = this.toggleMobileNav.bind(this);
+    this.toggleQuickCart = this.toggleQuickCart.bind(this);
   }
 
   toggleNavDrop(evt){
@@ -45,6 +47,17 @@ class Navigbar extends React.Component {
     navDiv.style.display = 'none' : navDiv.style.display = 'flex';
   }
 
+  toggleQuickCart(){
+    const getQuickCart = function(){
+      return document.querySelector('div.quickCart');
+    };
+
+    const quickCart = getQuickCart();
+
+    (quickCart.style.display === 'flex') ?
+    quickCart.style.display = 'none' : quickCart.style.display = 'flex';
+  }
+
   render(){
     return (
       <Navbar className="navContainer" inverse collapseOnSelect style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
@@ -57,12 +70,13 @@ class Navigbar extends React.Component {
           <div className="userContainer">
             <div className="userPanel">
               <div className="shoppingContainer">
-                <Link to="/cart">
+                <button id="cartButton" onClick={this.toggleQuickCart}>
                   <div id="cartLink">
                     <img id="shoppingImg" src="images/shopping-cart.png"/>
                     <h5>({this.props.cart && this.props.cart.length})</h5>
                   </div>
-                </Link>
+                </button>
+                <QuickCart />
                 <div><h5>//</h5></div>
                 {
                   this.props.user && this.props.user.email ?

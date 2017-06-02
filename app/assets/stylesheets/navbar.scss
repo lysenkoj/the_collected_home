@@ -97,6 +97,15 @@
     margin-right: 5px;
   }
 
+  #cartButton{
+    background-color: white;
+    border: none;
+  }
+
+  #cartButton:focus{
+    outline: none;
+  }
+
   .shoppingContainer{
     display: flex;
     justify-content: center;
@@ -324,6 +333,15 @@
   #cartLink{
     display:flex;
     margin-right: 5px;
+  }
+
+  #cartButton{
+    background-color: white;
+    border: none;
+  }
+
+  #cartButton:focus{
+    outline: none;
   }
 
   .shoppingContainer{
@@ -556,6 +574,15 @@
   #cartLink{
     display: flex;
     margin-right: 5px;
+  }
+
+  #cartButton{
+    background-color: white;
+    border: none;
+  }
+
+  #cartButton:focus{
+    outline: none;
   }
 
   .shoppingContainer{
