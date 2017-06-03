@@ -33552,6 +33552,10 @@
 	
 	var _DesignServices2 = _interopRequireDefault(_DesignServices);
 	
+	var _SplashPage = __webpack_require__(681);
+	
+	var _SplashPage2 = _interopRequireDefault(_SplashPage);
+	
 	var _enterHooks = __webpack_require__(591);
 	
 	var _leaveHooks = __webpack_require__(592);
@@ -33560,46 +33564,20 @@
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
 	
-	
-	/* -----------------    COMPONENTS     ------------------ */
+	// import Account from './components/Account';
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(
-	      _reactRouter.Route,
-	      { path: '/', component: _Root2.default, onEnter: _enterHooks.loadCategories },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
-	      _react2.default.createElement(
-	        _reactRouter.Route,
-	        { path: '/checkout', component: _Checkout2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
-	      ),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
-	    )
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default })
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
-	//  <Route path="/confirmation" component={Confirmation} />
-	
-	// <Route path="/products/:selected" component={}
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
 	
-	// import Account from './components/Account';
+	
+	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ },
 /* 312 */
@@ -57163,6 +57141,202 @@
 	}(_react.Component);
 	
 	exports.default = QuickCartItem;
+
+/***/ },
+/* 681 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(230);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SplashPage = function (_Component) {
+	  _inherits(SplashPage, _Component);
+	
+	  function SplashPage() {
+	    _classCallCheck(this, SplashPage);
+	
+	    var _this = _possibleConstructorReturn(this, (SplashPage.__proto__ || Object.getPrototypeOf(SplashPage)).call(this));
+	
+	    _this.countdown = _this.countdown.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(SplashPage, [{
+	    key: 'countdown',
+	    value: function countdown() {
+	      var countDownDate = new Date("Aug 1, 2017 08:00:00").getTime();
+	      var x = setInterval(function () {
+	        var now = new Date().getTime();
+	        var distance = countDownDate - now;
+	        // Time calculations for days, hours, minutes and seconds
+	        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	        var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+	        var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+	        var seconds = Math.floor(distance % (1000 * 60) / 1000);
+	
+	        // Display the result in the element
+	        document.getElementById("days").innerHTML = days;
+	        document.getElementById("hours").innerHTML = hours;
+	        document.getElementById("minutes").innerHTML = minutes;
+	        document.getElementById("seconds").innerHTML = seconds;
+	
+	        // If the count down is finished, write some text
+	        if (distance < 0) {
+	          clearInterval(x);
+	          document.getElementById("demo").innerHTML = "EXPIRED";
+	        }
+	      }, 1000);
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      return this.countdown();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'splashContainer' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'splashLogoContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'CLARICE KING'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'tagline' },
+	            'The Collected Home'
+	          )
+	        ),
+	        _react2.default.createElement('div', { id: 'spacerTop' }),
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'splashTitle' },
+	          'WE ARE COMING SOON'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'countdownContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'DAYS'
+	            ),
+	            _react2.default.createElement('h1', { id: 'days' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'HOURS'
+	            ),
+	            _react2.default.createElement('h1', { id: 'hours' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'MINUTES'
+	            ),
+	            _react2.default.createElement('h1', { id: 'minutes' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'SECONDS'
+	            ),
+	            _react2.default.createElement('h1', { id: 'seconds' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'splashSubscribeContainer' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'BE THE FIRST TO KNOW'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement('input', { id: 'splashInput', type: 'text', placeholder: 'email' }),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'searchBtn', type: 'submit' },
+	              _react2.default.createElement('div', { className: 'arrow-right' })
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'splashSocial' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'mailto:info@clariceking.com' },
+	            _react2.default.createElement('img', { src: 'images/email.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.instagram.com/claricekinghome/' },
+	            _react2.default.createElement('img', { src: 'images/instagram.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.facebook.com/ClariceKingHome/' },
+	            _react2.default.createElement('img', { src: 'images/facebook.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.pinterest.com/claricekinghome/' },
+	            _react2.default.createElement('img', { src: 'images/pinterest.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.pinterest.com/claricekinghome/' },
+	            _react2.default.createElement('img', { src: 'images/twitter.png' })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return SplashPage;
+	}(_react.Component);
+	
+	exports.default = SplashPage;
 
 /***/ }
 /******/ ]);

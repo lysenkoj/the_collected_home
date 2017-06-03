@@ -21,6 +21,7 @@ import Payment from './components/Payment';
 import Confirmation from './components/Confirmation';
 import AfterOrderSubmit from './components/AfterOrderSubmit';
 import DesignServices from './components/DesignServices';
+import SplashPage from './components/SplashPage';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
@@ -30,7 +31,9 @@ import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onA
 
 export default () => (
 	<Router history={browserHistory}>
-    <Route path="/" component={Root} onEnter={loadCategories}>
+    {/*WHEN DISABLING SPLASH PAGE DISABLE BODy OVERLOW HIDDEN IN SPLASH CSS*/}
+    <Route path="/" component={SplashPage} />
+    {/*<Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
@@ -49,12 +52,9 @@ export default () => (
       <Route path="/search/:query" component={SelectedProducts} onEnter={loadQueriedProducts} />
       <Route path="/featured" component={SelectedProducts} onEnter={loadFeaturedProducts} onLeave={deloadCategoryProducts} />
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} onLeave={deloadCategoryProducts} />
-    </Route>
+    </Route>*/}
   </Router>
 );
     //    <Route path="/payment" component={Payment} />
-      //  <Route path="/confirmation" component={Confirmation} />
-
-      // <Route path="/products/:selected" component={}
 
 
