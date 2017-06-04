@@ -35,6 +35,8 @@ export default class SplashPage extends Component {
   }
 
   componentWillMount(){
+    const body = document.querySelector('body');
+    body.style.paddingBottom = 0;
     return this.countdown();
   }
 
@@ -67,9 +69,9 @@ export default class SplashPage extends Component {
         </div>
         <div className='splashSubscribeContainer'>
           <h3>BE THE FIRST TO KNOW</h3>
-          <form>
-            <input id="splashInput" type="text" placeholder="email"/>
-            <button className ="searchBtn" type="submit">
+          <form action="//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&amp;id=8eaec4d2f9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate className="validate">
+            <input id="splashInput" type="email" name='EMAIL' placeholder="email" required/>
+            <button className ="searchBtn" type="submit" name="subscribe">
               <div className="arrow-right"></div>
             </button>
           </form>

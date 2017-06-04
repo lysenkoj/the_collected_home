@@ -8,6 +8,11 @@ export default class MainPage extends Component {
     super(props)
   }
 
+  componentWillMount(){
+    const body = document.querySelector('body');
+    body.style.paddingBottom = '6em';
+  }
+
   render() {
     return (
       <div>

@@ -65,7 +65,7 @@ class Navigbar extends React.Component {
           <Search />
           <Link to="/" className="mainLogo">
             <div>CLARICE KING</div>
-            <div id="tagline">The Collected Home</div>
+            <div id="tagline">The <span id='gold'>Collected</span> Home</div>
           </Link>
           <div className="userContainer">
             <div className="userPanel">

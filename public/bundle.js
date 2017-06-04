@@ -33569,7 +33569,30 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default })
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { path: '/', component: _Root2.default, onEnter: _enterHooks.loadCategories },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
+	      _react2.default.createElement(
+	        _reactRouter.Route,
+	        { path: '/checkout', component: _Checkout2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
+	      ),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
+	    )
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
@@ -33621,6 +33644,12 @@
 	  }
 	
 	  _createClass(MainPage, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var body = document.querySelector('body');
+	      body.style.paddingBottom = '6em';
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -33756,7 +33785,13 @@
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'tagline' },
-	              'The Collected Home'
+	              'The ',
+	              _react2.default.createElement(
+	                'span',
+	                { id: 'gold' },
+	                'Collected'
+	              ),
+	              ' Home'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -53227,11 +53262,11 @@
 	              ),
 	              _react2.default.createElement(
 	                'form',
-	                { className: 'newsletterForm' },
-	                _react2.default.createElement('input', { id: 'newsletterInput', type: 'text', placeholder: 'Enter Your Email Address...' }),
+	                { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', id: 'mc-embedded-subscribe-form', name: 'mc-embedded-subscribe-form', target: '_blank', noValidatec: true, lassName: 'newsletterForm validate' },
+	                _react2.default.createElement('input', { id: 'newsletterInput', type: 'email', name: 'EMAIL', placeholder: 'Enter Your Email Address...', required: true }),
 	                _react2.default.createElement(
 	                  'button',
-	                  { id: 'newsletterButton', type: 'submit' },
+	                  { id: 'newsletterButton', name: 'subscribe', type: 'submit' },
 	                  'SIGN UP'
 	                )
 	              ),
@@ -57209,6 +57244,8 @@
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      var body = document.querySelector('body');
+	      body.style.paddingBottom = 0;
 	      return this.countdown();
 	    }
 	  }, {
@@ -57291,11 +57328,11 @@
 	          ),
 	          _react2.default.createElement(
 	            'form',
-	            null,
-	            _react2.default.createElement('input', { id: 'splashInput', type: 'text', placeholder: 'email' }),
+	            { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', id: 'mc-embedded-subscribe-form', name: 'mc-embedded-subscribe-form', target: '_blank', noValidate: true, className: 'validate' },
+	            _react2.default.createElement('input', { id: 'splashInput', type: 'email', name: 'EMAIL', placeholder: 'email', required: true }),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'searchBtn', type: 'submit' },
+	              { className: 'searchBtn', type: 'submit', name: 'subscribe' },
 	              _react2.default.createElement('div', { className: 'arrow-right' })
 	            )
 	          )
