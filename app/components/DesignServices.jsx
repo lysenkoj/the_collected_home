@@ -1,11 +1,73 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Carousel from './Carousel';
+import { connect } from 'react-redux';
+import {addFormInfo} from '../reducers/designForm';
 
 /* -----------------    COMPONENT     ------------------ */
-export default class DesignServices extends Component {
+class DesignServices extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      client: {
+        firstName: null,
+        lastName: null,
+        email: null,
+        areaCode: null,
+        threeDig: null,
+        fourDigPhone: null
+      }
+    }
+
+    this.addFirstName = this.addFirstName.bind(this);
+    this.addLastName = this.addLastName.bind(this);
+    this.addEmail = this.addEmail.bind(this);
+    this.addAreaPhone = this.addAreaPhone.bind(this);
+    this.addThreeDigPhone = this.addThreeDigPhone.bind(this);
+    this.addFourDigPhone = this.addFourDigPhone.bind(this);
+    this.sendInfo = this.sendInfo.bind(this);
+  }
+
+  addFirstName(evt){
+    evt.preventDefault();
+    let firstName = evt.target.value
+		this.setState({ firstName })
+  }
+
+  addLastName(evt){
+    evt.preventDefault();
+    let lastName = evt.target.value
+		this.setState({ lastName })
+  }
+
+  addEmail(evt){
+    evt.preventDefault();
+    let email = evt.target.value
+		this.setState({ email })
+  }
+
+  addAreaPhone(evt){
+    evt.preventDefault();
+    let areaCode = evt.target.value;
+		this.setState({ areaCode })
+  }
+
+  addThreeDigPhone(evt){
+    evt.preventDefault();
+    let threeDig = evt.target.value;
+		this.setState({ threeDig })
+  }
+
+  addFourDigPhone(evt){
+    evt.preventDefault();
+    let fourDig = evt.target.value;
+		this.setState({ fourDig })
+  }
+
+  sendInfo(){
+    let info = this.state.client;
+
+    this.props.supplyFormInfo(info);
   }
 
   render() {
@@ -21,37 +83,46 @@ export default class DesignServices extends Component {
             <div id="designFormName" className="formRow">
               <h5>NAME</h5>
               <div className='inputGroup'>
-                <input name="firstName" type="text" size="20"/>
+                <input name="firstName" type="text" size="20" onChange={this.addFirstName}/>
                 <span>First Name</span>
               </div>
               <div className='inputGroup'>
-                <input name="lastName" type="text" size="20"/>
+                <input name="lastName" type="text" size="20" onChange={this.addLastName}/>
                 <span>Last Name</span>
               </div>
             </div>
             <div id="designFormEmail" className="formRow">
               <h5>EMAIL ADDRESS</h5>
-              <input name="email" type="text" size="20"/>
+              <input name="email" type="text" size="20" onChange={this.addEmail}/>
             </div>
             <div id="designFormPhone" className="formRow">
               <h5>PHONE</h5>
               <div  className='inputGroup'>
-                <input className="numberInput" name="areaCode" type="text" size="3"/>
+                <input className="numberInput" name="areaCode" type="text" size="3" onChange={this.addAreaPhone}/>
                 <span>(***)</span>
               </div>
               <div className='inputGroup'>
-                <input className="numberInput" name="firstThree" type="text" size="3"/>
+                <input className="numberInput" name="firstThree" type="text" size="3" onChange={this.addThreeDigPhone}/>
                 <span>***</span>
               </div>
               <div className='inputGroup'>
-                <input className="numberInput" name="lastFour" type="text" size="4"/>
+                <input className="numberInput" name="lastFour" type="text" size="4" onChange={this.addFourDigPhone}/>
                 <span>****</span>
               </div>
             </div>
-            <button>SUBMIT</button>
+            <button onClick={this.sendInfo}>SUBMIT</button>
           </form>
         </div>
       </div>
     )
   }
 }
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapStateToProps = ({}) => ({});
+const mapDispatchToProps = (dispatch) => ({
+	supplyFormInfo: (info) => dispatch(addFormInfo(info))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DesignServices);

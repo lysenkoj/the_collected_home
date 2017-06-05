@@ -8,6 +8,7 @@ import orders from  './orders';
 import selectedOrder from  './selectedOrder';
 import shippingAddress from './shippingAddress';
 import charge from './charge';
+import designForm from './designForm';
 
 
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
 	orders,
 	selectedOrder,
 	shippingAddress,
-	charge
+	charge,
+  designForm
 });
 
 
