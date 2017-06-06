@@ -128,10 +128,12 @@ const ordersToSeed = [
 ];
 
 const orderItemsToSeed = [
-  {status: 'shipped', quantity: 1, priceAtPurchase: 250000, shippingDate: '2016-10-03', receiveDate: '2016-10-10', taxCost: 28000, shippingCost: 7.99, itemCost: 250000,  product_sku: 7487601920, order_orderNumber: 1},
-  {status: 'shipped', quantity: 2, priceAtPurchase: 150, shippingDate: '2016-11-03', receiveDate: '2016-11-10', taxCost: 11, shippingCost: 7.99, itemCost: 100,  product_sku: 9154950247, order_orderNumber: 1}
+
 ];
 
+const clientsToSeed = [
+  {firstName: 'Jordan', lastName: 'Lysenko', email: 'lysenkoj@gmail.com', phone: '203-722-3347'}
+]
 
 const seedCategories = () => db.Promise.mapSeries(categoriesToSeed, category => db.model('categories').create(category));
 const seedUsers = () => db.Promise.mapSeries(usersToSeed, user => db.model('users').create(user));
@@ -140,6 +142,7 @@ const seedAddresses = () => db.Promise.mapSeries(addressesToSeed, address => db.
 const seedCategoryProducts = () => db.Promise.mapSeries(categoryProductsToSeed, categoryProduct => db.model('CategoryProduct').create(categoryProduct));
 const seedOrders = () => db.Promise.mapSeries(ordersToSeed, order => db.model('orders').create(order));
 const seedOrderItems = () => db.Promise.mapSeries(orderItemsToSeed, order_item => db.model('order_items').create(order_item));
+const seedClients = () => db.Promise.mapSeries(clientsToSeed, client => db.model('clients').create(client));
 
 
 db.didSync
@@ -158,5 +161,7 @@ db.didSync
   .then(orders => console.log(`Seeded ${orders.length} orders OK`))
   .then(seedOrderItems)
   .then(orderItems => console.log(`Seeded ${orderItems.length} orderItems OK`))
+  .then(seedClients)
+  .then(clients => console.log(`Seeded ${clients.length} clients OK`))
   .catch(error => console.error(error))
   .finally(() => db.close())

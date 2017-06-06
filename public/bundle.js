@@ -57313,7 +57313,9 @@
 	      var newClient = {};
 	
 	      newClient.fullName = info.firstName + ' ' + info.lastName;
-	      newClient.email = this.state.client.email;
+	      newClient.firstName = info.firstName;
+	      newClient.lastName = info.lastName;
+	      newClient.email = info.email;
 	      newClient.phone = info.areaCode + '-' + info.threeDig + '-' + info.fourDigPhone;
 	
 	      // FORM VALIDATION

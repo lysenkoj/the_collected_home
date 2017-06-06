@@ -1,17 +1,27 @@
 const Promise = require('bluebird');
 
 const designRequestRoutes = require('express').Router()
+const db = require('APP/db')
+
+const Client = db.model("clients");
 
 const postmark = require("postmark");
-const client = new postmark.Client("184e33d1-1a88-4dee-9abb-41e0bb0e87ab");
+const postmarkClient = new postmark.Client("184e33d1-1a88-4dee-9abb-41e0bb0e87ab");
 
 designRequestRoutes.post("/", function(req, res, next) {
 
-  console.log('THIS IS THE REQ BODY!', req.body);
+	Client.create({
+		email: req.body.email,
+		phone: req.body.phone,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+	})
+		.then(client => res.json(client))
+		.catch(next);
 
-  // DATABASE STUFF HERE!!
+  // AUTOMATIC EMAIL
 
-  client.sendEmail({
+  postmarkClient.sendEmail({
       "From": "admin@clariceking.com",
       "To": "clarice@claricekingdesign.com",
       "Subject": "Interior Design Service Request",

@@ -10,6 +10,7 @@ const Order = require("./order")
 const Order_Item = require("./order_item")
 const Product = require("./product")
 const Category = require("./category")
+const Client = require('./client')
 
 
 Address.belongsTo(User);
@@ -38,5 +39,5 @@ Category.hasMany(Category, {as: "metaCategory"});
 
 
 
-module.exports = {User, Address, Order, Order_Item, Product, Category }
+module.exports = {User, Address, Order, Order_Item, Product, Category, Client}
 
