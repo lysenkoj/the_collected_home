@@ -9,7 +9,7 @@ export default class DumbCarousel extends Component {
 
   render() {
     return(
-      <Carousel>
+      <Carousel className='carouselContainer'>
         <Carousel.Item className="carouselImgContainer">
           <Image className="carouselImg" src="/images/front-page-1.jpg" responsive/>
         </Carousel.Item>

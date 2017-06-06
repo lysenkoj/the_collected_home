@@ -31,6 +31,7 @@ export default function reducer (previousState = {}, action) {
 
 
 export const addFormInfo = (info) => {
+  console.log(info)
   return dispatch => {
     axios.post(`/api/design_request`, info)
       .catch(err => console.error('SENDING FORM INFO FAILED', err))

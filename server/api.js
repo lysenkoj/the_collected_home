@@ -16,7 +16,7 @@ api
   .use('/order_items', require('./order_items'))
   .use('/category_products', require('./category_products'))
   .use('/upload', require('./upload'))
-  .use('/design_request'), require('./design_request')
+  .use('/design_request', require('./design_request'))
 
 
 // Send along any errors

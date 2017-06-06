@@ -9,30 +9,34 @@ require('APP/.env.js');
 
 /* -----------------     COMPONENT     ------------------ */
 
-var Payment = React.createClass({
-    mixins: [ReactScriptLoaderMixin],
+export default class Payment extends Component{
+  constructor(props){
+    super(props);
+  }
 
-    getInitialState: function() {
+    mixins = [ReactScriptLoaderMixin];
+
+    getInitialState() {
     	return {
     		scriptLoading: true,
     		scriptLoadError: false
     	};
-    },
+    }
 
-    getScriptURL: function() {
+    getScriptURL() {
        return 'https://js.stripe.com/v2/';
-    },
+    }
 
-    onScriptLoaded: function() {
+    onScriptLoaded() {
       this.setState({ scriptLoading: false });
      	Stripe.setPublishableKey(process.env.STRIPE_PUBLISHABLE_KEY);
-    },
+    }
 
-    onScriptError: function() {
+    onScriptError() {
     	this.setState({ scriptLoading: false, scriptLoadError: true })
-    },
+    }
 
-    sendPayment: function(evt) {
+    sendPayment(evt) {
     	evt.preventDefault();
     	var number = evt.target.number.value;
     	var exp_month = evt.target.exp_month.value;
@@ -44,9 +48,9 @@ var Payment = React.createClass({
     		exp_month,
     		exp_year
     	}, this.stripeResponseHandler)
-    },
+    }
 
-    stripeResponseHandler: function(status, response) {
+    stripeResponseHandler(status, response) {
         if (response.error) {
             console.log('STRIPE ERROR', response.error);
         } else {
@@ -54,9 +58,9 @@ var Payment = React.createClass({
     		var token = response.id;
     		browserHistory.push(`/checkout/confirmation/${token}`);
 	   }
-    },
+    }
 
-    render: function() {
+    render() {
       return (
      		<div className="paymentContainer">
 	     		{
@@ -99,7 +103,5 @@ var Payment = React.createClass({
             </div>
       );
     }
-});
+}
 
-
-export default Payment;

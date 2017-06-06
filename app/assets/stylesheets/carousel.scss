@@ -6,9 +6,16 @@
   visibility: hidden;
 }
 
+.carouselContainer{
+  padding: 40px;
+  border-bottom: 2px solid grey;
+  border-top: 2px solid grey;
+  margin-bottom: 60px;
+}
+
 .carouselImgContainer{
-  width: 100vw;
-  height: 300px;
+  width: 75vw;
+  height: 450px;
   overflow: hidden;
 
 }

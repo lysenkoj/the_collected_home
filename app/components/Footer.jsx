@@ -52,7 +52,7 @@ export default class Footer extends Component {
 
             <div className="subscribeContainer">
               <h5 id="subscribe">SUBSCRIBE</h5>
-              <form action="//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&amp;id=8eaec4d2f9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidatec lassName="newsletterForm validate">
+              <form action="//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&amp;id=8eaec4d2f9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate className="newsletterForm validate">
                 <input id="newsletterInput" type="email" name='EMAIL' placeholder="Enter Your Email Address..." required></input>
                 <button id="newsletterButton" name="subscribe" type="submit">SIGN UP</button>
               </form>

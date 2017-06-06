@@ -6,6 +6,7 @@
   min-height: 100vh;
   align-items: center;
 
+
   input{
     height: 30px;
   }
@@ -22,12 +23,45 @@
   button:focus{
     outline: none;
   }
+
+  #instructions{
+    font-family: 'crimson_textroman';
+  }
+}
+
+.designHeader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  margin-top: 20px;
+  margin-bottom: 40px;
+
+  img{
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.designTitleContainer{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+
+  h3{
+    margin-top: 20px;
+    margin-bottom: 6px;
+  }
+
+  h4{
+    margin-top: 0;
+  }
 }
 
 .designFormContainer{
   display: flex;
   width: 100vw;
-  height: 500px;
+  height: 380px;
   align-items: center;
   justify-content: center;
 }

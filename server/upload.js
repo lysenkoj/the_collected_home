@@ -8,7 +8,7 @@ const uploadRoutes = require('express').Router()
 
 
 uploadRoutes.post("/", function(req, res, next) {
-  console.log(req.body)
+  console.log("THIS IS THE INFO", req.body)
   	return res.status(200).send('WHERE"S MY BODY??')
 });
 
