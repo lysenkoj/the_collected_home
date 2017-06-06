@@ -2438,3 +2438,25 @@ h6 {
   .splashSocial img {
     width: 35px;
     height: 35px; }
+
+.pressContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 240px;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px; }
+  .pressContainer h1 {
+    text-align: center;
+    width: 100%; }
+  .pressContainer div {
+    flex-grow: 1;
+    min-width: 25%;
+    height: 60px;
+    border: 5px solid white; }

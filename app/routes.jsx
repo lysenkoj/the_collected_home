@@ -22,6 +22,7 @@ import Confirmation from './components/Confirmation';
 import AfterOrderSubmit from './components/AfterOrderSubmit';
 import DesignServices from './components/DesignServices';
 import SplashPage from './components/SplashPage';
+import Press from './components/Press';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
@@ -43,6 +44,7 @@ export default () => (
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} onLeave={onProductLeave} />
       <Route path="/cart" component={Cart} />
       <Route path="/design" component={DesignServices} />
+      <Route path="/press" component={Press} />
       <Route path="/checkout" component={Checkout} >
         <Route path="/checkout/shipping" component={Shipping} />
         <Route path="/checkout/payment" component={Payment} />

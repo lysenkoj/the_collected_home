@@ -33055,6 +33055,10 @@
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
+	var _Press = __webpack_require__(605);
+	
+	var _Press2 = _interopRequireDefault(_Press);
+	
 	var _enterHooks = __webpack_require__(603);
 	
 	var _leaveHooks = __webpack_require__(604);
@@ -33063,7 +33067,8 @@
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
 	
-	// import Account from './components/Account';
+	
+	/* -----------------    COMPONENTS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
@@ -33080,6 +33085,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
 	      _react2.default.createElement(
 	        _reactRouter.Route,
 	        { path: '/checkout', component: _Checkout2.default },
@@ -33098,8 +33104,7 @@
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
 	
-	
-	/* -----------------    COMPONENTS     ------------------ */
+	// import Account from './components/Account';
 
 /***/ }),
 /* 319 */
@@ -57794,6 +57799,83 @@
 	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
 		_store2.default.dispatch((0, _charge.deloadCharge)());
 	};
+
+/***/ }),
+/* 605 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var Press = function (_Component) {
+	  _inherits(Press, _Component);
+	
+	  function Press() {
+	    _classCallCheck(this, Press);
+	
+	    return _possibleConstructorReturn(this, (Press.__proto__ || Object.getPrototypeOf(Press)).apply(this, arguments));
+	  }
+	
+	  _createClass(Press, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'pressContainer' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'PRESS'
+	        ),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'red' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'blue' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'lightyellow' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'maroon' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'lightgreen' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'purple' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'darkgreen' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'burlywood' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'darkblue' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'lightcoral' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'pink' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'teal' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'orangered' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'gold' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'grey' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'navy' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'rosybrown' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'black' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'lightpink' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'darkred' } }),
+	        _react2.default.createElement('div', { style: { backgroundColor: 'peachpuff' } })
+	      );
+	    }
+	  }]);
+	
+	  return Press;
+	}(_react.Component);
+	
+	exports.default = Press;
 
 /***/ })
 /******/ ]);
