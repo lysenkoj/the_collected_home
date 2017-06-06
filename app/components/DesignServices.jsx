@@ -130,11 +130,16 @@ class DesignServices extends Component {
     evt.preventDefault()
 
     let info = this.state.client;
+    let newClient = {};
+
+    newClient.fullName = `${info.firstName} ${info.lastName}`;
+    newClient.email = this.state.client.email;
+    newClient.phone = `${info.areaCode}-${info.threeDig}-${info.fourDigPhone}`;
 
     // FORM VALIDATION
 
     if(this.formValid(info)){
-      this.props.supplyFormInfo(info);
+      this.props.supplyFormInfo(newClient);
 
       let form = document.getElementById("dumbForm");
       form.reset();

@@ -33039,25 +33039,25 @@
 	
 	var _Payment2 = _interopRequireDefault(_Payment);
 	
-	var _Confirmation = __webpack_require__(597);
+	var _Confirmation = __webpack_require__(599);
 	
 	var _Confirmation2 = _interopRequireDefault(_Confirmation);
 	
-	var _AfterOrderSubmit = __webpack_require__(598);
+	var _AfterOrderSubmit = __webpack_require__(600);
 	
 	var _AfterOrderSubmit2 = _interopRequireDefault(_AfterOrderSubmit);
 	
-	var _DesignServices = __webpack_require__(599);
+	var _DesignServices = __webpack_require__(601);
 	
 	var _DesignServices2 = _interopRequireDefault(_DesignServices);
 	
-	var _SplashPage = __webpack_require__(600);
+	var _SplashPage = __webpack_require__(602);
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
-	var _enterHooks = __webpack_require__(601);
+	var _enterHooks = __webpack_require__(603);
 	
-	var _leaveHooks = __webpack_require__(602);
+	var _leaveHooks = __webpack_require__(604);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -56542,7 +56542,7 @@
 	
 	var _reactBootstrap = __webpack_require__(321);
 	
-	var _reactScriptLoader = __webpack_require__(603);
+	var _reactScriptLoader = __webpack_require__(597);
 	
 	var _reactRouterBootstrap = __webpack_require__(573);
 	
@@ -56556,7 +56556,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(604);
+	__webpack_require__(598);
 	
 	/* -----------------     COMPONENT     ------------------ */
 	
@@ -56716,6 +56716,146 @@
 
 /***/ }),
 /* 597 */
+/***/ (function(module, exports) {
+
+	
+	// A dictionary mapping script URLs to a dictionary mapping
+	// component key to component for all components that are waiting
+	// for the script to load.
+	var scriptObservers = {};
+	
+	// A dictionary mapping script URL to a boolean value indicating if the script
+	// has already been loaded.
+	var loadedScripts = {};
+	
+	// A dictionary mapping script URL to a boolean value indicating if the script
+	// has failed to load.
+	var erroredScripts = {};
+	
+	// A counter used to generate a unique id for each component that uses
+	// ScriptLoaderMixin.
+	var idCount = 0;
+	
+	var ReactScriptLoader = {
+		componentDidMount: function(key, component, scriptURL) {
+			if (typeof component.onScriptLoaded !== 'function') {
+				throw new Error('ScriptLoader: Component class must implement onScriptLoaded()');
+			}
+			if (typeof component.onScriptError !== 'function') {
+				throw new Error('ScriptLoader: Component class must implement onScriptError()');
+			}
+			if (loadedScripts[scriptURL]) {
+				component.onScriptLoaded();
+				return;
+			}
+			if (erroredScripts[scriptURL]) {
+				component.onScriptError();
+				return;
+			}
+	
+			// If the script is loading, add the component to the script's observers
+			// and return. Otherwise, initialize the script's observers with the component
+			// and start loading the script.
+			if (scriptObservers[scriptURL]) {
+				scriptObservers[scriptURL][key] = component;
+				return;
+			}
+	
+			var observers = {};
+			observers[key] = component;
+			scriptObservers[scriptURL] = observers;
+	
+			var script = document.createElement('script');
+			script.src = scriptURL;
+	
+			var callObserverFuncAndRemoveObserver = function(func) {
+				var observers = scriptObservers[scriptURL];
+				for (var key in observers) {
+					observer = observers[key];
+					var removeObserver = func(observer);
+					if (removeObserver) {
+						delete scriptObservers[scriptURL][key];
+					}
+				}
+				//delete scriptObservers[scriptURL];
+			}
+			script.onload = function() {
+				loadedScripts[scriptURL] = true;
+				callObserverFuncAndRemoveObserver(function(observer) {
+					if (observer.deferOnScriptLoaded && observer.deferOnScriptLoaded()) {
+						return false;
+					}
+					observer.onScriptLoaded();
+					return true;
+				});
+			};
+			script.onerror = function(event) {
+				erroredScripts[scriptURL] = true;
+				callObserverFuncAndRemoveObserver(function(observer) {
+					observer.onScriptError();
+					return true;
+				});
+			};
+			document.body.appendChild(script);
+		},
+		componentWillUnmount: function(key, scriptURL) {
+			// If the component is waiting for the script to load, remove the
+			// component from the script's observers before unmounting the component.
+			var observers = scriptObservers[scriptURL];
+			if (observers) {
+				delete observers[key];
+			}
+		},
+		triggerOnScriptLoaded: function(scriptURL) {
+			if (!loadedScripts[scriptURL]) {
+				throw new Error('Error: only call this function after the script has in fact loaded.');
+			}
+			var observers = scriptObservers[scriptURL];
+			for (var key in observers) {
+				var observer = observers[key];
+				observer.onScriptLoaded();
+			}
+			delete scriptObservers[scriptURL];
+		}
+	};
+	
+	var ReactScriptLoaderMixin = {
+		componentDidMount: function() {
+			if (typeof this.getScriptURL !== 'function') {
+				throw new Error("ScriptLoaderMixin: Component class must implement getScriptURL().")
+			}
+			ReactScriptLoader.componentDidMount(this.__getScriptLoaderID(), this, this.getScriptURL());
+		},
+		componentWillUnmount: function() {
+			ReactScriptLoader.componentWillUnmount(this.__getScriptLoaderID(), this.getScriptURL());
+		},
+		__getScriptLoaderID: function() {
+			return 'id' + idCount++;
+		},
+	};
+	
+	exports.ReactScriptLoaderMixin = ReactScriptLoaderMixin;
+	exports.ReactScriptLoader = ReactScriptLoader;
+
+
+/***/ }),
+/* 598 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+	
+	// NEED TO UPDATE LATER
+	
+	process.env["FACEBOOK_CLIENT_ID"] = "abcd";
+	process.env["FACEBOOK_CLIENT_SECRET"] = "1234";
+	process.env["GOOGLE_CONSUMER_KEY"] = "311991622447-kdqmfugt3ekt21e95vi07m8u3dls3v2j.apps.googleusercontent.com";
+	process.env["GOOGLE_CONSUMER_SECRET"] = "zEpcea9n_3ehzbPJ7vxmy-Re";
+	process.env["STRIPE_PUBLISHABLE_KEY"] = "pk_test_KojVuT54tRytAjzXcGAFdIq7";
+	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56879,7 +57019,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Confirmation);
 
 /***/ }),
-/* 598 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56995,7 +57135,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, null)(AfterOrderSubmit);
 
 /***/ }),
-/* 599 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57170,11 +57310,16 @@
 	      evt.preventDefault();
 	
 	      var info = this.state.client;
+	      var newClient = {};
+	
+	      newClient.fullName = info.firstName + ' ' + info.lastName;
+	      newClient.email = this.state.client.email;
+	      newClient.phone = info.areaCode + '-' + info.threeDig + '-' + info.fourDigPhone;
 	
 	      // FORM VALIDATION
 	
 	      if (this.formValid(info)) {
-	        this.props.supplyFormInfo(info);
+	        this.props.supplyFormInfo(newClient);
 	
 	        var form = document.getElementById("dumbForm");
 	        form.reset();
@@ -57335,7 +57480,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DesignServices);
 
 /***/ }),
-/* 600 */
+/* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57533,7 +57678,7 @@
 	exports.default = SplashPage;
 
 /***/ }),
-/* 601 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57602,7 +57747,7 @@
 	};
 
 /***/ }),
-/* 602 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57647,146 +57792,6 @@
 	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
 		_store2.default.dispatch((0, _charge.deloadCharge)());
 	};
-
-/***/ }),
-/* 603 */
-/***/ (function(module, exports) {
-
-	
-	// A dictionary mapping script URLs to a dictionary mapping
-	// component key to component for all components that are waiting
-	// for the script to load.
-	var scriptObservers = {};
-	
-	// A dictionary mapping script URL to a boolean value indicating if the script
-	// has already been loaded.
-	var loadedScripts = {};
-	
-	// A dictionary mapping script URL to a boolean value indicating if the script
-	// has failed to load.
-	var erroredScripts = {};
-	
-	// A counter used to generate a unique id for each component that uses
-	// ScriptLoaderMixin.
-	var idCount = 0;
-	
-	var ReactScriptLoader = {
-		componentDidMount: function(key, component, scriptURL) {
-			if (typeof component.onScriptLoaded !== 'function') {
-				throw new Error('ScriptLoader: Component class must implement onScriptLoaded()');
-			}
-			if (typeof component.onScriptError !== 'function') {
-				throw new Error('ScriptLoader: Component class must implement onScriptError()');
-			}
-			if (loadedScripts[scriptURL]) {
-				component.onScriptLoaded();
-				return;
-			}
-			if (erroredScripts[scriptURL]) {
-				component.onScriptError();
-				return;
-			}
-	
-			// If the script is loading, add the component to the script's observers
-			// and return. Otherwise, initialize the script's observers with the component
-			// and start loading the script.
-			if (scriptObservers[scriptURL]) {
-				scriptObservers[scriptURL][key] = component;
-				return;
-			}
-	
-			var observers = {};
-			observers[key] = component;
-			scriptObservers[scriptURL] = observers;
-	
-			var script = document.createElement('script');
-			script.src = scriptURL;
-	
-			var callObserverFuncAndRemoveObserver = function(func) {
-				var observers = scriptObservers[scriptURL];
-				for (var key in observers) {
-					observer = observers[key];
-					var removeObserver = func(observer);
-					if (removeObserver) {
-						delete scriptObservers[scriptURL][key];
-					}
-				}
-				//delete scriptObservers[scriptURL];
-			}
-			script.onload = function() {
-				loadedScripts[scriptURL] = true;
-				callObserverFuncAndRemoveObserver(function(observer) {
-					if (observer.deferOnScriptLoaded && observer.deferOnScriptLoaded()) {
-						return false;
-					}
-					observer.onScriptLoaded();
-					return true;
-				});
-			};
-			script.onerror = function(event) {
-				erroredScripts[scriptURL] = true;
-				callObserverFuncAndRemoveObserver(function(observer) {
-					observer.onScriptError();
-					return true;
-				});
-			};
-			document.body.appendChild(script);
-		},
-		componentWillUnmount: function(key, scriptURL) {
-			// If the component is waiting for the script to load, remove the
-			// component from the script's observers before unmounting the component.
-			var observers = scriptObservers[scriptURL];
-			if (observers) {
-				delete observers[key];
-			}
-		},
-		triggerOnScriptLoaded: function(scriptURL) {
-			if (!loadedScripts[scriptURL]) {
-				throw new Error('Error: only call this function after the script has in fact loaded.');
-			}
-			var observers = scriptObservers[scriptURL];
-			for (var key in observers) {
-				var observer = observers[key];
-				observer.onScriptLoaded();
-			}
-			delete scriptObservers[scriptURL];
-		}
-	};
-	
-	var ReactScriptLoaderMixin = {
-		componentDidMount: function() {
-			if (typeof this.getScriptURL !== 'function') {
-				throw new Error("ScriptLoaderMixin: Component class must implement getScriptURL().")
-			}
-			ReactScriptLoader.componentDidMount(this.__getScriptLoaderID(), this, this.getScriptURL());
-		},
-		componentWillUnmount: function() {
-			ReactScriptLoader.componentWillUnmount(this.__getScriptLoaderID(), this.getScriptURL());
-		},
-		__getScriptLoaderID: function() {
-			return 'id' + idCount++;
-		},
-	};
-	
-	exports.ReactScriptLoaderMixin = ReactScriptLoaderMixin;
-	exports.ReactScriptLoader = ReactScriptLoader;
-
-
-/***/ }),
-/* 604 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
-	
-	// NEED TO UPDATE LATER
-	
-	process.env["FACEBOOK_CLIENT_ID"] = "abcd";
-	process.env["FACEBOOK_CLIENT_SECRET"] = "1234";
-	process.env["GOOGLE_CONSUMER_KEY"] = "311991622447-kdqmfugt3ekt21e95vi07m8u3dls3v2j.apps.googleusercontent.com";
-	process.env["GOOGLE_CONSUMER_SECRET"] = "zEpcea9n_3ehzbPJ7vxmy-Re";
-	process.env["STRIPE_PUBLISHABLE_KEY"] = "pk_test_KojVuT54tRytAjzXcGAFdIq7";
-	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ })
 /******/ ]);
