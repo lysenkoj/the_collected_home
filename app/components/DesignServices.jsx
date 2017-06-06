@@ -28,6 +28,10 @@ class DesignServices extends Component {
     this.sendInfo = this.sendInfo.bind(this);
   }
 
+  componentDidMount () {
+    window.scrollTo(0, 0)
+  }
+
 
   addFirstName(evt){
     evt.preventDefault();

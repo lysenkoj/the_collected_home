@@ -98,6 +98,10 @@ class CurrentProduct extends Component {
 
 	}
 
+  componentDidMount () {
+    window.scrollTo(0, 0)
+  }
+
   selectMainImg(evt) {
     evt.preventDefault();
     let mainImg = evt.target.src.slice(21);

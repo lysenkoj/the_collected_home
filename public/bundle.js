@@ -53946,7 +53946,25 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/Table Lamps', className: 'categoryFeature' },
+	            { to: '/design', className: 'designLink' },
+	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'label' },
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'DESIGN SERVICES'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'categoryFeatureContainer', id: 'row3' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
 	              'div',
@@ -53960,7 +53978,21 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/Pillows and Shams', className: 'categoryFeature' },
+	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
+	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'label' },
+	              _react2.default.createElement(
+	                'span',
+	                null,
+	                'SHOP NOW'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
 	              'div',
@@ -54310,6 +54342,11 @@
 	  }
 	
 	  _createClass(CurrentProduct, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
 	    key: 'selectMainImg',
 	    value: function selectMainImg(evt) {
 	      evt.preventDefault();
@@ -55021,6 +55058,11 @@
 		}
 	
 		_createClass(Cart, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				window.scrollTo(0, 0);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -57019,6 +57061,11 @@
 	  }
 	
 	  _createClass(DesignServices, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
 	    key: 'addFirstName',
 	    value: function addFirstName(evt) {
 	      evt.preventDefault();

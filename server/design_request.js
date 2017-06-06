@@ -9,6 +9,8 @@ designRequestRoutes.post("/", function(req, res, next) {
 
   console.log('THIS IS THE REQ BODY!', req.body);
 
+  // DATABASE STUFF HERE!!
+
   // client.sendEmail({
   //     "From": "admin@clariceking.com",
   //     "To": "clarice@claricekingdesigns.com",

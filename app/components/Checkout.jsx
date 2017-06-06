@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 /* -----------------    COMPONENT     ------------------ */
 
 class Cart extends React.Component {
+  componentDidMount () {
+    window.scrollTo(0, 0)
+  }
+
 	render(){
 		return (
 			<div className="checkoutContainer">

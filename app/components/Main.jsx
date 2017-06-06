@@ -29,13 +29,27 @@ export default class Main extends Component {
               <span>SHOP NOW</span>
             </div>
           </Link>
-          <Link to="/Table Lamps" className="categoryFeature">
+          <Link to="/design" className="designLink">
+            <img className="featuredPhoto" src="images/featuredTemp.jpg"/>
+            <div className="label">
+              <span>DESIGN SERVICES</span>
+            </div>
+          </Link>
+        </div>
+         <div className="categoryFeatureContainer" id="row3">
+          <Link to="/Ottomans and Stools" className="categoryFeature">
             <img className="featuredPhoto" src="images/featuredTemp.jpg"/>
             <div className="label">
               <span>SHOP NOW</span>
             </div>
           </Link>
-          <Link to="/Pillows and Shams" className="categoryFeature">
+          <Link to="/Ottomans and Stools" className="categoryFeature">
+            <img className="featuredPhoto" src="images/featuredTemp.jpg"/>
+            <div className="label">
+              <span>SHOP NOW</span>
+            </div>
+          </Link>
+          <Link to="/Ottomans and Stools" className="categoryFeature">
             <img className="featuredPhoto" src="images/featuredTemp.jpg"/>
             <div className="label">
               <span>SHOP NOW</span>
