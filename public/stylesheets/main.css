@@ -2012,6 +2012,8 @@ h6 {
   height: 380px;
   align-items: center;
   justify-content: center; }
+  .designFormContainer input {
+    border: 2px solid black; }
 
 .designForm {
   display: flex;
@@ -2460,3 +2462,154 @@ h6 {
     min-width: 25%;
     height: 60px;
     border: 5px solid white; }
+
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 240px;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px; }
+  .contactContainer button {
+    width: 33%;
+    align-self: center;
+    height: 50px;
+    color: white;
+    border: none;
+    background-color: black; }
+  .contactContainer button:focus {
+    outline: none; }
+  .contactContainer input {
+    border: 2px solid black; }
+
+.informationRow {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 60px; }
+  .informationRow h5 {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .informationRow .hours {
+    margin-top: 10px;
+    margin-bottom: 5px; }
+
+.customerCareContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 50%; }
+
+.locationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 2px solid black;
+  padding: 20px;
+  width: 50%; }
+
+.contactFormContainer {
+  display: flex;
+  width: 100vw;
+  height: 380px;
+  align-items: center;
+  justify-content: center; }
+  .contactFormContainer textarea {
+    width: 100%;
+    height: 140px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    resize: none;
+    margin-bottom: 10px; }
+  .contactFormContainer textarea:focus {
+    outline: none; }
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  width: 66%; }
+
+.formRowContact {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+  .formRowContact h5 {
+    width: 100%; }
+
+.inputGroupContact {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  align-items: flex-start; }
+
+.numberInput {
+  margin-right: 5px; }
+
+#contactFormName {
+  justify-content: space-between; }
+  #contactFormName .inputGroupContact {
+    width: calc(50% - 10px);
+    margin: 0; }
+  #contactFormName input {
+    width: 100%; }
+
+#contactFormEmail input {
+  width: 100%; }
+
+#contactFormPhone .inputGroupContact {
+  align-items: center; }
+
+#contactFormPhone input {
+  margin: 0; }
+
+.storyContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 240px;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px; }
+
+.headerImage {
+  width: calc(100vw - 94px);
+  background-color: purple;
+  height: 450px;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.storyParagraph {
+  margin: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+  font-family: 'crimson_textroman'; }
+  .storyParagraph p {
+    margin-top: 10px;
+    margin-bottom: 0; }
+
+#smallDivider {
+  width: 100px;
+  border-top: 2px solid black; }
+
+#signature {
+  align-self: flex-end;
+  width: 200px;
+  height: auto;
+  margin-right: 100px; }

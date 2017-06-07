@@ -33059,6 +33059,14 @@
 	
 	var _Press2 = _interopRequireDefault(_Press);
 	
+	var _Contact = __webpack_require__(606);
+	
+	var _Contact2 = _interopRequireDefault(_Contact);
+	
+	var _Story = __webpack_require__(608);
+	
+	var _Story2 = _interopRequireDefault(_Story);
+	
 	var _enterHooks = __webpack_require__(603);
 	
 	var _leaveHooks = __webpack_require__(604);
@@ -33085,7 +33093,9 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
 	      _react2.default.createElement(
 	        _reactRouter.Route,
 	        { path: '/checkout', component: _Checkout2.default },
@@ -57431,7 +57441,7 @@
 	                _react2.default.createElement(
 	                  'span',
 	                  null,
-	                  '(***)'
+	                  '(###)'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -57441,7 +57451,7 @@
 	                _react2.default.createElement(
 	                  'span',
 	                  null,
-	                  '***'
+	                  '###'
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -57451,7 +57461,7 @@
 	                _react2.default.createElement(
 	                  'span',
 	                  null,
-	                  '****'
+	                  '####'
 	                )
 	              )
 	            ),
@@ -57876,6 +57886,582 @@
 	}(_react.Component);
 	
 	exports.default = Press;
+
+/***/ }),
+/* 606 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _contact = __webpack_require__(607);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var Contact = function (_Component) {
+	  _inherits(Contact, _Component);
+	
+	  function Contact(props) {
+	    _classCallCheck(this, Contact);
+	
+	    var _this = _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).call(this, props));
+	
+	    _this.state = {
+	      customer: {
+	        firstName: null,
+	        lastName: null,
+	        email: null,
+	        areaCode: null,
+	        threeDig: null,
+	        fourDig: null,
+	        message: null
+	      }
+	    };
+	    _this.addFirstName = _this.addFirstName.bind(_this);
+	    _this.addLastName = _this.addLastName.bind(_this);
+	    _this.addEmail = _this.addEmail.bind(_this);
+	    _this.addAreaPhone = _this.addAreaPhone.bind(_this);
+	    _this.addThreeDigPhone = _this.addThreeDigPhone.bind(_this);
+	    _this.addFourDigPhone = _this.addFourDigPhone.bind(_this);
+	    _this.addMessage = _this.addMessage.bind(_this);
+	    _this.sendInfo = _this.sendInfo.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Contact, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'addFirstName',
+	    value: function addFirstName(evt) {
+	      evt.preventDefault();
+	      var firstName = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.firstName = firstName;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addLastName',
+	    value: function addLastName(evt) {
+	      evt.preventDefault();
+	      var lastName = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.lastName = lastName;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addEmail',
+	    value: function addEmail(evt) {
+	      evt.preventDefault();
+	      var email = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.email = email;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addAreaPhone',
+	    value: function addAreaPhone(evt) {
+	      evt.preventDefault();
+	      var areaCode = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.areaCode = areaCode;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addThreeDigPhone',
+	    value: function addThreeDigPhone(evt) {
+	      evt.preventDefault();
+	      var threeDig = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.threeDig = threeDig;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addFourDigPhone',
+	    value: function addFourDigPhone(evt) {
+	      evt.preventDefault();
+	      var fourDig = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.fourDig = fourDig;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addMessage',
+	    value: function addMessage(evt) {
+	      evt.preventDefault();
+	      var message = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.customer.message = message;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'formValid',
+	    value: function formValid(info) {
+	      var name = '' + info.firstName + info.lastName;
+	      var email = info.email;
+	      var number = '' + info.areaCode + info.threeDig + info.fourDig;
+	      var message = info.message;
+	
+	      var num = '1234567890';
+	      var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	
+	      if (name === null || email === null || number === null) {
+	        alert('PLEASE FILL OUT FORM BEFORE SUBMITTING');
+	        return false;
+	      }
+	
+	      for (var i = 0; i < number.length; i++) {
+	        if (num.indexOf(number[i]) < 0) {
+	          alert('PLEASE ENTER A VALID PHONE NUMBER');
+	          return false;
+	        }
+	      }
+	
+	      for (var _i = 0; _i < name.length; _i++) {
+	        if (letters.indexOf(name[_i].toUpperCase()) < 0) {
+	          alert('PLEASE ENTER A VALID NAME');
+	          return false;
+	        }
+	      }
+	
+	      if (number.length < 10) {
+	        alert('PLEASE ENTER A VALID PHONE NUMBER');
+	        return false;
+	      } else if (email.indexOf('@') < 0 || email.indexOf('.com') < 0) {
+	        alert('PLEASE ENTER A VALID EMAIL ADDRESS');
+	        return false;
+	      } else if (message.length <= 0) {
+	        alert('PLEASE ENTER MESSAGE');
+	        return false;
+	      } else {
+	        return true;
+	      }
+	    }
+	  }, {
+	    key: 'sendInfo',
+	    value: function sendInfo(evt) {
+	      evt.preventDefault();
+	
+	      var info = this.state.customer;
+	      var customerInquiry = {};
+	
+	      customerInquiry.fullName = info.firstName + ' ' + info.lastName;
+	      customerInquiry.firstName = info.firstName;
+	      customerInquiry.lastName = info.lastName;
+	      customerInquiry.email = info.email;
+	      customerInquiry.phone = info.areaCode + '-' + info.threeDig + '-' + info.fourDig;
+	      customerInquiry.message = info.message;
+	
+	      // FORM VALIDATION
+	
+	      if (this.formValid(info)) {
+	        this.props.supplyContactFormInfo(customerInquiry);
+	
+	        var form = document.getElementById("dumbContactForm");
+	        form.reset();
+	        form.onsubmit = function () {
+	          return false;
+	        };
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'contactContainer' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'CONTACT US'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'informationRow' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'customerCareContainer' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'CUSTOMER CARE'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Phone 203.123.1234'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              { className: 'hours' },
+	              'HOURS'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Monday through Friday'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              '8am to 5:30pm (EST)'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'locationContainer' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'LOCATION'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              '27 S Main St'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Norwalk CT 06854'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Phone 203.123.4567'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              { className: 'hours' },
+	              'HOURS'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Weekdays'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              '10am to 6pm (EST)'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Weekends'
+	            ),
+	            _react2.default.createElement(
+	              'h5',
+	              null,
+	              'Appointment Only'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'contactFormContainer' },
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'contactForm', id: 'dumbContactForm' },
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'contactFormName', className: 'formRowContact' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'NAME'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroupContact' },
+	                _react2.default.createElement('input', { name: 'firstName', type: 'text', size: '20', onChange: this.addFirstName, required: true }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  'First Name'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroupContact' },
+	                _react2.default.createElement('input', { name: 'lastName', type: 'text', size: '20', onChange: this.addLastName, required: true }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  'Last Name'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'contactFormEmail', className: 'formRowContact' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'EMAIL ADDRESS'
+	              ),
+	              _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', onChange: this.addEmail, required: true })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'contactFormPhone', className: 'formRowContact' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'PHONE'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroupContact' },
+	                _react2.default.createElement('input', { className: 'numberInput', name: 'areaCode', type: 'text', size: '3', maxLength: '3', onChange: this.addAreaPhone }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '(###)'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroupContact' },
+	                _react2.default.createElement('input', { className: 'numberInput', name: 'firstThree', type: 'text', size: '3', maxLength: '3', onChange: this.addThreeDigPhone }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '###'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'inputGroupContact' },
+	                _react2.default.createElement('input', { className: 'numberInput', name: 'lastFour', type: 'text', size: '4', maxLength: '4', onChange: this.addFourDigPhone }),
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '####'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'contactFormMessage', className: 'formRowContact' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'MESSAGE'
+	              ),
+	              _react2.default.createElement('textarea', { name: 'message', type: 'text', maxLength: '500', onChange: this.addMessage })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.sendInfo },
+	              'SUBMIT'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Contact;
+	}(_react.Component);
+	
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  _objectDestructuringEmpty(_ref);
+	
+	  return {};
+	};
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    supplyContactFormInfo: function supplyContactFormInfo(info) {
+	      return dispatch((0, _contact.addContactFormInfo)(info));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Contact);
+
+/***/ }),
+/* 607 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addContactFormInfo = exports.loadContactForm = undefined;
+	exports.default = reducer;
+	
+	var _axios = __webpack_require__(217);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/* -----------------    ACTIONS     ------------------ */
+	
+	var LOAD_CONTACT_FORM = 'LOAD_CONTACT_FORM';
+	
+	/* ------------   ACTION CREATORS     ------------------ */
+	
+	var loadContactForm = exports.loadContactForm = function loadContactForm(info) {
+	  return {
+	    type: LOAD_CONTACT_FORM,
+	    info: info
+	  };
+	};
+	
+	/* ------------       REDUCER     ------------------ */
+	
+	function reducer() {
+	  var previousState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	
+	    case LOAD_CONTACT_FORM:
+	      return action.info;
+	
+	    default:
+	      return previousState;
+	  }
+	}
+	
+	/* ------------       DISPATCHERS     ------------------ */
+	
+	var addContactFormInfo = exports.addContactFormInfo = function addContactFormInfo(info) {
+	  console.log(info);
+	  return function (dispatch) {
+	    _axios2.default.post('/api/contact', info).catch(function (err) {
+	      return console.error('SENDING FORM INFO FAILED', err);
+	    });
+	  };
+	};
+
+/***/ }),
+/* 608 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var Story = function (_Component) {
+	  _inherits(Story, _Component);
+	
+	  function Story(props) {
+	    _classCallCheck(this, Story);
+	
+	    return _possibleConstructorReturn(this, (Story.__proto__ || Object.getPrototypeOf(Story)).call(this, props));
+	  }
+	
+	  _createClass(Story, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'storyContainer' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'OUR STORY'
+	        ),
+	        _react2.default.createElement('div', { className: 'headerImage' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'storyParagraph' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed mollis ante, id lacinia urna. Mauris arcu nisl, porttitor vel tincidunt nec, fringilla ut erat. Suspendisse sagittis orci non dui varius aliquet. Proin ut ante ante. Curabitur a vehicula turpis. Proin vulputate ante nisl. Integer finibus lorem vitae sollicitudin feugiat. Quisque metus sapien, congue eget ligula et, bibendum facilisis nisi.'
+	          )
+	        ),
+	        _react2.default.createElement('div', { id: 'smallDivider' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'storyParagraph' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed mollis ante, id lacinia urna. Mauris arcu nisl, porttitor vel tincidunt nec, fringilla ut erat. Suspendisse sagittis orci non dui varius aliquet. Proin ut ante ante. Curabitur a vehicula turpis. Proin vulputate ante nisl. Integer finibus lorem vitae sollicitudin feugiat. Quisque metus sapien, congue eget ligula et, bibendum facilisis nisi.'
+	          )
+	        ),
+	        _react2.default.createElement('div', { id: 'smallDivider' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'storyParagraph' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed mollis ante, id lacinia urna. Mauris arcu nisl, porttitor vel tincidunt nec, fringilla ut erat. Suspendisse sagittis orci non dui varius aliquet. Proin ut ante ante. Curabitur a vehicula turpis. Proin vulputate ante nisl. Integer finibus lorem vitae sollicitudin feugiat. Quisque metus sapien, congue eget ligula et, bibendum facilisis nisi.'
+	          )
+	        ),
+	        _react2.default.createElement('img', { id: 'signature', src: 'images/signature.gif' })
+	      );
+	    }
+	  }]);
+	
+	  return Story;
+	}(_react.Component);
+	
+	exports.default = Story;
 
 /***/ })
 /******/ ]);

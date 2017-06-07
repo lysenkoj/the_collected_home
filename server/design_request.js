@@ -25,7 +25,12 @@ designRequestRoutes.post("/", function(req, res, next) {
       "From": "admin@clariceking.com",
       "To": "clarice@claricekingdesign.com",
       "Subject": "Interior Design Service Request",
-      "TextBody": `Hello Clarice! ${req.body.fullName} is interested in your design expertise! Please reach out to them at ${req.body.email} and set up a free consultation. Always remember how awesome you are! Sincerely, -Your Friendly Website Robot`
+      "TextBody": `Hello Clarice!
+      ${req.body.fullName} is interested in your design expertise! Please reach out to them at ${req.body.email} and set up a free consultation.
+
+      Always remember how awesome you are!
+
+      Sincerely, -Your Friendly Website Robot`
   }, function(error, result) {
     if(error) {
         console.error("Unable to send via postmark: " + error.message);
