@@ -43,7 +43,7 @@ export default class Footer extends Component {
                 <Link to="/faq">
                   <h6 className="footerLink">FAQ</h6>
                 </Link>
-                <Link to="/shipping">
+                <Link to="/shipping_info">
                   <h6 className="footerLink">SHIPPING & RETURNS</h6>
                 </Link>
               </div>

@@ -3,7 +3,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 80vh;
   margin-left: 40px;
   margin-right: 40px;
@@ -12,4 +12,43 @@
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 40px;
+}
+
+.toggleInfo{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.toggleButton{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border: none;
+}
+
+.toggleButton:hover{
+  text-decoration: underline;
+}
+
+.toggleButton:focus{
+  outline: none;
+}
+
+.dropArrow{
+    margin-left: 3px;
+    margin-top: 10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.toggleContent{
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  min-height: 300px;
+  padding-left: 150px;
 }

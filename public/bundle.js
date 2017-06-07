@@ -33055,21 +33055,29 @@
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
-	var _Press = __webpack_require__(605);
+	var _Press = __webpack_require__(603);
 	
 	var _Press2 = _interopRequireDefault(_Press);
 	
-	var _Contact = __webpack_require__(606);
+	var _Contact = __webpack_require__(604);
 	
 	var _Contact2 = _interopRequireDefault(_Contact);
 	
-	var _Story = __webpack_require__(608);
+	var _Story = __webpack_require__(606);
 	
 	var _Story2 = _interopRequireDefault(_Story);
 	
-	var _enterHooks = __webpack_require__(603);
+	var _FAQ = __webpack_require__(607);
 	
-	var _leaveHooks = __webpack_require__(604);
+	var _FAQ2 = _interopRequireDefault(_FAQ);
+	
+	var _ShippingInfo = __webpack_require__(610);
+	
+	var _ShippingInfo2 = _interopRequireDefault(_ShippingInfo);
+	
+	var _enterHooks = __webpack_require__(608);
+	
+	var _leaveHooks = __webpack_require__(609);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33096,6 +33104,8 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
 	      _react2.default.createElement(
 	        _reactRouter.Route,
 	        { path: '/checkout', component: _Checkout2.default },
@@ -53790,7 +53800,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  _reactRouter.Link,
-	                  { to: '/shipping' },
+	                  { to: '/shipping_info' },
 	                  _react2.default.createElement(
 	                    'h6',
 	                    { className: 'footerLink' },
@@ -57701,122 +57711,6 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _categories = __webpack_require__(298);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//import { selectOrder } from './reducers/selectedOrder'
-	
-	
-	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
-		var params = _ref.params;
-	
-		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
-	};
-	
-	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
-		var params = _ref2.params;
-	
-		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
-	};
-	
-	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
-		var params = _ref3.params;
-	
-		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
-	};
-	
-	var loadCategories = exports.loadCategories = function loadCategories() {
-		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
-	};
-	
-	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
-		var params = _ref4.params;
-	
-		console.log(params);
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
-	};
-	
-	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
-	};
-	
-	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
-		var params = _ref5.params;
-	
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
-	};
-
-/***/ }),
-/* 604 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _charge = __webpack_require__(304);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var onProductLeave = exports.onProductLeave = function onProductLeave() {
-		_store2.default.dispatch((0, _currentProduct.clearProduct)());
-	};
-	
-	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
-		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
-	};
-	
-	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
-		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
-	};
-	
-	var deloadOrders = exports.deloadOrders = function deloadOrders() {
-		_store2.default.dispatch((0, _orders.deloadAllOrders)());
-	};
-	
-	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
-		_store2.default.dispatch((0, _charge.deloadCharge)());
-	};
-
-/***/ }),
-/* 605 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
@@ -57888,7 +57782,7 @@
 	exports.default = Press;
 
 /***/ }),
-/* 606 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57907,7 +57801,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _contact = __webpack_require__(607);
+	var _contact = __webpack_require__(605);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -58312,7 +58206,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Contact);
 
 /***/ }),
-/* 607 */
+/* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58372,7 +58266,7 @@
 	};
 
 /***/ }),
-/* 608 */
+/* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58462,6 +58356,411 @@
 	}(_react.Component);
 	
 	exports.default = Story;
+
+/***/ }),
+/* 607 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var FAQ = function (_Component) {
+	  _inherits(FAQ, _Component);
+	
+	  function FAQ(props) {
+	    _classCallCheck(this, FAQ);
+	
+	    var _this = _possibleConstructorReturn(this, (FAQ.__proto__ || Object.getPrototypeOf(FAQ)).call(this, props));
+	
+	    _this.toggleButton = _this.toggleButton.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(FAQ, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'toggleButton',
+	    value: function toggleButton(evt) {
+	      evt.preventDefault();
+	
+	      var arrow = evt.currentTarget.childNodes[1];
+	      var toggledContent = evt.currentTarget.parentNode.childNodes[1];
+	
+	      var swapUp = function swapUp() {
+	        arrow.style.borderTop = 0;
+	        arrow.style.borderBottom = '10px solid black';
+	      };
+	
+	      var swapDown = function swapDown() {
+	        arrow.style.borderBottom = 0;
+	        arrow.style.borderTop = '10px solid black';
+	      };
+	
+	      arrow.style.borderTop === '10px solid black' ? swapUp() : swapDown();
+	      toggledContent.style.display === 'flex' ? toggledContent.style.display = 'none' : toggledContent.style.display = 'flex';
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'faqContainer' },
+	        _react2.default.createElement(
+	          'h1',
+	          { id: 'faqTitle' },
+	          'FREQUENTLY ASKED QUESTIONS'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'toggleInfo' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'toggleButton', onClick: this.toggleButton },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'PRODUCTS'
+	            ),
+	            _react2.default.createElement('div', { className: 'dropArrow', style: { borderTop: '10px solid black' } })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'toggleContent' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'WHAT IF I HAVE QUESTIONS ABOUT YOUR PRODUCTS?'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Please contact us at info@clariceking.com or call us at (203)123-4567 between the hours of 9 am \u2013 5:30pm EST. '
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'toggleInfo' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'toggleButton', onClick: this.toggleButton },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'ORDERS AND SHIPMENTS'
+	            ),
+	            _react2.default.createElement('div', { className: 'dropArrow', style: { borderTop: '10px solid black' } })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'toggleContent' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'HOW LONG WILL IT TAKE FOR MY ITEM TO SHIP?'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Our shipping times vary, depending on the contents of your order.'
+	            ),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'CAN I GET AN UPDATE ON MY ORDER STATUS?'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Our ship times vary, and we thank you for your patience! You will receive a tracking number as soon as one is provided by our fulfillment teams or vendors.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'toggleInfo' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'toggleButton', onClick: this.toggleButton },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'RETURNS AND EXCHANGES'
+	            ),
+	            _react2.default.createElement('div', { className: 'dropArrow', style: { borderTop: '10px solid black' } })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'toggleContent' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'WHAT IS YOUR RETURN POLICY?'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return FAQ;
+	}(_react.Component);
+	
+	exports.default = FAQ;
+
+/***/ }),
+/* 608 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _categories = __webpack_require__(298);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import { selectOrder } from './reducers/selectedOrder'
+	
+	
+	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
+		var params = _ref.params;
+	
+		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
+	};
+	
+	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
+		var params = _ref2.params;
+	
+		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
+	};
+	
+	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
+		var params = _ref3.params;
+	
+		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
+	};
+	
+	var loadCategories = exports.loadCategories = function loadCategories() {
+		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
+	};
+	
+	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
+		var params = _ref4.params;
+	
+		console.log(params);
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
+	};
+	
+	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
+	};
+	
+	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
+		var params = _ref5.params;
+	
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
+	};
+
+/***/ }),
+/* 609 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _charge = __webpack_require__(304);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var onProductLeave = exports.onProductLeave = function onProductLeave() {
+		_store2.default.dispatch((0, _currentProduct.clearProduct)());
+	};
+	
+	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
+		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
+	};
+	
+	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
+		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
+	};
+	
+	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+		_store2.default.dispatch((0, _orders.deloadAllOrders)());
+	};
+	
+	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
+		_store2.default.dispatch((0, _charge.deloadCharge)());
+	};
+
+/***/ }),
+/* 610 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var ShippingInfo = function (_Component) {
+	  _inherits(ShippingInfo, _Component);
+	
+	  function ShippingInfo(props) {
+	    _classCallCheck(this, ShippingInfo);
+	
+	    var _this = _possibleConstructorReturn(this, (ShippingInfo.__proto__ || Object.getPrototypeOf(ShippingInfo)).call(this, props));
+	
+	    _this.toggleButton = _this.toggleButton.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(ShippingInfo, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'toggleButton',
+	    value: function toggleButton(evt) {
+	      evt.preventDefault();
+	
+	      var arrow = evt.currentTarget.childNodes[1];
+	      var toggledContent = evt.currentTarget.parentNode.childNodes[1];
+	
+	      var swapUp = function swapUp() {
+	        arrow.style.borderTop = 0;
+	        arrow.style.borderBottom = '10px solid black';
+	      };
+	
+	      var swapDown = function swapDown() {
+	        arrow.style.borderBottom = 0;
+	        arrow.style.borderTop = '10px solid black';
+	      };
+	
+	      arrow.style.borderTop === '10px solid black' ? swapUp() : swapDown();
+	      toggledContent.style.display === 'flex' ? toggledContent.style.display = 'none' : toggledContent.style.display = 'flex';
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'faqContainer' },
+	        _react2.default.createElement(
+	          'h1',
+	          { id: 'shippingTitle' },
+	          'SHIPPING & RETURNS'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'toggleInfo' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'toggleButton', onClick: this.toggleButton },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'SHIPPING INFO'
+	            ),
+	            _react2.default.createElement('div', { className: 'dropArrow', style: { borderTop: '10px solid black' } })
+	          ),
+	          _react2.default.createElement('div', { className: 'toggleContent' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'toggleInfo' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'toggleButton', onClick: this.toggleButton },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'GENERAL RETURNS'
+	            ),
+	            _react2.default.createElement('div', { className: 'dropArrow', style: { borderTop: '10px solid black' } })
+	          ),
+	          _react2.default.createElement('div', { className: 'toggleContent' })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ShippingInfo;
+	}(_react.Component);
+	
+	exports.default = ShippingInfo;
 
 /***/ })
 /******/ ]);
