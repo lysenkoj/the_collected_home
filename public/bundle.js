@@ -33075,6 +33075,10 @@
 	
 	var _ShippingInfo2 = _interopRequireDefault(_ShippingInfo);
 	
+	var _Testimonials = __webpack_require__(611);
+	
+	var _Testimonials2 = _interopRequireDefault(_Testimonials);
+	
 	var _enterHooks = __webpack_require__(608);
 	
 	var _leaveHooks = __webpack_require__(609);
@@ -33083,8 +33087,7 @@
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
 	
-	
-	/* -----------------    COMPONENTS     ------------------ */
+	// import Account from './components/Account';
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
@@ -33106,6 +33109,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/testimonials', component: _Testimonials2.default }),
 	      _react2.default.createElement(
 	        _reactRouter.Route,
 	        { path: '/checkout', component: _Checkout2.default },
@@ -33124,7 +33128,8 @@
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
 	
-	// import Account from './components/Account';
+	
+	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ }),
 /* 319 */
@@ -58717,7 +58722,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'faqContainer' },
+	        { className: 'shippingContainer' },
 	        _react2.default.createElement(
 	          'h1',
 	          { id: 'shippingTitle' },
@@ -58761,6 +58766,214 @@
 	}(_react.Component);
 	
 	exports.default = ShippingInfo;
+
+/***/ }),
+/* 611 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	var Testimonials = function (_Component) {
+	  _inherits(Testimonials, _Component);
+	
+	  function Testimonials() {
+	    _classCallCheck(this, Testimonials);
+	
+	    return _possibleConstructorReturn(this, (Testimonials.__proto__ || Object.getPrototypeOf(Testimonials)).apply(this, arguments));
+	  }
+	
+	  _createClass(Testimonials, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'testimonialContainer' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'TESTIMONIALS'
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'See what others have had to say'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'testimonialColumn' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget tincidunt leo. Maecenas sed massa sed nisl convallis congue non eu nibh. Curabitur et bibendum nibh, nec dignissim est.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Phasellus eu nisi vulputate, vehicula mauris eu, laoreet ipsum. Aenean interdum ligula nunc, at finibus enim interdum ut. Vestibulum ornare eu odio eget pulvinar. Morbi malesuada varius sem, non elementum ex accumsan quis. Nullam ac finibus ante. Cras porta libero mauris, vitae egestas ipsum bibendum finibus. Vestibulum molestie sed dui a aliquam.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget tincidunt leo. Maecenas sed massa sed nisl convallis congue non eu nibh. Curabitur et bibendum nibh, nec dignissim est.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'testimonialColumn' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Ut eu velit id erat porta molestie vitae pharetra nunc. Integer a finibus libero. Praesent et bibendum tortor. Sed sit amet enim rutrum, dapibus quam vitae, blandit odio. Integer in feugiat sem, eu dictum dui. Phasellus tincidunt mauris eget purus tristique tempor. Sed sed ante feugiat, vehicula odio a, efficitur quam.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget tincidunt leo. Maecenas sed massa sed nisl convallis congue non eu nibh. Curabitur et bibendum nibh, nec dignissim est.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget tincidunt leo. Maecenas sed massa sed nisl convallis congue non eu nibh. Curabitur et bibendum nibh, nec dignissim est.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'testimonialColumn' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget tincidunt leo. Maecenas sed massa sed nisl convallis congue non eu nibh. Curabitur et bibendum nibh, nec dignissim est.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget tincidunt leo. Maecenas sed massa sed nisl convallis congue non eu nibh. Curabitur et bibendum nibh, nec dignissim est.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'bioContainer' },
+	            _react2.default.createElement('div', { className: 'imgThumbnail' }),
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'PERSONS NAME'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              'Vestibulum a ante rutrum, pellentesque urna eu, viverra dui. Quisque porttitor magna non arcu malesuada, et pretium lorem egestas. Fusce hendrerit gravida fermentum. Curabitur nec interdum ligula. Pellentesque augue erat, dignissim nec magna eu, congue condimentum risus. Donec euismod, arcu vel cursus convallis, ante tellus vestibulum orci, nec porttitor massa tellus eu nisl. Mauris tempus nisl augue, id porta velit ultrices in. Quisque venenatis auctor maximus.'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Testimonials;
+	}(_react.Component);
+	
+	exports.default = Testimonials;
 
 /***/ })
 /******/ ]);

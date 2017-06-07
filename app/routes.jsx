@@ -27,6 +27,7 @@ import Contact from './components/Contact';
 import Story from './components/Story';
 import FAQ from './components/FAQ';
 import ShippingInfo from './components/ShippingInfo';
+import Testimonials from './components/Testimonials';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
@@ -53,6 +54,7 @@ export default () => (
       <Route path="/story" component={Story} />
       <Route path="/faq" component={FAQ} />
       <Route path="/shipping_info" component={ShippingInfo} />
+      <Route path="/testimonials" component={Testimonials} />
       <Route path="/checkout" component={Checkout} >
         <Route path="/checkout/shipping" component={Shipping} />
         <Route path="/checkout/payment" component={Payment} />

@@ -37,7 +37,7 @@ export default class ShippingInfo extends Component {
 
   render() {
     return(
-    <div className='faqContainer'>
+    <div className='shippingContainer'>
       <h1 id="shippingTitle">SHIPPING & RETURNS</h1>
       <div className='toggleInfo'>
         <button className='toggleButton' onClick={this.toggleButton}>
