@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass  app/assets/main/ -o public/stylesheets",
+    "build-watch-css": "node-sass  app/assets/main/ -o public/stylesheets -w",
     "test": "check-node-version --node '>= 6.7.0' && bin/setup && mocha app/**/*.test.js db/**/*.test.js server/**/*.test.js",
     "test-watch": "check-node-version --node '>= 6.7.0' && bin/setup && mocha --watch app/**/*.test.js db/**/*.test.js server/**/*.test.js",
     "build": "check-node-version --node '>= 6.7.0' && bin/setup && webpack",

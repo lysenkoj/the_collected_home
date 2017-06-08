@@ -1,9 +1,7 @@
-import React from 'react'
-import {login} from 'APP/app/reducers/auth'
-import {connect} from 'react-redux'
+import React from 'react';
+import {login} from 'APP/app/reducers/auth';
+import {connect} from 'react-redux';
 import { Link } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
 
 export const Login = ({ login }) => (
@@ -14,40 +12,34 @@ export const Login = ({ login }) => (
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       login(email, password)
+
+      console.log('THIS IS THE CURRENT TARGET', evt.currentTarget)
     } }>
 
-      <FormGroup controlId="formHorizontalEmail">
-        <Col componentClass={ControlLabel} sm={2}>
-          Email
-        </Col>
-        <Col sm={6}>
-          <FormControl name="email" type="email" placeholder="Email" />
-        </Col>
-      </FormGroup>
+      <div id="loginEmail" className="loginForm">
+        <h5>EMAIL</h5>
+        <div className='inputGroupLogin'>
+          <input name="email" type="email" size="20" placeholder='Email'/>
+        </div>
+      </div>
 
-      <FormGroup controlId="formHorizontalPassword">
-        <Col componentClass={ControlLabel} sm={2}>
-          Password
-        </Col>
-        <Col sm={6}>
-          <FormControl name="password" type="password" placeholder="Password" />
-        </Col>
-      </FormGroup>
+      <div id="loginPassword" className="loginForm">
+        <h5>EMAIL</h5>
+        <div className='inputGroupLogin'>
+          <input name="password" type="password" size="20" placeholder='Password'/>
+        </div>
+      </div>
 
-      <FormGroup>
-        <Col smOffset={2} sm={6}>
-          <Button type="submit">
-            Login
-          </Button>
-        </Col>
-      </FormGroup>
+      <div>
+        <button type='submit'>LOGIN</button>
+      </div>
     </Form>
-
-    <LinkContainer to="/signup">
-      <Button>Sign Up</Button>
-    </LinkContainer>
-
-    <Button><a href="/api/auth/google">Google Sign In</a></Button>
+    <div className='signUpContainer'>
+      <Link to="/signup">
+        <button>Sign Up</button>
+      </Link>
+      <button><a href="/api/auth/google">Google Sign In</a></button>
+    </div>
   </div>
 )
 

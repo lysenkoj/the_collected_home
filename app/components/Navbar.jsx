@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { logout } from '../reducers/auth';
 import { LinkContainer } from 'react-router-bootstrap';
 import QuickCart from './QuickCart';
+import QuickLogin from './QuickLogin';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -17,6 +18,7 @@ class Navigbar extends React.Component {
     this.toggleNavDrop = this.toggleNavDrop.bind(this);
     this.toggleMobileNav = this.toggleMobileNav.bind(this);
     this.toggleQuickCart = this.toggleQuickCart.bind(this);
+    this.toggleQuickLogin = this.toggleQuickLogin.bind(this);
   }
 
   toggleNavDrop(evt){
@@ -58,6 +60,17 @@ class Navigbar extends React.Component {
     quickCart.style.display = 'none' : quickCart.style.display = 'flex';
   }
 
+  toggleQuickLogin(){
+    const getQuickLogin = function(){
+      return document.querySelector('div.quickLogin');
+    };
+
+    const quickLogin = getQuickLogin();
+
+    (quickLogin.style.display === 'flex') ?
+    quickLogin.style.display = 'none' : quickLogin.style.display = 'flex';
+  }
+
   render(){
     return (
       <Navbar className="navContainer" inverse collapseOnSelect style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
@@ -81,8 +94,13 @@ class Navigbar extends React.Component {
                 {
                   this.props.user && this.props.user.email ?
                   <div id="signOut" onClick={this.props.signout}><h5>Sign Out</h5></div> :
-                  <Link id="login" to='/login'><h5>Login</h5></Link>
+                  <button id="login" onClick={this.toggleQuickLogin}>
+                    <div id="cartLink">
+                     <h5>Login</h5>
+                    </div>
+                </button>
                 }
+                <QuickLogin />
                 {
                   this.props.user ?
                   <div><h5>//</h5></div> :
@@ -112,22 +130,6 @@ class Navigbar extends React.Component {
               </Link>
             </div>
           </div>
-          {/*<Nav pullRight className="navLogIn">
-            <span style={{color: "black"}}>
-            {
-                this.props.user ?
-                  `Welcome back, ${this.props.user.firstName || this.props.user.email}!`
-                :
-                  'Guest'
-              }
-
-            </span>
-            <LinkContainer to="/admin"><NavItem>{this.props.user && this.props.user.isAdmin && "Admin Panel"}</NavItem></LinkContainer>
-            <LinkContainer to={`/orders/${this.props.user && this.props.user.id}`}><NavItem>{this.props.user && "Your Orders"}</NavItem></LinkContainer>
-            <LinkContainer to="/cart"><NavItem>Cart ({this.props.cart && this.props.cart.length})</NavItem></LinkContainer>
-            {this.props.user && this.props.user.email ? <NavItem onClick={this.props.signout}>Sign Out</NavItem> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
-            }
-          </Nav>*/}
         </div>
         <div className="bottomNav">
           <div className="mobileButton" onClick={this.toggleMobileNav}>

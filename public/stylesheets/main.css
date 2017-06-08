@@ -1184,7 +1184,11 @@ h6 {
     cursor: pointer; }
   #login {
     margin-left: 5px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    background-color: white;
+    border: none; }
+  #login:focus {
+    outline: none; }
   #welcomeBanner {
     text-align: center;
     font-family: 'crimson_textroman'; }
@@ -1341,7 +1345,11 @@ h6 {
     cursor: pointer; }
   #login {
     margin-left: 5px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    background-color: white;
+    border: none; }
+  #login:focus {
+    outline: none; }
   #welcomeBanner {
     text-align: center;
     font-family: 'crimson_textroman'; }
@@ -1500,7 +1508,11 @@ h6 {
     cursor: pointer; }
   #login {
     margin-left: 5px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    background-color: white;
+    border: none; }
+  #login:focus {
+    outline: none; }
   #welcomeBanner {
     width: 50%;
     order: 1;
@@ -2719,3 +2731,57 @@ h6 {
   background-color: lightseagreen;
   margin-left: 10px;
   margin-bottom: 10px; }
+
+/* -------------------- LARGE ----------------------- */
+@media (min-width: 1026px) {
+  .quickLogin {
+    position: absolute;
+    display: none;
+    background-color: white;
+    z-index: 3;
+    top: 58px;
+    right: 2vw;
+    border: 1px solid black;
+    width: 350px;
+    min-height: 200px;
+    max-height: 500px;
+    padding: 5px; }
+  #loginTitle {
+    width: 100%;
+    text-align: center; } }
+
+/* -------------------- MEDIUM ----------------------- */
+@media (min-width: 750px) and (max-width: 1025px) {
+  .quickLogin {
+    position: absolute;
+    display: none;
+    background-color: white;
+    z-index: 3;
+    top: 54px;
+    right: 2vw;
+    border: 1px solid black;
+    width: 350px;
+    min-height: 200px;
+    max-height: 500px;
+    padding: 5px; }
+  #loginTitle {
+    width: 100%;
+    text-align: center; } }
+
+/* -------------------- SMALL ----------------------- */
+@media (max-width: 749px) {
+  .quickLogin {
+    position: absolute;
+    display: none;
+    background-color: white;
+    z-index: 3;
+    top: 139px;
+    right: 2vw;
+    border: 1px solid black;
+    width: 350px;
+    min-height: 200px;
+    max-height: 500px;
+    padding: 5px; }
+  #loginTitle {
+    width: 100%;
+    text-align: center; } }

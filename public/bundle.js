@@ -33015,10 +33015,6 @@
 	
 	var _Shipping2 = _interopRequireDefault(_Shipping);
 	
-	var _Login = __webpack_require__(590);
-	
-	var _Login2 = _interopRequireDefault(_Login);
-	
 	var _Signup = __webpack_require__(591);
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
@@ -33071,23 +33067,26 @@
 	
 	var _FAQ2 = _interopRequireDefault(_FAQ);
 	
-	var _ShippingInfo = __webpack_require__(610);
+	var _ShippingInfo = __webpack_require__(608);
 	
 	var _ShippingInfo2 = _interopRequireDefault(_ShippingInfo);
 	
-	var _Testimonials = __webpack_require__(611);
+	var _Testimonials = __webpack_require__(609);
 	
 	var _Testimonials2 = _interopRequireDefault(_Testimonials);
 	
-	var _enterHooks = __webpack_require__(608);
+	var _enterHooks = __webpack_require__(610);
 	
-	var _leaveHooks = __webpack_require__(609);
+	var _leaveHooks = __webpack_require__(611);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
 	
 	// import Account from './components/Account';
+	
+	
+	/* -----------------    COMPONENTS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
@@ -33096,7 +33095,6 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _Root2.default, onEnter: _enterHooks.loadCategories },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
@@ -33127,9 +33125,6 @@
 	//    <Route path="/payment" component={Payment} />
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
-	
-	
-	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ }),
 /* 319 */
@@ -33230,6 +33225,10 @@
 	
 	var _QuickCart2 = _interopRequireDefault(_QuickCart);
 	
+	var _QuickLogin = __webpack_require__(612);
+	
+	var _QuickLogin2 = _interopRequireDefault(_QuickLogin);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33251,6 +33250,7 @@
 	    _this.toggleNavDrop = _this.toggleNavDrop.bind(_this);
 	    _this.toggleMobileNav = _this.toggleMobileNav.bind(_this);
 	    _this.toggleQuickCart = _this.toggleQuickCart.bind(_this);
+	    _this.toggleQuickLogin = _this.toggleQuickLogin.bind(_this);
 	    return _this;
 	  }
 	
@@ -33292,6 +33292,17 @@
 	      var quickCart = getQuickCart();
 	
 	      quickCart.style.display === 'flex' ? quickCart.style.display = 'none' : quickCart.style.display = 'flex';
+	    }
+	  }, {
+	    key: 'toggleQuickLogin',
+	    value: function toggleQuickLogin() {
+	      var getQuickLogin = function getQuickLogin() {
+	        return document.querySelector('div.quickLogin');
+	      };
+	
+	      var quickLogin = getQuickLogin();
+	
+	      quickLogin.style.display === 'flex' ? quickLogin.style.display = 'none' : quickLogin.style.display = 'flex';
 	    }
 	  }, {
 	    key: 'render',
@@ -33367,14 +33378,19 @@
 	                    'Sign Out'
 	                  )
 	                ) : _react2.default.createElement(
-	                  _reactRouter.Link,
-	                  { id: 'login', to: '/login' },
+	                  'button',
+	                  { id: 'login', onClick: this.toggleQuickLogin },
 	                  _react2.default.createElement(
-	                    'h5',
-	                    null,
-	                    'Login'
+	                    'div',
+	                    { id: 'cartLink' },
+	                    _react2.default.createElement(
+	                      'h5',
+	                      null,
+	                      'Login'
+	                    )
 	                  )
 	                ),
+	                _react2.default.createElement(_QuickLogin2.default, null),
 	                this.props.user ? _react2.default.createElement(
 	                  'div',
 	                  null,
@@ -55330,125 +55346,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Shipping);
 
 /***/ }),
-/* 590 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Login = undefined;
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _auth = __webpack_require__(300);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _reactRouter = __webpack_require__(242);
-	
-	var _reactRouterBootstrap = __webpack_require__(573);
-	
-	var _reactBootstrap = __webpack_require__(321);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Login = exports.Login = function Login(_ref) {
-	  var login = _ref.login;
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      _reactBootstrap.Form,
-	      { horizontal: true, onSubmit: function onSubmit(evt) {
-	          evt.preventDefault();
-	          var email = evt.target.email.value;
-	          var password = evt.target.password.value;
-	          login(email, password);
-	        } },
-	      _react2.default.createElement(
-	        _reactBootstrap.FormGroup,
-	        { controlId: 'formHorizontalEmail' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
-	          'Email'
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { sm: 6 },
-	          _react2.default.createElement(_reactBootstrap.FormControl, { name: 'email', type: 'email', placeholder: 'Email' })
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.FormGroup,
-	        { controlId: 'formHorizontalPassword' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
-	          'Password'
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { sm: 6 },
-	          _react2.default.createElement(_reactBootstrap.FormControl, { name: 'password', type: 'password', placeholder: 'Password' })
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.FormGroup,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Col,
-	          { smOffset: 2, sm: 6 },
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { type: 'submit' },
-	            'Login'
-	          )
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      _reactRouterBootstrap.LinkContainer,
-	      { to: '/signup' },
-	      _react2.default.createElement(
-	        _reactBootstrap.Button,
-	        null,
-	        'Sign Up'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      _reactBootstrap.Button,
-	      null,
-	      _react2.default.createElement(
-	        'a',
-	        { href: '/api/auth/google' },
-	        'Google Sign In'
-	      )
-	    )
-	  );
-	};
-	
-	var mapProps = function mapProps(state) {
-	  return {};
-	};
-	var mapDispatch = function mapDispatch(dispatch) {
-	  return {
-	    login: function login(username, password) {
-	      dispatch((0, _auth.login)(username, password));
-	    },
-	    google: function google() {
-	      return dispatch();
-	    }
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Login);
-
-/***/ }),
+/* 590 */,
 /* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58543,122 +58441,6 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _categories = __webpack_require__(298);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//import { selectOrder } from './reducers/selectedOrder'
-	
-	
-	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
-		var params = _ref.params;
-	
-		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
-	};
-	
-	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
-		var params = _ref2.params;
-	
-		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
-	};
-	
-	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
-		var params = _ref3.params;
-	
-		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
-	};
-	
-	var loadCategories = exports.loadCategories = function loadCategories() {
-		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
-	};
-	
-	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
-		var params = _ref4.params;
-	
-		console.log(params);
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
-	};
-	
-	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
-	};
-	
-	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
-		var params = _ref5.params;
-	
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
-	};
-
-/***/ }),
-/* 609 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _charge = __webpack_require__(304);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var onProductLeave = exports.onProductLeave = function onProductLeave() {
-		_store2.default.dispatch((0, _currentProduct.clearProduct)());
-	};
-	
-	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
-		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
-	};
-	
-	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
-		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
-	};
-	
-	var deloadOrders = exports.deloadOrders = function deloadOrders() {
-		_store2.default.dispatch((0, _orders.deloadAllOrders)());
-	};
-	
-	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
-		_store2.default.dispatch((0, _charge.deloadCharge)());
-	};
-
-/***/ }),
-/* 610 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
@@ -58768,7 +58550,7 @@
 	exports.default = ShippingInfo;
 
 /***/ }),
-/* 611 */
+/* 609 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58974,6 +58756,296 @@
 	}(_react.Component);
 	
 	exports.default = Testimonials;
+
+/***/ }),
+/* 610 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _categories = __webpack_require__(298);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import { selectOrder } from './reducers/selectedOrder'
+	
+	
+	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
+		var params = _ref.params;
+	
+		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
+	};
+	
+	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
+		var params = _ref2.params;
+	
+		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
+	};
+	
+	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
+		var params = _ref3.params;
+	
+		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
+	};
+	
+	var loadCategories = exports.loadCategories = function loadCategories() {
+		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
+	};
+	
+	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
+		var params = _ref4.params;
+	
+		console.log(params);
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
+	};
+	
+	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
+	};
+	
+	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
+		var params = _ref5.params;
+	
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
+	};
+
+/***/ }),
+/* 611 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _charge = __webpack_require__(304);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var onProductLeave = exports.onProductLeave = function onProductLeave() {
+		_store2.default.dispatch((0, _currentProduct.clearProduct)());
+	};
+	
+	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
+		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
+	};
+	
+	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
+		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
+	};
+	
+	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+		_store2.default.dispatch((0, _orders.deloadAllOrders)());
+	};
+	
+	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
+		_store2.default.dispatch((0, _charge.deloadCharge)());
+	};
+
+/***/ }),
+/* 612 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _auth = __webpack_require__(300);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	
+	var DumbQuickLogin = function DumbQuickLogin(_ref) {
+	  var login = _ref.login;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'quickLoginContainer' },
+	    _react2.default.createElement(
+	      'h3',
+	      { id: 'loginTitle' },
+	      'LOGIN'
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: login },
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'loginEmail', className: 'loginForm' },
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'EMAIL'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inputGroupLogin' },
+	          _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', placeholder: 'Email' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'loginPassword', className: 'loginForm' },
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'EMAIL'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inputGroupLogin' },
+	          _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit' },
+	          'LOGIN'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'signUpContainer' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/signup' },
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Sign Up'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '/api/auth/google' },
+	          'Google Sign In'
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
+	
+	var QuickLogin = function (_Component) {
+	  _inherits(QuickLogin, _Component);
+	
+	  function QuickLogin(props) {
+	    _classCallCheck(this, QuickLogin);
+	
+	    var _this = _possibleConstructorReturn(this, (QuickLogin.__proto__ || Object.getPrototypeOf(QuickLogin)).call(this, props));
+	
+	    _this.loginUser = _this.loginUser.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(QuickLogin, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'loginUser',
+	    value: function loginUser(evt) {
+	      evt.preventDefault();
+	      var email = evt.target.email.value;
+	      var password = evt.target.password.value;
+	
+	      (0, _auth.login)(email, password);
+	
+	      evt.currentTarget.parentNode.parentNode.style.display = 'none';
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'quickLogin' },
+	        _react2.default.createElement('div', { id: 'tab' }),
+	        _react2.default.createElement('div', { id: 'tabBorder' }),
+	        _react2.default.createElement(DumbQuickLogin, {
+	          login: this.loginUser
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return QuickLogin;
+	}(_react.Component);
+	
+	/* -----------------    CONTAINER     ------------------ */
+	
+	var mapProps = function mapProps(state) {
+	  return {};
+	};
+	var mapDispatch = function mapDispatch(dispatch) {
+	  return {
+	    login: function login(username, password) {
+	      dispatch((0, _auth.login)(username, password));
+	    },
+	    google: function google() {
+	      return dispatch();
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(QuickLogin);
 
 /***/ })
 /******/ ]);

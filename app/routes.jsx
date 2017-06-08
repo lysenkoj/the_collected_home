@@ -11,7 +11,6 @@ import SelectedProducts from './components/SelectedProducts';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import Shipping from './components/Shipping';
-import Login from './components/Login';
 import Signup from './components/Signup';
 import Orders from './components/Orders';
 import SelectedOrder from './components/SelectedOrder';
@@ -41,7 +40,6 @@ export default () => (
     {/*<Route path="/" component={SplashPage} />*/}
     <Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
-      <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/admin" component={Admin}/>
       <Route path="/orders/:id" component={Orders} onEnter={loadOrders} onLeave={deloadOrders}/>

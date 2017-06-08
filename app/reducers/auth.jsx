@@ -11,7 +11,7 @@ export const authenticated = user => ({
 const reducer = (state='', action) => {
   switch(action.type) {
   case AUTHENTICATED:
-    return action.user  
+    return action.user
   }
   return state
 }
@@ -23,7 +23,7 @@ export const createOrFindUser = (email, password, firstName, lastName) =>
     axios.post('/api/users/',
       {email, password, firstName, lastName})
       .then(() => dispatch(login(email, password)))
-      .catch(() => dispatch(whoami()))  
+      .catch(() => dispatch(whoami()))
 
 export const login = (username, password) =>
   dispatch =>
@@ -31,7 +31,7 @@ export const login = (username, password) =>
       {username, password})
       .then(() => dispatch(whoami()))
       .then(browserHistory.push("/"))
-      .catch(() => dispatch(whoami()))      
+      .catch(() => dispatch(whoami()))
 
 export const logout = () =>
   dispatch =>
