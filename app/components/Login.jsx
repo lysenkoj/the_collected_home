@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 export const Login = ({ login }) => (
   <div>
 
-    <Form horizontal onSubmit={ (evt) => {
+    <form onSubmit={ (evt) => {
       evt.preventDefault();
       const email = evt.target.email.value;
       const password = evt.target.password.value;
@@ -33,7 +33,7 @@ export const Login = ({ login }) => (
       <div>
         <button type='submit'>LOGIN</button>
       </div>
-    </Form>
+    </form>
     <div className='signUpContainer'>
       <Link to="/signup">
         <button>Sign Up</button>

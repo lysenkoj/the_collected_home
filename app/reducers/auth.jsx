@@ -25,13 +25,14 @@ export const createOrFindUser = (email, password, firstName, lastName) =>
       .then(() => dispatch(login(email, password)))
       .catch(() => dispatch(whoami()))
 
-export const login = (username, password) =>
-  dispatch =>
+export const login = (username, password) => {
+   return dispatch =>
     axios.post('/api/auth/local/login',
       {username, password})
       .then(() => dispatch(whoami()))
       .then(browserHistory.push("/"))
       .catch(() => dispatch(whoami()))
+}
 
 export const logout = () =>
   dispatch =>

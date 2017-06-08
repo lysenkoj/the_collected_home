@@ -27,6 +27,7 @@ import Story from './components/Story';
 import FAQ from './components/FAQ';
 import ShippingInfo from './components/ShippingInfo';
 import Testimonials from './components/Testimonials';
+import Login from './components/Login';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';

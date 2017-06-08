@@ -46,18 +46,18 @@ class QuickLogin extends Component {
 	constructor(props) {
 		super(props);
 
-    this.loginUser = this.loginUser.bind(this);
+    this.login = this.login.bind(this);
 	}
   componentDidMount () {
     window.scrollTo(0, 0)
   }
 
-  loginUser(evt){
+  login(evt){
     evt.preventDefault();
     const email = evt.target.email.value;
     const password = evt.target.password.value;
 
-    login(email, password)
+    this.props.login(email, password)
 
     evt.currentTarget.parentNode.parentNode.style.display = 'none';
   }
@@ -69,7 +69,7 @@ class QuickLogin extends Component {
         <div id="tab"/>
         <div id="tabBorder"/>
         <DumbQuickLogin
-          login={ this.loginUser }
+          login={ this.login }
         />
       </div>
 		)

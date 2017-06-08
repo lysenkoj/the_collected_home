@@ -33075,6 +33075,10 @@
 	
 	var _Testimonials2 = _interopRequireDefault(_Testimonials);
 	
+	var _Login = __webpack_require__(590);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
 	var _enterHooks = __webpack_require__(610);
 	
 	var _leaveHooks = __webpack_require__(611);
@@ -33082,11 +33086,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
-	
-	// import Account from './components/Account';
-	
-	
-	/* -----------------    COMPONENTS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
@@ -33125,6 +33124,11 @@
 	//    <Route path="/payment" component={Payment} />
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
+	
+	// import Account from './components/Account';
+	
+	
+	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ }),
 /* 319 */
@@ -55346,7 +55350,123 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Shipping);
 
 /***/ }),
-/* 590 */,
+/* 590 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Login = undefined;
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _auth = __webpack_require__(300);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Login = exports.Login = function Login(_ref) {
+	  var login = _ref.login;
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: function onSubmit(evt) {
+	          evt.preventDefault();
+	          var email = evt.target.email.value;
+	          var password = evt.target.password.value;
+	          login(email, password);
+	
+	          console.log('THIS IS THE CURRENT TARGET', evt.currentTarget);
+	        } },
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'loginEmail', className: 'loginForm' },
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'EMAIL'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inputGroupLogin' },
+	          _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', placeholder: 'Email' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'loginPassword', className: 'loginForm' },
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'EMAIL'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inputGroupLogin' },
+	          _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit' },
+	          'LOGIN'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'signUpContainer' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/signup' },
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Sign Up'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        null,
+	        _react2.default.createElement(
+	          'a',
+	          { href: '/api/auth/google' },
+	          'Google Sign In'
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	var mapProps = function mapProps(state) {
+	  return {};
+	};
+	var mapDispatch = function mapDispatch(dispatch) {
+	  return {
+	    login: function login(username, password) {
+	      dispatch((0, _auth.login)(username, password));
+	    },
+	    google: function google() {
+	      return dispatch();
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Login);
+
+/***/ }),
 /* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58991,7 +59111,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, (QuickLogin.__proto__ || Object.getPrototypeOf(QuickLogin)).call(this, props));
 	
-	    _this.loginUser = _this.loginUser.bind(_this);
+	    _this.login = _this.login.bind(_this);
 	    return _this;
 	  }
 	
@@ -59001,13 +59121,13 @@
 	      window.scrollTo(0, 0);
 	    }
 	  }, {
-	    key: 'loginUser',
-	    value: function loginUser(evt) {
+	    key: 'login',
+	    value: function login(evt) {
 	      evt.preventDefault();
 	      var email = evt.target.email.value;
 	      var password = evt.target.password.value;
 	
-	      (0, _auth.login)(email, password);
+	      this.props.login(email, password);
 	
 	      evt.currentTarget.parentNode.parentNode.style.display = 'none';
 	    }
@@ -59020,7 +59140,7 @@
 	        _react2.default.createElement('div', { id: 'tab' }),
 	        _react2.default.createElement('div', { id: 'tabBorder' }),
 	        _react2.default.createElement(DumbQuickLogin, {
-	          login: this.loginUser
+	          login: this.login
 	        })
 	      );
 	    }

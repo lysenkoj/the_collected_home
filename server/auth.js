@@ -130,7 +130,7 @@ auth.get('/whoami', (req, res) => {
 })
 
 auth.post('/:strategy/login', (req, res, next) =>{
-  console.log("WE GOT IN HERE!!!", req.body)
+  console.log("WE GOT IN HERE!!!", req.params)
   /*console.log("ARSTARSTARST", req.body)
 
     return new Promise((resolve, reject) =>
