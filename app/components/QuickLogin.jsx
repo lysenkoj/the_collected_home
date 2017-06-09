@@ -21,7 +21,7 @@ const DumbQuickLogin = ({ login }) => (
         </div>
 
         <div id="loginPassword" className="loginForm">
-          <h5>EMAIL</h5>
+          <h5>PASSWORD</h5>
           <div className='inputGroupLogin'>
             <input name="password" type="password" size="20" placeholder='Password'/>
           </div>
@@ -33,9 +33,10 @@ const DumbQuickLogin = ({ login }) => (
       </form>
       <div className='signUpContainer'>
         <Link to="/signup">
-          <button>Sign Up</button>
+          <button>SIGN UP</button>
         </Link>
-        <button><a href="/api/auth/google">Google Sign In</a></button>
+        <button id="googleButton"><a href="/api/auth/google">GOOGLE SIGN IN</a></button>
+        <button id="facebookButton"><a href="/api/auth/facebook">FACEBOOK SIGN IN</a></button>
       </div>
     </div>
 )
@@ -66,8 +67,8 @@ class QuickLogin extends Component {
 	render() {
 		return (
       <div className='quickLogin'>
-        <div id="tab"/>
-        <div id="tabBorder"/>
+        <div id="loginTab"/>
+        <div id="loginTabBorder"/>
         <DumbQuickLogin
           login={ this.login }
         />
@@ -81,6 +82,13 @@ class QuickLogin extends Component {
 const mapProps = (state) => ({});
 const mapDispatch = (dispatch) => ({
   login: (username, password) => {
+    const getQuickCart = function(){
+      return document.querySelector('div.quickCart');
+    };
+
+    const quickCart = getQuickCart();
+
+    quickCart.style.right = '132px';
     dispatch(login(username, password));
   },
   google: () => dispatch()

@@ -32991,27 +32991,27 @@
 	
 	var _Root2 = _interopRequireDefault(_Root);
 	
-	var _Main = __webpack_require__(579);
+	var _Main = __webpack_require__(580);
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _CurrentProduct = __webpack_require__(582);
+	var _CurrentProduct = __webpack_require__(583);
 	
 	var _CurrentProduct2 = _interopRequireDefault(_CurrentProduct);
 	
-	var _SelectedProducts = __webpack_require__(585);
+	var _SelectedProducts = __webpack_require__(586);
 	
 	var _SelectedProducts2 = _interopRequireDefault(_SelectedProducts);
 	
-	var _Cart = __webpack_require__(586);
+	var _Cart = __webpack_require__(587);
 	
 	var _Cart2 = _interopRequireDefault(_Cart);
 	
-	var _Checkout = __webpack_require__(588);
+	var _Checkout = __webpack_require__(589);
 	
 	var _Checkout2 = _interopRequireDefault(_Checkout);
 	
-	var _Shipping = __webpack_require__(589);
+	var _Shipping = __webpack_require__(590);
 	
 	var _Shipping2 = _interopRequireDefault(_Shipping);
 	
@@ -33075,13 +33075,13 @@
 	
 	var _Testimonials2 = _interopRequireDefault(_Testimonials);
 	
-	var _Login = __webpack_require__(590);
+	var _Login = __webpack_require__(610);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _enterHooks = __webpack_require__(610);
+	var _enterHooks = __webpack_require__(611);
 	
-	var _leaveHooks = __webpack_require__(611);
+	var _leaveHooks = __webpack_require__(612);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33150,7 +33150,7 @@
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(578);
+	var _Footer = __webpack_require__(579);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -33229,7 +33229,7 @@
 	
 	var _QuickCart2 = _interopRequireDefault(_QuickCart);
 	
-	var _QuickLogin = __webpack_require__(612);
+	var _QuickLogin = __webpack_require__(578);
 	
 	var _QuickLogin2 = _interopRequireDefault(_QuickLogin);
 	
@@ -33255,6 +33255,7 @@
 	    _this.toggleMobileNav = _this.toggleMobileNav.bind(_this);
 	    _this.toggleQuickCart = _this.toggleQuickCart.bind(_this);
 	    _this.toggleQuickLogin = _this.toggleQuickLogin.bind(_this);
+	
 	    return _this;
 	  }
 	
@@ -33295,6 +33296,8 @@
 	
 	      var quickCart = getQuickCart();
 	
+	      this.props.user !== '' ? quickCart.style.right = '132px' : quickCart.style.right = '40px';
+	
 	      quickCart.style.display === 'flex' ? quickCart.style.display = 'none' : quickCart.style.display = 'flex';
 	    }
 	  }, {
@@ -33329,13 +33332,7 @@
 	            _react2.default.createElement(
 	              'div',
 	              { id: 'tagline' },
-	              'The ',
-	              _react2.default.createElement(
-	                'span',
-	                { id: 'gold' },
-	                'Collected'
-	              ),
-	              ' Home'
+	              'The Collected Home'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -33684,6 +33681,14 @@
 	var mapDispatch = function mapDispatch(dispatch) {
 	  return {
 	    signout: function signout() {
+	      var getQuickCart = function getQuickCart() {
+	        return document.querySelector('div.quickCart');
+	      };
+	
+	      var quickCart = getQuickCart();
+	
+	      quickCart.style.right = '40px';
+	
 	      dispatch((0, _auth.logout)());
 	    }
 	  };
@@ -53700,6 +53705,196 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _auth = __webpack_require__(300);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    COMPONENT     ------------------ */
+	
+	var DumbQuickLogin = function DumbQuickLogin(_ref) {
+	  var login = _ref.login;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'quickLoginContainer' },
+	    _react2.default.createElement(
+	      'h3',
+	      { id: 'loginTitle' },
+	      'LOGIN'
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: login },
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'loginEmail', className: 'loginForm' },
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'EMAIL'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inputGroupLogin' },
+	          _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', placeholder: 'Email' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'loginPassword', className: 'loginForm' },
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'PASSWORD'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inputGroupLogin' },
+	          _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit' },
+	          'LOGIN'
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'signUpContainer' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/signup' },
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'SIGN UP'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { id: 'googleButton' },
+	        _react2.default.createElement(
+	          'a',
+	          { href: '/api/auth/google' },
+	          'GOOGLE SIGN IN'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { id: 'facebookButton' },
+	        _react2.default.createElement(
+	          'a',
+	          { href: '/api/auth/facebook' },
+	          'FACEBOOK SIGN IN'
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
+	
+	var QuickLogin = function (_Component) {
+	  _inherits(QuickLogin, _Component);
+	
+	  function QuickLogin(props) {
+	    _classCallCheck(this, QuickLogin);
+	
+	    var _this = _possibleConstructorReturn(this, (QuickLogin.__proto__ || Object.getPrototypeOf(QuickLogin)).call(this, props));
+	
+	    _this.login = _this.login.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(QuickLogin, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'login',
+	    value: function login(evt) {
+	      evt.preventDefault();
+	      var email = evt.target.email.value;
+	      var password = evt.target.password.value;
+	
+	      this.props.login(email, password);
+	
+	      evt.currentTarget.parentNode.parentNode.style.display = 'none';
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'quickLogin' },
+	        _react2.default.createElement('div', { id: 'loginTab' }),
+	        _react2.default.createElement('div', { id: 'loginTabBorder' }),
+	        _react2.default.createElement(DumbQuickLogin, {
+	          login: this.login
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return QuickLogin;
+	}(_react.Component);
+	
+	/* -----------------    CONTAINER     ------------------ */
+	
+	var mapProps = function mapProps(state) {
+	  return {};
+	};
+	var mapDispatch = function mapDispatch(dispatch) {
+	  return {
+	    login: function login(username, password) {
+	      var getQuickCart = function getQuickCart() {
+	        return document.querySelector('div.quickCart');
+	      };
+	
+	      var quickCart = getQuickCart();
+	
+	      quickCart.style.right = '132px';
+	      dispatch((0, _auth.login)(username, password));
+	    },
+	    google: function google() {
+	      return dispatch();
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(QuickLogin);
+
+/***/ }),
+/* 579 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -53919,7 +54114,7 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 579 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53934,11 +54129,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Carousel = __webpack_require__(580);
+	var _Carousel = __webpack_require__(581);
 	
 	var _Carousel2 = _interopRequireDefault(_Carousel);
 	
-	var _FeaturedLook = __webpack_require__(581);
+	var _FeaturedLook = __webpack_require__(582);
 	
 	var _FeaturedLook2 = _interopRequireDefault(_FeaturedLook);
 	
@@ -54065,7 +54260,7 @@
 	exports.default = Main;
 
 /***/ }),
-/* 580 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54131,7 +54326,7 @@
 	exports.default = DumbCarousel;
 
 /***/ }),
-/* 581 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54196,7 +54391,7 @@
 	exports.default = FeaturedLook;
 
 /***/ }),
-/* 582 */
+/* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54215,13 +54410,13 @@
 	
 	var _reactBootstrap = __webpack_require__(321);
 	
-	var _Notification = __webpack_require__(583);
+	var _Notification = __webpack_require__(584);
 	
 	var _Notification2 = _interopRequireDefault(_Notification);
 	
 	var _cart = __webpack_require__(299);
 	
-	var _reactContenteditable = __webpack_require__(584);
+	var _reactContenteditable = __webpack_require__(585);
 	
 	var _reactContenteditable2 = _interopRequireDefault(_reactContenteditable);
 	
@@ -54528,7 +54723,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CurrentProduct);
 
 /***/ }),
-/* 583 */
+/* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54598,7 +54793,7 @@
 	// alert renders but fades out. Alert has link to cart.
 
 /***/ }),
-/* 584 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54700,7 +54895,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 585 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54818,7 +55013,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SelectedProducts);
 
 /***/ }),
-/* 586 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54837,7 +55032,7 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
-	var _CartItem = __webpack_require__(587);
+	var _CartItem = __webpack_require__(588);
 	
 	var _CartItem2 = _interopRequireDefault(_CartItem);
 	
@@ -54934,7 +55129,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
 /***/ }),
-/* 587 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55071,7 +55266,7 @@
 	exports.default = CartItem;
 
 /***/ }),
-/* 588 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55156,7 +55351,7 @@
 	exports.default = (0, _reactRedux.connect)(mapProps, null)(Cart);
 
 /***/ }),
-/* 589 */
+/* 590 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55348,123 +55543,6 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Shipping);
-
-/***/ }),
-/* 590 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Login = undefined;
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _auth = __webpack_require__(300);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _reactRouter = __webpack_require__(242);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Login = exports.Login = function Login(_ref) {
-	  var login = _ref.login;
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'form',
-	      { onSubmit: function onSubmit(evt) {
-	          evt.preventDefault();
-	          var email = evt.target.email.value;
-	          var password = evt.target.password.value;
-	          login(email, password);
-	
-	          console.log('THIS IS THE CURRENT TARGET', evt.currentTarget);
-	        } },
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'loginEmail', className: 'loginForm' },
-	        _react2.default.createElement(
-	          'h5',
-	          null,
-	          'EMAIL'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'inputGroupLogin' },
-	          _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', placeholder: 'Email' })
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'loginPassword', className: 'loginForm' },
-	        _react2.default.createElement(
-	          'h5',
-	          null,
-	          'EMAIL'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'inputGroupLogin' },
-	          _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password' })
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'submit' },
-	          'LOGIN'
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'signUpContainer' },
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/signup' },
-	        _react2.default.createElement(
-	          'button',
-	          null,
-	          'Sign Up'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'button',
-	        null,
-	        _react2.default.createElement(
-	          'a',
-	          { href: '/api/auth/google' },
-	          'Google Sign In'
-	        )
-	      )
-	    )
-	  );
-	};
-	
-	var mapProps = function mapProps(state) {
-	  return {};
-	};
-	var mapDispatch = function mapDispatch(dispatch) {
-	  return {
-	    login: function login(username, password) {
-	      dispatch((0, _auth.login)(username, password));
-	    },
-	    google: function google() {
-	      return dispatch();
-	    }
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Login);
 
 /***/ }),
 /* 591 */
@@ -56896,8 +56974,8 @@
 	
 	process.env["FACEBOOK_CLIENT_ID"] = "abcd";
 	process.env["FACEBOOK_CLIENT_SECRET"] = "1234";
-	process.env["GOOGLE_CONSUMER_KEY"] = "311991622447-kdqmfugt3ekt21e95vi07m8u3dls3v2j.apps.googleusercontent.com";
-	process.env["GOOGLE_CONSUMER_SECRET"] = "zEpcea9n_3ehzbPJ7vxmy-Re";
+	process.env["GOOGLE_CONSUMER_KEY"] = "642529252345-dhi6a5bmekqqdqloukotio7rrncno91i.apps.googleusercontent.com";
+	process.env["GOOGLE_CONSUMER_SECRET"] = "UeTl6ilEHl7J4p3ZwRGA2dqi";
 	process.env["STRIPE_PUBLISHABLE_KEY"] = "pk_test_KojVuT54tRytAjzXcGAFdIq7";
 	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
@@ -57200,7 +57278,7 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
-	var _Carousel = __webpack_require__(580);
+	var _Carousel = __webpack_require__(581);
 	
 	var _Carousel2 = _interopRequireDefault(_Carousel);
 	
@@ -58884,126 +58962,9 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _categories = __webpack_require__(298);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//import { selectOrder } from './reducers/selectedOrder'
-	
-	
-	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
-		var params = _ref.params;
-	
-		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
-	};
-	
-	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
-		var params = _ref2.params;
-	
-		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
-	};
-	
-	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
-		var params = _ref3.params;
-	
-		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
-	};
-	
-	var loadCategories = exports.loadCategories = function loadCategories() {
-		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
-	};
-	
-	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
-		var params = _ref4.params;
-	
-		console.log(params);
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
-	};
-	
-	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
-	};
-	
-	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
-		var params = _ref5.params;
-	
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
-	};
-
-/***/ }),
-/* 611 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _charge = __webpack_require__(304);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var onProductLeave = exports.onProductLeave = function onProductLeave() {
-		_store2.default.dispatch((0, _currentProduct.clearProduct)());
-	};
-	
-	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
-		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
-	};
-	
-	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
-		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
-	};
-	
-	var deloadOrders = exports.deloadOrders = function deloadOrders() {
-		_store2.default.dispatch((0, _orders.deloadAllOrders)());
-	};
-	
-	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
-		_store2.default.dispatch((0, _charge.deloadCharge)());
-	};
-
-/***/ }),
-/* 612 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	exports.Login = undefined;
 	
 	var _react = __webpack_require__(1);
 	
@@ -59017,27 +58978,21 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	/* -----------------    COMPONENT     ------------------ */
-	
-	var DumbQuickLogin = function DumbQuickLogin(_ref) {
+	var Login = exports.Login = function Login(_ref) {
 	  var login = _ref.login;
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'quickLoginContainer' },
-	    _react2.default.createElement(
-	      'h3',
-	      { id: 'loginTitle' },
-	      'LOGIN'
-	    ),
+	    null,
 	    _react2.default.createElement(
 	      'form',
-	      { onSubmit: login },
+	      { onSubmit: function onSubmit(evt) {
+	          evt.preventDefault();
+	          var email = evt.target.email.value;
+	          var password = evt.target.password.value;
+	          login(email, password);
+	
+	          console.log('THIS IS THE CURRENT TARGET', evt.currentTarget);
+	        } },
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'loginEmail', className: 'loginForm' },
@@ -59101,56 +59056,6 @@
 	  );
 	};
 	
-	/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
-	
-	var QuickLogin = function (_Component) {
-	  _inherits(QuickLogin, _Component);
-	
-	  function QuickLogin(props) {
-	    _classCallCheck(this, QuickLogin);
-	
-	    var _this = _possibleConstructorReturn(this, (QuickLogin.__proto__ || Object.getPrototypeOf(QuickLogin)).call(this, props));
-	
-	    _this.login = _this.login.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(QuickLogin, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      window.scrollTo(0, 0);
-	    }
-	  }, {
-	    key: 'login',
-	    value: function login(evt) {
-	      evt.preventDefault();
-	      var email = evt.target.email.value;
-	      var password = evt.target.password.value;
-	
-	      this.props.login(email, password);
-	
-	      evt.currentTarget.parentNode.parentNode.style.display = 'none';
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'quickLogin' },
-	        _react2.default.createElement('div', { id: 'tab' }),
-	        _react2.default.createElement('div', { id: 'tabBorder' }),
-	        _react2.default.createElement(DumbQuickLogin, {
-	          login: this.login
-	        })
-	      );
-	    }
-	  }]);
-	
-	  return QuickLogin;
-	}(_react.Component);
-	
-	/* -----------------    CONTAINER     ------------------ */
-	
 	var mapProps = function mapProps(state) {
 	  return {};
 	};
@@ -59165,7 +59070,123 @@
 	  };
 	};
 	
-	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(QuickLogin);
+	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Login);
+
+/***/ }),
+/* 611 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _categories = __webpack_require__(298);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import { selectOrder } from './reducers/selectedOrder'
+	
+	
+	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
+		var params = _ref.params;
+	
+		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
+	};
+	
+	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
+		var params = _ref2.params;
+	
+		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
+	};
+	
+	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
+		var params = _ref3.params;
+	
+		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
+	};
+	
+	var loadCategories = exports.loadCategories = function loadCategories() {
+		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
+	};
+	
+	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
+		var params = _ref4.params;
+	
+		console.log(params);
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
+	};
+	
+	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
+	};
+	
+	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
+		var params = _ref5.params;
+	
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
+	};
+
+/***/ }),
+/* 612 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _charge = __webpack_require__(304);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var onProductLeave = exports.onProductLeave = function onProductLeave() {
+		_store2.default.dispatch((0, _currentProduct.clearProduct)());
+	};
+	
+	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
+		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
+	};
+	
+	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
+		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
+	};
+	
+	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+		_store2.default.dispatch((0, _orders.deloadAllOrders)());
+	};
+	
+	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
+		_store2.default.dispatch((0, _charge.deloadCharge)());
+	};
 
 /***/ })
 /******/ ]);

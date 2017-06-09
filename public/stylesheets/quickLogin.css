@@ -12,9 +12,66 @@
     min-height: 200px;
     max-height: 500px;
     padding: 5px; }
+  .quickLoginContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px; }
+    .quickLoginContainer h5 {
+      margin-bottom: 3px; }
+    .quickLoginContainer form {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid black; }
+    .quickLoginContainer input {
+      width: 100%; }
+    .quickLoginContainer button {
+      background-color: black;
+      color: white;
+      border: none;
+      height: 30px;
+      width: 25%; }
+  .signUpContainer {
+    width: 100%; }
+    .signUpContainer button {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 5px; }
+  #googleButton {
+    background-color: #d15c40; }
+    #googleButton a {
+      color: white; }
+  #facebookButton {
+    background-color: #418AC9; }
+    #facebookButton a {
+      color: white; }
   #loginTitle {
     width: 100%;
-    text-align: center; } }
+    text-align: center; }
+  #loginPassword {
+    margin-bottom: 10px; }
+  #loginTab {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    top: -10px;
+    right: 23px;
+    z-index: 5; }
+  #loginTabBorder {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid black;
+    top: -11px;
+    right: 22px;
+    z-index: 4; } }
 
 /* -------------------- MEDIUM ----------------------- */
 @media (min-width: 750px) and (max-width: 1025px) {
@@ -30,9 +87,66 @@
     min-height: 200px;
     max-height: 500px;
     padding: 5px; }
+  .quickLoginContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px; }
+    .quickLoginContainer h5 {
+      margin-bottom: 3px; }
+    .quickLoginContainer form {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid black; }
+    .quickLoginContainer input {
+      width: 100%; }
+    .quickLoginContainer button {
+      background-color: black;
+      color: white;
+      border: none;
+      height: 30px;
+      width: 25%; }
+  .signUpContainer {
+    width: 100%; }
+    .signUpContainer button {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 5px; }
+  #googleButton {
+    background-color: #d15c40; }
+    #googleButton a {
+      color: white; }
+  #facebookButton {
+    background-color: #418AC9; }
+    #facebookButton a {
+      color: white; }
   #loginTitle {
     width: 100%;
-    text-align: center; } }
+    text-align: center; }
+  #loginPassword {
+    margin-bottom: 10px; }
+  #loginTab {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    top: -10px;
+    right: 23px;
+    z-index: 5; }
+  #loginTabBorder {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid black;
+    top: -11px;
+    right: 22px;
+    z-index: 4; } }
 
 /* -------------------- SMALL ----------------------- */
 @media (max-width: 749px) {
@@ -48,6 +162,63 @@
     min-height: 200px;
     max-height: 500px;
     padding: 5px; }
+  .quickLoginContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px; }
+    .quickLoginContainer h5 {
+      margin-bottom: 3px; }
+    .quickLoginContainer form {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid black; }
+    .quickLoginContainer input {
+      width: 100%; }
+    .quickLoginContainer button {
+      background-color: black;
+      color: white;
+      border: none;
+      height: 30px;
+      width: 25%; }
+  .signUpContainer {
+    width: 100%; }
+    .signUpContainer button {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 5px; }
+  #googleButton {
+    background-color: #d15c40; }
+    #googleButton a {
+      color: white; }
+  #facebookButton {
+    background-color: #418AC9; }
+    #facebookButton a {
+      color: white; }
   #loginTitle {
     width: 100%;
-    text-align: center; } }
+    text-align: center; }
+  #loginPassword {
+    margin-bottom: 10px; }
+  #loginTab {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    top: -10px;
+    right: 23px;
+    z-index: 5; }
+  #loginTabBorder {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid black;
+    top: -11px;
+    right: 22px;
+    z-index: 4; } }

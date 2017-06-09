@@ -19,6 +19,7 @@ class Navigbar extends React.Component {
     this.toggleMobileNav = this.toggleMobileNav.bind(this);
     this.toggleQuickCart = this.toggleQuickCart.bind(this);
     this.toggleQuickLogin = this.toggleQuickLogin.bind(this);
+
   }
 
   toggleNavDrop(evt){
@@ -56,6 +57,8 @@ class Navigbar extends React.Component {
 
     const quickCart = getQuickCart();
 
+    (this.props.user !== '') ? quickCart.style.right = '132px' : quickCart.style.right = '40px';
+
     (quickCart.style.display === 'flex') ?
     quickCart.style.display = 'none' : quickCart.style.display = 'flex';
   }
@@ -78,7 +81,7 @@ class Navigbar extends React.Component {
           <Search />
           <Link to="/" className="mainLogo">
             <div>CLARICE KING</div>
-            <div id="tagline">The <span id='gold'>Collected</span> Home</div>
+            <div id="tagline">The Collected Home</div>
           </Link>
           <div className="userContainer">
             <div className="userPanel">
@@ -247,6 +250,14 @@ const mapProps = ({ categories, user , cart}) => ({ categories, user, cart });
 
 const mapDispatch = (dispatch) => ({
   signout: () => {
+    const getQuickCart = function(){
+      return document.querySelector('div.quickCart');
+    };
+
+    const quickCart = getQuickCart();
+
+    quickCart.style.right = '40px';
+
     dispatch(logout())
   }
 })
