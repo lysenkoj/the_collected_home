@@ -14,24 +14,6 @@
     "start-dev": "check-node-version --node '>= 6.7.0' && bin/setup && nodemon server/start.js",
     "seed": "node db/seed.js"
   },
-  "engines": {
-    "node": "6.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lysenkoj/the_collected_home"
-  },
-  "keywords": [
-    "react",
-    "redux",
-    "ecommerce"
-  ],
-  "author": "Jordan Lysenko <lysenkoj@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lysenkoj/the_collected_home/issues"
-  },
-  "homepage": "https://github.com/lysenkoj/the_collected_home#readme",
   "dependencies": {
     "axios": "^0.15.2",
     "babel": "^6.5.2",
