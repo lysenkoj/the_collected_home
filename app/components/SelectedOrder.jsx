@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -30,7 +28,7 @@ function SelectedOrder({ selectedOrder }){
       <li>Item(s) Subtotal: ${selectedOrder.order_items.map(item=>item.itemCost).reduce((sum, itemCost)=> +sum + +itemCost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</li>
       <li>Shipping and Handling: ${selectedOrder.order_items.map(item=>item.shippingCost).reduce((sum, shippingCost)=> +sum + +shippingCost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</li>
       <li>Estimated tax to be collected: ${selectedOrder.order_items.map(item=>item.taxCost).reduce((sum, taxCost)=> +sum + +taxCost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</li>
-   </ul> 
+   </ul>
       <p>Grand Total: ${selectedOrder.order_items.map(item=>item.totalCost).reduce((sum, totalCost)=> +sum + +totalCost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
       <hr></hr>
     <h5>Items from this Order</h5>
@@ -39,9 +37,9 @@ function SelectedOrder({ selectedOrder }){
          selectedOrder.order_items.map((item, index) => (
            <li key={ index }>
             <p>Quantity: {item.quantity}</p>
-            <LinkContainer to={`/product/${item.product_sku}`}>
-              <Button>Product purchased: {item.product.name}</Button>
-            </LinkContainer>
+            <Link to={`/product/${item.product_sku}`}>
+              <button>Product purchased: {item.product.name}</button>
+            </Link>
             <p>Price at Purchase: {item.priceAtPurchase.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
             <p>Status: {item.status}</p>
             <hr></hr>

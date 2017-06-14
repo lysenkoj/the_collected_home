@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { submitOrder } from '../reducers/charge';
 
 
@@ -44,7 +43,7 @@ class Confirmation extends Component {
 				<p>YOU WILL BE CHARGED: { amount }</p>
 				<h3>stripe token: {this.props.params.token}</h3>
 				<h3>MAKE SHOPPING GREAT AGAIN</h3>
-				<Button onClick={ this.sendOrder }>SUBMIT</Button>
+				<button onClick={ this.sendOrder }>SUBMIT</button>
 			</div>
 		)
 	}

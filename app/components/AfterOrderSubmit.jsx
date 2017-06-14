@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -27,9 +26,9 @@ class AfterOrderSubmit extends Component {
 								<h3>Payment Success!</h3>
 								<p>Keep this transaction ID for your records: {charge.chargeData.id}</p>
 								<p>You should receive an email confirmation shortly.</p>
-								<LinkContainer to="/">
-									<Button>Cool!</Button>
-								</LinkContainer>
+								<Link to="/">
+									<button>Cool!</button>
+								</Link>
 							</div>
 							:
 							<div>

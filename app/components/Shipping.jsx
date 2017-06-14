@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { setShippingAddress } from '../reducers/shippingAddress';
 import { browserHistory } from 'react-router';
 
@@ -39,7 +38,7 @@ const DumbShipping = ({ updateField, submitAddress }) => (
 		            <label>Email:</label>
 		            <input required type="email" id="email" onChange={updateField}/>
 		        </div>
-			    	<Button type="submit">Next: Payment</Button>
+			    	<button type="submit">Next: Payment</button>
 	    	</form>
 	</div>
 

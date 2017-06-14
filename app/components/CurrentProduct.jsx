@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image } from 'react-bootstrap';
 import Notification from './Notification';
 import { addItem } from '../reducers/cart';
 import ContentEditable from "react-contenteditable";
@@ -25,8 +24,8 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
     </div>
 		<photo>
       {state.mainImg ?
-      <Image className="mainPhoto" src={state.mainImg} responsive /> :
-			<Image className="mainPhoto" src={currentProduct && currentProduct.mainImg} responsive />
+      <img className="mainPhoto" src={state.mainImg} responsive /> :
+			<img className="mainPhoto" src={currentProduct && currentProduct.mainImg} responsive />
       }
 		</photo>
     <div className="infoContainer">

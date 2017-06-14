@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Carousel from './Carousel';
 import { connect } from 'react-redux';
 import {addFormInfo} from '../reducers/designForm';
 
@@ -161,7 +160,6 @@ class DesignServices extends Component {
             <h4>Interior Design and Decorating Services</h4>
           </div>
         </div>
-        <Carousel/>
         <h4>LET'S MEET!</h4>
         <h5 id="instructions">Fill out the form below to get started. We'll send you a follow up email asking you for the information we need before our first phone call!</h5>
         <div className="designFormContainer">

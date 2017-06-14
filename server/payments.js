@@ -12,17 +12,17 @@ const { formatDate }  = require("./utils")
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
 const paymentRoutes = require('express').Router()
-const nodemailer = require('nodemailer');
-const smtpTransport = require('nodemailer-smtp-transport');
-const wellknown = require('nodemailer-wellknown');
+// const nodemailer = require('nodemailer');
+// const smtpTransport = require('nodemailer-smtp-transport');
+// const wellknown = require('nodemailer-wellknown');
 
-const transport = nodemailer.createTransport({
-    service: 'AOL',
-    auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD
-    }
-});
+// const transport = nodemailer.createTransport({
+//     service: 'AOL',
+//     auth: {
+//         user: process.env.EMAIL_USERNAME,
+//         pass: process.env.EMAIL_PASSWORD
+//     }
+// });
 
 
 
@@ -112,12 +112,12 @@ paymentRoutes.post("/:token", function(req, res, next){
 		              subject: 'Your order has been placed', // Subject line
 		              text: `Your order has been placed! Your order number is ${charge.id} Thanks for shopping at Great Shopper.\n\n\nGreat Shopper Team`
 			          };
-			          transport.sendMail(mailOptions, function(error, info){
-			              if(error){
-			                  return console.log(error);
-			              }
-			              console.log('Message sent: ' + info.response);
-			        });
+			        //   transport.sendMail(mailOptions, function(error, info){
+			        //       if(error){
+			        //           return console.log(error);
+			        //       }
+			        //       console.log('Message sent: ' + info.response);
+			        // });
 						})
 						.catch(next)
 					}

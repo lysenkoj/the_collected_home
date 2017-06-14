@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Carousel from './Carousel';
 import FeaturedLook from './FeaturedLook';
 import {Link} from 'react-router';
 

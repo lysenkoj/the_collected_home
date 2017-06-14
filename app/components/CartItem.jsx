@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Glyphicon } from 'react-bootstrap';
 
 
 /* -----------------    DUMB COMPONENT     ------------------ */
@@ -40,7 +39,7 @@ export default class CartItem extends Component {
             <option value="5">5</option>
           </select>
         </div>
-        <button onClick= { () => { remove(item) }}><Glyphicon glyph="remove" /></button>
+        <button onClick= { () => { remove(item) }}><h3>X</h3></button>
       </item-details>
      </li>
     );

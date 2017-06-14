@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Button } from 'react-bootstrap';
 import Search from './Search';
 import { Link } from 'react-router';
 import { logout } from '../reducers/auth';
-import { LinkContainer } from 'react-router-bootstrap';
 import QuickCart from './QuickCart';
 import QuickLogin from './QuickLogin';
 
@@ -76,7 +74,7 @@ class Navigbar extends React.Component {
 
   render(){
     return (
-      <Navbar className="navContainer" inverse collapseOnSelect style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
+      <div className="navContainer" inverse collapseOnSelect style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
         <div className="topNav">
           <Search />
           <Link to="/" className="mainLogo">
@@ -239,7 +237,7 @@ class Navigbar extends React.Component {
             </div>
           </div>
         </div>
-      </Navbar>
+      </div>
     )
   }
 }

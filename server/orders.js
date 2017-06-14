@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly, formatDate}  = require("./utils")
 
-const customOrderRoutes = require('express').Router() 
+const customOrderRoutes = require('express').Router()
 
 const User = db.model("users");
 const Order = db.model("orders");
@@ -11,20 +11,20 @@ const Order_Item = db.model("order_items");
 const Address = db.model("addresses");
 const Product = db.model("products");
 
-const nodemailer = require('nodemailer');
-const smtpTransport = require('nodemailer-smtp-transport');
-const wellknown = require('nodemailer-wellknown');
+// const nodemailer = require('nodemailer');
+// const smtpTransport = require('nodemailer-smtp-transport');
+// const wellknown = require('nodemailer-wellknown');
 
 const axios  = require('axios')
 require('APP/.env.js')
 
-const transport = nodemailer.createTransport({
-    service: 'AOL',
-    auth: {
-        user: process.env.EMAIL_USERNAME, 
-        pass: process.env.EMAIL_PASSWORD
-    }
-});
+// const transport = nodemailer.createTransport({
+//     service: 'AOL',
+//     auth: {
+//         user: process.env.EMAIL_USERNAME,
+//         pass: process.env.EMAIL_PASSWORD
+//     }
+// });
 
 
 
@@ -55,7 +55,7 @@ customOrderRoutes.get("/user/:userid", function(req, res, next){
 	// 	return res.status(403).send(`You do not have permission.`)
 	// }
 
-	Order.findAll({	 	
+	Order.findAll({
 	 	include: [
 	 		{model: User,
 		 		where: {
@@ -92,12 +92,12 @@ customOrderRoutes.post("/", function(req, res, next){
 			              subject: 'Your order has been placed', // Subject line
 			              text: 'Your order has been placed! Thanks for shopping at Great Shopper.\n\n\nGreat Shopper Team'
 			          };
-			          transport.sendMail(mailOptions, function(error, info){
-			              if(error){
-			                  return console.log(error);
-			              }
-			              console.log('Message sent: ' + info.response);
-			        });
+			        //   transport.sendMail(mailOptions, function(error, info){
+			        //       if(error){
+			        //           return console.log(error);
+			        //       }
+			        //       console.log('Message sent: ' + info.response);
+			        // });
 			      })
 			return res.json(order)
 		})

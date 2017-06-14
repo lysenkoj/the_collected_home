@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
-import { LinkContainer } from 'react-router-bootstrap';
 import { browserHistory } from 'react-router';
 require('APP/.env.js');
 

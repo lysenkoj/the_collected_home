@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Glyphicon } from 'react-bootstrap';
 
 
 /* -----------------    DUMB COMPONENT     ------------------ */
@@ -22,7 +21,7 @@ export default class QuickCartItem extends Component {
     const { item, remove } = this.props;
     return (
      <li className="quick-cart-item">
-      <button id='quickCartDelete' onClick= { () => { remove(item) }}><Glyphicon glyph="remove" /></button>
+      <button id='quickCartDelete' onClick= { () => { remove(item) }}><h3>X</h3></button>
       <div className="quickCartItem">
         <Link to={`/product/${item.product.sku}`}>
           <product className="carted-product">

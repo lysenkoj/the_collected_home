@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { removeItem, changeQuantity, clearCart } from '../reducers/cart';
 import { Link } from 'react-router';
 import CartItem from './CartItem';
-import { Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -37,10 +35,10 @@ function Cart({ cart, remove, change, clear }){
         }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
       </div>
-      <LinkContainer to="/checkout/shipping">
-        <Button>Proceed to Checkout</Button>
-      </LinkContainer>
-      <Button onClick={clear}>Clear all items from cart</Button>
+      <Link to="/checkout/shipping">
+        <button>Proceed to Checkout</button>
+      </Link>
+      <button onClick={clear}>Clear all items from cart</button>
      </div>
      :
     <h3>Your cart is empty!</h3>

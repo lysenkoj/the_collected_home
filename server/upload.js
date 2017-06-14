@@ -1,7 +1,7 @@
 'use strict'
 const Promise = require('bluebird');
-const multer = require('multer');
-const upload = multer({ dest: 'public/images/' });
+// const multer = require('multer');
+// const upload = multer({ dest: 'public/images/' });
 
 
 const uploadRoutes = require('express').Router()
