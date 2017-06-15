@@ -1,4 +1,5 @@
-# Ignore all node_moduels except symlink
+# Ignore all node_modules except symlink
+node_modules
 node_modules/*
 !node_modules/APP
 
@@ -8,7 +9,4 @@ public/bundle.js
 public/bundle.js.map
 bones_orig_backup
 npm-debug.log
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+

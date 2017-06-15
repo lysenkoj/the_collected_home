@@ -2,7 +2,7 @@ const plan = require('flightplan');
 
 const appName = 'clarice-king-app';
 const username = 'deploy';
-const startFile = 'bin/www';
+const startFile = 'server/start.js';
 
 const tmpDir = appName+'-' + new Date().getTime();
 
