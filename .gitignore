@@ -1,7 +1,6 @@
 # Ignore all node_modules except symlink
-node_modules
 node_modules/*
-!node_modules/APP
+!node_modules/APP/
 
 /.env.js
 */.DS_Store
