@@ -1,6 +1,6 @@
 const plan = require('flightplan');
 
-const appName = 'clarice-king-app';
+const appName = 'clarice-king-webapp';
 const username = 'deploy';
 const startFile = 'server/start.js';
 
@@ -9,7 +9,7 @@ const tmpDir = appName+'-' + new Date().getTime();
 // configuration
 plan.target('staging', [
   {
-    host: '45.55.243.167',
+    host: '45.55.243.167 ',
     username: 'deploy',
     agent: process.env.SSH_AUTH_SOCK
   }
@@ -17,7 +17,7 @@ plan.target('staging', [
 
 plan.target('production', [
   {
-    host: '45.55.243.167',
+    host: '45.55.243.167 ',
     username: 'deploy',
     agent: process.env.SSH_AUTH_SOCK
   },
