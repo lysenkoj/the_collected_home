@@ -19,6 +19,7 @@ plan.target('production', [
   {
     host: '45.55.143.255',
     username: 'deploy',
+    privateKey: '/Users/Jordan/.shh/id_rsa',
     agent: process.env.SSH_AUTH_SOCK
   },
 //add in another server if you have more than one
