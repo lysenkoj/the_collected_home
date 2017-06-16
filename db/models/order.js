@@ -1,7 +1,7 @@
 'use strict'
 const axios  = require('axios')
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
@@ -17,7 +17,7 @@ const Order = db.define('orders', {
     }
   },
   status: {
-    type: Sequelize.ENUM('shipped', 'partially shipped', 'cancelled', 'pending', 'delivered', 'refunded') 
+    type: Sequelize.ENUM('shipped', 'partially shipped', 'cancelled', 'pending', 'delivered', 'refunded')
   },
   submitDate: {
     type: Sequelize.STRING,

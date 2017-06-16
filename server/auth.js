@@ -10,7 +10,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 require('APP/.env.js')
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 
 /*************************
  * Auth strategies

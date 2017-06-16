@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const db = require('APP/db')
 
 const categoriesToSeed = [

@@ -1,6 +1,6 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
@@ -57,7 +57,7 @@ const User = db.define('users', {
           (err, result) =>
             err ? reject(err) : resolve(result))
         )
-    }    
+    }
   }
 })
 
