@@ -2,7 +2,6 @@ const plan = require('flightplan');
 
 const appName = 'clarice-king';
 const username = 'deploy';
-const startFile = 'bin/www';
 
 const tmpDir = appName+'-' + new Date().getTime();
 
@@ -54,6 +53,6 @@ plan.remote(function(remote) {
 
   remote.log('Reload application');
   remote.sudo('ln -snf ~/' + tmpDir + ' ~/'+appName, {user: username});
-  remote.exec('forever stop ~/'+appName+'/'+startFile, {failsafe: true});
-  remote.exec('forever start ~/'+appName+'/'+startFile);
+  // remote.exec('cd ~/'+ appName  + '&&' + 'forever stop ./bin/www', {failsafe: true});
+  remote.exec('cd ~/'+ appName  + '&&' + 'forever start ./bin/www');
 });

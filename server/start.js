@@ -13,16 +13,16 @@ const path = require('path');
 // saying require('APP/whatever').
 //
 // This next line requires our root index.js:
-const pkg = require('APP')
+// const pkg = require('APP')
 
 const app = express()
 
 
 
-if (!pkg.isProduction && !pkg.isTesting) {
-  // Logging middleware (dev only)
-  app.use(require('volleyball'))
-}
+// if (!pkg.isProduction && !pkg.isTesting) {
+//   // Logging middleware (dev only)
+//   app.use(require('volleyball'))
+// }
 
 module.exports = app
   // We'll store the whole session in a cookie
