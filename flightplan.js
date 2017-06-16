@@ -32,8 +32,8 @@ plan.target('production', [
 // run commands on localhost
 plan.local(function(local) {
   // uncomment these if you need to run a build on your machine first
-  // local.log('Run build');
-  // local.exec('gulp build');
+  local.log('Run build');
+  local.exec('bin/setup && webpack');
 
   local.log('Copy files to remote hosts');
   const filesToCopy = local.exec('git ls-files', {silent: true});
@@ -53,5 +53,5 @@ plan.remote(function(remote) {
   remote.log('Reload application');
   remote.sudo('ln -snf ~/' + tmpDir + ' ~/'+appName, {user: username});
   remote.exec('forever stop ~/'+appName+'/'+startFile, {failsafe: true});
-  remote.exec('npm start ~/'+appName+'/'+startFile);
+  remote.exec('forever start ~/'+appName+'/'+startFile);
 });
