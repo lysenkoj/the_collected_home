@@ -33534,37 +33534,6 @@
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'navCategory', id: 'beddingNav', onClick: this.toggleNavDrop },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'navLink' },
-	                _react2.default.createElement(
-	                  'h4',
-	                  null,
-	                  'BEDDING'
-	                ),
-	                _react2.default.createElement('div', { className: 'arrow-down' })
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'dropdownMenu', id: 'beddingDrop' },
-	                this.props.categories.filter(function (category) {
-	                  return category.meta_category_id === 4;
-	                }).map(function (category) {
-	                  return _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { key: category.id, to: '/' + category.name },
-	                    _react2.default.createElement(
-	                      'div',
-	                      { className: 'dropDownItem' },
-	                      category.name
-	                    )
-	                  );
-	                })
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
 	              { className: 'navCategory', id: 'fabricAndWallpaperNav', onClick: this.toggleNavDrop },
 	              _react2.default.createElement(
 	                'div',
@@ -33572,7 +33541,7 @@
 	                _react2.default.createElement(
 	                  'h4',
 	                  null,
-	                  'FABRIC AND WALLPAPER'
+	                  'TEXTILES'
 	                ),
 	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
@@ -33580,7 +33549,7 @@
 	                'div',
 	                { className: 'dropdownMenu', id: 'fabricAndWallpaperDrop' },
 	                this.props.categories.filter(function (category) {
-	                  return category.meta_category_id === 5;
+	                  return category.meta_category_id === 4;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
 	                    _reactRouter.Link,
@@ -33603,7 +33572,7 @@
 	                _react2.default.createElement(
 	                  'h4',
 	                  null,
-	                  'GARDEN AND OUTDOOR'
+	                  'GARDEN & OUTDOOR'
 	                ),
 	                _react2.default.createElement('div', { className: 'arrow-down' })
 	              ),
@@ -33611,7 +33580,7 @@
 	                'div',
 	                { className: 'dropdownMenu', id: 'gardenAndOutdoorDrop' },
 	                this.props.categories.filter(function (category) {
-	                  return category.meta_category_id === 6;
+	                  return category.meta_category_id === 5;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
 	                    _reactRouter.Link,
@@ -33642,7 +33611,7 @@
 	                'div',
 	                { className: 'dropdownMenu', id: 'giftsDrop' },
 	                this.props.categories.filter(function (category) {
-	                  return category.meta_category_id === 7;
+	                  return category.meta_category_id === 6;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
 	                    _reactRouter.Link,

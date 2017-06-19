@@ -4,14 +4,10 @@ const db = require('APP/db');
 const Product = db.define('products', {
 
 	sku: {
-		type: Sequelize.BIGINT,
+		type: Sequelize.STRING,
 		allowNull: false,
 		unique: true,
-		primaryKey: true,
-		validate: {
-			min: 1000000000,
-			max: 9999999999
-		}
+		primaryKey: true
 	},
 
 	quantity: {

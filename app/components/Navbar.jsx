@@ -179,12 +179,12 @@ class Navigbar extends React.Component {
                   }
               </div>
             </div>
-            <div className="navCategory" id="beddingNav" onClick={this.toggleNavDrop}>
+            <div className="navCategory" id="fabricAndWallpaperNav" onClick={this.toggleNavDrop}>
               <div className="navLink">
-                <h4>BEDDING</h4>
+                <h4>TEXTILES</h4>
                 <div className="arrow-down"></div>
               </div>
-              <div className="dropdownMenu" id="beddingDrop">
+              <div className="dropdownMenu" id="fabricAndWallpaperDrop">
                 {this.props.categories.filter((category) => {
                     return category.meta_category_id === 4
                   }).map(category => (
@@ -193,28 +193,14 @@ class Navigbar extends React.Component {
                   }
               </div>
             </div>
-            <div className="navCategory" id="fabricAndWallpaperNav" onClick={this.toggleNavDrop}>
-              <div className="navLink">
-                <h4>FABRIC AND WALLPAPER</h4>
-                <div className="arrow-down"></div>
-              </div>
-              <div className="dropdownMenu" id="fabricAndWallpaperDrop">
-                {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 5
-                  }).map(category => (
-                    <Link key={category.id} to={`/${category.name}`}><div className="dropDownItem">{ category.name }</div></Link>
-                  ))
-                  }
-              </div>
-            </div>
             <div className="navCategory" id="gardenAndOutdoorNav" onClick={this.toggleNavDrop}>
               <div className="navLink">
-                <h4>GARDEN AND OUTDOOR</h4>
+                <h4>GARDEN & OUTDOOR</h4>
                 <div className="arrow-down"></div>
               </div>
               <div className="dropdownMenu" id="gardenAndOutdoorDrop">
                 {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 6
+                    return category.meta_category_id === 5
                   }).map(category => (
                     <Link key={category.id} to={`/${category.name}`}><div className="dropDownItem">{ category.name }</div></Link>
                   ))
@@ -228,7 +214,7 @@ class Navigbar extends React.Component {
               </div>
               <div className="dropdownMenu" id="giftsDrop">
                 {this.props.categories.filter((category) => {
-                    return category.meta_category_id === 7
+                    return category.meta_category_id === 6
                   }).map(category => (
                     <Link key={category.id} to={`/${category.name}`}><div className="dropDownItem">{ category.name }</div></Link>
                   ))

@@ -5,96 +5,91 @@ const categoriesToSeed = [
   {name: 'Furniture'}, // meta_category_id: 1
   {name: 'Lighting'}, // meta_category_id: 2
   {name: 'Decor'}, // meta_category_id: 3
-  {name: 'Bedding'}, // meta_category_id: 4
-  {name: 'Fabric and Wallpaper'}, // meta_category_id: 5
-  {name: 'Garden and Outdoor'}, // meta_category_id: 6
-  {name: 'Gifts'}, // meta_category_id: 7
-  {name: 'Seating', meta_category_id: 1}, // category_id: 8
-  {name: 'Ottomans and Stools', meta_category_id: 1}, // category_id: 9
-  {name: 'Tables', meta_category_id: 1}, // category_id: 10
-  {name: 'Storage', meta_category_id: 1}, // category_id: 11
-  {name: 'Sofas', meta_category_id: 1}, // category_id: 12
-  {name: 'Mirrors', meta_category_id: 1}, // category_id: 13
-  {name: 'Beds', meta_category_id: 1}, // category_id: 14
-  {name: 'Chandeliers and Flush Mounts', meta_category_id: 2}, // category_id: 15
-  {name: 'Floor Lamps', meta_category_id: 2}, // category_id: 16
-  {name: 'Sconses', meta_category_id: 2}, // category_id: 17
-  {name: 'Table Lamps', meta_category_id: 2}, // category_id: 18
-  {name: 'Accents', meta_category_id: 3}, // category_id: 19
-  {name: 'Sculpture', meta_category_id: 3}, // category_id: 20
-  {name: 'Trays and Vases', meta_category_id: 3}, // category_id: 21
-  {name: 'Boxes', meta_category_id: 3}, // category_id: 22
-  {name: 'Pillows and Throws', meta_category_id: 3}, // category_id: 23
-  {name: "Catchall and Bowls", meta_category_id: 3}, // category_id: 24
-  {name: "Fragrance", meta_category_id: 3}, // category_id: 25
-  {name: "Tabletop", meta_category_id: 3}, // category_id: 26
-  {name: "Art", meta_category_id: 3}, // category_id: 27
-  {name: "Rugs", meta_category_id: 3}, // category_id: 28
-  {name: "Pet Accesories", meta_category_id: 3}, // category_id: 29
-  {name: "Superluxe", meta_category_id: 3}, // category_id: 30
-  {name: "Games and Sport", meta_category_id: 3}, // category_id: 31
-  {name: "Desk and Stationary", meta_category_id: 3}, // category_id: 32
-  {name: "Pillows and Shams", meta_category_id: 4}, // category_id: 33
-  {name: "Coverlets", meta_category_id: 4}, // category_id: 34
-  {name: "Throws", meta_category_id: 4}, // category_id: 35
-  {name: "Wallpaper", meta_category_id: 5}, // category_id: 36
-  {name: "Indoor and Outdoor", meta_category_id: 5}, // category_id: 37
-  {name: "Leather and Hides", meta_category_id: 5}, // category_id: 38
-  {name: "Pillows and Shams", meta_category_id: 5}, // category_id: 39
-  {name: "Outdoor Pillows", meta_category_id: 5}, // category_id: 40
-  {name: "Outdoor Furniture", meta_category_id: 6}, // category_id: 41
-  {name: "Outdoor Pillows", meta_category_id: 6}, // category_id: 42
-  {name: "Outdoor Decor", meta_category_id: 6}, // category_id: 43
-  {name: "Pet Accesories", meta_category_id: 7}, // category_id: 44
-  {name: "Fragrances", meta_category_id: 7}, // category_id: 45
-  {name: "Books", meta_category_id: 7}, // category_id: 46
-  {name: "Keychains", meta_category_id: 7}, // category_id: 47
-  {name: "Desk and Stationary", meta_category_id: 7}, // category_id: 48
-  {name: "For Him", meta_category_id: 7}, // category_id: 49
-  {name: "For Her", meta_category_id: 7}, // category_id: 50
-  {name: "Toys and Games", meta_category_id: 7} // category_id: 51
+  {name: 'Textiles'}, // meta_category_id: 4
+  {name: 'Garden & Outdoor'}, // meta_category_id: 5
+  {name: 'Gifts'}, // meta_category_id: 6
+  {name: 'Seating', meta_category_id: 1}, // category_id: 7
+  {name: 'Ottomans & Stools', meta_category_id: 1}, // category_id: 8
+  {name: 'Tables', meta_category_id: 1}, // category_id: 9
+  {name: 'Storage', meta_category_id: 1}, // category_id: 10
+  {name: 'Sofas', meta_category_id: 1}, // category_id: 11
+  {name: 'Mirrors', meta_category_id: 1}, // category_id: 12
+  {name: 'Beds', meta_category_id: 1}, // category_id: 13
+  {name: 'Dressers & Nightstands', meta_category_id: 1}, // category_id: 14
+  {name: 'Office', meta_category_id: 1}, // category_id: 15
+  {name: 'Chandeliers', meta_category_id: 2}, // category_id: 16
+  {name: 'Floor Lamps', meta_category_id: 2}, // category_id: 17
+  {name: 'Sconses', meta_category_id: 2}, // category_id: 18
+  {name: 'Table Lamps', meta_category_id: 2}, // category_id: 19
+  {name: 'Pendant', meta_category_id: 2}, // category_id: 20
+  {name: 'Flush Mounts', meta_category_id: 2}, // category_id: 21
+  {name: 'Tabletop', meta_category_id: 3}, // category_id: 22
+  {name: "Sculpture", meta_category_id: 3}, // category_id: 23
+  {name: "Trays & Vases", meta_category_id: 3}, // category_id: 24
+  {name: "Boxes", meta_category_id: 3}, // category_id: 25
+  {name: "Pillows & Throws", meta_category_id: 3}, // category_id: 26
+  {name: "Catchall & Bowls", meta_category_id: 3}, // category_id: 27
+  {name: "Artwork", meta_category_id: 3}, // category_id: 28
+  {name: "Rugs", meta_category_id: 3}, // category_id: 29
+  {name: "Bath", meta_category_id: 3}, // category_id: 30
+  {name: "Accent", meta_category_id: 3}, // category_id: 31
+  {name: "Children", meta_category_id: 3}, // category_id: 32
+  {name: "Wallpaper", meta_category_id: 4}, // category_id: 33
+  {name: "Antique Textiles", meta_category_id: 4}, // category_id: 34
+  {name: "Leather & Hides", meta_category_id: 4}, // category_id: 35
+  {name: "Quilts & Coverlets", meta_category_id: 4}, // category_id: 36
+  {name: "Outdoor Furniture", meta_category_id: 5}, // category_id: 37
+  {name: "Outdoor Decor", meta_category_id: 5}, // category_id: 38
+  {name: "Pet Accessories", meta_category_id: 6}, // category_id: 39
+  {name: "Books", meta_category_id: 6}, // category_id: 40
+  {name: "Keychains", meta_category_id: 6}, // category_id: 41
+  {name: "Desk & Stationary", meta_category_id: 6}, // category_id: 42
+  {name: "For Him", meta_category_id: 6}, // category_id: 43
+  {name: "For Her", meta_category_id: 6}, // category_id: 44
+  {name: "Toys & Games", meta_category_id: 6}, // category_id: 45
+  {name: "Jewlery", meta_category_id: 6} // category_id: 46
 ];
 
 const productsToSeed = [
-  {sku: 1700800001, quantity: 1, name: 'Chair', imageUrl: ['/images/chair1.jpeg','/images/chair2.jpeg','/images/chair3.jpeg'], price: 100, description: 'A simple chair', isVisible: 'visible'},
-  {sku: 1700900002, quantity: 1, name: 'Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A simple stool'},
-  {sku: 1701100003, quantity: 1, name: 'Trunk', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A storage trunk'},
-  {sku: 1701300004, quantity: 1, name: 'Tall Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A tall mirror'},
-  {sku: 1701500005, quantity: 1, name: 'Chandelier', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A pretty chandelier'},
-  {sku: 1701700006, quantity: 1, name: 'Sconse', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A sconse'},
-  {sku: 1700800007, quantity: 1, name: 'EZBOY Chair', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A simple recliner'},
-  {sku: 1700900008, quantity: 1, name: 'Poof Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A poofy ottoman'},
-  {sku: 1700900009, quantity: 1, name: 'Tall Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A tall stool'},
-  {sku: 1701300010, quantity: 1, name: 'Wide Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A wide mirror'},
-  {sku: 1701300011, quantity: 1, name: 'Hand Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A mirror you can hold'},
-  {sku: 1701400012, quantity: 1, name: 'Bed', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A sturdy bed'},
-  {sku: 1701800013, quantity: 1, name: 'Table Lamp', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A table lamp'},
-  {sku: 1700900014, quantity: 1, name: 'Wide Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A wide ottoman'},
-  {sku: 1700900015, quantity: 1, name: 'Beanbag', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'The beaniest of bags'},
-  {sku: 1700900016, quantity: 1, name: 'Storage Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A storage ottoman'},
-  {sku: 1700900017, quantity: 1, name: 'Short Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A short stool'},
+  {sku: 'FUR-SEAT-00001', quantity: 1, name: 'Chair', imageUrl: ['/images/chair1.jpeg','/images/chair2.jpeg','/images/chair3.jpeg'], price: 100, description: 'A simple chair', isVisible: 'visible'},
+  {sku: 'FUR-OTTO-00001', quantity: 1, name: 'Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A simple stool'},
+  {sku: 'FUR-STRG-00001', quantity: 1, name: 'Trunk', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A storage trunk'},
+  {sku: 'FUR-MIRR-00001', quantity: 1, name: 'Tall Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A tall mirror'},
+  {sku: 'LIG-CHAN-00001', quantity: 1, name: 'Chandelier', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A pretty chandelier'},
+  {sku: 'LIG-SCON-00001', quantity: 1, name: 'Sconse', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A sconse'},
+  {sku: 'FUR-SEAT-00003', quantity: 1, name: 'EZBOY Chair', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A simple recliner'},
+  {sku: 'FUR-OTTO-00002', quantity: 1, name: 'Poof Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A poofy ottoman'},
+  {sku: 'FUR-OTTO-00003', quantity: 1, name: 'Tall Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A tall stool'},
+  {sku: 'FUR-MIRR-00002', quantity: 1, name: 'Wide Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A wide mirror'},
+  {sku: 'FUR-MIRR-00003', quantity: 1, name: 'Hand Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A mirror you can hold'},
+  {sku: 'FUR-BEDS-00001', quantity: 1, name: 'Bed', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A sturdy bed'},
+  {sku: 'LIG-TLAM-00001', quantity: 1, name: 'Table Lamp', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A table lamp'},
+  {sku: 'FUR-OTTO-00004', quantity: 1, name: 'Wide Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A wide ottoman'},
+  {sku: 'FUR-OTTO-00005', quantity: 1, name: 'Beanbag', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'The beaniest of bags'},
+  {sku: 'FUR-OTTO-00006', quantity: 1, name: 'Storage Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A storage ottoman'},
+  {sku: 'FUR-OTTO-00007', quantity: 1, name: 'Short Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A short stool'},
 ];
 
 
 
 const categoryProductsToSeed = [
-  {product_sku: 1700800001, category_id: 8},
-  {product_sku: 1700900002, category_id: 9},
-  {product_sku: 1701100003, category_id: 11},
-  {product_sku: 1701300004, category_id: 13},
-  {product_sku: 1701500005, category_id: 15},
-  {product_sku: 1701700006, category_id: 17},
-  {product_sku: 1700800007, category_id: 8},
-  {product_sku: 1700900008, category_id: 9},
-  {product_sku: 1700900009, category_id: 9},
-  {product_sku: 1701300010, category_id: 13},
-  {product_sku: 1701300011, category_id: 13},
-  {product_sku: 1701400012, category_id: 14},
-  {product_sku: 1701800013, category_id: 18},
-  {product_sku: 1700900014, category_id: 9},
-  {product_sku: 1700900015, category_id: 9},
-  {product_sku: 1700900016, category_id: 9},
-  {product_sku: 1700900017, category_id: 9}
+  {product_sku: 'FUR-SEAT-00001', category_id: 7},
+  {product_sku: 'FUR-SEAT-00002', category_id: 8},
+  {product_sku: 'FUR-STRG-00001', category_id: 10},
+  {product_sku: 'FUR-MIRR-00001', category_id: 12},
+  {product_sku: 'LIG-CHAN-00001', category_id: 16},
+  {product_sku: 'LIG-SCON-00001', category_id: 18},
+  {product_sku: 'FUR-SEAT-00003', category_id: 7},
+  {product_sku: 'FUR-OTTO-00001', category_id: 8},
+  {product_sku: 'FUR-OTTO-00002', category_id: 8},
+  {product_sku: 'FUR-MIRR-00002', category_id: 12},
+  {product_sku: 'FUR-MIRR-00003', category_id: 12},
+  {product_sku: 'FUR-BEDS-00001', category_id: 13},
+  {product_sku: 'LIG-TLAM-00001', category_id: 19},
+  {product_sku: 'FUR-OTTO-00003', category_id: 8},
+  {product_sku: 'FUR-OTTO-00004', category_id: 8},
+  {product_sku: 'FUR-OTTO-00005', category_id: 8},
+  {product_sku: 'FUR-OTTO-00006', category_id: 8}
 ];
 
 const usersToSeed = [
