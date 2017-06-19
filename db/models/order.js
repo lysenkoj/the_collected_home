@@ -1,7 +1,7 @@
 'use strict'
 const axios  = require('axios')
 
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 

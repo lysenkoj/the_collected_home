@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt-nodejs');
-const db = require('APP/db')
+const bcrypt = require('bcrypt');
+const db = require('APP/db');
 
 const categoriesToSeed = [
   {name: 'Furniture'}, // meta_category_id: 1
@@ -163,5 +163,5 @@ db.didSync
   .then(orderItems => console.log(`Seeded ${orderItems.length} orderItems OK`))
   .then(seedClients)
   .then(clients => console.log(`Seeded ${clients.length} clients OK`))
-  .catch(error => console.error(error))
+  .catch(error => console.error(error + "   HELLO!!!!"))
   .finally(() => db.close())

@@ -33312,7 +33312,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'navContainer', inverse: true, collapseOnSelect: true, style: this.props.user && this.props.user.isAdmin ? { backgroundColor: "maroon" } : { backgroundColor: "white" } },
+	        { className: 'navContainer', style: this.props.user && this.props.user.isAdmin ? { backgroundColor: "maroon" } : { backgroundColor: "white" } },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'topNav' },

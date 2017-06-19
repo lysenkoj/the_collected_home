@@ -74,7 +74,7 @@ class Navigbar extends React.Component {
 
   render(){
     return (
-      <div className="navContainer" inverse collapseOnSelect style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
+      <div className="navContainer" style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
         <div className="topNav">
           <Search />
           <Link to="/" className="mainLogo">
