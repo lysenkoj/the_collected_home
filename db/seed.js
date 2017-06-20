@@ -57,7 +57,7 @@ const productsToSeed = [
   {sku: 'FUR-MIRR-00001', quantity: 1, name: 'Tall Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A tall mirror'},
   {sku: 'LIG-CHAN-00001', quantity: 1, name: 'Chandelier', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A pretty chandelier'},
   {sku: 'LIG-SCON-00001', quantity: 1, name: 'Sconse', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A sconse'},
-  {sku: 'FUR-SEAT-00003', quantity: 1, name: 'EZBOY Chair', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A simple recliner'},
+  {sku: 'FUR-SEAT-00002', quantity: 1, name: 'EZBOY Chair', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A simple recliner'},
   {sku: 'FUR-OTTO-00002', quantity: 1, name: 'Poof Ottoman', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A poofy ottoman'},
   {sku: 'FUR-OTTO-00003', quantity: 1, name: 'Tall Stool', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, description: 'A tall stool'},
   {sku: 'FUR-MIRR-00002', quantity: 1, name: 'Wide Mirror', imageUrl: ['/images/Image-Coming-Soon-Placeholder.png'], price: 100, featured: true, description: 'A wide mirror'},
@@ -74,22 +74,22 @@ const productsToSeed = [
 
 const categoryProductsToSeed = [
   {product_sku: 'FUR-SEAT-00001', category_id: 7},
-  {product_sku: 'FUR-SEAT-00002', category_id: 8},
+  {product_sku: 'FUR-OTTO-00001', category_id: 8},
   {product_sku: 'FUR-STRG-00001', category_id: 10},
   {product_sku: 'FUR-MIRR-00001', category_id: 12},
   {product_sku: 'LIG-CHAN-00001', category_id: 16},
   {product_sku: 'LIG-SCON-00001', category_id: 18},
-  {product_sku: 'FUR-SEAT-00003', category_id: 7},
-  {product_sku: 'FUR-OTTO-00001', category_id: 8},
+  {product_sku: 'FUR-SEAT-00002', category_id: 7},
   {product_sku: 'FUR-OTTO-00002', category_id: 8},
+  {product_sku: 'FUR-OTTO-00003', category_id: 8},
   {product_sku: 'FUR-MIRR-00002', category_id: 12},
   {product_sku: 'FUR-MIRR-00003', category_id: 12},
   {product_sku: 'FUR-BEDS-00001', category_id: 13},
   {product_sku: 'LIG-TLAM-00001', category_id: 19},
-  {product_sku: 'FUR-OTTO-00003', category_id: 8},
   {product_sku: 'FUR-OTTO-00004', category_id: 8},
   {product_sku: 'FUR-OTTO-00005', category_id: 8},
-  {product_sku: 'FUR-OTTO-00006', category_id: 8}
+  {product_sku: 'FUR-OTTO-00006', category_id: 8},
+  {product_sku: 'FUR-OTTO-00007', category_id: 8}
 ];
 
 const usersToSeed = [
