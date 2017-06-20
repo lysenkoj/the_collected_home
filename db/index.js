@@ -7,14 +7,12 @@ const app = require('APP')
 const name = (process.env.DATABASE_NAME || app.name) +
   (app.isTesting ? '_test' : '')
 
-const url = process.env.DATABASE_URL || `neuromancer://localhost:5432/${name}`
+const url = process.env.DATABASE_URL || `postgres://localhost:5432/${name}`
 
 console.log(chalk.yellow(`Opening database connection to ${url}`));
 
 // create the database instance
-const db = module.exports = new Sequelize(url, 'neuromancer', 'process.env.DATABASEPW',  {
-  host: 'localhost',
-  dialect: 'postgres',
+const db = module.exports = new Sequelize(url, {
   logging: debug, // export DEBUG=sql in the environment to get SQL queries
   native: false,   // lets Sequelize know we can use pg-native for ~30% more speed
   define: {
