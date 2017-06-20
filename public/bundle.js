@@ -37259,6 +37259,7 @@
 	process.env["GOOGLE_CONSUMER_SECRET"] = "UeTl6ilEHl7J4p3ZwRGA2dqi";
 	process.env["STRIPE_PUBLISHABLE_KEY"] = "pk_test_KojVuT54tRytAjzXcGAFdIq7";
 	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
+	process.env["DATABASEPW"] = 'NewYork13';
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
