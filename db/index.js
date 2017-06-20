@@ -12,7 +12,7 @@ const url = process.env.DATABASE_URL || `postgres://localhost:5432/${name}`
 console.log(chalk.yellow(`Opening database connection to ${url}`));
 
 // create the database instance
-const db = module.exports = new Sequelize(url, 'neuromancer', 'NewYork13',  {
+const db = module.exports = new Sequelize(url, 'neuromancer', 'process.env.DATABASEPW',  {
   host: 'localhost',
   dialect: 'postgres',
   logging: debug, // export DEBUG=sql in the environment to get SQL queries
