@@ -7,6 +7,7 @@ export default class SplashPage extends Component {
     super()
 
     this.countdown = this.countdown.bind(this);
+    this.revealLogin = this.revealLogin.bind(this);
   }
 
   countdown(){
@@ -40,12 +41,31 @@ export default class SplashPage extends Component {
     return this.countdown();
   }
 
+  revealLogin(){
+    const logIn = document.querySelector('div#secretLogInContainer');
+
+    (logIn.style.display === 'flex') ? logIn.style.display = 'none' : logIn.style.display = 'flex';
+  }
+
   render() {
     return (
       <div className="splashContainer">
-        <div className='splashLogoContainer'>
+        <button className='splashLogoContainer' onClick={this.revealLogin}>
           <div>CLARICE KING</div>
           <div id="tagline">The Collected Home</div>
+        </button>
+        <div id='secretLogInContainer'>
+          <form>
+          <div>
+            <h5>EMAIL</h5>
+            <input name="email" type="email" size="20" placeholder='Email' />
+          </div>
+          <div>
+            <h5>PASSWORD</h5>
+            <input name="password" type="password" size="20" placeholder='Password' />
+          </div>
+          <button>LOG IN</button>
+          </form>
         </div>
         <div id="spacerTop"/>
         <h1 className='splashTitle'>WE ARE COMING SOON</h1>

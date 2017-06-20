@@ -33090,35 +33090,7 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(
-	      _reactRouter.Route,
-	      { path: '/', component: _Root2.default, onEnter: _enterHooks.loadCategories },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/testimonials', component: _Testimonials2.default }),
-	      _react2.default.createElement(
-	        _reactRouter.Route,
-	        { path: '/checkout', component: _Checkout2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
-	      ),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
-	    )
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default })
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
@@ -37915,6 +37887,7 @@
 	    var _this = _possibleConstructorReturn(this, (SplashPage.__proto__ || Object.getPrototypeOf(SplashPage)).call(this));
 	
 	    _this.countdown = _this.countdown.bind(_this);
+	    _this.revealLogin = _this.revealLogin.bind(_this);
 	    return _this;
 	  }
 	
@@ -37952,14 +37925,21 @@
 	      return this.countdown();
 	    }
 	  }, {
+	    key: 'revealLogin',
+	    value: function revealLogin() {
+	      var logIn = document.querySelector('div#secretLogInContainer');
+	
+	      logIn.style.display === 'flex' ? logIn.style.display = 'none' : logIn.style.display = 'flex';
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'splashContainer' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'splashLogoContainer' },
+	          'button',
+	          { className: 'splashLogoContainer', onClick: this.revealLogin },
 	          _react2.default.createElement(
 	            'div',
 	            null,
@@ -37969,6 +37949,39 @@
 	            'div',
 	            { id: 'tagline' },
 	            'The Collected Home'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'secretLogInContainer' },
+	          _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'EMAIL'
+	              ),
+	              _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', placeholder: 'Email' })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'PASSWORD'
+	              ),
+	              _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password' })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              null,
+	              'LOG IN'
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('div', { id: 'spacerTop' }),

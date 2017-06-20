@@ -1,14 +1,13 @@
-.splashContainer{
+.splashContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(13deg, rgb(108, 140, 110) 0%, rgb(132, 139, 195) 45%, rgb(196, 117, 85) 100%);
-}
+  background: linear-gradient(13deg, #6c8c6e 0%, #848bc3 45%, #c47555 100%); }
 
-.splashLogoContainer{
-  display:flex;
+.splashLogoContainer {
+  display: flex;
   width: 33vw;
   flex-direction: column;
   align-items: center;
@@ -20,97 +19,78 @@
   margin-top: 70px;
   background-color: transparent;
   border: none;
-  cursor: default;
+  cursor: default; }
+  .splashLogoContainer #tagline {
+    font-size: 1.5em; }
 
-  #tagline{
-    font-size: 1.5em;
-  }
+.splashLogoContainer:focus {
+  outline: none; }
 
-}
-
-.splashLogoContainer:focus{
-  outline: none;
-}
-
-#secretLogInContainer{
+#secretLogInContainer {
   display: none;
   align-items: center;
   justify-content: center;
   background-color: white;
   border: 2px solid black;
   height: 100px;
-  width: 500px;
-
-  form{
+  width: 500px; }
+  #secretLogInContainer form {
     display: flex;
     width: 100%;
     justify-content: space-around;
-    align-items: center;
-  }
-
-  button{
+    align-items: center; }
+  #secretLogInContainer button {
     background-color: black;
     height: 40px;
     border: none;
-    color: white;
-  }
-}
+    color: white; }
 
-#spacerTop{
+#spacerTop {
   width: 5vw;
   border-bottom: 2px solid white;
-  margin-top: 20px;
-}
+  margin-top: 20px; }
 
-.splashTitle{
+.splashTitle {
   color: white;
   font-size: 3em;
   margin-top: 50px;
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
-.countdownContainer{
+.countdownContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 75%;
   height: 155px;
   margin-top: 50px;
-  margin-bottom:20px;
-}
+  margin-bottom: 20px; }
 
-.spashCountdown{
+.spashCountdown {
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   width: 23%;
-  height: 100%;
-
-  h1{
+  height: 100%; }
+  .spashCountdown h1 {
     color: white;
     margin-top: 0;
     font-size: 8em;
-    text-align: center;
-  }
-
-  h4{
+    text-align: center; }
+  .spashCountdown h4 {
     color: white;
     margin-bottom: 0;
     text-align: center;
-    font-family: 'crimson_textroman';
-  }
-}
+    font-family: 'crimson_textroman'; }
 
-.splashSubscribeContainer{
+.splashSubscribeContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100px;
-  margin-top: 25px;
-
-  #splashInput{
+  margin-top: 25px; }
+  .splashSubscribeContainer #splashInput {
     width: 50vw;
     height: 40px;
     margin-top: 39px;
@@ -120,42 +100,28 @@
     border-left: none;
     border-top: none;
     border-bottom: 2px solid white;
-    align-self: center;
-  }
-
-  #splashInput::placeholder{
-    color: white;
-  }
-
-  #splashInput:focus{
-    outline: none;
-  }
-
-  .arrow-right {
+    align-self: center; }
+  .splashSubscribeContainer #splashInput::placeholder {
+    color: white; }
+  .splashSubscribeContainer #splashInput:focus {
+    outline: none; }
+  .splashSubscribeContainer .arrow-right {
     margin-left: 3px;
     width: 0;
     height: 0;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-left: 5px solid white;
-  }
-
-  h3{
+    border-left: 5px solid white; }
+  .splashSubscribeContainer h3 {
     margin: 0;
-    color: white;
-  }
-}
+    color: white; }
 
-.splashSocial{
+.splashSocial {
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 35vw;
-  margin-top: 20px;
-
-  img{
+  margin-top: 20px; }
+  .splashSocial img {
     width: 35px;
-    height: 35px;
-  }
-
-}
+    height: 35px; }

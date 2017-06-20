@@ -2368,9 +2368,34 @@ h6 {
   font-size: 1.3em;
   letter-spacing: 2px;
   color: white;
-  margin-top: 70px; }
+  margin-top: 70px;
+  background-color: transparent;
+  border: none;
+  cursor: default; }
   .splashLogoContainer #tagline {
     font-size: 1.5em; }
+
+.splashLogoContainer:focus {
+  outline: none; }
+
+#secretLogInContainer {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 2px solid black;
+  height: 100px;
+  width: 500px; }
+  #secretLogInContainer form {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center; }
+  #secretLogInContainer button {
+    background-color: black;
+    height: 40px;
+    border: none;
+    color: white; }
 
 #spacerTop {
   width: 5vw;
