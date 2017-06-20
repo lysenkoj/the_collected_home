@@ -12,7 +12,8 @@ const url = process.env.DATABASE_URL || `postgres://localhost:5432/${name}`
 console.log(chalk.yellow(`Opening database connection to ${url}`));
 
 // create the database instance
-const db = module.exports = new Sequelize(url, 'neuromancer', process.env.DATABASEPW,  {
+const db = module.exports = new Sequelize(url, 'neuromancer', 'NewYork13',  {
+  host: 'localhost',
   dialect: 'postgres',
   logging: debug, // export DEBUG=sql in the environment to get SQL queries
   native: false,   // lets Sequelize know we can use pg-native for ~30% more speed
