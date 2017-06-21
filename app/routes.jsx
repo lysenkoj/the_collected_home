@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute} from 'react-router-dom';
 
 /* -----------------    COMPONENTS     ------------------ */
 import Root from './components/Root';
@@ -37,7 +37,6 @@ import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onA
 
 export default () => (
 	<Router history={browserHistory}>
-    {/*WHEN DISPLAYING SPLASH PAGE DISABLE BODY PADDING IN SPLASH CSS*/}
     <Route path="/" component={SplashPage} />
     <Route path="/root" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import SplashPage from './SplashPage';
 
 
 export default class MainPage extends Component {
