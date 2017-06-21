@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router';
-
+import {Link} from 'react-router-dom';
+import { browserHistory } from 'react-router-dom';
 
 export default class SplashPage extends Component {
   constructor() {
     super()
+    this.state = {
+      user: null,
+      password: null
+    }
 
     this.countdown = this.countdown.bind(this);
     this.revealLogin = this.revealLogin.bind(this);
+    this.authenticate = this.authenticate.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.addPassword = this.addPassword.bind(this);
   }
 
   countdown(){
@@ -47,6 +54,32 @@ export default class SplashPage extends Component {
     (logIn.style.display === 'flex') ? logIn.style.display = 'none' : logIn.style.display = 'flex';
   }
 
+  authenticate(evt){
+    evt.preventDefault();
+    if(this.state.password === process.env.ADMIN_PW && this.state.user === 'admin'){
+      browserHistory.push('/root');
+    }
+  }
+
+  addUser(evt){
+    evt.preventDefault();
+    let user = evt.target.value;
+
+    this.setState((previousState) => {
+      previousState.user = user;
+      return previousState;
+    });
+  }
+
+  addPassword(evt){
+    evt.preventDefault();
+    let password = evt.target.value;
+    this.setState((previousState) => {
+      previousState.password = password;
+      return previousState;
+    });
+  }
+
   render() {
     return (
       <div className="splashContainer">
@@ -55,14 +88,14 @@ export default class SplashPage extends Component {
           <div id="tagline">The Collected Home</div>
         </button>
         <div id='secretLogInContainer'>
-          <form>
+          <form onSubmit={this.authenticate}>
           <div>
-            <h5>EMAIL</h5>
-            <input name="email" type="email" size="20" placeholder='Email' />
+            <h5>USER</h5>
+            <input name="user"  size="20" placeholder='Username' onChange={this.addUser}/>
           </div>
           <div>
             <h5>PASSWORD</h5>
-            <input name="password" type="password" size="20" placeholder='Password' />
+            <input name="password" type="password" size="20" placeholder='Password' onChange={this.addPassword}/>
           </div>
           <button>LOG IN</button>
           </form>

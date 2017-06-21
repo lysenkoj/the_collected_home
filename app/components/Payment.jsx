@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 require('APP/.env.js');
 
 

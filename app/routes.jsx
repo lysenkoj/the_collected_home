@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute} from 'react-router-dom';
 
 /* -----------------    COMPONENTS     ------------------ */
 import Root from './components/Root';
@@ -36,10 +36,9 @@ import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onA
 
 
 export default () => (
-	<Router history={browserHistory}>
-    {/*WHEN DISPLAYING SPLASH PAGE DISABLE BODY PADDING IN SPLASH CSS*/}
-    <Route path="/" component={SplashPage} />
-    {/*<Route path="/" component={Root} onEnter={loadCategories}>
+	<Router>
+    <Route path="/" component={SplashPage}/>
+    <Route path="/root" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/signup" component={Signup} />
       <Route path="/admin" component={Admin}/>
@@ -63,7 +62,7 @@ export default () => (
       <Route path="/search/:query" component={SelectedProducts} onEnter={loadQueriedProducts} />
       <Route path="/featured" component={SelectedProducts} onEnter={loadFeaturedProducts} onLeave={deloadCategoryProducts} />
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} onLeave={deloadCategoryProducts} />
-    </Route>*/}
+    </Route>
   </Router>
 );
     //    <Route path="/payment" component={Payment} />

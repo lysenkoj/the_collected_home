@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setShippingAddress } from '../reducers/shippingAddress';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 

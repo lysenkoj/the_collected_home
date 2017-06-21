@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from './Search';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { logout } from '../reducers/auth';
 import QuickCart from './QuickCart';
 import QuickLogin from './QuickLogin';
@@ -74,7 +74,7 @@ class Navigbar extends React.Component {
 
   render(){
     return (
-      <div className="navContainer" style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "white"}}>
+      <div className="navContainer">
         <div className="topNav">
           <Search />
           <Link to="/" className="mainLogo">
