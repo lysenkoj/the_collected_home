@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, IndexRoute} from 'react-router-dom';
+import { Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 /* -----------------    COMPONENTS     ------------------ */
 import Root from './components/Root';

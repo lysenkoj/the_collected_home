@@ -23826,7 +23826,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23902,7 +23902,7 @@
 	  return function (dispatch) {
 	    _axios2.default.get('/api/products/search/' + search).then(function (products) {
 	      dispatch(searchForProducts(products.data));
-	      _reactRouterDom.browserHistory.push('/search/' + search);
+	      _reactRouter.browserHistory.push('/search/' + search);
 	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
 	    });
@@ -31091,7 +31091,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31187,7 +31187,7 @@
 	      return _axios2.default.post('/api/category_products', categoryProduct);
 	    }).then(function () {
 	      dispatch(fetchAndGoToProduct(product.sku));
-	    }).then(_reactRouterDom.browserHistory.push('/product/' + product.sku)).catch(function (err) {
+	    }).then(_reactRouter.browserHistory.push('/product/' + product.sku)).catch(function (err) {
 	      return console.error('Fetching product failed', err);
 	    });
 	  };
@@ -31423,7 +31423,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31464,7 +31464,7 @@
 	  return function (dispatch) {
 	    return _axios2.default.post('/api/auth/local/login', { username: username, password: password }).then(function () {
 	      return dispatch(whoami());
-	    }).then(_reactRouterDom.browserHistory.push("/")).catch(function () {
+	    }).then(_reactRouter.browserHistory.push("/")).catch(function () {
 	      return dispatch(whoami());
 	    });
 	  };
@@ -31474,7 +31474,7 @@
 	  return function (dispatch) {
 	    return _axios2.default.post('/api/auth/logout').then(function () {
 	      return dispatch(whoami());
-	    }).then(_reactRouterDom.browserHistory.push('/')).catch(function () {
+	    }).then(_reactRouter.browserHistory.push('/')).catch(function () {
 	      return dispatch(whoami());
 	    });
 	  };
@@ -31573,7 +31573,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31691,7 +31691,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _cart = __webpack_require__(299);
 	
@@ -31753,7 +31753,7 @@
 	      }
 	
 	      dispatch(receiveCharge(charge.data));
-	    }).then(_reactRouterDom.browserHistory.push('/checkout/aftersubmit')).catch(function (err) {
+	    }).then(_reactRouter.browserHistory.push('/checkout/aftersubmit')).catch(function (err) {
 	      return console.error(err);
 	    });
 	  };
@@ -31775,7 +31775,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32985,69 +32985,69 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _Root = __webpack_require__(319);
 	
 	var _Root2 = _interopRequireDefault(_Root);
 	
-	var _Main = __webpack_require__(326);
+	var _Main = __webpack_require__(327);
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _CurrentProduct = __webpack_require__(328);
+	var _CurrentProduct = __webpack_require__(329);
 	
 	var _CurrentProduct2 = _interopRequireDefault(_CurrentProduct);
 	
-	var _SelectedProducts = __webpack_require__(331);
+	var _SelectedProducts = __webpack_require__(332);
 	
 	var _SelectedProducts2 = _interopRequireDefault(_SelectedProducts);
 	
-	var _Cart = __webpack_require__(332);
+	var _Cart = __webpack_require__(333);
 	
 	var _Cart2 = _interopRequireDefault(_Cart);
 	
-	var _Checkout = __webpack_require__(334);
+	var _Checkout = __webpack_require__(335);
 	
 	var _Checkout2 = _interopRequireDefault(_Checkout);
 	
-	var _Shipping = __webpack_require__(335);
+	var _Shipping = __webpack_require__(336);
 	
 	var _Shipping2 = _interopRequireDefault(_Shipping);
 	
-	var _Signup = __webpack_require__(336);
+	var _Signup = __webpack_require__(337);
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
 	
-	var _Orders = __webpack_require__(337);
+	var _Orders = __webpack_require__(338);
 	
 	var _Orders2 = _interopRequireDefault(_Orders);
 	
-	var _SelectedOrder = __webpack_require__(338);
+	var _SelectedOrder = __webpack_require__(339);
 	
 	var _SelectedOrder2 = _interopRequireDefault(_SelectedOrder);
 	
-	var _Admin = __webpack_require__(339);
+	var _Admin = __webpack_require__(340);
 	
 	var _Admin2 = _interopRequireDefault(_Admin);
 	
-	var _Payment = __webpack_require__(341);
+	var _Payment = __webpack_require__(342);
 	
 	var _Payment2 = _interopRequireDefault(_Payment);
 	
-	var _Confirmation = __webpack_require__(344);
+	var _Confirmation = __webpack_require__(345);
 	
 	var _Confirmation2 = _interopRequireDefault(_Confirmation);
 	
-	var _AfterOrderSubmit = __webpack_require__(345);
+	var _AfterOrderSubmit = __webpack_require__(346);
 	
 	var _AfterOrderSubmit2 = _interopRequireDefault(_AfterOrderSubmit);
 	
-	var _DesignServices = __webpack_require__(346);
+	var _DesignServices = __webpack_require__(347);
 	
 	var _DesignServices2 = _interopRequireDefault(_DesignServices);
 	
-	var _SplashPage = __webpack_require__(347);
+	var _SplashPage = __webpack_require__(326);
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
@@ -33088,37 +33088,37 @@
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
-	    _reactRouterDom.Router,
-	    { history: browserHistory },
-	    _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _SplashPage2.default }),
+	    _reactRouter.Router,
+	    { history: _reactRouter.browserHistory },
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default }),
 	    _react2.default.createElement(
-	      _reactRouterDom.Route,
+	      _reactRouter.Route,
 	      { path: '/root', component: _Root2.default, onEnter: _enterHooks.loadCategories },
-	      _react2.default.createElement(_reactRouterDom.IndexRoute, { component: _Main2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _Signup2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/admin', component: _Admin2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/design', component: _DesignServices2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', component: _Contact2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/press', component: _Press2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/story', component: _Story2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/faq', component: _FAQ2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/testimonials', component: _Testimonials2.default }),
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/testimonials', component: _Testimonials2.default }),
 	      _react2.default.createElement(
-	        _reactRouterDom.Route,
+	        _reactRouter.Route,
 	        { path: '/checkout', component: _Checkout2.default },
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/checkout/payment', component: _Payment2.default }),
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
 	      ),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
+	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
 	    )
 	  );
 	};
@@ -33155,7 +33155,7 @@
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _SplashPage = __webpack_require__(347);
+	var _SplashPage = __webpack_require__(326);
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
@@ -33222,7 +33222,7 @@
 	
 	var _Search2 = _interopRequireDefault(_Search);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _auth = __webpack_require__(300);
 	
@@ -33323,7 +33323,7 @@
 	          { className: 'topNav' },
 	          _react2.default.createElement(_Search2.default, null),
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/', className: 'mainLogo' },
 	            _react2.default.createElement(
 	              'div',
@@ -33403,7 +33403,7 @@
 	                  )
 	                ) : null,
 	                this.props.user ? _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { id: 'orderContainer', to: '/orders/' + (this.props.user && this.props.user.id) },
 	                  _react2.default.createElement(
 	                    'div',
@@ -33422,7 +33422,7 @@
 	                this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
 	              ),
 	              _react2.default.createElement(
-	                _reactRouterDom.Link,
+	                _reactRouter.Link,
 	                { to: '/admin' },
 	                _react2.default.createElement(
 	                  'div',
@@ -33464,7 +33464,7 @@
 	                  return category.meta_category_id === 1;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterDom.Link,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
 	                      'div',
@@ -33495,7 +33495,7 @@
 	                  return category.meta_category_id === 2;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterDom.Link,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
 	                      'div',
@@ -33526,7 +33526,7 @@
 	                  return category.meta_category_id === 3;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterDom.Link,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
 	                      'div',
@@ -33557,7 +33557,7 @@
 	                  return category.meta_category_id === 4;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterDom.Link,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
 	                      'div',
@@ -33588,7 +33588,7 @@
 	                  return category.meta_category_id === 5;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterDom.Link,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
 	                      'div',
@@ -33619,7 +33619,7 @@
 	                  return category.meta_category_id === 6;
 	                }).map(function (category) {
 	                  return _react2.default.createElement(
-	                    _reactRouterDom.Link,
+	                    _reactRouter.Link,
 	                    { key: category.id, to: '/' + category.name },
 	                    _react2.default.createElement(
 	                      'div',
@@ -33807,7 +33807,7 @@
 	
 	var _cart = __webpack_require__(299);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _QuickCartItem = __webpack_require__(323);
 	
@@ -33866,7 +33866,7 @@
 	          'div',
 	          { className: 'quickCartButtons' },
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/cart' },
 	            _react2.default.createElement(
 	              'button',
@@ -33875,7 +33875,7 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/checkout/shipping' },
 	            _react2.default.createElement(
 	              'button',
@@ -33936,7 +33936,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33992,7 +33992,7 @@
 	          'div',
 	          { className: 'quickCartItem' },
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/product/' + item.product.sku },
 	            _react2.default.createElement(
 	              'product',
@@ -34083,7 +34083,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34150,7 +34150,7 @@
 	      'div',
 	      { className: 'signUpContainer' },
 	      _react2.default.createElement(
-	        _reactRouterDom.Link,
+	        _reactRouter.Link,
 	        { to: '/signup' },
 	        _react2.default.createElement(
 	          'button',
@@ -34269,7 +34269,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34312,7 +34312,7 @@
 	                  'INTERIOR DESIGN'
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/design', id: 'portfolioLink' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34339,7 +34339,7 @@
 	                  'ABOUT US'
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/story' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34348,7 +34348,7 @@
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/press' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34357,7 +34357,7 @@
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/testimonials' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34375,7 +34375,7 @@
 	                  'HELP'
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/contact' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34384,7 +34384,7 @@
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/faq' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34393,7 +34393,7 @@
 	                  )
 	                ),
 	                _react2.default.createElement(
-	                  _reactRouterDom.Link,
+	                  _reactRouter.Link,
 	                  { to: '/shipping_info' },
 	                  _react2.default.createElement(
 	                    'h6',
@@ -34491,6 +34491,294 @@
 /* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SplashPage = function (_Component) {
+	  _inherits(SplashPage, _Component);
+	
+	  function SplashPage() {
+	    _classCallCheck(this, SplashPage);
+	
+	    var _this = _possibleConstructorReturn(this, (SplashPage.__proto__ || Object.getPrototypeOf(SplashPage)).call(this));
+	
+	    _this.state = {
+	      user: null,
+	      password: null
+	    };
+	
+	    _this.countdown = _this.countdown.bind(_this);
+	    _this.revealLogin = _this.revealLogin.bind(_this);
+	    _this.addUser = _this.addUser.bind(_this);
+	    _this.addPassword = _this.addPassword.bind(_this);
+	    _this.redirect = _this.redirect.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(SplashPage, [{
+	    key: 'countdown',
+	    value: function countdown() {
+	      var countDownDate = new Date("Aug 1, 2017 08:00:00").getTime();
+	      var x = setInterval(function () {
+	        var now = new Date().getTime();
+	        var distance = countDownDate - now;
+	        // Time calculations for days, hours, minutes and seconds
+	        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	        var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+	        var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+	        var seconds = Math.floor(distance % (1000 * 60) / 1000);
+	
+	        // Display the result in the element
+	        var elDays = document.getElementById("days");
+	        var elHours = document.getElementById("hours");
+	        var elMin = document.getElementById("minutes");
+	        var elSec = document.getElementById("seconds");
+	
+	        if (elDays && elHours && elMin && elSec) {
+	          elDays.innerHTML = days;
+	          elHours.innerHTML = hours;
+	          elMin.innerHTML = minutes;
+	          elSec.innerHTML = seconds;
+	        } else {
+	          clearInterval(x);
+	        }
+	
+	        // If the count down is finished, write some text
+	        if (distance < 0) {
+	          clearInterval(x);
+	          document.getElementById("demo").innerHTML = "EXPIRED";
+	        }
+	      }, 1000);
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var body = document.querySelector('body');
+	      body.style.paddingBottom = 0;
+	      return this.countdown();
+	    }
+	  }, {
+	    key: 'revealLogin',
+	    value: function revealLogin() {
+	      var logIn = document.querySelector('div#secretLogInContainer');
+	
+	      logIn.style.display === 'flex' ? logIn.style.display = 'none' : logIn.style.display = 'flex';
+	    }
+	  }, {
+	    key: 'addUser',
+	    value: function addUser(evt) {
+	      evt.preventDefault();
+	      var user = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.user = user;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addPassword',
+	    value: function addPassword(evt) {
+	      evt.preventDefault();
+	      var password = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.password = password;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'redirect',
+	    value: function redirect(evt) {
+	      evt.preventDefault();
+	      if (this.state.password === process.env.ADMIN_PW && this.state.user === 'admin') {
+	        _reactRouter.browserHistory.push('/root');
+	      } else {
+	        alert('PLEASE ENTER A VALID PASSWORD');
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'splashContainer' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'splashLogoContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'CLARICE KING'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'tagline' },
+	            'The Collected Home'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'secretLogInContainer' },
+	          _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.redirect },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'USER'
+	              ),
+	              _react2.default.createElement('input', { name: 'user', size: '20', placeholder: 'User', onChange: this.addUser })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'PASSWORD'
+	              ),
+	              _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password', onChange: this.addPassword })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              null,
+	              'LOG IN'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement('div', { id: 'spacerTop' }),
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'splashTitle' },
+	          'WE ARE COMING SOON'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'countdownContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'DAYS'
+	            ),
+	            _react2.default.createElement('h1', { id: 'days' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'HOURS'
+	            ),
+	            _react2.default.createElement('h1', { id: 'hours' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'MINUTES'
+	            ),
+	            _react2.default.createElement('h1', { id: 'minutes' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'spashCountdown' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'SECONDS'
+	            ),
+	            _react2.default.createElement('h1', { id: 'seconds' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'splashSubscribeContainer' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'BE THE FIRST TO KNOW'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', id: 'mc-embedded-subscribe-form', name: 'mc-embedded-subscribe-form', target: '_blank', noValidate: true, className: 'validate' },
+	            _react2.default.createElement('input', { id: 'splashInput', type: 'email', name: 'EMAIL', placeholder: 'email', required: true }),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'searchBtn', type: 'submit', name: 'subscribe' },
+	              _react2.default.createElement('div', { className: 'arrow-right' })
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'splashSocial' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'mailto:info@clariceking.com' },
+	            _react2.default.createElement('img', { src: 'images/email.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.instagram.com/claricekinghome/' },
+	            _react2.default.createElement('img', { src: 'images/instagram.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.facebook.com/ClariceKingHome/' },
+	            _react2.default.createElement('img', { src: 'images/facebook.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.pinterest.com/claricekinghome/' },
+	            _react2.default.createElement('img', { src: 'images/pinterest.png' })
+	          ),
+	          _react2.default.createElement(
+	            'a',
+	            { href: 'https://www.pinterest.com/claricekinghome/' },
+	            _react2.default.createElement('img', { src: 'images/twitter.png' })
+	          )
+	        ),
+	        _react2.default.createElement('div', { id: 'hiddenLogin', onClick: this.revealLogin })
+	      );
+	    }
+	  }]);
+	
+	  return SplashPage;
+	}(_react.Component);
+	
+	exports.default = SplashPage;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -34503,11 +34791,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _FeaturedLook = __webpack_require__(327);
+	var _FeaturedLook = __webpack_require__(328);
 	
 	var _FeaturedLook2 = _interopRequireDefault(_FeaturedLook);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34546,7 +34834,7 @@
 	          'div',
 	          { className: 'categoryFeatureContainer' },
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
@@ -34560,7 +34848,7 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/design', className: 'designLink' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
@@ -34578,7 +34866,7 @@
 	          'div',
 	          { className: 'categoryFeatureContainer', id: 'row3' },
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
@@ -34592,7 +34880,7 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
@@ -34606,7 +34894,7 @@
 	            )
 	          ),
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { to: '/Ottomans and Stools', className: 'categoryFeature' },
 	            _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	            _react2.default.createElement(
@@ -34630,7 +34918,7 @@
 	exports.default = Main;
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34645,7 +34933,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34672,7 +34960,7 @@
 	        'div',
 	        { className: 'featuredContainer' },
 	        _react2.default.createElement(
-	          _reactRouterDom.Link,
+	          _reactRouter.Link,
 	          { to: '/featured', className: 'featuredLink' },
 	          _react2.default.createElement('img', { className: 'featuredPhoto', src: 'images/featuredTemp.jpg' }),
 	          _react2.default.createElement(
@@ -34695,7 +34983,7 @@
 	exports.default = FeaturedLook;
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34712,13 +35000,13 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _Notification = __webpack_require__(329);
+	var _Notification = __webpack_require__(330);
 	
 	var _Notification2 = _interopRequireDefault(_Notification);
 	
 	var _cart = __webpack_require__(299);
 	
-	var _reactContenteditable = __webpack_require__(330);
+	var _reactContenteditable = __webpack_require__(331);
 	
 	var _reactContenteditable2 = _interopRequireDefault(_reactContenteditable);
 	
@@ -35025,7 +35313,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CurrentProduct);
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35040,7 +35328,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35071,7 +35359,7 @@
 						'Item added to cart!'
 					),
 					_react2.default.createElement(
-						_reactRouterDom.Link,
+						_reactRouter.Link,
 						{ to: '/cart' },
 						_react2.default.createElement(
 							'button',
@@ -35093,7 +35381,7 @@
 	// alert renders but fades out. Alert has link to cart.
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35195,7 +35483,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35212,7 +35500,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35243,7 +35531,7 @@
 	          'div',
 	          { className: 'categoryMap' },
 	          _react2.default.createElement(
-	            _reactRouterDom.Link,
+	            _reactRouter.Link,
 	            { className: 'mapItem', to: '/' },
 	            'HOME'
 	          ),
@@ -35266,7 +35554,7 @@
 	            { className: 'gallery' },
 	            this.props.selectedProducts && this.props.selectedProducts.length ? this.props.selectedProducts && this.props.selectedProducts.map(function (product) {
 	              return _react2.default.createElement(
-	                _reactRouterDom.Link,
+	                _reactRouter.Link,
 	                { to: 'product/' + product.sku, className: 'productThumbnail', key: product.sku },
 	                _react2.default.createElement('img', { className: 'imgThumb', src: product.img[0] }),
 	                _react2.default.createElement(
@@ -35313,7 +35601,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SelectedProducts);
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35330,9 +35618,9 @@
 	
 	var _cart = __webpack_require__(299);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
-	var _CartItem = __webpack_require__(333);
+	var _CartItem = __webpack_require__(334);
 	
 	var _CartItem2 = _interopRequireDefault(_CartItem);
 	
@@ -35381,7 +35669,7 @@
 	        }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 	      ),
 	      _react2.default.createElement(
-	        _reactRouterDom.Link,
+	        _reactRouter.Link,
 	        { to: '/checkout/shipping' },
 	        _react2.default.createElement(
 	          'button',
@@ -35425,7 +35713,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35440,7 +35728,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35482,7 +35770,7 @@
 	        'li',
 	        { className: 'cart-item' },
 	        _react2.default.createElement(
-	          _reactRouterDom.Link,
+	          _reactRouter.Link,
 	          { to: '/product/' + item.product.sku },
 	          _react2.default.createElement(
 	            'product',
@@ -35564,7 +35852,7 @@
 	exports.default = CartItem;
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35649,7 +35937,7 @@
 	exports.default = (0, _reactRedux.connect)(mapProps, null)(Cart);
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35668,7 +35956,7 @@
 	
 	var _shippingAddress = __webpack_require__(303);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -35813,7 +36101,7 @@
 			value: function submitAddress(evt) {
 				evt.preventDefault();
 				this.props.updateAddress(this.state);
-				_reactRouterDom.browserHistory.push('/checkout/payment');
+				_reactRouter.browserHistory.push('/checkout/payment');
 			}
 		}, {
 			key: 'render',
@@ -35841,7 +36129,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Shipping);
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35965,7 +36253,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Signup);
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35980,7 +36268,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36024,7 +36312,7 @@
 	              order.status
 	            ),
 	            _react2.default.createElement(
-	              _reactRouterDom.Link,
+	              _reactRouter.Link,
 	              { to: '/order/' + order.orderNumber },
 	              _react2.default.createElement(
 	                'button',
@@ -36054,7 +36342,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(Orders);
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36069,7 +36357,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36208,7 +36496,7 @@
 	              item.quantity
 	            ),
 	            _react2.default.createElement(
-	              _reactRouterDom.Link,
+	              _reactRouter.Link,
 	              { to: '/product/' + item.product_sku },
 	              _react2.default.createElement(
 	                'button',
@@ -36251,7 +36539,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(SelectedOrder);
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36268,13 +36556,13 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _categories = __webpack_require__(298);
 	
 	var _currentProduct = __webpack_require__(297);
 	
-	var _imageUpload = __webpack_require__(340);
+	var _imageUpload = __webpack_require__(341);
 	
 	var _imageUpload2 = _interopRequireDefault(_imageUpload);
 	
@@ -36822,7 +37110,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Admin);
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36941,7 +37229,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(ImageUpload);
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -36956,9 +37244,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactScriptLoader = __webpack_require__(342);
+	var _reactScriptLoader = __webpack_require__(343);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -36968,7 +37256,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(343);
+	__webpack_require__(344);
 	
 	/* -----------------     COMPONENT     ------------------ */
 	
@@ -37031,7 +37319,7 @@
 	      } else {
 	        console.log('STRIPE RESPONSE: ', response);
 	        var token = response.id;
-	        _reactRouterDom.browserHistory.push('/checkout/confirmation/' + token);
+	        _reactRouter.browserHistory.push('/checkout/confirmation/' + token);
 	      }
 	    }
 	  }, {
@@ -37127,7 +37415,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports) {
 
 	
@@ -37251,7 +37539,7 @@
 
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -37269,7 +37557,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37431,7 +37719,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Confirmation);
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37448,7 +37736,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37504,7 +37792,7 @@
 								'You should receive an email confirmation shortly.'
 							),
 							_react2.default.createElement(
-								_reactRouterDom.Link,
+								_reactRouter.Link,
 								{ to: '/' },
 								_react2.default.createElement(
 									'button',
@@ -37545,7 +37833,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, null)(AfterOrderSubmit);
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37560,7 +37848,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _reactRedux = __webpack_require__(182);
 	
@@ -37887,294 +38175,6 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DesignServices);
 
 /***/ }),
-/* 347 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(242);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var SplashPage = function (_Component) {
-	  _inherits(SplashPage, _Component);
-	
-	  function SplashPage() {
-	    _classCallCheck(this, SplashPage);
-	
-	    var _this = _possibleConstructorReturn(this, (SplashPage.__proto__ || Object.getPrototypeOf(SplashPage)).call(this));
-	
-	    _this.state = {
-	      user: null,
-	      password: null
-	    };
-	
-	    _this.countdown = _this.countdown.bind(_this);
-	    _this.revealLogin = _this.revealLogin.bind(_this);
-	    _this.addUser = _this.addUser.bind(_this);
-	    _this.addPassword = _this.addPassword.bind(_this);
-	    _this.redirect = _this.redirect.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(SplashPage, [{
-	    key: 'countdown',
-	    value: function countdown() {
-	      var countDownDate = new Date("Aug 1, 2017 08:00:00").getTime();
-	      var x = setInterval(function () {
-	        var now = new Date().getTime();
-	        var distance = countDownDate - now;
-	        // Time calculations for days, hours, minutes and seconds
-	        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	        var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-	        var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
-	        var seconds = Math.floor(distance % (1000 * 60) / 1000);
-	
-	        // Display the result in the element
-	        var elDays = document.getElementById("days");
-	        var elHours = document.getElementById("hours");
-	        var elMin = document.getElementById("minutes");
-	        var elSec = document.getElementById("seconds");
-	
-	        if (elDays && elHours && elMin && elSec) {
-	          elDays.innerHTML = days;
-	          elHours.innerHTML = hours;
-	          elMin.innerHTML = minutes;
-	          elSec.innerHTML = seconds;
-	        } else {
-	          clearInterval(x);
-	        }
-	
-	        // If the count down is finished, write some text
-	        if (distance < 0) {
-	          clearInterval(x);
-	          document.getElementById("demo").innerHTML = "EXPIRED";
-	        }
-	      }, 1000);
-	    }
-	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var body = document.querySelector('body');
-	      body.style.paddingBottom = 0;
-	      return this.countdown();
-	    }
-	  }, {
-	    key: 'revealLogin',
-	    value: function revealLogin() {
-	      var logIn = document.querySelector('div#secretLogInContainer');
-	
-	      logIn.style.display === 'flex' ? logIn.style.display = 'none' : logIn.style.display = 'flex';
-	    }
-	  }, {
-	    key: 'addUser',
-	    value: function addUser(evt) {
-	      evt.preventDefault();
-	      var user = evt.target.value;
-	      this.setState(function (previousState) {
-	        previousState.user = user;
-	        return previousState;
-	      });
-	    }
-	  }, {
-	    key: 'addPassword',
-	    value: function addPassword(evt) {
-	      evt.preventDefault();
-	      var password = evt.target.value;
-	      this.setState(function (previousState) {
-	        previousState.password = password;
-	        return previousState;
-	      });
-	    }
-	  }, {
-	    key: 'redirect',
-	    value: function redirect(evt) {
-	      evt.preventDefault();
-	      if (this.state.password === process.env.ADMIN_PW && this.state.user === 'admin') {
-	        _reactRouter.browserHistory.push('/root');
-	      } else {
-	        alert('PLEASE ENTER A VALID PASSWORD');
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'splashContainer' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'splashLogoContainer' },
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            'CLARICE KING'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { id: 'tagline' },
-	            'The Collected Home'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { id: 'secretLogInContainer' },
-	          _react2.default.createElement(
-	            'form',
-	            { onSubmit: this.redirect },
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'h5',
-	                null,
-	                'USER'
-	              ),
-	              _react2.default.createElement('input', { name: 'user', size: '20', placeholder: 'User', onChange: this.addUser })
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'h5',
-	                null,
-	                'PASSWORD'
-	              ),
-	              _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password', onChange: this.addPassword })
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              null,
-	              'LOG IN'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement('div', { id: 'spacerTop' }),
-	        _react2.default.createElement(
-	          'h1',
-	          { className: 'splashTitle' },
-	          'WE ARE COMING SOON'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'countdownContainer' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'spashCountdown' },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'DAYS'
-	            ),
-	            _react2.default.createElement('h1', { id: 'days' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'spashCountdown' },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'HOURS'
-	            ),
-	            _react2.default.createElement('h1', { id: 'hours' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'spashCountdown' },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'MINUTES'
-	            ),
-	            _react2.default.createElement('h1', { id: 'minutes' })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'spashCountdown' },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              'SECONDS'
-	            ),
-	            _react2.default.createElement('h1', { id: 'seconds' })
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'splashSubscribeContainer' },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            'BE THE FIRST TO KNOW'
-	          ),
-	          _react2.default.createElement(
-	            'form',
-	            { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', id: 'mc-embedded-subscribe-form', name: 'mc-embedded-subscribe-form', target: '_blank', noValidate: true, className: 'validate' },
-	            _react2.default.createElement('input', { id: 'splashInput', type: 'email', name: 'EMAIL', placeholder: 'email', required: true }),
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'searchBtn', type: 'submit', name: 'subscribe' },
-	              _react2.default.createElement('div', { className: 'arrow-right' })
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'splashSocial' },
-	          _react2.default.createElement(
-	            'a',
-	            { href: 'mailto:info@clariceking.com' },
-	            _react2.default.createElement('img', { src: 'images/email.png' })
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            { href: 'https://www.instagram.com/claricekinghome/' },
-	            _react2.default.createElement('img', { src: 'images/instagram.png' })
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            { href: 'https://www.facebook.com/ClariceKingHome/' },
-	            _react2.default.createElement('img', { src: 'images/facebook.png' })
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            { href: 'https://www.pinterest.com/claricekinghome/' },
-	            _react2.default.createElement('img', { src: 'images/pinterest.png' })
-	          ),
-	          _react2.default.createElement(
-	            'a',
-	            { href: 'https://www.pinterest.com/claricekinghome/' },
-	            _react2.default.createElement('img', { src: 'images/twitter.png' })
-	          )
-	        ),
-	        _react2.default.createElement('div', { id: 'hiddenLogin', onClick: this.revealLogin })
-	      );
-	    }
-	  }]);
-	
-	  return SplashPage;
-	}(_react.Component);
-	
-	exports.default = SplashPage;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
 /* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38190,7 +38190,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38267,7 +38267,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	var _reactRedux = __webpack_require__(182);
 	
@@ -38691,7 +38691,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38751,7 +38751,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38843,7 +38843,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39017,7 +39017,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39132,7 +39132,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39343,7 +39343,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-router-dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reactRouter = __webpack_require__(242);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39404,7 +39404,7 @@
 	      'div',
 	      { className: 'signUpContainer' },
 	      _react2.default.createElement(
-	        _reactRouterDom.Link,
+	        _reactRouter.Link,
 	        { to: '/signup' },
 	        _react2.default.createElement(
 	          'button',

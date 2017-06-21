@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from './Search';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { logout } from '../reducers/auth';
 import QuickCart from './QuickCart';
 import QuickLogin from './QuickLogin';

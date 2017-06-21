@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { addCategory } from '../reducers/categories'
 import { addProduct } from '../reducers/currentProduct';
 import ImageUpload from './imageUpload';

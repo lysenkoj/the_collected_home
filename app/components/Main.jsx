@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FeaturedLook from './FeaturedLook';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 // import Instafeed from 'instafeed.js';
 

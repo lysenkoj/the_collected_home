@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {login} from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 
 /* -----------------    COMPONENT     ------------------ */

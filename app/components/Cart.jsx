@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeItem, changeQuantity, clearCart } from '../reducers/cart';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import CartItem from './CartItem';
 
 /* -----------------    COMPONENT     ------------------ */
