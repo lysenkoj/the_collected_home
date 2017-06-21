@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
+import {browserHistory} from 'react-router';
 
 
 export default class SplashPage extends Component {
   constructor() {
     super()
+    this.state = {
+      user: null,
+      password: null
+    }
 
     this.countdown = this.countdown.bind(this);
     this.revealLogin = this.revealLogin.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.addPassword = this.addPassword.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
   countdown(){
@@ -22,10 +30,19 @@ export default class SplashPage extends Component {
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element
-      document.getElementById("days").innerHTML = days;
-      document.getElementById("hours").innerHTML = hours;
-      document.getElementById("minutes").innerHTML = minutes;
-      document.getElementById("seconds").innerHTML = seconds;
+      let elDays = document.getElementById("days");
+      let elHours = document.getElementById("hours");
+      let elMin = document.getElementById("minutes");
+      let elSec = document.getElementById("seconds");
+
+      if(elDays && elHours && elMin && elSec){
+        elDays.innerHTML = days;
+        elHours.innerHTML = hours;
+        elMin.innerHTML = minutes;
+        elSec.innerHTML = seconds;
+      } else{
+        clearInterval(x);
+      }
 
   // If the count down is finished, write some text
       if (distance < 0) {
@@ -47,22 +64,49 @@ export default class SplashPage extends Component {
     (logIn.style.display === 'flex') ? logIn.style.display = 'none' : logIn.style.display = 'flex';
   }
 
+  addUser(evt){
+    evt.preventDefault();
+    const user = evt.target.value;
+    this.setState((previousState) => {
+      previousState.user = user;
+      return previousState;
+    });
+  }
+
+  addPassword(evt){
+    evt.preventDefault();
+    const password = evt.target.value;
+    this.setState((previousState) => {
+      previousState.password = password;
+      return previousState;
+    });
+  }
+
+  redirect(evt){
+    evt.preventDefault();
+    if(this.state.password === process.env.ADMIN_PW && this.state.user === 'admin'){
+      browserHistory.push('/root');
+    }else{
+      alert('PLEASE ENTER A VALID PASSWORD')
+    }
+  }
+
   render() {
     return (
       <div className="splashContainer">
-        <button className='splashLogoContainer' onClick={this.revealLogin}>
+        <div className='splashLogoContainer'>
           <div>CLARICE KING</div>
           <div id="tagline">The Collected Home</div>
-        </button>
+        </div>
         <div id='secretLogInContainer'>
-          <form>
+          <form onSubmit={this.redirect}>
           <div>
-            <h5>EMAIL</h5>
-            <input name="email" type="email" size="20" placeholder='Email' />
+            <h5>USER</h5>
+            <input name="user" size="20" placeholder='User' onChange={this.addUser}/>
           </div>
           <div>
             <h5>PASSWORD</h5>
-            <input name="password" type="password" size="20" placeholder='Password' />
+            <input name="password" type="password" size="20" placeholder='Password' onChange={this.addPassword}/>
           </div>
           <button>LOG IN</button>
           </form>
@@ -112,6 +156,8 @@ export default class SplashPage extends Component {
           <a href='https://www.pinterest.com/claricekinghome/'>
             <img src='images/twitter.png'/>
           </a>
+        </div>
+        <div id='hiddenLogin' onClick={this.revealLogin}>
         </div>
       </div>
     )

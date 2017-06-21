@@ -2397,6 +2397,16 @@ h6 {
     border: none;
     color: white; }
 
+#hiddenLogin {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+#hiddenLogin:hover {
+  outline: 1px solid lightblue; }
+
 #spacerTop {
   width: 5vw;
   border-bottom: 2px solid white;

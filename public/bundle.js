@@ -33090,7 +33090,36 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default }),
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { path: '/root', component: _Root2.default, onEnter: _enterHooks.loadCategories },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/testimonials', component: _Testimonials2.default }),
+	      _react2.default.createElement(
+	        _reactRouter.Route,
+	        { path: '/checkout', component: _Checkout2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
+	      ),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
+	    )
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
@@ -37232,6 +37261,7 @@
 	process.env["STRIPE_PUBLISHABLE_KEY"] = "pk_test_KojVuT54tRytAjzXcGAFdIq7";
 	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
 	process.env["DATABASEPW"] = 'NewYork13';
+	process.env["ADMIN_PW"] = 'Antiques68';
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
@@ -37856,7 +37886,7 @@
 /* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -37886,8 +37916,16 @@
 	
 	    var _this = _possibleConstructorReturn(this, (SplashPage.__proto__ || Object.getPrototypeOf(SplashPage)).call(this));
 	
+	    _this.state = {
+	      user: null,
+	      password: null
+	    };
+	
 	    _this.countdown = _this.countdown.bind(_this);
 	    _this.revealLogin = _this.revealLogin.bind(_this);
+	    _this.addUser = _this.addUser.bind(_this);
+	    _this.addPassword = _this.addPassword.bind(_this);
+	    _this.redirect = _this.redirect.bind(_this);
 	    return _this;
 	  }
 	
@@ -37905,10 +37943,19 @@
 	        var seconds = Math.floor(distance % (1000 * 60) / 1000);
 	
 	        // Display the result in the element
-	        document.getElementById("days").innerHTML = days;
-	        document.getElementById("hours").innerHTML = hours;
-	        document.getElementById("minutes").innerHTML = minutes;
-	        document.getElementById("seconds").innerHTML = seconds;
+	        var elDays = document.getElementById("days");
+	        var elHours = document.getElementById("hours");
+	        var elMin = document.getElementById("minutes");
+	        var elSec = document.getElementById("seconds");
+	
+	        if (elDays && elHours && elMin && elSec) {
+	          elDays.innerHTML = days;
+	          elHours.innerHTML = hours;
+	          elMin.innerHTML = minutes;
+	          elSec.innerHTML = seconds;
+	        } else {
+	          clearInterval(x);
+	        }
 	
 	        // If the count down is finished, write some text
 	        if (distance < 0) {
@@ -37932,14 +37979,44 @@
 	      logIn.style.display === 'flex' ? logIn.style.display = 'none' : logIn.style.display = 'flex';
 	    }
 	  }, {
+	    key: 'addUser',
+	    value: function addUser(evt) {
+	      evt.preventDefault();
+	      var user = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.user = user;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addPassword',
+	    value: function addPassword(evt) {
+	      evt.preventDefault();
+	      var password = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.password = password;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'redirect',
+	    value: function redirect(evt) {
+	      evt.preventDefault();
+	      if (this.state.password === process.env.ADMIN_PW && this.state.user === 'admin') {
+	        _reactRouter.browserHistory.push('/root');
+	      } else {
+	        alert('PLEASE ENTER A VALID PASSWORD');
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'splashContainer' },
 	        _react2.default.createElement(
-	          'button',
-	          { className: 'splashLogoContainer', onClick: this.revealLogin },
+	          'div',
+	          { className: 'splashLogoContainer' },
 	          _react2.default.createElement(
 	            'div',
 	            null,
@@ -37956,16 +38033,16 @@
 	          { id: 'secretLogInContainer' },
 	          _react2.default.createElement(
 	            'form',
-	            null,
+	            { onSubmit: this.redirect },
 	            _react2.default.createElement(
 	              'div',
 	              null,
 	              _react2.default.createElement(
 	                'h5',
 	                null,
-	                'EMAIL'
+	                'USER'
 	              ),
-	              _react2.default.createElement('input', { name: 'email', type: 'email', size: '20', placeholder: 'Email' })
+	              _react2.default.createElement('input', { name: 'user', size: '20', placeholder: 'User', onChange: this.addUser })
 	            ),
 	            _react2.default.createElement(
 	              'div',
@@ -37975,7 +38052,7 @@
 	                null,
 	                'PASSWORD'
 	              ),
-	              _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password' })
+	              _react2.default.createElement('input', { name: 'password', type: 'password', size: '20', placeholder: 'Password', onChange: this.addPassword })
 	            ),
 	            _react2.default.createElement(
 	              'button',
@@ -38081,7 +38158,8 @@
 	            { href: 'https://www.pinterest.com/claricekinghome/' },
 	            _react2.default.createElement('img', { src: 'images/twitter.png' })
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('div', { id: 'hiddenLogin', onClick: this.revealLogin })
 	      );
 	    }
 	  }]);
@@ -38090,6 +38168,7 @@
 	}(_react.Component);
 	
 	exports.default = SplashPage;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 348 */
