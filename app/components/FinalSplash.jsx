@@ -21,7 +21,12 @@ export default class FinalSplash extends Component {
 
   setChairs(){
     for(let i = 0; i < 50; i++){
-      this.state.chairs.push(Math.floor(Math.random() * 70) + 1);
+      let num = Math.floor(Math.random() * 70) + 1;
+      if(this.state.chairs.indexOf(num) < 0){
+        this.state.chairs.push(num);
+      }else{
+        i--;
+      }
     }
   }
 

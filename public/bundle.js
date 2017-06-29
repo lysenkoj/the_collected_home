@@ -33079,13 +33079,13 @@
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _FinalSplash = __webpack_require__(358);
+	var _FinalSplash = __webpack_require__(356);
 	
 	var _FinalSplash2 = _interopRequireDefault(_FinalSplash);
 	
-	var _enterHooks = __webpack_require__(356);
+	var _enterHooks = __webpack_require__(357);
 	
-	var _leaveHooks = __webpack_require__(357);
+	var _leaveHooks = __webpack_require__(358);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39445,122 +39445,6 @@
 /* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _categories = __webpack_require__(298);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//import { selectOrder } from './reducers/selectedOrder'
-	
-	
-	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
-		var params = _ref.params;
-	
-		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
-	};
-	
-	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
-		var params = _ref2.params;
-	
-		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
-	};
-	
-	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
-		var params = _ref3.params;
-	
-		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
-	};
-	
-	var loadCategories = exports.loadCategories = function loadCategories() {
-		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
-	};
-	
-	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
-		var params = _ref4.params;
-	
-		console.log(params);
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
-	};
-	
-	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
-	};
-	
-	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
-		var params = _ref5.params;
-	
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
-	};
-
-/***/ }),
-/* 357 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _charge = __webpack_require__(304);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var onProductLeave = exports.onProductLeave = function onProductLeave() {
-		_store2.default.dispatch((0, _currentProduct.clearProduct)());
-	};
-	
-	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
-		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
-	};
-	
-	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
-		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
-	};
-	
-	var deloadOrders = exports.deloadOrders = function deloadOrders() {
-		_store2.default.dispatch((0, _orders.deloadAllOrders)());
-	};
-	
-	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
-		_store2.default.dispatch((0, _charge.deloadCharge)());
-	};
-
-/***/ }),
-/* 358 */
-/***/ (function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -39607,7 +39491,12 @@
 	    key: 'setChairs',
 	    value: function setChairs() {
 	      for (var i = 0; i < 50; i++) {
-	        this.state.chairs.push(Math.floor(Math.random() * 70) + 1);
+	        var num = Math.floor(Math.random() * 70) + 1;
+	        if (this.state.chairs.indexOf(num) < 0) {
+	          this.state.chairs.push(num);
+	        } else {
+	          i--;
+	        }
 	      }
 	    }
 	
@@ -39720,6 +39609,122 @@
 	
 	exports.default = FinalSplash;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 357 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _categories = __webpack_require__(298);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import { selectOrder } from './reducers/selectedOrder'
+	
+	
+	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
+		var params = _ref.params;
+	
+		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
+	};
+	
+	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
+		var params = _ref2.params;
+	
+		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
+	};
+	
+	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
+		var params = _ref3.params;
+	
+		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
+	};
+	
+	var loadCategories = exports.loadCategories = function loadCategories() {
+		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
+	};
+	
+	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
+		var params = _ref4.params;
+	
+		console.log(params);
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
+	};
+	
+	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
+	};
+	
+	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
+		var params = _ref5.params;
+	
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
+	};
+
+/***/ }),
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _charge = __webpack_require__(304);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var onProductLeave = exports.onProductLeave = function onProductLeave() {
+		_store2.default.dispatch((0, _currentProduct.clearProduct)());
+	};
+	
+	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
+		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
+	};
+	
+	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
+		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
+	};
+	
+	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+		_store2.default.dispatch((0, _orders.deloadAllOrders)());
+	};
+	
+	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
+		_store2.default.dispatch((0, _charge.deloadCharge)());
+	};
 
 /***/ })
 /******/ ]);
