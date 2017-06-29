@@ -118,6 +118,7 @@ class Admin extends Component{
   }
 
   makeProduct(evt){
+    evt.preventDefault()
     var product = this.state.product;
 
     var categoryProduct = {
@@ -265,8 +266,8 @@ class Admin extends Component{
                       <label>Meta Category:</label>
                         <select name="metaCategory">{
                           this.props.categories && this.props.categories.filter( category => (
-                            (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6) || (category.id === 7))
-                          ).map(category => <option value={`${category.id}`}>{category.name}</option>)}
+                            (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6))
+                          ).map(category => <option key={category.id} value={`${category.id}`}>{category.name}</option>)}
                         </select>
                     </div>
                     <div className="formInput">
@@ -293,7 +294,7 @@ class Admin extends Component{
             <div className="form-group">
               <label>Category:</label>
                 <select name="category" onChange={(evt) => this.categoryUpdate(evt)}>
-                  {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6) && (category.id !== 7))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
+                  {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
                 </select>
             </div>
             <div className="form-group">

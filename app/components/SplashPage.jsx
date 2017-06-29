@@ -6,10 +6,7 @@ import {browserHistory} from 'react-router';
 export default class SplashPage extends Component {
   constructor() {
     super()
-    this.state = {
-      user: null,
-      password: null
-    }
+
 
     this.countdown = this.countdown.bind(this);
     this.revealLogin = this.revealLogin.bind(this);

@@ -33079,6 +33079,10 @@
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
+	var _FinalSplash = __webpack_require__(358);
+	
+	var _FinalSplash2 = _interopRequireDefault(_FinalSplash);
+	
 	var _enterHooks = __webpack_require__(356);
 	
 	var _leaveHooks = __webpack_require__(357);
@@ -33086,11 +33090,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
+	
+	// import Account from './components/Account';
+	
+	
+	/* -----------------    COMPONENTS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _SplashPage2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _FinalSplash2.default }),
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/root', component: _Root2.default, onEnter: _enterHooks.loadCategories },
@@ -33125,11 +33134,6 @@
 	//    <Route path="/payment" component={Payment} />
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
-	
-	// import Account from './components/Account';
-	
-	
-	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ }),
 /* 319 */
@@ -34520,11 +34524,6 @@
 	    _classCallCheck(this, SplashPage);
 	
 	    var _this = _possibleConstructorReturn(this, (SplashPage.__proto__ || Object.getPrototypeOf(SplashPage)).call(this));
-	
-	    _this.state = {
-	      user: null,
-	      password: null
-	    };
 	
 	    _this.countdown = _this.countdown.bind(_this);
 	    _this.revealLogin = _this.revealLogin.bind(_this);
@@ -36693,6 +36692,7 @@
 	  }, {
 	    key: 'makeProduct',
 	    value: function makeProduct(evt) {
+	      evt.preventDefault();
 	      var product = this.state.product;
 	
 	      var categoryProduct = {
@@ -36902,11 +36902,11 @@
 	                          'select',
 	                          { name: 'metaCategory' },
 	                          _this3.props.categories && _this3.props.categories.filter(function (category) {
-	                            return category.id === 1 || category.id === 2 || category.id === 3 || category.id === 4 || category.id === 5 || category.id === 6 || category.id === 7;
+	                            return category.id === 1 || category.id === 2 || category.id === 3 || category.id === 4 || category.id === 5 || category.id === 6;
 	                          }).map(function (category) {
 	                            return _react2.default.createElement(
 	                              'option',
-	                              { value: '' + category.id },
+	                              { key: category.id, value: '' + category.id },
 	                              category.name
 	                            );
 	                          })
@@ -36983,7 +36983,7 @@
 	                        return _this3.categoryUpdate(evt);
 	                      } },
 	                    this.props.categories && this.props.categories.filter(function (category) {
-	                      return category.id !== 1 && category.id !== 2 && category.id !== 3 && category.id !== 4 && category.id !== 5 && category.id !== 6 && category.id !== 7;
+	                      return category.id !== 1 && category.id !== 2 && category.id !== 3 && category.id !== 4 && category.id !== 5 && category.id !== 6;
 	                    }).map(function (category) {
 	                      return _react2.default.createElement(
 	                        'option',
@@ -39556,6 +39556,170 @@
 	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
 		_store2.default.dispatch((0, _charge.deloadCharge)());
 	};
+
+/***/ }),
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FinalSplash = function (_Component) {
+	  _inherits(FinalSplash, _Component);
+	
+	  function FinalSplash() {
+	    _classCallCheck(this, FinalSplash);
+	
+	    var _this = _possibleConstructorReturn(this, (FinalSplash.__proto__ || Object.getPrototypeOf(FinalSplash)).call(this));
+	
+	    _this.state = {
+	      chairs: []
+	
+	      // this.countdown = this.countdown.bind(this);
+	    };_this.setChairs = _this.setChairs.bind(_this);
+	    _this.revealLogin = _this.revealLogin.bind(_this);
+	    _this.addUser = _this.addUser.bind(_this);
+	    _this.addPassword = _this.addPassword.bind(_this);
+	    _this.redirect = _this.redirect.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(FinalSplash, [{
+	    key: 'setChairs',
+	    value: function setChairs() {
+	      for (var i = 0; i < 50; i++) {
+	        this.state.chairs.push(Math.floor(Math.random() * 70) + 1);
+	      }
+	    }
+	
+	    // countdown(){
+	    //   const countDownDate = new Date("Aug 1, 2017 08:00:00").getTime();
+	    //   let x = setInterval(function() {
+	    //     let now = new Date().getTime();
+	    //     let distance = countDownDate - now;
+	    //   // Time calculations for days, hours, minutes and seconds
+	    //     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	    //     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	    //     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	    //     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	
+	    // // Display the result in the element
+	    //     let elDays = document.getElementById("days");
+	    //     let elHours = document.getElementById("hours");
+	    //     let elMin = document.getElementById("minutes");
+	    //     let elSec = document.getElementById("seconds");
+	
+	    //     if(elDays && elHours && elMin && elSec){
+	    //       elDays.innerHTML = days;
+	    //       elHours.innerHTML = hours;
+	    //       elMin.innerHTML = minutes;
+	    //       elSec.innerHTML = seconds;
+	    //     } else{
+	    //       clearInterval(x);
+	    //     }
+	
+	    // // If the count down is finished, write some text
+	    //     if (distance < 0) {
+	    //       clearInterval(x);
+	    //       document.getElementById("demo").innerHTML = "EXPIRED";
+	    //     }
+	    //   }, 1000);
+	    // }
+	
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var body = document.querySelector('body');
+	      body.style.paddingBottom = 0;
+	      // return this.countdown();
+	      return this.setChairs();
+	    }
+	  }, {
+	    key: 'revealLogin',
+	    value: function revealLogin() {
+	      var logIn = document.querySelector('div#secretLogInContainer');
+	
+	      logIn.style.display === 'flex' ? logIn.style.display = 'none' : logIn.style.display = 'flex';
+	    }
+	  }, {
+	    key: 'addUser',
+	    value: function addUser(evt) {
+	      evt.preventDefault();
+	      var user = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.user = user;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'addPassword',
+	    value: function addPassword(evt) {
+	      evt.preventDefault();
+	      var password = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.password = password;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'redirect',
+	    value: function redirect(evt) {
+	      evt.preventDefault();
+	      if (this.state.password === process.env.ADMIN_PW && this.state.user === 'admin') {
+	        _reactRouter.browserHistory.push('/root');
+	      } else {
+	        alert('PLEASE ENTER A VALID PASSWORD');
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'splashContainer' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'backgroundContainer' },
+	          this.state.chairs.map(function (chair, index) {
+	            return index % 7 === 0 ? _react2.default.createElement(
+	              'div',
+	              { className: 'backgroundChair', id: 'chair' + index, key: index },
+	              _react2.default.createElement('img', { className: 'flipped', src: '/images/splashChairs/c' + chair + '.png' })
+	            ) : _react2.default.createElement(
+	              'div',
+	              { className: 'backgroundChair', id: 'chair' + index, key: index },
+	              _react2.default.createElement('img', { src: '/images/splashChairs/c' + chair + '.png' })
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return FinalSplash;
+	}(_react.Component);
+	
+	exports.default = FinalSplash;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ })
 /******/ ]);
