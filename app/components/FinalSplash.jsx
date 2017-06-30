@@ -19,6 +19,8 @@ export default class FinalSplash extends Component {
     this.redirect = this.redirect.bind(this);
     this.swap = this.swap.bind(this);
     this.animateBackground = this.animateBackground.bind(this);
+    this.iconSwapBlue = this.iconSwapBlue.bind(this);
+    this.iconSwapBlack = this.iconSwapBlack.bind(this);
   }
 
   setChairs(){
@@ -128,12 +130,20 @@ export default class FinalSplash extends Component {
     }, 1000)
   }
 
+  iconSwapBlue(evt){
+    evt.currentTarget.childNodes[0].src = evt.currentTarget.childNodes[0].src.slice(0, -4) + 'Blue.svg';
+  }
+
+  iconSwapBlack(evt){
+    evt.currentTarget.childNodes[0].src = evt.currentTarget.childNodes[0].src.slice(0, -8) + '.svg';
+  }
+
   render() {
     return (
       <div className="splashContainer">
         <div className="foregroundContainer">
           <div id="cornerRibbon">
-            <img src="/images/splashCornerBlack.png"/>
+            <img src="/images/cornerBanner.svg"/>
           </div>
           <div className='splashLogoContainer'>
             <div>CLARICE KING</div>
@@ -147,6 +157,23 @@ export default class FinalSplash extends Component {
               </button>
             </form>
           </div>
+          <div className='splashSocial'>
+            <a href="mailto:info@clariceking.com" onMouseEnter={this.iconSwapBlue} onMouseLeave={this.iconSwapBlack}>
+              <img src='images/email.svg'/>
+            </a>
+            <a href='https://www.instagram.com/claricekinghome/' onMouseEnter={this.iconSwapBlue} onMouseLeave={this.iconSwapBlack}>
+              <img src='images/instagram.svg'/>
+            </a>
+            <a href='https://www.facebook.com/ClariceKingHome/' onMouseEnter={this.iconSwapBlue} onMouseLeave={this.iconSwapBlack}>
+              <img src='images/facebook.svg'/>
+            </a>
+            <a href='https://www.pinterest.com/claricekinghome/' onMouseEnter={this.iconSwapBlue} onMouseLeave={this.iconSwapBlack}>
+              <img src='images/pinterest.svg'/>
+            </a>
+            <a href='https://www.pinterest.com/claricekinghome/' onMouseEnter={this.iconSwapBlue} onMouseLeave={this.iconSwapBlack}>
+              <img src='images/twitter.svg'/>
+            </a>
+        </div>
         </div>
         <div className="backgroundContainer">
           {

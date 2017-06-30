@@ -39458,6 +39458,8 @@
 	    _this.redirect = _this.redirect.bind(_this);
 	    _this.swap = _this.swap.bind(_this);
 	    _this.animateBackground = _this.animateBackground.bind(_this);
+	    _this.iconSwapBlue = _this.iconSwapBlue.bind(_this);
+	    _this.iconSwapBlack = _this.iconSwapBlack.bind(_this);
 	    return _this;
 	  }
 	
@@ -39579,6 +39581,16 @@
 	      }, 1000);
 	    }
 	  }, {
+	    key: 'iconSwapBlue',
+	    value: function iconSwapBlue(evt) {
+	      evt.currentTarget.childNodes[0].src = evt.currentTarget.childNodes[0].src.slice(0, -4) + 'Blue.svg';
+	    }
+	  }, {
+	    key: 'iconSwapBlack',
+	    value: function iconSwapBlack(evt) {
+	      evt.currentTarget.childNodes[0].src = evt.currentTarget.childNodes[0].src.slice(0, -8) + '.svg';
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -39590,7 +39602,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { id: 'cornerRibbon' },
-	            _react2.default.createElement('img', { src: '/images/splashCornerBlack.png' })
+	            _react2.default.createElement('img', { src: '/images/cornerBanner.svg' })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -39622,6 +39634,35 @@
 	                  'SIGN UP!'
 	                )
 	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'splashSocial' },
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'mailto:info@clariceking.com', onMouseEnter: this.iconSwapBlue, onMouseLeave: this.iconSwapBlack },
+	              _react2.default.createElement('img', { src: 'images/email.svg' })
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'https://www.instagram.com/claricekinghome/', onMouseEnter: this.iconSwapBlue, onMouseLeave: this.iconSwapBlack },
+	              _react2.default.createElement('img', { src: 'images/instagram.svg' })
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'https://www.facebook.com/ClariceKingHome/', onMouseEnter: this.iconSwapBlue, onMouseLeave: this.iconSwapBlack },
+	              _react2.default.createElement('img', { src: 'images/facebook.svg' })
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'https://www.pinterest.com/claricekinghome/', onMouseEnter: this.iconSwapBlue, onMouseLeave: this.iconSwapBlack },
+	              _react2.default.createElement('img', { src: 'images/pinterest.svg' })
+	            ),
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'https://www.pinterest.com/claricekinghome/', onMouseEnter: this.iconSwapBlue, onMouseLeave: this.iconSwapBlack },
+	              _react2.default.createElement('img', { src: 'images/twitter.svg' })
 	            )
 	          )
 	        ),
