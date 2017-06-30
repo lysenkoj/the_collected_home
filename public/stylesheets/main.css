@@ -3374,8 +3374,8 @@ h6 {
       height: auto; }
   .splashLogoContainer {
     display: flex;
-    width: 250px;
-    height: 200px;
+    width: 240px;
+    height: 160px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -3398,13 +3398,14 @@ h6 {
     width: 100vw;
     background-color: transparent;
     margin-left: calc(8vw - 32px);
-    margin-top: 9vh; }
+    margin-top: 4vh; }
     .splashSubscribeContainer #splashInput {
       width: 75%;
-      height: 60px;
+      height: 40px;
       background-color: white;
       border: 5px solid black;
       margin-right: 32px;
+      margin-left: 20px;
       padding-left: 10px;
       font-size: 1.2em;
       font-family: 'aleo-bold'; }
@@ -3417,8 +3418,8 @@ h6 {
     .splashSubscribeContainer #splashInput:focus {
       outline: none; }
     .splashSubscribeContainer .searchBtn {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       background-color: black;
       color: white; }
     .splashSubscribeContainer .searchBtn:hover {
@@ -3433,7 +3434,8 @@ h6 {
       color: black; }
     .splashSubscribeContainer h5 {
       color: white;
-      letter-spacing: 1px; }
+      letter-spacing: 1px;
+      font-size: 10px; }
   #comingSoon {
     display: flex;
     align-items: center;
