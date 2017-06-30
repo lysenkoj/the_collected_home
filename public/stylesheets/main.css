@@ -3418,7 +3418,7 @@ h6 {
     .splashSubscribeContainer #splashInput:focus {
       outline: none; }
     .splashSubscribeContainer .searchBtn {
-      width: 40px;
+      width: 50px;
       height: 40px;
       background-color: black;
       color: white; }
@@ -3479,7 +3479,7 @@ h6 {
       border-left: 5px solid black;
       border-right: 5px solid black;
       border-top: 5px solid black;
-      height: 80px;
+      height: 115px;
       width: 60px; }
     .splashSocial a:hover {
       border-left: 5px solid #69c7ac;
