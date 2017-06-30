@@ -37554,6 +37554,7 @@
 	process.env["STRIPE_SECRET_KEY"] = "sk_test_db3NbS8laAhEKWR5iOe75EhU";
 	process.env["DATABASEPW"] = 'NewYork13';
 	process.env["ADMIN_PW"] = 'Antiques68';
+	process.env["GOOGLE_ANALYTICS"] = 'UA-101892892-1';
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
