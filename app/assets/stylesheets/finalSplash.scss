@@ -1,184 +1,753 @@
-.splashContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-}
+/* -------------------- LARGE ----------------------- */
 
-.foregroundContainer{
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  z-index: 2;
-}
-
-#cornerRibbon{
-  align-self: flex-start;
-
-  img{
-    width: 40vh;
-    height: auto;
-  }
-}
-
-.splashLogoContainer{
-  display:flex;
-  width: 250px;
-  height: 200px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'aleo-regular';
-  font-size: 1.3em;
-  letter-spacing: 2px;
-  color: black;
-  background-color: white;
-  border: 7px solid black;
-  cursor: default;
-  margin-top: -15vh;
-
-  #tagline{
-    font-size: 0.8em;
-  }
-
-}
-
-.splashSubscribeContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  width: 50vw;
-  background-color: transparent;
-  margin-left: calc(8vw - 32px);
-  margin-top: 9vh;
-
-  #splashInput{
-    width: 75%;
-    height: 60px;
-    background-color: white;
-    border: 5px solid black;
-    margin-right: 32px;
-    padding-left: 10px;
-    font-size: 1.2em;
-    font-family:'aleo-bold';
-  }
-
-  #splashInput:focus{
-    border: 5px solid #69c7ac;
-  }
-
-  #splashInput::placeholder{
-    color: black;
-    text-align: center;
-    font-family:'aleo-regular';
-  }
-
-  #splashInput:focus{
-    outline: none;
-  }
-
-  .searchBtn{
-    width: 60px;
-    height: 60px;
-    background-color: black;
-    color: white;
-  }
-
-  .searchBtn:hover{
-    background-color: #69c7ac;
-  }
-
-  form{
+@media(min-width: 1026px){
+  .splashContainer{
     display: flex;
-    width: 100%;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100vw;
+    height: 100vh;
   }
 
-  h3{
-    margin: 0;
+  .foregroundContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+  }
+
+  #cornerRibbon{
+    align-self: flex-start;
+
+    img{
+      width: 40vh;
+      height: auto;
+    }
+  }
+
+  .splashLogoContainer{
+    display:flex;
+    width: 250px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'aleo-regular';
+    font-size: 1.3em;
+    letter-spacing: 2px;
     color: black;
+    background-color: white;
+    border: 7px solid black;
+    cursor: default;
+    margin-top: -15vh;
+
+    #tagline{
+      font-size: 0.8em;
+    }
+
   }
 
-  h5{
-    color: white;
-    letter-spacing: 1px;
+  .splashSubscribeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 50vw;
+    background-color: transparent;
+    margin-left: calc(8vw - 32px);
+    margin-top: 9vh;
+
+    #splashInput{
+      width: 75%;
+      height: 60px;
+      background-color: white;
+      border: 5px solid black;
+      margin-right: 32px;
+      padding-left: 10px;
+      font-size: 1.2em;
+      font-family:'aleo-bold';
+    }
+
+    #splashInput:focus{
+      border: 5px solid #69c7ac;
+    }
+
+    #splashInput::placeholder{
+      color: black;
+      text-align: center;
+      font-family:'aleo-regular';
+    }
+
+    #splashInput:focus{
+      outline: none;
+    }
+
+    .searchBtn{
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      color: white;
+    }
+
+    .searchBtn:hover{
+      background-color: #69c7ac;
+    }
+
+    form{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3{
+      margin: 0;
+      color: black;
+    }
+
+    h5{
+      color: white;
+      letter-spacing: 1px;
+    }
   }
-}
 
-#comingSoon{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  padding: 10px;
-}
+  #comingSoon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+  }
 
-.backgroundContainer{
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-}
-
-.backgroundChair{
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  height: 20%;
-  padding-top: 8px;
-  padding-bottom: 8px;
-
-  img{
-    width: auto;
+  .backgroundContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
     height: 100%;
   }
-}
 
-.flipped{
-  transform: scale(1, -1);
-  -moz-transform: scale(1, -1);
-  -webkit-transform: scale(1, -1);
-  -o-transform: scale(1, -1);
-  -khtml-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
-}
-
-.splashSocial{
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: space-around;
-  width: 35vw;
-  bottom: 0;
-
-  a{
+  .backgroundChair{
     display: flex;
     justify-content: center;
-    padding-top: 7px;
+    width: 10%;
+    height: 20%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    img{
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  .flipped{
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -khtml-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+  }
+
+  .splashSocial{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: space-around;
+    width: 35vw;
+    bottom: 0;
+
+    a{
+      display: flex;
+      justify-content: center;
+      padding-top: 7px;
+      background-color: white;
+      border-left: 5px solid black;
+      border-right: 5px solid black;
+      border-top: 5px solid black;
+      height: 80px;
+      width: 60px;
+    }
+    a:hover{
+      border-left: 5px solid #69c7ac;
+      border-right: 5px solid #69c7ac;
+      border-top: 5px solid #69c7ac;
+    }
+
+    img{
+      width: 35px;
+      height: 35px;
+    }
+
+  }
+}
+
+/* -------------------- MEDIUM ----------------------- */
+
+@media(min-width: 750px) and (max-width:1025px){
+    .splashContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .foregroundContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+  }
+
+  #cornerRibbon{
+    align-self: flex-start;
+
+    img{
+      width: 40vh;
+      height: auto;
+    }
+  }
+
+  .splashLogoContainer{
+    display:flex;
+    width: 250px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'aleo-regular';
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    color: black;
     background-color: white;
-    border-left: 5px solid black;
-    border-right: 5px solid black;
-    border-top: 5px solid black;
-    height: 80px;
-    width: 65px;
-  }
-  a:hover{
-    border-left: 5px solid #69c7ac;
-    border-right: 5px solid #69c7ac;
-    border-top: 5px solid #69c7ac;
+    border: 7px solid black;
+    cursor: default;
+    margin-top: -15vh;
+
+    #tagline{
+      font-size: 0.8em;
+    }
+
   }
 
-  img{
-    width: 35px;
-    height: 35px;
+  .splashSubscribeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 50vw;
+    background-color: transparent;
+    margin-left: calc(8vw - 32px);
+    margin-top: 9vh;
+
+    #splashInput{
+      width: 75%;
+      height: 60px;
+      background-color: white;
+      border: 5px solid black;
+      margin-right: 32px;
+      padding-left: 10px;
+      font-size: 1.2em;
+      font-family:'aleo-bold';
+    }
+
+    #splashInput:focus{
+      border: 5px solid #69c7ac;
+    }
+
+    #splashInput::placeholder{
+      color: black;
+      text-align: center;
+      font-family:'aleo-regular';
+    }
+
+    #splashInput:focus{
+      outline: none;
+    }
+
+    .searchBtn{
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      color: white;
+    }
+
+    .searchBtn:hover{
+      background-color: #69c7ac;
+    }
+
+    form{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3{
+      margin: 0;
+      color: black;
+    }
+
+    h5{
+      color: white;
+      letter-spacing: 1px;
+    }
   }
 
+  #comingSoon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+  }
+
+  .backgroundContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+  }
+
+  .backgroundChair{
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    height: 20%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    img{
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  .flipped{
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -khtml-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+  }
+
+  .splashSocial{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: space-around;
+    width: 50vw;
+    bottom: 0;
+
+    a{
+      display: flex;
+      justify-content: center;
+      padding-top: 7px;
+      background-color: white;
+      border-left: 5px solid black;
+      border-right: 5px solid black;
+      border-top: 5px solid black;
+      height: 80px;
+      width: 60px;
+    }
+    a:hover{
+      border-left: 5px solid #69c7ac;
+      border-right: 5px solid #69c7ac;
+      border-top: 5px solid #69c7ac;
+    }
+
+    img{
+      width: 35px;
+      height: 35px;
+    }
+
+  }
+}
+
+/* -------------------- SMALL ----------------------- */
+
+@media(max-width:749px) and (min-width:550px){
+  .splashContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .foregroundContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+  }
+
+  #cornerRibbon{
+    align-self: flex-start;
+
+    img{
+      width: 40vw;
+      height: auto;
+    }
+  }
+
+  .splashLogoContainer{
+    display:flex;
+    width: 250px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'aleo-regular';
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    color: black;
+    background-color: white;
+    border: 7px solid black;
+    cursor: default;
+    margin-top: -15vh;
+
+    #tagline{
+      font-size: 0.8em;
+    }
+
+  }
+
+  .splashSubscribeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100vw;
+    background-color: transparent;
+    margin-left: calc(8vw - 32px);
+    margin-top: 9vh;
+
+    #splashInput{
+      width: 75%;
+      height: 60px;
+      background-color: white;
+      border: 5px solid black;
+      margin-right: 32px;
+      padding-left: 10px;
+      font-size: 1.2em;
+      font-family:'aleo-bold';
+    }
+
+    #splashInput:focus{
+      border: 5px solid #69c7ac;
+    }
+
+    #splashInput::placeholder{
+      color: black;
+      text-align: center;
+      font-family:'aleo-regular';
+    }
+
+    #splashInput:focus{
+      outline: none;
+    }
+
+    .searchBtn{
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      color: white;
+    }
+
+    .searchBtn:hover{
+      background-color: #69c7ac;
+    }
+
+    form{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3{
+      margin: 0;
+      color: black;
+    }
+
+    h5{
+      color: white;
+      letter-spacing: 1px;
+    }
+  }
+
+  #comingSoon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+  }
+
+  .backgroundContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+  }
+
+  .backgroundChair{
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    height: 20%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    img{
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  .flipped{
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -khtml-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+  }
+
+  .splashSocial{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    bottom: 0;
+
+    a{
+      display: flex;
+      justify-content: center;
+      padding-top: 7px;
+      background-color: white;
+      border-left: 5px solid black;
+      border-right: 5px solid black;
+      border-top: 5px solid black;
+      height: 80px;
+      width: 60px;
+    }
+    a:hover{
+      border-left: 5px solid #69c7ac;
+      border-right: 5px solid #69c7ac;
+      border-top: 5px solid #69c7ac;
+    }
+
+    img{
+      width: 35px;
+      height: 35px;
+    }
+
+  }
+}
+
+@media(max-width:549px){
+  .splashContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .foregroundContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+  }
+
+  #cornerRibbon{
+    align-self: flex-start;
+
+    img{
+      width: 50vw;
+      height: auto;
+    }
+  }
+
+  .splashLogoContainer{
+    display:flex;
+    width: 250px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'aleo-regular';
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    color: black;
+    background-color: white;
+    border: 7px solid black;
+    cursor: default;
+    margin-top: -2vh;
+
+    #tagline{
+      font-size: 0.8em;
+    }
+
+  }
+
+  .splashSubscribeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100vw;
+    background-color: transparent;
+    margin-left: calc(8vw - 32px);
+    margin-top: 9vh;
+
+    #splashInput{
+      width: 75%;
+      height: 60px;
+      background-color: white;
+      border: 5px solid black;
+      margin-right: 32px;
+      padding-left: 10px;
+      font-size: 1.2em;
+      font-family:'aleo-bold';
+    }
+
+    #splashInput:focus{
+      border: 5px solid #69c7ac;
+    }
+
+    #splashInput::placeholder{
+      color: black;
+      text-align: center;
+      font-family:'aleo-regular';
+    }
+
+    #splashInput:focus{
+      outline: none;
+    }
+
+    .searchBtn{
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      color: white;
+    }
+
+    .searchBtn:hover{
+      background-color: #69c7ac;
+    }
+
+    form{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3{
+      margin: 0;
+      color: black;
+    }
+
+    h5{
+      color: white;
+      letter-spacing: 1px;
+    }
+  }
+
+  #comingSoon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+  }
+
+  .backgroundContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+  }
+
+  .backgroundChair{
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: 10%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    img{
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  .flipped{
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -khtml-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+  }
+
+  .splashSocial{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    bottom: 0;
+
+    a{
+      display: flex;
+      justify-content: center;
+      padding-top: 7px;
+      background-color: white;
+      border-left: 5px solid black;
+      border-right: 5px solid black;
+      border-top: 5px solid black;
+      height: 80px;
+      width: 60px;
+    }
+    a:hover{
+      border-left: 5px solid #69c7ac;
+      border-right: 5px solid #69c7ac;
+      border-top: 5px solid #69c7ac;
+    }
+
+    img{
+      width: 35px;
+      height: 35px;
+    }
+
+  }
 }
