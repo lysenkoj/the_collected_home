@@ -17,6 +17,8 @@ export default class FinalSplash extends Component {
     this.addUser = this.addUser.bind(this);
     this.addPassword = this.addPassword.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.swap = this.swap.bind(this);
+    this.animateBackground = this.animateBackground.bind(this);
   }
 
   setChairs(){
@@ -69,7 +71,8 @@ export default class FinalSplash extends Component {
     const body = document.querySelector('body');
     body.style.paddingBottom = 0;
     // return this.countdown();
-    return this.setChairs();
+    this.setChairs();
+    return this.animateBackground();
   }
 
   revealLogin(){
@@ -105,18 +108,55 @@ export default class FinalSplash extends Component {
     }
   }
 
+  swap(){
+    let selectedChairs = [];
+    for(let i = 0; i < Math.floor(Math.random() * 4); i++){
+      let num = Math.floor(Math.random() * 50);
+      let newImg = Math.floor(Math.random() * 70) + 1;
+      if(selectedChairs.indexOf(document.querySelector(`div#chair${num}`))){
+        document.getElementById(`chairImg${num}`).src = `/images/splashChairs/c${newImg}.png`;
+        selectedChairs.push(document.querySelector(`div#chair${num}`));
+      } else{
+        i--;
+      }
+    }
+  }
+
+  animateBackground(){
+    let x = setInterval(() => {
+      this.swap();
+    }, 1000)
+  }
+
   render() {
     return (
       <div className="splashContainer">
+        <div className="foregroundContainer">
+          <div id="cornerRibbon">
+            <img src="/images/splashCornerBlack.png"/>
+          </div>
+          <div className='splashLogoContainer'>
+            <div>CLARICE KING</div>
+            <div id="tagline">The Collected Home</div>
+          </div>
+          <div className='splashSubscribeContainer'>
+            <form action="//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&amp;id=8eaec4d2f9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate className="validate">
+              <input id="splashInput" type="email" name='EMAIL' placeholder="E-mail Address" required/>
+              <button className ="searchBtn" type="submit" name="subscribe">
+                <h5>SIGN UP!</h5>
+              </button>
+            </form>
+          </div>
+        </div>
         <div className="backgroundContainer">
           {
             this.state.chairs.map((chair, index) => (
               (index%7 === 0) ?
               <div className="backgroundChair" id={`chair${index}`} key={index}>
-                <img className="flipped" src={`/images/splashChairs/c${chair}.png`}/>
+                <img id={`chairImg${index}`} className="flipped" src={`/images/splashChairs/c${chair}.png`}/>
               </div> :
               <div className="backgroundChair" id={`chair${index}`} key={index}>
-                <img src={`/images/splashChairs/c${chair}.png`}/>
+                <img id={`chairImg${index}`} src={`/images/splashChairs/c${chair}.png`}/>
               </div>
             ))
           }

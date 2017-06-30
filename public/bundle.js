@@ -39484,6 +39484,8 @@
 	    _this.addUser = _this.addUser.bind(_this);
 	    _this.addPassword = _this.addPassword.bind(_this);
 	    _this.redirect = _this.redirect.bind(_this);
+	    _this.swap = _this.swap.bind(_this);
+	    _this.animateBackground = _this.animateBackground.bind(_this);
 	    return _this;
 	  }
 	
@@ -39540,7 +39542,8 @@
 	      var body = document.querySelector('body');
 	      body.style.paddingBottom = 0;
 	      // return this.countdown();
-	      return this.setChairs();
+	      this.setChairs();
+	      return this.animateBackground();
 	    }
 	  }, {
 	    key: 'revealLogin',
@@ -39580,6 +39583,30 @@
 	      }
 	    }
 	  }, {
+	    key: 'swap',
+	    value: function swap() {
+	      var selectedChairs = [];
+	      for (var i = 0; i < Math.floor(Math.random() * 4); i++) {
+	        var num = Math.floor(Math.random() * 50);
+	        var newImg = Math.floor(Math.random() * 70) + 1;
+	        if (selectedChairs.indexOf(document.querySelector('div#chair' + num))) {
+	          document.getElementById('chairImg' + num).src = '/images/splashChairs/c' + newImg + '.png';
+	          selectedChairs.push(document.querySelector('div#chair' + num));
+	        } else {
+	          i--;
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'animateBackground',
+	    value: function animateBackground() {
+	      var _this2 = this;
+	
+	      var x = setInterval(function () {
+	        _this2.swap();
+	      }, 1000);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -39587,16 +39614,57 @@
 	        { className: 'splashContainer' },
 	        _react2.default.createElement(
 	          'div',
+	          { className: 'foregroundContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'cornerRibbon' },
+	            _react2.default.createElement('img', { src: '/images/splashCornerBlack.png' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'splashLogoContainer' },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              'CLARICE KING'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'tagline' },
+	              'The Collected Home'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'splashSubscribeContainer' },
+	            _react2.default.createElement(
+	              'form',
+	              { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', id: 'mc-embedded-subscribe-form', name: 'mc-embedded-subscribe-form', target: '_blank', noValidate: true, className: 'validate' },
+	              _react2.default.createElement('input', { id: 'splashInput', type: 'email', name: 'EMAIL', placeholder: 'E-mail Address', required: true }),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'searchBtn', type: 'submit', name: 'subscribe' },
+	                _react2.default.createElement(
+	                  'h5',
+	                  null,
+	                  'SIGN UP!'
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
 	          { className: 'backgroundContainer' },
 	          this.state.chairs.map(function (chair, index) {
 	            return index % 7 === 0 ? _react2.default.createElement(
 	              'div',
 	              { className: 'backgroundChair', id: 'chair' + index, key: index },
-	              _react2.default.createElement('img', { className: 'flipped', src: '/images/splashChairs/c' + chair + '.png' })
+	              _react2.default.createElement('img', { id: 'chairImg' + index, className: 'flipped', src: '/images/splashChairs/c' + chair + '.png' })
 	            ) : _react2.default.createElement(
 	              'div',
 	              { className: 'backgroundChair', id: 'chair' + index, key: index },
-	              _react2.default.createElement('img', { src: '/images/splashChairs/c' + chair + '.png' })
+	              _react2.default.createElement('img', { id: 'chairImg' + index, src: '/images/splashChairs/c' + chair + '.png' })
 	            );
 	          })
 	        )
