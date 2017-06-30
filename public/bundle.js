@@ -33099,36 +33099,7 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _FinalSplash2.default }),
-	    _react2.default.createElement(
-	      _reactRouter.Route,
-	      { path: '/root', component: _Root2.default, onEnter: _enterHooks.loadCategories },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/testimonials', component: _Testimonials2.default }),
-	      _react2.default.createElement(
-	        _reactRouter.Route,
-	        { path: '/checkout', component: _Checkout2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
-	      ),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
-	    )
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _FinalSplash2.default })
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
