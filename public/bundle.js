@@ -23793,6 +23793,10 @@
 	
 	var _designForm2 = _interopRequireDefault(_designForm);
 	
+	var _subscribe = __webpack_require__(360);
+	
+	var _subscribe2 = _interopRequireDefault(_subscribe);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
@@ -23805,7 +23809,8 @@
 		selectedOrder: _selectedOrder2.default,
 		shippingAddress: _shippingAddress2.default,
 		charge: _charge2.default,
-		designForm: _designForm2.default
+		designForm: _designForm2.default,
+		subscriber: _subscribe2.default
 	});
 	
 	exports.default = rootReducer;
@@ -33083,6 +33088,10 @@
 	
 	var _FinalSplash2 = _interopRequireDefault(_FinalSplash);
 	
+	var _Subscribe = __webpack_require__(359);
+	
+	var _Subscribe2 = _interopRequireDefault(_Subscribe);
+	
 	var _enterHooks = __webpack_require__(357);
 	
 	var _leaveHooks = __webpack_require__(358);
@@ -33090,21 +33099,22 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/* -----------------    ON-ENTER HOOKS     ------------------ */
-	
-	// import Account from './components/Account';
-	
-	
-	/* -----------------    COMPONENTS     ------------------ */
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _FinalSplash2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _FinalSplash2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/subscribe', component: _Subscribe2.default })
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
 	
 	/* -----------------    ON-LEAVE HOOKS     ------------------ */
+	
+	// import Account from './components/Account';
+	
+	
+	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ }),
 /* 319 */
@@ -39431,7 +39441,13 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _subscribe = __webpack_require__(360);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -39448,7 +39464,9 @@
 	    var _this = _possibleConstructorReturn(this, (FinalSplash.__proto__ || Object.getPrototypeOf(FinalSplash)).call(this));
 	
 	    _this.state = {
-	      chairs: []
+	      chairs: [],
+	      timer: null,
+	      email: null
 	
 	      // this.countdown = this.countdown.bind(this);
 	    };_this.setChairs = _this.setChairs.bind(_this);
@@ -39460,6 +39478,8 @@
 	    _this.animateBackground = _this.animateBackground.bind(_this);
 	    _this.iconSwapBlue = _this.iconSwapBlue.bind(_this);
 	    _this.iconSwapBlack = _this.iconSwapBlack.bind(_this);
+	    _this.forward = _this.forward.bind(_this);
+	    _this.addEmail = _this.addEmail.bind(_this);
 	    return _this;
 	  }
 	
@@ -39579,6 +39599,11 @@
 	      var x = setInterval(function () {
 	        _this2.swap();
 	      }, 1000);
+	
+	      this.setState(function (previousState) {
+	        previousState.timer = x;
+	        return previousState;
+	      });
 	    }
 	  }, {
 	    key: 'iconSwapBlue',
@@ -39589,6 +39614,26 @@
 	    key: 'iconSwapBlack',
 	    value: function iconSwapBlack(evt) {
 	      evt.currentTarget.childNodes[0].src = evt.currentTarget.childNodes[0].src.slice(0, -8) + '.svg';
+	    }
+	  }, {
+	    key: 'addEmail',
+	    value: function addEmail(evt) {
+	      evt.preventDefault();
+	      var subEmail = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.email = subEmail;
+	        return previousState;
+	      });
+	      console.log(this.state.email);
+	    }
+	  }, {
+	    key: 'forward',
+	    value: function forward(evt) {
+	      evt.preventDefault();
+	      window.clearInterval(this.state.timer);
+	      console.log(this.state.email);
+	      this.props.subscriberEmail(this.state.email);
+	      _reactRouter.browserHistory.push('/subscribe');
 	    }
 	  }, {
 	    key: 'render',
@@ -39623,8 +39668,8 @@
 	            { className: 'splashSubscribeContainer' },
 	            _react2.default.createElement(
 	              'form',
-	              { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', id: 'mc-embedded-subscribe-form', name: 'mc-embedded-subscribe-form', target: '_blank', noValidate: true, className: 'validate' },
-	              _react2.default.createElement('input', { id: 'splashInput', type: 'email', name: 'EMAIL', placeholder: 'E-mail Address', required: true }),
+	              { onSubmit: this.forward },
+	              _react2.default.createElement('input', { id: 'splashInput', type: 'email', name: 'EMAIL', placeholder: 'E-mail Address', required: true, onChange: this.addEmail }),
 	              _react2.default.createElement(
 	                'button',
 	                { className: 'searchBtn', type: 'submit', name: 'subscribe' },
@@ -39688,7 +39733,22 @@
 	  return FinalSplash;
 	}(_react.Component);
 	
-	exports.default = FinalSplash;
+	/* -----------------    CONTAINER     ------------------ */
+	
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  _objectDestructuringEmpty(_ref);
+	
+	  return {};
+	};
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    subscriberEmail: function subscriberEmail(email) {
+	      return dispatch((0, _subscribe.addSubscriber)(email));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(FinalSplash);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
@@ -39805,6 +39865,185 @@
 	
 	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
 		_store2.default.dispatch((0, _charge.deloadCharge)());
+	};
+
+/***/ }),
+/* 359 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Subscribe = function (_Component) {
+	  _inherits(Subscribe, _Component);
+	
+	  function Subscribe(props) {
+	    _classCallCheck(this, Subscribe);
+	
+	    // this.countdown = this.countdown.bind(this);
+	    var _this = _possibleConstructorReturn(this, (Subscribe.__proto__ || Object.getPrototypeOf(Subscribe)).call(this, props));
+	
+	    _this.validateForm = _this.validateForm.bind(_this);
+	
+	    return _this;
+	  }
+	
+	  _createClass(Subscribe, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var body = document.querySelector('body');
+	      body.style.paddingBottom = 0;
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      document.getElementById("emailInput").value = this.props.subscriber;
+	    }
+	  }, {
+	    key: 'validateForm',
+	    value: function validateForm(evt) {
+	      var email = document.forms["mc-embedded-subscribe-form"]["EMAIL"].value;
+	      var firstName = document.forms["mc-embedded-subscribe-form"]["FNAME"].value;
+	      var lastName = document.forms["mc-embedded-subscribe-form"]["LNAME"].value;
+	
+	      if (email === '' || firstName === '' || lastName === '') {
+	        alert("Please Fill Out Form");
+	        return false;
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'subscribeContainer' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/', className: 'subscribeLogoContainer' },
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'CLARICE KING'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'tagline' },
+	            'The Collected Home'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'formContainer' },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'SIGN UP FOR OUR NEWSLETTER AND BE THE FIRST TO KNOW'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            { action: '//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&id=8eaec4d2f9', method: 'post', name: 'mc-embedded-subscribe-form', className: 'validate', target: '_blank', onSubmit: this.validateForm },
+	            _react2.default.createElement('input', { id: 'emailInput', className: 'subscriberInput', type: 'email', name: 'EMAIL', placeholder: 'E-mail Address', required: true }),
+	            _react2.default.createElement('input', { id: 'fNameInput', className: 'subscriberInput', type: 'text', name: 'FNAME', placeholder: 'First Name', required: true }),
+	            _react2.default.createElement('input', { id: 'lNameInput', className: 'subscriberInput', type: 'text', name: 'LNAME', placeholder: 'Last Name', required: true }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'hiddenForm', 'aria-hidden': 'true' },
+	              _react2.default.createElement('input', { type: 'text', name: 'b_6210c56d9e29bc8b0ad547585_8eaec4d2f9', tabIndex: '-1', value: '' })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'subscribeButton', type: 'submit', name: 'subscribe' },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                'SIGN UP!'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Subscribe;
+	}(_react.Component);
+	
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  var subscriber = _ref.subscriber;
+	  return { subscriber: subscriber };
+	};
+	var mapDispatchToProps = function mapDispatchToProps() {
+	  return {};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Subscribe);
+
+/***/ }),
+/* 360 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addSubscriber = exports.subscriber = undefined;
+	exports.default = reducer;
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	/* -----------------    ACTIONS     ------------------ */
+	
+	var ADD_SUBSCRIBER = 'ADD_SUBSCRIBER';
+	
+	/* ------------   ACTION CREATORS     ------------------ */
+	
+	var subscriber = exports.subscriber = function subscriber(email) {
+	  return {
+	    type: ADD_SUBSCRIBER,
+	    email: email
+	  };
+	};
+	
+	/* ------------       REDUCER     ------------------ */
+	
+	function reducer() {
+	  var previousState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	
+	    case ADD_SUBSCRIBER:
+	      return action.email;
+	
+	    default:
+	      return previousState;
+	  }
+	}
+	
+	var addSubscriber = exports.addSubscriber = function addSubscriber(email) {
+	  return subscriber(email);
 	};
 
 /***/ })

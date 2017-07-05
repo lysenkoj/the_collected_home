@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
 import {browserHistory} from 'react-router';
+import { connect } from 'react-redux';
+import {addSubscriber} from '../reducers/subscribe';
 
 
-export default class FinalSplash extends Component {
+ class FinalSplash extends Component {
   constructor() {
     super()
     this.state = {
-      chairs: []
+      chairs: [],
+      timer: null,
+      email: null
     }
 
 
@@ -21,6 +25,8 @@ export default class FinalSplash extends Component {
     this.animateBackground = this.animateBackground.bind(this);
     this.iconSwapBlue = this.iconSwapBlue.bind(this);
     this.iconSwapBlack = this.iconSwapBlack.bind(this);
+    this.forward = this.forward.bind(this);
+    this.addEmail = this.addEmail.bind(this);
   }
 
   setChairs(){
@@ -128,6 +134,11 @@ export default class FinalSplash extends Component {
     let x = setInterval(() => {
       this.swap();
     }, 1000)
+
+    this.setState((previousState) => {
+      previousState.timer = x;
+      return previousState;
+    });
   }
 
   iconSwapBlue(evt){
@@ -136,6 +147,24 @@ export default class FinalSplash extends Component {
 
   iconSwapBlack(evt){
     evt.currentTarget.childNodes[0].src = evt.currentTarget.childNodes[0].src.slice(0, -8) + '.svg';
+  }
+
+  addEmail(evt){
+    evt.preventDefault();
+    let subEmail = evt.target.value;
+    this.setState((previousState) => {
+      previousState.email = subEmail;
+      return previousState;
+    })
+    console.log(this.state.email)
+  }
+
+  forward(evt){
+    evt.preventDefault();
+    window.clearInterval(this.state.timer);
+    console.log(this.state.email)
+    this.props.subscriberEmail(this.state.email);
+    browserHistory.push('/subscribe');
   }
 
   render() {
@@ -150,8 +179,8 @@ export default class FinalSplash extends Component {
             <div id="tagline">The Collected Home</div>
           </div>
           <div className='splashSubscribeContainer'>
-            <form action="//clariceking.us15.list-manage.com/subscribe/post?u=6210c56d9e29bc8b0ad547585&amp;id=8eaec4d2f9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" noValidate className="validate">
-              <input id="splashInput" type="email" name='EMAIL' placeholder="E-mail Address" required/>
+            <form onSubmit={this.forward}>
+              <input id="splashInput" type="email" name='EMAIL' placeholder="E-mail Address" required onChange={this.addEmail}/>
               <button className ="searchBtn" type="submit" name="subscribe">
                 <h5>SIGN UP!</h5>
               </button>
@@ -173,7 +202,7 @@ export default class FinalSplash extends Component {
             <a href='https://www.pinterest.com/claricekinghome/' onMouseEnter={this.iconSwapBlue} onMouseLeave={this.iconSwapBlack}>
               <img src='images/twitter.svg'/>
             </a>
-        </div>
+          </div>
         </div>
         <div className="backgroundContainer">
           {
@@ -192,3 +221,12 @@ export default class FinalSplash extends Component {
     )
   }
 }
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapStateToProps = ({}) => ({});
+const mapDispatchToProps = (dispatch) => ({
+	subscriberEmail: (email) => dispatch(addSubscriber(email))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FinalSplash);

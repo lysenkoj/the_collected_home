@@ -29,6 +29,7 @@ import ShippingInfo from './components/ShippingInfo';
 import Testimonials from './components/Testimonials';
 import Login from './components/Login';
 import FinalSplash from './components/FinalSplash';
+import Subscribe from './components/Subscribe';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
@@ -39,6 +40,7 @@ import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onA
 export default () => (
 	<Router history={browserHistory}>
     <Route path="/" component={FinalSplash} />
+    <Route path="/subscribe" component={Subscribe} />
     {/*<Route path="/root" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/signup" component={Signup} />

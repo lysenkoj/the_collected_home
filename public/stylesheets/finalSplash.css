@@ -409,6 +409,7 @@
       width: 35px;
       height: 35px; } }
 
+/* -------------------- MOBILE ----------------------- */
 @media (max-width: 549px) {
   .splashContainer {
     display: flex;
