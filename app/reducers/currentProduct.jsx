@@ -8,6 +8,7 @@ import {browserHistory} from "react-router";
 const LOAD_PRODUCT = 'LOAD_PRODUCT';
 const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
 const SAVE_PHOTO = 'SAVE_PHOTO';
+const ADD_PRODUCT = 'ADD_PRODUCT';
 // const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 
@@ -22,6 +23,11 @@ const loadProduct = product => ({
 //   type: UPDATE_PRODUCT,
 //   product
 // });
+export const addProduct = (product) => ({
+  type: ADD_PRODUCT,
+  product
+})
+
 export const savePhoto = (photo) => ({
   type: SAVE_PHOTO,
   photo
@@ -46,6 +52,9 @@ export default function reducer (previousState = {}, action) {
     case SAVE_PHOTO:
       return action.photo;
 
+    case ADD_PRODUCT:
+      return action.product;
+
     // case UPDATE_PRODUCT:
     //   return Object.assign({}, previousState, action.product}
 
@@ -56,11 +65,6 @@ export default function reducer (previousState = {}, action) {
 
 
 /* ------------       DISPATCHERS     ------------------ */
-
-// export const clickRight = index => dispatch => {
-//   dispatch(moveForward(index));
-// };
-
 
 
 export const fetchAndGoToProduct = sku => {
@@ -81,14 +85,13 @@ export const updateProduct = product => {
   }
 }
 
-export const addProduct = (product, categoryProduct) => {
+export const addNewProduct = (product, categoryProduct) => {
   return dispatch => {
     axios.post(`/api/products`, product)
       .then(() => axios.post(`/api/category_products`, categoryProduct))
       .then(() => {
         dispatch(fetchAndGoToProduct(product.sku))
       })
-      .then(browserHistory.push(`/product/${product.sku}`))
       .catch(err => console.error('Fetching product failed', err))
   }
 }

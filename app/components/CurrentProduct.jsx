@@ -9,7 +9,7 @@ import {updateProduct} from '../reducers/currentProduct';
 
 
 // NOTE: IF YOU EDIT THE TAG INSIDE HTML OF CONTENTEDITABLE, MAKE SURE TO UPDATE THE SLICE IN THE CHANGE____FIELD FNS TO THE NEW SIZE
-const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField, changeDescriptionField, changePriceField, user, currentProduct, categories, addToCart, changeAmnt, notify }) => (
+const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField, changeDescriptionField, changeQuoteField, changePriceField, user, currentProduct, categories, addToCart, changeAmnt, notify }) => (
 	<div id="currentProduct">
 		{
 			notify ? <Notification /> : ''
@@ -24,8 +24,8 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
     </div>
 		<photo>
       {state.mainImg ?
-      <img className="mainPhoto" src={state.mainImg} responsive /> :
-			<img className="mainPhoto" src={currentProduct && currentProduct.mainImg} responsive />
+      <img className="mainPhoto" src={state.mainImg}/> :
+			<img className="mainPhoto" src={currentProduct && currentProduct.mainImg}/>
       }
 		</photo>
     <div className="infoContainer">
@@ -46,6 +46,11 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
                   disabled={!(user && user.isAdmin)}
                   onChange={changeDescriptionField}
                 />
+        <ContentEditable className="productQuote"
+                  html={`<p>${ currentProduct.quote }</p>`}
+                  disabled={!(user && user.isAdmin)}
+                  onChange={changeQuoteField}
+                />
         <ContentEditable className="productSize"
                   html={`<p>${currentProduct.size }</p>`}
                   disabled={!(user && user.isAdmin)}
@@ -57,8 +62,6 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
         <form onSubmit={ addToCart }>
           <select id="cartSelector" onChange={ changeAmnt } name="dropdown">
             <option value="1" defaultValue>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
           </select>
           <button id="cartButton" type="submit">ADD TO CART</button>
         </form>
@@ -80,6 +83,7 @@ class CurrentProduct extends Component {
 			notify: false,
 			name: "",
 			description: "",
+      quote: "",
 			price: "",
 			imageUrl: "",
       mainImg: null
@@ -89,6 +93,7 @@ class CurrentProduct extends Component {
 
 		this.changeNameField = this.changeNameField.bind(this);
 		this.changeDescriptionField = this.changeDescriptionField.bind(this);
+    this.changeQuoteField = this.changeQuoteField.bind(this);
 		this.changePriceField = this.changePriceField.bind(this);
 
 		this.modifyProduct = this.modifyProduct.bind(this);
@@ -119,6 +124,13 @@ class CurrentProduct extends Component {
 		var description = evt.target.value.slice(3,-4)
 		// console.log(description)
 		this.setState({ description })
+	}
+
+  changeQuoteField(evt) {
+		evt.preventDefault();
+		var quote = evt.target.value.slice(3,-4)
+		console.log(quote)
+		this.setState({ quote })
 	}
 
 	changePriceField(evt) {
@@ -163,6 +175,7 @@ class CurrentProduct extends Component {
           changeNameField={ this.changeNameField }
           changeDescriptionField={ this.changeDescriptionField }
           changePriceField={ this.changePriceField }
+          changeQuoteField={this.changeQuoteField}
           state={this.state}
           categories={categories}
           modifyProduct={this.modifyProduct}

@@ -21,7 +21,7 @@ export default class QuickCartItem extends Component {
     const { item, remove } = this.props;
     return (
      <li className="quick-cart-item">
-      <button id='quickCartDelete' onClick= { () => { remove(item) }}><h3>X</h3></button>
+      <button id='quickCartDelete' onClick= { () => { remove(item) }}><h4>X</h4></button>
       <div className="quickCartItem">
         <Link to={`/product/${item.product.sku}`}>
           <product className="carted-product">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { addCategory } from '../reducers/categories'
-import { addProduct } from '../reducers/currentProduct';
+import { addNewProduct } from '../reducers/currentProduct';
 import ImageUpload from './imageUpload';
 import { addPhoto } from '../reducers/currentProduct';
 
@@ -29,13 +29,14 @@ class Admin extends Component{
           name: '',
           sku: '',
           quantity: '',
-          imageUrl: {},
+          imageUrl: [],
           price: '',
           description: '',
+          quote: '',
           size: ''
         },
         category: {
-          id: '8',
+          id: '7',
 
         }
       }
@@ -52,6 +53,7 @@ class Admin extends Component{
       this.categoryUpdate = this.categoryUpdate.bind(this);
       this.quantityUpdate = this.quantityUpdate.bind(this);
       this.priceUpdate = this.priceUpdate.bind(this);
+      this.quoteUpdate = this.quoteUpdate.bind(this);
       this.sizeUpdate = this.sizeUpdate.bind(this);
       this.descriptionUpdate = this.descriptionUpdate.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
@@ -118,15 +120,16 @@ class Admin extends Component{
   }
 
   makeProduct(evt){
-    evt.preventDefault()
+    evt.preventDefault();
     var product = this.state.product;
 
     var categoryProduct = {
       id: this.state.category.id,
       sku: this.state.product.sku
     }
-    // this.props.createProduct(product, categoryProduct);
-    console.log('PRODUCT CREATED SUCCESFULLY!!!')
+    console.log('INFO BEFORE BEING CREATED!', product, categoryProduct);
+
+    this.props.createProduct(product, categoryProduct);
   }
 
   checkProduct(evt){
@@ -189,6 +192,15 @@ class Admin extends Component{
     });
   }
 
+  quoteUpdate(evt){
+    evt.preventDefault();
+    const newQuote = evt.target.value;
+    this.setState((previousState) => {
+      previousState.product.quote = newQuote;
+      return previousState;
+    });
+  }
+
   sizeUpdate(evt){
     evt.preventDefault();
     const newSize = evt.target.value;
@@ -244,7 +256,7 @@ class Admin extends Component{
           <h4>CATEGORIES</h4>
           {
             this.props.categories && this.props.categories.filter( category => (
-              (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6) || (category.id === 7))
+              (category.id === 1) || (category.id === 2) || (category.id === 3) || (category.id === 4) || (category.id === 5) || (category.id === 6))
             ).map(category =>
             <div className="eachCategory" key={category.id}>
               <h5 className="categoryToggle" onClick={ this.toggleCategory }>{category.name.toUpperCase()}</h5>
@@ -294,7 +306,7 @@ class Admin extends Component{
             <div className="form-group">
               <label>Category:</label>
                 <select name="category" onChange={(evt) => this.categoryUpdate(evt)}>
-                  {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
+                  {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5) && (category.id !== 6))).map((category,index) => <option key={index} value={`${category.id}`}>{category.name}</option>)}
                 </select>
             </div>
             <div className="form-group">
@@ -317,6 +329,10 @@ class Admin extends Component{
               <label>Description:</label>
               <textarea type="text"  name="description" cols="40" rows="5" onChange={(evt) => this.descriptionUpdate(evt)}/>
             </div>
+            <div className="form-group">
+              <label>Quote:</label>
+              <textarea type="text"  name="quote" cols="40" rows="5" onChange={(evt) => this.quoteUpdate(evt)}/>
+            </div>
             <div id="imageButton">
               <button onClick={this.UploadImageContainer}>
                 UPLOAD IMAGE
@@ -324,7 +340,7 @@ class Admin extends Component{
               <input type="checkbox" id="imageUploaded" name="upload" value="image" disabled="disabled" checked=""/>
               <label htmlFor="imageUploaded">IMAGE UPLOADED</label>
             </div>
-            <button type="submit" onSubmit={this.makeProduct}>CREATE</button>
+            <button type="submit" onClick={this.makeProduct}>CREATE</button>
           </form>
           <ImageUpload _handleImageChange={this._handleImageChange} _handleSubmit={this._handleSubmit} imgUrl={this.state.product.imageUrl} />
           </div>
@@ -346,7 +362,7 @@ const mapStateToProps = ({ user , categories}) => ({ user , categories});
 
 const mapDispatchToProps = (dispatch) => ({
   createCategory: (categoryName, metaCategory) => dispatch(addCategory(categoryName, metaCategory)),
-  createProduct: (product, categoryProduct) => dispatch(addProduct(product, categoryProduct)),
+  createProduct: (product, categoryProduct) => dispatch(addNewProduct(product, categoryProduct)),
   savePhoto: (photo) => dispatch(addPhoto(photo))
 });
 

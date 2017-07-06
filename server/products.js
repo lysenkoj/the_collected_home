@@ -132,12 +132,14 @@ customProductRoutes.post("/", function(req, res, next) {
 		.then(userAdmin => {
 			userAdmin.data.isAdmin ?
 			Product.create({
-				  name: req.body.name,
 			      sku: req.body.sku,
+				    name: req.body.name,
 			      quantity: req.body.quantity,
 			      imageUrl: req.body.imageUrl,
 			      price: req.body.price,
-			      description: req.body.description
+			      description: req.body.description,
+            quote: req.body.quote
+
 			})
 			: res.status(403).send('You do not have administrative privileges')
 		})

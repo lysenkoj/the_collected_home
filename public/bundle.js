@@ -31089,7 +31089,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addPhoto = exports.addProduct = exports.updateProduct = exports.fetchAndGoToProduct = exports.clearProduct = exports.savePhoto = undefined;
+	exports.addPhoto = exports.addNewProduct = exports.updateProduct = exports.fetchAndGoToProduct = exports.clearProduct = exports.savePhoto = exports.addProduct = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31105,6 +31105,7 @@
 	var LOAD_PRODUCT = 'LOAD_PRODUCT';
 	var CLEAR_PRODUCT = 'CLEAR_PRODUCT';
 	var SAVE_PHOTO = 'SAVE_PHOTO';
+	var ADD_PRODUCT = 'ADD_PRODUCT';
 	// const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 	
 	
@@ -31121,6 +31122,13 @@
 	//   type: UPDATE_PRODUCT,
 	//   product
 	// });
+	var addProduct = exports.addProduct = function addProduct(product) {
+	  return {
+	    type: ADD_PRODUCT,
+	    product: product
+	  };
+	};
+	
 	var savePhoto = exports.savePhoto = function savePhoto(photo) {
 	  return {
 	    type: SAVE_PHOTO,
@@ -31151,6 +31159,9 @@
 	    case SAVE_PHOTO:
 	      return action.photo;
 	
+	    case ADD_PRODUCT:
+	      return action.product;
+	
 	    // case UPDATE_PRODUCT:
 	    //   return Object.assign({}, previousState, action.product}
 	
@@ -31160,11 +31171,6 @@
 	}
 	
 	/* ------------       DISPATCHERS     ------------------ */
-	
-	// export const clickRight = index => dispatch => {
-	//   dispatch(moveForward(index));
-	// };
-	
 	
 	var fetchAndGoToProduct = exports.fetchAndGoToProduct = function fetchAndGoToProduct(sku) {
 	  return function (dispatch) {
@@ -31186,13 +31192,13 @@
 	  };
 	};
 	
-	var addProduct = exports.addProduct = function addProduct(product, categoryProduct) {
+	var addNewProduct = exports.addNewProduct = function addNewProduct(product, categoryProduct) {
 	  return function (dispatch) {
 	    _axios2.default.post('/api/products', product).then(function () {
 	      return _axios2.default.post('/api/category_products', categoryProduct);
 	    }).then(function () {
 	      dispatch(fetchAndGoToProduct(product.sku));
-	    }).then(_reactRouter.browserHistory.push('/product/' + product.sku)).catch(function (err) {
+	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
 	    });
 	  };
@@ -33103,8 +33109,35 @@
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _FinalSplash2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/subscribe', component: _Subscribe2.default })
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { path: '/', component: _Root2.default, onEnter: _enterHooks.loadCategories },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/design', component: _DesignServices2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/press', component: _Press2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/story', component: _Story2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/faq', component: _FAQ2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/shipping_info', component: _ShippingInfo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/testimonials', component: _Testimonials2.default }),
+	      _react2.default.createElement(
+	        _reactRouter.Route,
+	        { path: '/checkout', component: _Checkout2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/shipping', component: _Shipping2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/payment', component: _Payment2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/confirmation/:token', component: _Confirmation2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/checkout/aftersubmit', component: _AfterOrderSubmit2.default, onLeave: _leaveHooks.deloadSingleCharge })
+	      ),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/search/:query', component: _SelectedProducts2.default, onEnter: _enterHooks.loadQueriedProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/featured', component: _SelectedProducts2.default, onEnter: _enterHooks.loadFeaturedProducts, onLeave: _leaveHooks.deloadCategoryProducts }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/:categoryName', component: _SelectedProducts2.default, onEnter: _enterHooks.loadCategoryProducts, onLeave: _leaveHooks.deloadCategoryProducts })
+	    )
 	  );
 	};
 	//    <Route path="/payment" component={Payment} />
@@ -33968,7 +34001,7 @@
 	              remove(item);
 	            } },
 	          _react2.default.createElement(
-	            'h3',
+	            'h4',
 	            null,
 	            'X'
 	          )
@@ -35009,6 +35042,7 @@
 	      state = _ref.state,
 	      changeNameField = _ref.changeNameField,
 	      changeDescriptionField = _ref.changeDescriptionField,
+	      changeQuoteField = _ref.changeQuoteField,
 	      changePriceField = _ref.changePriceField,
 	      user = _ref.user,
 	      currentProduct = _ref.currentProduct,
@@ -35034,7 +35068,7 @@
 	    _react2.default.createElement(
 	      'photo',
 	      null,
-	      state.mainImg ? _react2.default.createElement('img', { className: 'mainPhoto', src: state.mainImg, responsive: true }) : _react2.default.createElement('img', { className: 'mainPhoto', src: currentProduct && currentProduct.mainImg, responsive: true })
+	      state.mainImg ? _react2.default.createElement('img', { className: 'mainPhoto', src: state.mainImg }) : _react2.default.createElement('img', { className: 'mainPhoto', src: currentProduct && currentProduct.mainImg })
 	    ),
 	    _react2.default.createElement(
 	      'div',
@@ -35063,6 +35097,11 @@
 	          disabled: !(user && user.isAdmin),
 	          onChange: changeDescriptionField
 	        }),
+	        _react2.default.createElement(_reactContenteditable2.default, { className: 'productQuote',
+	          html: '<p>' + currentProduct.quote + '</p>',
+	          disabled: !(user && user.isAdmin),
+	          onChange: changeQuoteField
+	        }),
 	        _react2.default.createElement(_reactContenteditable2.default, { className: 'productSize',
 	          html: '<p>' + currentProduct.size + '</p>',
 	          disabled: !(user && user.isAdmin),
@@ -35087,16 +35126,6 @@
 	              'option',
 	              { value: '1', defaultValue: true },
 	              '1'
-	            ),
-	            _react2.default.createElement(
-	              'option',
-	              { value: '2' },
-	              '2'
-	            ),
-	            _react2.default.createElement(
-	              'option',
-	              { value: '3' },
-	              '3'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -35138,6 +35167,7 @@
 	      notify: false,
 	      name: "",
 	      description: "",
+	      quote: "",
 	      price: "",
 	      imageUrl: "",
 	      mainImg: null
@@ -35147,6 +35177,7 @@
 	
 	    _this.changeNameField = _this.changeNameField.bind(_this);
 	    _this.changeDescriptionField = _this.changeDescriptionField.bind(_this);
+	    _this.changeQuoteField = _this.changeQuoteField.bind(_this);
 	    _this.changePriceField = _this.changePriceField.bind(_this);
 	
 	    _this.modifyProduct = _this.modifyProduct.bind(_this);
@@ -35183,6 +35214,14 @@
 	      var description = evt.target.value.slice(3, -4
 	      // console.log(description)
 	      );this.setState({ description: description });
+	    }
+	  }, {
+	    key: 'changeQuoteField',
+	    value: function changeQuoteField(evt) {
+	      evt.preventDefault();
+	      var quote = evt.target.value.slice(3, -4);
+	      console.log(quote);
+	      this.setState({ quote: quote });
 	    }
 	  }, {
 	    key: 'changePriceField',
@@ -35244,6 +35283,7 @@
 	          changeNameField: this.changeNameField,
 	          changeDescriptionField: this.changeDescriptionField,
 	          changePriceField: this.changePriceField,
+	          changeQuoteField: this.changeQuoteField,
 	          state: this.state,
 	          categories: categories,
 	          modifyProduct: this.modifyProduct,
@@ -36578,13 +36618,14 @@
 	        name: '',
 	        sku: '',
 	        quantity: '',
-	        imageUrl: {},
+	        imageUrl: [],
 	        price: '',
 	        description: '',
+	        quote: '',
 	        size: ''
 	      },
 	      category: {
-	        id: '8'
+	        id: '7'
 	
 	      }
 	    };
@@ -36601,6 +36642,7 @@
 	    _this.categoryUpdate = _this.categoryUpdate.bind(_this);
 	    _this.quantityUpdate = _this.quantityUpdate.bind(_this);
 	    _this.priceUpdate = _this.priceUpdate.bind(_this);
+	    _this.quoteUpdate = _this.quoteUpdate.bind(_this);
 	    _this.sizeUpdate = _this.sizeUpdate.bind(_this);
 	    _this.descriptionUpdate = _this.descriptionUpdate.bind(_this);
 	    _this._handleSubmit = _this._handleSubmit.bind(_this);
@@ -36679,8 +36721,10 @@
 	      var categoryProduct = {
 	        id: this.state.category.id,
 	        sku: this.state.product.sku
-	        // this.props.createProduct(product, categoryProduct);
-	      };console.log('PRODUCT CREATED SUCCESFULLY!!!');
+	      };
+	      console.log('INFO BEFORE BEING CREATED!', product, categoryProduct);
+	
+	      this.props.createProduct(product, categoryProduct);
 	    }
 	  }, {
 	    key: 'checkProduct',
@@ -36748,6 +36792,16 @@
 	      var newDescription = evt.target.value;
 	      this.setState(function (previousState) {
 	        previousState.product.description = newDescription;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'quoteUpdate',
+	    value: function quoteUpdate(evt) {
+	      evt.preventDefault();
+	      var newQuote = evt.target.value;
+	      this.setState(function (previousState) {
+	        previousState.product.quote = newQuote;
 	        return previousState;
 	      });
 	    }
@@ -36825,7 +36879,7 @@
 	              'CATEGORIES'
 	            ),
 	            this.props.categories && this.props.categories.filter(function (category) {
-	              return category.id === 1 || category.id === 2 || category.id === 3 || category.id === 4 || category.id === 5 || category.id === 6 || category.id === 7;
+	              return category.id === 1 || category.id === 2 || category.id === 3 || category.id === 4 || category.id === 5 || category.id === 6;
 	            }).map(function (category) {
 	              return _react2.default.createElement(
 	                'div',
@@ -36965,10 +37019,10 @@
 	                      } },
 	                    this.props.categories && this.props.categories.filter(function (category) {
 	                      return category.id !== 1 && category.id !== 2 && category.id !== 3 && category.id !== 4 && category.id !== 5 && category.id !== 6;
-	                    }).map(function (category) {
+	                    }).map(function (category, index) {
 	                      return _react2.default.createElement(
 	                        'option',
-	                        { value: '' + category.id },
+	                        { key: index, value: '' + category.id },
 	                        category.name
 	                      );
 	                    })
@@ -37036,6 +37090,18 @@
 	                ),
 	                _react2.default.createElement(
 	                  'div',
+	                  { className: 'form-group' },
+	                  _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Quote:'
+	                  ),
+	                  _react2.default.createElement('textarea', { type: 'text', name: 'quote', cols: '40', rows: '5', onChange: function onChange(evt) {
+	                      return _this3.quoteUpdate(evt);
+	                    } })
+	                ),
+	                _react2.default.createElement(
+	                  'div',
 	                  { id: 'imageButton' },
 	                  _react2.default.createElement(
 	                    'button',
@@ -37051,7 +37117,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'submit', onSubmit: this.makeProduct },
+	                  { type: 'submit', onClick: this.makeProduct },
 	                  'CREATE'
 	                )
 	              ),
@@ -37080,7 +37146,7 @@
 	      return dispatch((0, _categories.addCategory)(categoryName, metaCategory));
 	    },
 	    createProduct: function createProduct(product, categoryProduct) {
-	      return dispatch((0, _currentProduct.addProduct)(product, categoryProduct));
+	      return dispatch((0, _currentProduct.addNewProduct)(product, categoryProduct));
 	    },
 	    savePhoto: function savePhoto(photo) {
 	      return dispatch((0, _currentProduct.addPhoto)(photo));

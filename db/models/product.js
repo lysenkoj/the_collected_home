@@ -57,6 +57,10 @@ const Product = db.define('products', {
 		type: Sequelize.TEXT
 	},
 
+  quote: {
+		type: Sequelize.TEXT
+	},
+
   featured: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
@@ -74,7 +78,7 @@ const Product = db.define('products', {
 		img: function() {
 			return (this.imageUrl) ?
 				this.imageUrl :
-				'/images/Image-Coming-Soon-Placeholder.png'
+				['/images/Image-Coming-Soon-Placeholder.png']
 		}
 	}
 
@@ -88,6 +92,13 @@ Product.hook('beforeValidate', function(product, options) {
 
 Product.hook('afterValidate', function(product, options) {
   product.mainImg = product.imageUrl[0];
+})
+
+Product.hook('beforeCreate', function(product, options) {
+  if(product.dataValues.imageUrl.length === 0){
+    product.imageUrl = ['/images/Image-Coming-Soon-Placeholder.png'];
+    product.mainImg = product.imageUrl[0];
+  }
 })
 
 module.exports = Product;
