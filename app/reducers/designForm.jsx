@@ -1,25 +1,13 @@
 import axios from 'axios';
 import {browserHistory} from "react-router";
 
-/* -----------------    ACTIONS     ------------------ */
-
-const LOAD_DESIGN_FORM = 'LOAD_DESIGN_FORM';
-
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-export const loadDesignForm = info => ({
-  type: LOAD_DESIGN_FORM,
-  info
-});
-
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (previousState = {}, action) {
   switch (action.type) {
 
-    case LOAD_DESIGN_FORM:
-      return action.info;
+    case 'ADD_DESIGN_FORM_INFO':
+      return Object.assign({}, previousState, action.info);
 
     default:
       return previousState;

@@ -58,7 +58,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _routes = __webpack_require__(318);
+	var _routes = __webpack_require__(319);
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
@@ -23698,42 +23698,59 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
+	exports.history = undefined;
 	
 	var _redux = __webpack_require__(191);
+	
+	var _reactRouterRedux = __webpack_require__(775);
+	
+	var _reactRouter = __webpack_require__(242);
 	
 	var _reducers = __webpack_require__(215);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _reduxLogger = __webpack_require__(306);
+	var _reduxLogger = __webpack_require__(307);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _reduxThunk = __webpack_require__(312);
+	var _reduxThunk = __webpack_require__(313);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
 	var _auth = __webpack_require__(300);
 	
-	var _reduxLocalstorage = __webpack_require__(313);
+	var _reduxLocalstorage = __webpack_require__(314);
 	
 	var _reduxLocalstorage2 = _interopRequireDefault(_reduxLocalstorage);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import data
 	var composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || _redux.compose;
 	
-	// added this for redux chrome devtools
-	// needs to be the 'same shape' as our store
-	// https://github.com/reactjs/redux/blob/master/docs/api/createStore.md
-	var preloadedState = { currentProduct: {} };
-	// BUT DEVTOOLS STILL NOT WORKING AGGGHHHH
-	// lol
+	var defualtState = {
+	  cart: [],
+	  categories: [],
+	  charge: {
+	    received: false,
+	    chargeData: {}
+	  },
+	  currentProduct: {},
+	  designForm: {},
+	  orders: [],
+	  selectedOrder: {},
+	  selectedProduct: [],
+	  subscriber: {},
+	  user: {}
 	
+	};
 	
-	var store = (0, _redux.createStore)(_reducers2.default, preloadedState, composeEnhancers((0, _redux.applyMiddleware)((0, _reduxLogger2.default)(), _reduxThunk2.default), (0, _reduxLocalstorage2.default)("cart", { key: "greatShopperCart" })));
+	var store = (0, _redux.createStore)(_reducers2.default, defualtState, composeEnhancers((0, _redux.applyMiddleware)((0, _reduxLogger2.default)(), _reduxThunk2.default), (0, _reduxLocalstorage2.default)("cart", { key: "greatShopperCart" })));
+	
+	var history = exports.history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 	
 	exports.default = store;
 	
@@ -23748,10 +23765,12 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _redux = __webpack_require__(191);
+	
+	var _reactRouterRedux = __webpack_require__(775);
 	
 	var _selectedProducts = __webpack_require__(216);
 	
@@ -23793,24 +23812,20 @@
 	
 	var _designForm2 = _interopRequireDefault(_designForm);
 	
-	var _subscribe = __webpack_require__(360);
+	var _subscribe = __webpack_require__(306);
 	
 	var _subscribe2 = _interopRequireDefault(_subscribe);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
-		currentProduct: _currentProduct2.default,
-		selectedProducts: _selectedProducts2.default,
-		categories: _categories2.default,
-		cart: _cart2.default,
-		user: _auth2.default,
-		orders: _orders2.default,
-		selectedOrder: _selectedOrder2.default,
-		shippingAddress: _shippingAddress2.default,
-		charge: _charge2.default,
-		designForm: _designForm2.default,
-		subscriber: _subscribe2.default
+	  categories: _categories2.default,
+	  charge: _charge2.default,
+	  currentProduct: _currentProduct2.default,
+	  designForm: _designForm2.default,
+	  orders: _orders2.default,
+	
+	  routing: _reactRouterRedux.routerReducer
 	});
 	
 	exports.default = rootReducer;
@@ -31089,7 +31104,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addPhoto = exports.addNewProduct = exports.updateProduct = exports.fetchAndGoToProduct = exports.clearProduct = exports.savePhoto = exports.addProduct = undefined;
+	exports.addPhoto = exports.addNewProduct = exports.updateProduct = exports.fetchAndGoToProduct = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31100,48 +31115,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var LOAD_PRODUCT = 'LOAD_PRODUCT';
-	var CLEAR_PRODUCT = 'CLEAR_PRODUCT';
-	var SAVE_PHOTO = 'SAVE_PHOTO';
-	var ADD_PRODUCT = 'ADD_PRODUCT';
-	// const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
-	
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var loadProduct = function loadProduct(product) {
-	  return {
-	    type: LOAD_PRODUCT,
-	    product: product
-	  };
-	};
-	
-	// const updateProduct = product => ({
-	//   type: UPDATE_PRODUCT,
-	//   product
-	// });
-	var addProduct = exports.addProduct = function addProduct(product) {
-	  return {
-	    type: ADD_PRODUCT,
-	    product: product
-	  };
-	};
-	
-	var savePhoto = exports.savePhoto = function savePhoto(photo) {
-	  return {
-	    type: SAVE_PHOTO,
-	    photo: photo
-	  };
-	};
-	
-	var clearProduct = exports.clearProduct = function clearProduct() {
-	  return {
-	    type: CLEAR_PRODUCT
-	  };
-	};
-	
 	/* ------------       REDUCER     ------------------ */
 	
 	function reducer() {
@@ -31150,20 +31123,17 @@
 	
 	  switch (action.type) {
 	
-	    case LOAD_PRODUCT:
+	    case 'LOAD_PRODUCT':
 	      return action.product;
 	
-	    case CLEAR_PRODUCT:
+	    case 'CLEAR_PRODUCT':
 	      return {};
 	
-	    case SAVE_PHOTO:
-	      return action.photo;
-	
-	    case ADD_PRODUCT:
+	    case 'ADD_PRODUCT':
 	      return action.product;
 	
-	    // case UPDATE_PRODUCT:
-	    //   return Object.assign({}, previousState, action.product}
+	    case 'UPDATE_PRODUCT':
+	      return Object.assign({}, previousState, action.product);
 	
 	    default:
 	      return previousState;
@@ -31206,15 +31176,11 @@
 	
 	var addPhoto = exports.addPhoto = function addPhoto(image) {
 	  return function (dispatch) {
-	    request.post('api/upload').attach('images', 'public/images').end(function (err, res) {
-	      if (err) {
-	        console.log("Error: " + err);
-	      }
-	    }).then(function (image) {
-	      dispatch(savePhoto(image.data));
-	    }
-	    // .catch(err => console.error('Photo Failed to Post', err))
-	    );
+	    _axios2.default.post('/api/uploads', image).then(function (image) {
+	      return dispatch(savePhoto(image.data));
+	    }).catch(function (err) {
+	      return console.error('Photo Failed to Post', err);
+	    });
 	  };
 	};
 
@@ -31234,21 +31200,9 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _actionCreators = __webpack_require__(780);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var LOAD_CATEGORIES = 'LOAD_CATEGORIES';
-	var ADD_CATEGORY = 'ADD_CATEGORY';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var loadCategory = function loadCategory(categories) {
-	  return {
-	    type: LOAD_CATEGORIES,
-	    categories: categories
-	  };
-	};
 	
 	/* ------------       REDUCER     ------------------ */
 	
@@ -31258,7 +31212,13 @@
 	
 	  switch (action.type) {
 	
-	    case LOAD_CATEGORIES:
+	    case 'LOAD_CATEGORIES':
+	      return action.categories;
+	
+	    case 'ADD_CATEGORIES':
+	      return action.categories;
+	
+	    case 'REMOVE_CATEGORY':
 	      return action.categories;
 	
 	    default:
@@ -31271,7 +31231,7 @@
 	var fetchAndStoreCategories = exports.fetchAndStoreCategories = function fetchAndStoreCategories() {
 	  return function (dispatch) {
 	    _axios2.default.get('/api/categories').then(function (categories) {
-	      return dispatch(loadCategory(categories.data));
+	      return dispatch((0, _actionCreators.loadCategories)(categories.data));
 	    }).catch(function (err) {
 	      return console.error('Fetching categories failed', err);
 	    });
@@ -31299,7 +31259,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.submitOrder = exports.clearCart = exports.changeQuantity = exports.removeItem = exports.addItem = undefined;
+	exports.submitOrder = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31309,41 +31269,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var ADD_ITEM = 'ADD_ITEM';
-	var REMOVE_ITEM = 'REMOVE_ITEM';
-	var CHANGE_QUANTITY = 'CHANGE_QUANTITY';
-	var CLEAR_CART = 'CLEAR_CART';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var addItem = exports.addItem = function addItem(product, quantity) {
-	  return {
-	    type: ADD_ITEM,
-	    productAndQuantity: { product: product, quantity: quantity }
-	  };
-	};
-	
-	var removeItem = exports.removeItem = function removeItem(item) {
-	  return {
-	    type: REMOVE_ITEM,
-	    item: item
-	  };
-	};
-	
-	var changeQuantity = exports.changeQuantity = function changeQuantity(product, quantity) {
-	  return {
-	    type: CHANGE_QUANTITY,
-	    productAndQuantity: { product: product, quantity: quantity }
-	  };
-	};
-	var clearCart = exports.clearCart = function clearCart() {
-	  return {
-	    type: CLEAR_CART
-	  };
-	};
 	
 	/* ------------       REDUCER     ------------------ */
 	
@@ -31438,11 +31363,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Action Creators
-	var AUTHENTICATED = 'AUTHENTICATED';
 	var authenticated = exports.authenticated = function authenticated(user) {
 	  return {
-	    type: AUTHENTICATED, user: user
+	    type: 'AUTHENTICATED',
+	    user: user
 	  };
 	};
 	
@@ -31452,7 +31376,7 @@
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case AUTHENTICATED:
+	    case 'AUTHENTICATED':
 	      return action.user;
 	  }
 	  return state;
@@ -31511,7 +31435,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchAndGoToOrders = exports.deloadAllOrders = undefined;
+	exports.fetchAndGoToOrders = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31520,39 +31444,28 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var SELECT_ORDERS = 'SELECT_ORDERS';
-	var DELOAD = 'DELOAD';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var selectOrders = function selectOrders(orders) {
-	  return { type: SELECT_ORDERS, orders: orders };
-	};
-	
-	var deloadAllOrders = exports.deloadAllOrders = function deloadAllOrders() {
-	  return {
-	    type: DELOAD
-	  };
-	};
-	
 	/* ------------       REDUCER     ------------------ */
 	
 	function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	  var previousState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 	
 	  switch (action.type) {
 	
-	    case SELECT_ORDERS:
+	    case 'SELECT_ORDERS':
 	      return action.orders;
 	
-	    case DELOAD:
+	    case 'LOAD_ORDERS':
+	      return action.orders;
+	
+	    // case 'CLEAR_ORDER':
+	    //   return previousState;
+	
+	    case 'DELOAD':
 	      return [];
 	
 	    default:
-	      return state;
+	      return previousState;
 	  }
 	}
 	
@@ -31695,7 +31608,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.submitOrder = exports.deloadCharge = undefined;
+	exports.submitOrder = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31707,26 +31620,6 @@
 	var _cart = __webpack_require__(299);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var RECEIVE_CHARGE = 'RECEIVE_CHARGE';
-	var DELOAD_CHARGE = 'DELOAD_CHARGE';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var receiveCharge = function receiveCharge(charge) {
-	  return {
-	    type: RECEIVE_CHARGE,
-	    charge: charge
-	  };
-	};
-	
-	var deloadCharge = exports.deloadCharge = function deloadCharge() {
-	  return {
-	    type: DELOAD_CHARGE
-	  };
-	};
 	
 	/* ------------       REDUCER     ------------------ */
 	
@@ -31741,10 +31634,10 @@
 	
 	  switch (action.type) {
 	
-	    case RECEIVE_CHARGE:
+	    case 'RECEIVE_CHARGE':
 	      return { received: true, chargeData: action.charge };
 	
-	    case DELOAD_CHARGE:
+	    case 'DELOAD_CHARGE':
 	      return defaultState;
 	
 	    default:
@@ -31779,7 +31672,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addFormInfo = exports.loadDesignForm = undefined;
+	exports.addFormInfo = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31790,19 +31683,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var LOAD_DESIGN_FORM = 'LOAD_DESIGN_FORM';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var loadDesignForm = exports.loadDesignForm = function loadDesignForm(info) {
-	  return {
-	    type: LOAD_DESIGN_FORM,
-	    info: info
-	  };
-	};
-	
 	/* ------------       REDUCER     ------------------ */
 	
 	function reducer() {
@@ -31811,8 +31691,8 @@
 	
 	  switch (action.type) {
 	
-	    case LOAD_DESIGN_FORM:
-	      return action.info;
+	    case 'ADD_DESIGN_FORM_INFO':
+	      return Object.assign({}, previousState, action.info);
 	
 	    default:
 	      return previousState;
@@ -31839,15 +31719,62 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.addSubscriber = exports.subscriber = undefined;
+	exports.default = reducer;
+	
+	var _reactRouter = __webpack_require__(242);
+	
+	/* -----------------    ACTIONS     ------------------ */
+	
+	var ADD_SUBSCRIBER = 'ADD_SUBSCRIBER';
+	
+	/* ------------   ACTION CREATORS     ------------------ */
+	
+	var subscriber = exports.subscriber = function subscriber(email) {
+	  return {
+	    type: ADD_SUBSCRIBER,
+	    email: email
+	  };
+	};
+	
+	/* ------------       REDUCER     ------------------ */
+	
+	function reducer() {
+	  var previousState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	
+	    case ADD_SUBSCRIBER:
+	      return action.email;
+	
+	    default:
+	      return previousState;
+	  }
+	}
+	
+	var addSubscriber = exports.addSubscriber = function addSubscriber(email) {
+	  return subscriber(email);
+	};
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.logger = exports.defaults = undefined;
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _core = __webpack_require__(307);
+	var _core = __webpack_require__(308);
 	
-	var _helpers = __webpack_require__(308);
+	var _helpers = __webpack_require__(309);
 	
-	var _defaults = __webpack_require__(311);
+	var _defaults = __webpack_require__(312);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -31969,7 +31896,7 @@
 
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31982,9 +31909,9 @@
 	
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(308);
+	var _helpers = __webpack_require__(309);
 	
-	var _diff = __webpack_require__(309);
+	var _diff = __webpack_require__(310);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -32115,7 +32042,7 @@
 	}
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32139,7 +32066,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32149,7 +32076,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(310);
+	var _deepDiff = __webpack_require__(311);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -32238,7 +32165,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -32667,7 +32594,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32718,7 +32645,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32746,7 +32673,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32761,11 +32688,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _createSlicerJs = __webpack_require__(314);
+	var _createSlicerJs = __webpack_require__(315);
 	
 	var _createSlicerJs2 = _interopRequireDefault(_createSlicerJs);
 	
-	var _utilMergeStateJs = __webpack_require__(317);
+	var _utilMergeStateJs = __webpack_require__(318);
 	
 	var _utilMergeStateJs2 = _interopRequireDefault(_utilMergeStateJs);
 	
@@ -32840,7 +32767,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32852,11 +32779,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _getSubsetJs = __webpack_require__(315);
+	var _getSubsetJs = __webpack_require__(316);
 	
 	var _getSubsetJs2 = _interopRequireDefault(_getSubsetJs);
 	
-	var _utilTypeOfJs = __webpack_require__(316);
+	var _utilTypeOfJs = __webpack_require__(317);
 	
 	var _utilTypeOfJs2 = _interopRequireDefault(_utilTypeOfJs);
 	
@@ -32891,7 +32818,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, exports) {
 
 	/**
@@ -32925,7 +32852,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -32963,7 +32890,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -32983,7 +32910,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32998,109 +32925,111 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
-	var _Root = __webpack_require__(319);
+	var _store = __webpack_require__(214);
+	
+	var _Root = __webpack_require__(320);
 	
 	var _Root2 = _interopRequireDefault(_Root);
 	
-	var _Main = __webpack_require__(327);
+	var _Main = __webpack_require__(328);
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _CurrentProduct = __webpack_require__(329);
+	var _CurrentProduct = __webpack_require__(330);
 	
 	var _CurrentProduct2 = _interopRequireDefault(_CurrentProduct);
 	
-	var _SelectedProducts = __webpack_require__(332);
+	var _SelectedProducts = __webpack_require__(333);
 	
 	var _SelectedProducts2 = _interopRequireDefault(_SelectedProducts);
 	
-	var _Cart = __webpack_require__(333);
+	var _Cart = __webpack_require__(334);
 	
 	var _Cart2 = _interopRequireDefault(_Cart);
 	
-	var _Checkout = __webpack_require__(335);
+	var _Checkout = __webpack_require__(336);
 	
 	var _Checkout2 = _interopRequireDefault(_Checkout);
 	
-	var _Shipping = __webpack_require__(336);
+	var _Shipping = __webpack_require__(337);
 	
 	var _Shipping2 = _interopRequireDefault(_Shipping);
 	
-	var _Signup = __webpack_require__(337);
+	var _Signup = __webpack_require__(338);
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
 	
-	var _Orders = __webpack_require__(338);
+	var _Orders = __webpack_require__(339);
 	
 	var _Orders2 = _interopRequireDefault(_Orders);
 	
-	var _SelectedOrder = __webpack_require__(339);
+	var _SelectedOrder = __webpack_require__(340);
 	
 	var _SelectedOrder2 = _interopRequireDefault(_SelectedOrder);
 	
-	var _Admin = __webpack_require__(340);
+	var _Admin = __webpack_require__(341);
 	
 	var _Admin2 = _interopRequireDefault(_Admin);
 	
-	var _Payment = __webpack_require__(342);
+	var _Payment = __webpack_require__(756);
 	
 	var _Payment2 = _interopRequireDefault(_Payment);
 	
-	var _Confirmation = __webpack_require__(345);
+	var _Confirmation = __webpack_require__(759);
 	
 	var _Confirmation2 = _interopRequireDefault(_Confirmation);
 	
-	var _AfterOrderSubmit = __webpack_require__(346);
+	var _AfterOrderSubmit = __webpack_require__(760);
 	
 	var _AfterOrderSubmit2 = _interopRequireDefault(_AfterOrderSubmit);
 	
-	var _DesignServices = __webpack_require__(347);
+	var _DesignServices = __webpack_require__(761);
 	
 	var _DesignServices2 = _interopRequireDefault(_DesignServices);
 	
-	var _SplashPage = __webpack_require__(326);
+	var _SplashPage = __webpack_require__(327);
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
-	var _Press = __webpack_require__(348);
+	var _Press = __webpack_require__(762);
 	
 	var _Press2 = _interopRequireDefault(_Press);
 	
-	var _Contact = __webpack_require__(349);
+	var _Contact = __webpack_require__(763);
 	
 	var _Contact2 = _interopRequireDefault(_Contact);
 	
-	var _Story = __webpack_require__(351);
+	var _Story = __webpack_require__(765);
 	
 	var _Story2 = _interopRequireDefault(_Story);
 	
-	var _FAQ = __webpack_require__(352);
+	var _FAQ = __webpack_require__(766);
 	
 	var _FAQ2 = _interopRequireDefault(_FAQ);
 	
-	var _ShippingInfo = __webpack_require__(353);
+	var _ShippingInfo = __webpack_require__(767);
 	
 	var _ShippingInfo2 = _interopRequireDefault(_ShippingInfo);
 	
-	var _Testimonials = __webpack_require__(354);
+	var _Testimonials = __webpack_require__(768);
 	
 	var _Testimonials2 = _interopRequireDefault(_Testimonials);
 	
-	var _Login = __webpack_require__(355);
+	var _Login = __webpack_require__(769);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _FinalSplash = __webpack_require__(356);
+	var _FinalSplash = __webpack_require__(770);
 	
 	var _FinalSplash2 = _interopRequireDefault(_FinalSplash);
 	
-	var _Subscribe = __webpack_require__(359);
+	var _Subscribe = __webpack_require__(771);
 	
 	var _Subscribe2 = _interopRequireDefault(_Subscribe);
 	
-	var _enterHooks = __webpack_require__(357);
+	var _enterHooks = __webpack_require__(772);
 	
-	var _leaveHooks = __webpack_require__(358);
+	var _leaveHooks = __webpack_require__(773);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -33108,7 +33037,7 @@
 	exports.default = function () {
 	  return _react2.default.createElement(
 	    _reactRouter.Router,
-	    { history: _reactRouter.browserHistory },
+	    { history: _store.history },
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _Root2.default, onEnter: _enterHooks.loadCategories },
@@ -33150,7 +33079,7 @@
 	/* -----------------    COMPONENTS     ------------------ */
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33165,15 +33094,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Navbar = __webpack_require__(320);
+	var _Navbar = __webpack_require__(321);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Footer = __webpack_require__(325);
+	var _Footer = __webpack_require__(326);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _SplashPage = __webpack_require__(326);
+	var _SplashPage = __webpack_require__(327);
 	
 	var _SplashPage2 = _interopRequireDefault(_SplashPage);
 	
@@ -33219,7 +33148,7 @@
 	exports.default = MainPage;
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33236,7 +33165,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _Search = __webpack_require__(321);
+	var _Search = __webpack_require__(322);
 	
 	var _Search2 = _interopRequireDefault(_Search);
 	
@@ -33244,11 +33173,11 @@
 	
 	var _auth = __webpack_require__(300);
 	
-	var _QuickCart = __webpack_require__(322);
+	var _QuickCart = __webpack_require__(323);
 	
 	var _QuickCart2 = _interopRequireDefault(_QuickCart);
 	
-	var _QuickLogin = __webpack_require__(324);
+	var _QuickLogin = __webpack_require__(325);
 	
 	var _QuickLogin2 = _interopRequireDefault(_QuickLogin);
 	
@@ -33685,7 +33614,7 @@
 	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Navigbar);
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33808,7 +33737,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Search);
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33827,7 +33756,7 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
-	var _QuickCartItem = __webpack_require__(323);
+	var _QuickCartItem = __webpack_require__(324);
 	
 	var _QuickCartItem2 = _interopRequireDefault(_QuickCartItem);
 	
@@ -33939,7 +33868,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34082,7 +34011,7 @@
 	exports.default = QuickCartItem;
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34272,7 +34201,7 @@
 	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(QuickLogin);
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34506,7 +34435,7 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -34789,7 +34718,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34804,7 +34733,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _FeaturedLook = __webpack_require__(328);
+	var _FeaturedLook = __webpack_require__(329);
 	
 	var _FeaturedLook2 = _interopRequireDefault(_FeaturedLook);
 	
@@ -34931,7 +34860,7 @@
 	exports.default = Main;
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34996,7 +34925,7 @@
 	exports.default = FeaturedLook;
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35013,13 +34942,13 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _Notification = __webpack_require__(330);
+	var _Notification = __webpack_require__(331);
 	
 	var _Notification2 = _interopRequireDefault(_Notification);
 	
 	var _cart = __webpack_require__(299);
 	
-	var _reactContenteditable = __webpack_require__(331);
+	var _reactContenteditable = __webpack_require__(332);
 	
 	var _reactContenteditable2 = _interopRequireDefault(_reactContenteditable);
 	
@@ -35333,7 +35262,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CurrentProduct);
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35401,7 +35330,7 @@
 	// alert renders but fades out. Alert has link to cart.
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35503,7 +35432,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35621,7 +35550,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SelectedProducts);
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35640,7 +35569,7 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
-	var _CartItem = __webpack_require__(334);
+	var _CartItem = __webpack_require__(335);
 	
 	var _CartItem2 = _interopRequireDefault(_CartItem);
 	
@@ -35733,7 +35662,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35872,7 +35801,7 @@
 	exports.default = CartItem;
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35957,7 +35886,7 @@
 	exports.default = (0, _reactRedux.connect)(mapProps, null)(Cart);
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36149,7 +36078,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Shipping);
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36273,7 +36202,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatch)(Signup);
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36362,7 +36291,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(Orders);
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36559,7 +36488,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(SelectedOrder);
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36582,9 +36511,13 @@
 	
 	var _currentProduct = __webpack_require__(297);
 	
-	var _imageUpload = __webpack_require__(341);
+	var _ImageUpload = __webpack_require__(342);
 	
-	var _imageUpload2 = _interopRequireDefault(_imageUpload);
+	var _ImageUpload2 = _interopRequireDefault(_ImageUpload);
+	
+	var _ImageUpload3 = __webpack_require__(343);
+	
+	var _ImageUpload4 = _interopRequireDefault(_ImageUpload3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37121,7 +37054,7 @@
 	                  'CREATE'
 	                )
 	              ),
-	              _react2.default.createElement(_imageUpload2.default, { _handleImageChange: this._handleImageChange, _handleSubmit: this._handleSubmit, imgUrl: this.state.product.imageUrl })
+	              _react2.default.createElement(_ImageUpload4.default, { _handleImageChange: this._handleImageChange, _handleSubmit: this._handleSubmit, imgUrl: this.state.product.imageUrl })
 	            )
 	          )
 	        ) : _react2.default.createElement('h3', null)
@@ -37157,7 +37090,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Admin);
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37194,9 +37127,7 @@
 	    { className: 'previewComponent' },
 	    _react2.default.createElement(
 	      'form',
-	      { onSubmit: function onSubmit(e) {
-	          return _handleSubmit(e);
-	        } },
+	      { method: 'post', enctype: 'multipart/form-data', action: 'upload/' },
 	      _react2.default.createElement('input', { className: 'fileInput',
 	        type: 'file',
 	        name: 'images',
@@ -37206,10 +37137,7 @@
 	      _react2.default.createElement(
 	        'button',
 	        { className: 'submitButton',
-	          type: 'submit',
-	          onClick: function onClick(e) {
-	            return _handleSubmit(e);
-	          } },
+	          type: 'submit' },
 	        'UPLOAD IMAGE'
 	      ),
 	      _react2.default.createElement(
@@ -37276,7 +37204,555 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(ImageUpload);
 
 /***/ }),
-/* 342 */
+/* 343 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _photo = __webpack_require__(774);
+	
+	var _photo2 = _interopRequireDefault(_photo);
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	/* -----------------    DUMB COMPONENT     ------------------ */
+	
+	var DumbUploader = function DumbUploader(_ref) {
+	  var closeImageUploader = _ref.closeImageUploader,
+	      imgUrl = _ref.imgUrl,
+	      uploader = _ref.uploader;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'previewComponent' },
+	    _react2.default.createElement(
+	      'form',
+	      { id: 'uploadForm',
+	        encType: 'multipart/form-data',
+	        action: '/api/upload',
+	        method: 'post',
+	        onSubmit: function onSubmit(e) {
+	          return uploader(e);
+	        } },
+	      _react2.default.createElement('input', { type: 'file', name: 'userPhoto', multiple: true }),
+	      _react2.default.createElement('input', { type: 'submit', value: 'Upload Image', name: 'submit' }),
+	      _react2.default.createElement('input', { type: 'text', id: 'random', name: 'random' }),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('span', { id: 'status' })
+	    )
+	  );
+	};
+	
+	/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
+	
+	var ImageUpload2 = function (_Component) {
+	  _inherits(ImageUpload2, _Component);
+	
+	  function ImageUpload2(props) {
+	    _classCallCheck(this, ImageUpload2);
+	
+	    var _this = _possibleConstructorReturn(this, (ImageUpload2.__proto__ || Object.getPrototypeOf(ImageUpload2)).call(this, props));
+	
+	    _this.closeImageUploader = _this.closeImageUploader.bind(_this);
+	    _this.uploader = _this.uploader.bind(_this);
+	
+	    return _this;
+	  }
+	
+	  _createClass(ImageUpload2, [{
+	    key: 'closeImageUploader',
+	    value: function closeImageUploader(evt) {
+	      evt.preventDefault();
+	      var el = document.querySelector('div.previewComponent');
+	
+	      el.style.display = 'none';
+	    }
+	  }, {
+	    key: 'uploader',
+	    value: function uploader(evt) {
+	      console.log(evt);
+	      evt.preventDefault();
+	      var status = document.querySelector('span#status');
+	
+	      status.text = 'File is uploading...';
+	      _store2.default.dispatch(this.props.addPhotos());
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(DumbUploader, {
+	        imgUrl: this.props.imgUrl,
+	        closeImageUploader: this.closeImageUploader,
+	        uploader: this.uploader
+	      });
+	    }
+	  }]);
+	
+	  return ImageUpload2;
+	}(_react.Component);
+	
+	/* -----------------    CONTAINER     ------------------ */
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    addPhotos: function addPhotos(photos) {
+	      return dispatch((0, _photo2.default)(photos));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(ImageUpload2);
+	
+	// $(document).ready(function() {
+	//      $('#uploadForm').submit(function() {
+	//         $("#status").empty().text("File is uploading...");
+	//         $(this).ajaxSubmit({
+	//             error: function(xhr) {
+	//           status('Error: ' + xhr.status);
+	//             },
+	//             success: function(response) {
+	//         console.log(response)
+	//             $("#status").empty().text(response);
+	//             }
+	//     });
+	//     return false;
+	//     });
+
+/***/ }),
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */,
+/* 696 */,
+/* 697 */,
+/* 698 */,
+/* 699 */,
+/* 700 */,
+/* 701 */,
+/* 702 */,
+/* 703 */,
+/* 704 */,
+/* 705 */,
+/* 706 */,
+/* 707 */,
+/* 708 */,
+/* 709 */,
+/* 710 */,
+/* 711 */,
+/* 712 */,
+/* 713 */,
+/* 714 */,
+/* 715 */,
+/* 716 */,
+/* 717 */,
+/* 718 */,
+/* 719 */,
+/* 720 */,
+/* 721 */,
+/* 722 */,
+/* 723 */,
+/* 724 */,
+/* 725 */,
+/* 726 */,
+/* 727 */,
+/* 728 */,
+/* 729 */,
+/* 730 */,
+/* 731 */,
+/* 732 */,
+/* 733 */,
+/* 734 */,
+/* 735 */,
+/* 736 */,
+/* 737 */,
+/* 738 */,
+/* 739 */,
+/* 740 */,
+/* 741 */,
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
+/* 746 */,
+/* 747 */,
+/* 748 */,
+/* 749 */,
+/* 750 */,
+/* 751 */,
+/* 752 */,
+/* 753 */,
+/* 754 */,
+/* 755 */,
+/* 756 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -37291,7 +37767,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactScriptLoader = __webpack_require__(343);
+	var _reactScriptLoader = __webpack_require__(757);
 	
 	var _reactRouter = __webpack_require__(242);
 	
@@ -37303,7 +37779,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(344);
+	__webpack_require__(758);
 	
 	/* -----------------     COMPONENT     ------------------ */
 	
@@ -37462,7 +37938,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 343 */
+/* 757 */
 /***/ (function(module, exports) {
 
 	
@@ -37586,7 +38062,7 @@
 
 
 /***/ }),
-/* 344 */
+/* 758 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -37605,7 +38081,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 345 */
+/* 759 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37767,7 +38243,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(Confirmation);
 
 /***/ }),
-/* 346 */
+/* 760 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37881,7 +38357,7 @@
 	exports.default = (0, _reactRedux.connect)(mapState, null)(AfterOrderSubmit);
 
 /***/ }),
-/* 347 */
+/* 761 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38223,7 +38699,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DesignServices);
 
 /***/ }),
-/* 348 */
+/* 762 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38300,7 +38776,7 @@
 	exports.default = Press;
 
 /***/ }),
-/* 349 */
+/* 763 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38319,7 +38795,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _contact = __webpack_require__(350);
+	var _contact = __webpack_require__(764);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38724,7 +39200,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Contact);
 
 /***/ }),
-/* 350 */
+/* 764 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38784,7 +39260,7 @@
 	};
 
 /***/ }),
-/* 351 */
+/* 765 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38876,7 +39352,7 @@
 	exports.default = Story;
 
 /***/ }),
-/* 352 */
+/* 766 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39050,7 +39526,7 @@
 	exports.default = FAQ;
 
 /***/ }),
-/* 353 */
+/* 767 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39165,7 +39641,7 @@
 	exports.default = ShippingInfo;
 
 /***/ }),
-/* 354 */
+/* 768 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39373,7 +39849,7 @@
 	exports.default = Testimonials;
 
 /***/ }),
-/* 355 */
+/* 769 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39490,7 +39966,7 @@
 	exports.default = (0, _reactRedux.connect)(mapProps, mapDispatch)(Login);
 
 /***/ }),
-/* 356 */
+/* 770 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -39509,7 +39985,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _subscribe = __webpack_require__(360);
+	var _subscribe = __webpack_require__(306);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -39818,123 +40294,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 357 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _categories = __webpack_require__(298);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//import { selectOrder } from './reducers/selectedOrder'
-	
-	
-	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
-		var params = _ref.params;
-	
-		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
-	};
-	
-	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
-		var params = _ref2.params;
-	
-		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
-	};
-	
-	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
-		var params = _ref3.params;
-	
-		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
-	};
-	
-	var loadCategories = exports.loadCategories = function loadCategories() {
-		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
-	};
-	
-	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
-		var params = _ref4.params;
-	
-		console.log(params);
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
-	};
-	
-	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
-	};
-	
-	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
-		var params = _ref5.params;
-	
-		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
-	};
-
-/***/ }),
-/* 358 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
-	
-	var _store = __webpack_require__(214);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _charge = __webpack_require__(304);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var onProductLeave = exports.onProductLeave = function onProductLeave() {
-		_store2.default.dispatch((0, _currentProduct.clearProduct)());
-	};
-	
-	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
-		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
-	};
-	
-	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
-		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
-	};
-	
-	var deloadOrders = exports.deloadOrders = function deloadOrders() {
-		_store2.default.dispatch((0, _orders.deloadAllOrders)());
-	};
-	
-	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
-		_store2.default.dispatch((0, _charge.deloadCharge)());
-	};
-
-/***/ }),
-/* 359 */
+/* 771 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40066,7 +40426,123 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Subscribe);
 
 /***/ }),
-/* 360 */
+/* 772 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _categories = __webpack_require__(298);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import { selectOrder } from './reducers/selectedOrder'
+	
+	
+	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
+		var params = _ref.params;
+	
+		_store2.default.dispatch((0, _orders.fetchAndGoToOrders)(params.id));
+	};
+	
+	var onOrderSelect = exports.onOrderSelect = function onOrderSelect(_ref2) {
+		var params = _ref2.params;
+	
+		_store2.default.dispatch((0, _selectedOrder.fetchAndGoToOrder)(params.orderNumber));
+	};
+	
+	var onProductSelect = exports.onProductSelect = function onProductSelect(_ref3) {
+		var params = _ref3.params;
+	
+		_store2.default.dispatch((0, _currentProduct.fetchAndGoToProduct)(params.sku));
+	};
+	
+	var loadCategories = exports.loadCategories = function loadCategories() {
+		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
+	};
+	
+	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {
+		var params = _ref4.params;
+	
+		console.log(params);
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToProducts)(params.categoryName));
+	};
+	
+	var loadFeaturedProducts = exports.loadFeaturedProducts = function loadFeaturedProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToFeaturedProducts)());
+	};
+	
+	var loadQueriedProducts = exports.loadQueriedProducts = function loadQueriedProducts(_ref5) {
+		var params = _ref5.params;
+	
+		_store2.default.dispatch((0, _selectedProducts.fetchAndGoToQueriedProducts)(params.query));
+	};
+
+/***/ }),
+/* 773 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.deloadSingleCharge = exports.deloadOrders = exports.deloadCategoryProducts = exports.onOrderLeave = exports.onProductLeave = undefined;
+	
+	var _store = __webpack_require__(214);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _currentProduct = __webpack_require__(297);
+	
+	var _selectedOrder = __webpack_require__(302);
+	
+	var _selectedProducts = __webpack_require__(216);
+	
+	var _orders = __webpack_require__(301);
+	
+	var _charge = __webpack_require__(304);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var onProductLeave = exports.onProductLeave = function onProductLeave() {
+		_store2.default.dispatch((0, _currentProduct.clearProduct)());
+	};
+	
+	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
+		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
+	};
+	
+	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
+		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
+	};
+	
+	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+		_store2.default.dispatch((0, _orders.deloadAllOrders)());
+	};
+	
+	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
+		_store2.default.dispatch((0, _charge.deloadCharge)());
+	};
+
+/***/ }),
+/* 774 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40074,43 +40550,672 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addSubscriber = exports.subscriber = undefined;
+	exports.addPhoto = exports.savePhoto = undefined;
 	exports.default = reducer;
+	
+	var _axios = __webpack_require__(217);
+	
+	var _axios2 = _interopRequireDefault(_axios);
 	
 	var _reactRouter = __webpack_require__(242);
 	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	/* -----------------    ACTIONS     ------------------ */
 	
-	var ADD_SUBSCRIBER = 'ADD_SUBSCRIBER';
+	var SAVE_PHOTO = 'SAVE_PHOTO';
 	
 	/* ------------   ACTION CREATORS     ------------------ */
 	
-	var subscriber = exports.subscriber = function subscriber(email) {
+	var savePhoto = exports.savePhoto = function savePhoto(photo) {
 	  return {
-	    type: ADD_SUBSCRIBER,
-	    email: email
+	    type: SAVE_PHOTO,
+	    photo: photo
 	  };
 	};
 	
 	/* ------------       REDUCER     ------------------ */
 	
 	function reducer() {
-	  var previousState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	  var previousState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
 	
 	  switch (action.type) {
 	
-	    case ADD_SUBSCRIBER:
-	      return action.email;
+	    case SAVE_PHOTO:
+	      return Object.assign({}, previousState, action.photo);
 	
 	    default:
 	      return previousState;
 	  }
 	}
 	
-	var addSubscriber = exports.addSubscriber = function addSubscriber(email) {
-	  return subscriber(email);
+	/* ------------       DISPATCHERS     ------------------ */
+	
+	var addPhoto = exports.addPhoto = function addPhoto(image) {
+	  return function (dispatch) {
+	    _axios2.default.post('/api/uploads', image).then(function (image) {
+	      return dispatch(savePhoto(image.data));
+	    }).catch(function (err) {
+	      return console.error('Photo Failed to Post', err);
+	    });
+	  };
 	};
+
+/***/ }),
+/* 775 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
+	
+	var _reducer = __webpack_require__(776);
+	
+	Object.defineProperty(exports, 'LOCATION_CHANGE', {
+	  enumerable: true,
+	  get: function get() {
+	    return _reducer.LOCATION_CHANGE;
+	  }
+	});
+	Object.defineProperty(exports, 'routerReducer', {
+	  enumerable: true,
+	  get: function get() {
+	    return _reducer.routerReducer;
+	  }
+	});
+	
+	var _actions = __webpack_require__(777);
+	
+	Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.CALL_HISTORY_METHOD;
+	  }
+	});
+	Object.defineProperty(exports, 'push', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.push;
+	  }
+	});
+	Object.defineProperty(exports, 'replace', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.replace;
+	  }
+	});
+	Object.defineProperty(exports, 'go', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.go;
+	  }
+	});
+	Object.defineProperty(exports, 'goBack', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.goBack;
+	  }
+	});
+	Object.defineProperty(exports, 'goForward', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.goForward;
+	  }
+	});
+	Object.defineProperty(exports, 'routerActions', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.routerActions;
+	  }
+	});
+	
+	var _sync = __webpack_require__(778);
+	
+	var _sync2 = _interopRequireDefault(_sync);
+	
+	var _middleware = __webpack_require__(779);
+	
+	var _middleware2 = _interopRequireDefault(_middleware);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	exports.syncHistoryWithStore = _sync2['default'];
+	exports.routerMiddleware = _middleware2['default'];
+
+/***/ }),
+/* 776 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	exports.routerReducer = routerReducer;
+	/**
+	 * This action type will be dispatched when your history
+	 * receives a location change.
+	 */
+	var LOCATION_CHANGE = exports.LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
+	
+	var initialState = {
+	  locationBeforeTransitions: null
+	};
+	
+	/**
+	 * This reducer will update the state with the most recent location history
+	 * has transitioned to. This may not be in sync with the router, particularly
+	 * if you have asynchronously-loaded routes, so reading from and relying on
+	 * this state is discouraged.
+	 */
+	function routerReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	
+	  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+	      type = _ref.type,
+	      payload = _ref.payload;
+	
+	  if (type === LOCATION_CHANGE) {
+	    return _extends({}, state, { locationBeforeTransitions: payload });
+	  }
+	
+	  return state;
+	}
+
+/***/ }),
+/* 777 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * This action type will be dispatched by the history actions below.
+	 * If you're writing a middleware to watch for navigation events, be sure to
+	 * look for actions of this type.
+	 */
+	var CALL_HISTORY_METHOD = exports.CALL_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
+	
+	function updateLocation(method) {
+	  return function () {
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return {
+	      type: CALL_HISTORY_METHOD,
+	      payload: { method: method, args: args }
+	    };
+	  };
+	}
+	
+	/**
+	 * These actions correspond to the history API.
+	 * The associated routerMiddleware will capture these events before they get to
+	 * your reducer and reissue them as the matching function on your history.
+	 */
+	var push = exports.push = updateLocation('push');
+	var replace = exports.replace = updateLocation('replace');
+	var go = exports.go = updateLocation('go');
+	var goBack = exports.goBack = updateLocation('goBack');
+	var goForward = exports.goForward = updateLocation('goForward');
+	
+	var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
+
+/***/ }),
+/* 778 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	exports['default'] = syncHistoryWithStore;
+	
+	var _reducer = __webpack_require__(776);
+	
+	var defaultSelectLocationState = function defaultSelectLocationState(state) {
+	  return state.routing;
+	};
+	
+	/**
+	 * This function synchronizes your history state with the Redux store.
+	 * Location changes flow from history to the store. An enhanced history is
+	 * returned with a listen method that responds to store updates for location.
+	 *
+	 * When this history is provided to the router, this means the location data
+	 * will flow like this:
+	 * history.push -> store.dispatch -> enhancedHistory.listen -> router
+	 * This ensures that when the store state changes due to a replay or other
+	 * event, the router will be updated appropriately and can transition to the
+	 * correct router state.
+	 */
+	function syncHistoryWithStore(history, store) {
+	  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+	      _ref$selectLocationSt = _ref.selectLocationState,
+	      selectLocationState = _ref$selectLocationSt === undefined ? defaultSelectLocationState : _ref$selectLocationSt,
+	      _ref$adjustUrlOnRepla = _ref.adjustUrlOnReplay,
+	      adjustUrlOnReplay = _ref$adjustUrlOnRepla === undefined ? true : _ref$adjustUrlOnRepla;
+	
+	  // Ensure that the reducer is mounted on the store and functioning properly.
+	  if (typeof selectLocationState(store.getState()) === 'undefined') {
+	    throw new Error('Expected the routing state to be available either as `state.routing` ' + 'or as the custom expression you can specify as `selectLocationState` ' + 'in the `syncHistoryWithStore()` options. ' + 'Ensure you have added the `routerReducer` to your store\'s ' + 'reducers via `combineReducers` or whatever method you use to isolate ' + 'your reducers.');
+	  }
+	
+	  var initialLocation = void 0;
+	  var isTimeTraveling = void 0;
+	  var unsubscribeFromStore = void 0;
+	  var unsubscribeFromHistory = void 0;
+	  var currentLocation = void 0;
+	
+	  // What does the store say about current location?
+	  var getLocationInStore = function getLocationInStore(useInitialIfEmpty) {
+	    var locationState = selectLocationState(store.getState());
+	    return locationState.locationBeforeTransitions || (useInitialIfEmpty ? initialLocation : undefined);
+	  };
+	
+	  // Init initialLocation with potential location in store
+	  initialLocation = getLocationInStore();
+	
+	  // If the store is replayed, update the URL in the browser to match.
+	  if (adjustUrlOnReplay) {
+	    var handleStoreChange = function handleStoreChange() {
+	      var locationInStore = getLocationInStore(true);
+	      if (currentLocation === locationInStore || initialLocation === locationInStore) {
+	        return;
+	      }
+	
+	      // Update address bar to reflect store state
+	      isTimeTraveling = true;
+	      currentLocation = locationInStore;
+	      history.transitionTo(_extends({}, locationInStore, {
+	        action: 'PUSH'
+	      }));
+	      isTimeTraveling = false;
+	    };
+	
+	    unsubscribeFromStore = store.subscribe(handleStoreChange);
+	    handleStoreChange();
+	  }
+	
+	  // Whenever location changes, dispatch an action to get it in the store
+	  var handleLocationChange = function handleLocationChange(location) {
+	    // ... unless we just caused that location change
+	    if (isTimeTraveling) {
+	      return;
+	    }
+	
+	    // Remember where we are
+	    currentLocation = location;
+	
+	    // Are we being called for the first time?
+	    if (!initialLocation) {
+	      // Remember as a fallback in case state is reset
+	      initialLocation = location;
+	
+	      // Respect persisted location, if any
+	      if (getLocationInStore()) {
+	        return;
+	      }
+	    }
+	
+	    // Tell the store to update by dispatching an action
+	    store.dispatch({
+	      type: _reducer.LOCATION_CHANGE,
+	      payload: location
+	    });
+	  };
+	  unsubscribeFromHistory = history.listen(handleLocationChange);
+	
+	  // History 3.x doesn't call listen synchronously, so fire the initial location change ourselves
+	  if (history.getCurrentLocation) {
+	    handleLocationChange(history.getCurrentLocation());
+	  }
+	
+	  // The enhanced history uses store as source of truth
+	  return _extends({}, history, {
+	    // The listeners are subscribed to the store instead of history
+	    listen: function listen(listener) {
+	      // Copy of last location.
+	      var lastPublishedLocation = getLocationInStore(true);
+	
+	      // Keep track of whether we unsubscribed, as Redux store
+	      // only applies changes in subscriptions on next dispatch
+	      var unsubscribed = false;
+	      var unsubscribeFromStore = store.subscribe(function () {
+	        var currentLocation = getLocationInStore(true);
+	        if (currentLocation === lastPublishedLocation) {
+	          return;
+	        }
+	        lastPublishedLocation = currentLocation;
+	        if (!unsubscribed) {
+	          listener(lastPublishedLocation);
+	        }
+	      });
+	
+	      // History 2.x listeners expect a synchronous call. Make the first call to the
+	      // listener after subscribing to the store, in case the listener causes a
+	      // location change (e.g. when it redirects)
+	      if (!history.getCurrentLocation) {
+	        listener(lastPublishedLocation);
+	      }
+	
+	      // Let user unsubscribe later
+	      return function () {
+	        unsubscribed = true;
+	        unsubscribeFromStore();
+	      };
+	    },
+	
+	
+	    // It also provides a way to destroy internal listeners
+	    unsubscribe: function unsubscribe() {
+	      if (adjustUrlOnReplay) {
+	        unsubscribeFromStore();
+	      }
+	      unsubscribeFromHistory();
+	    }
+	  });
+	}
+
+/***/ }),
+/* 779 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = routerMiddleware;
+	
+	var _actions = __webpack_require__(777);
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	/**
+	 * This middleware captures CALL_HISTORY_METHOD actions to redirect to the
+	 * provided history object. This will prevent these actions from reaching your
+	 * reducer or any middleware that comes after this one.
+	 */
+	function routerMiddleware(history) {
+	  return function () {
+	    return function (next) {
+	      return function (action) {
+	        if (action.type !== _actions.CALL_HISTORY_METHOD) {
+	          return next(action);
+	        }
+	
+	        var _action$payload = action.payload,
+	            method = _action$payload.method,
+	            args = _action$payload.args;
+	
+	        history[method].apply(history, _toConsumableArray(args));
+	      };
+	    };
+	  };
+	}
+
+/***/ }),
+/* 780 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// actions
+	
+	/*----- USER ACTIONS-----*/
+	
+	//ADD USER (SIGN UP/LOGIN)
+	var authenticated = exports.authenticated = function authenticated(user) {
+	  return {
+	    type: 'AUTHENTICATED',
+	    user: user
+	  };
+	};
+	
+	//ADD MAILING ADDRESS
+	var addMailingAddress = exports.addMailingAddress = function addMailingAddress(user, address) {
+	  return {
+	    type: 'ADD_MAILING_ADDRESS',
+	    user: user,
+	    address: address
+	  };
+	};
+	
+	//ADD BILLING ADDRESS
+	var addBillingAddress = exports.addBillingAddress = function addBillingAddress(user, address) {
+	  return {
+	    type: 'ADD_BILLING_ADDRESS',
+	    user: user,
+	    address: address
+	  };
+	};
+	
+	/*----- CHARGES -----*/
+	//RECEIVE CHARGE
+	var receiveCharge = exports.receiveCharge = function receiveCharge(charge) {
+	  return {
+	    type: 'RECEIVE_CHARGE',
+	    charge: charge
+	  };
+	};
+	
+	//DELOAD CHARGE
+	var deloadCharge = exports.deloadCharge = function deloadCharge() {
+	  return {
+	    type: 'DELOAD_CHARGE'
+	  };
+	};
+	
+	/*----- CATEGORIES -----*/
+	
+	//LOAD CATEGORIES
+	var loadCategories = exports.loadCategories = function loadCategories(categories) {
+	  return {
+	    type: 'LOAD_CATEGORIES',
+	    categories: categories
+	  };
+	};
+	
+	//ADD CATEGORY
+	var addCategory = exports.addCategory = function addCategory(newCategory, MetaCategory) {
+	  return {
+	    type: 'ADD_CATEGORY',
+	    newCategory: newCategory,
+	    MetaCategory: MetaCategory
+	  };
+	};
+	
+	//REMOVE CATEGORY
+	var removeCategory = exports.removeCategory = function removeCategory(category) {
+	  return {
+	    type: 'REMOVE_CATEGORY',
+	    category: category
+	  };
+	};
+	
+	/*----- PRODUCTS -----*/
+	
+	//LOAD PRODUCT
+	var loadProduct = exports.loadProduct = function loadProduct(product) {
+	  return {
+	    type: 'LOAD_PRODUCT',
+	    product: product
+	  };
+	};
+	
+	//ADD PRODUCT
+	var addProduct = exports.addProduct = function addProduct(product, category) {
+	  return {
+	    type: 'ADD_PRODUCT',
+	    product: product,
+	    category: category
+	  };
+	};
+	
+	//UPDATE PRODUCT
+	var updateProduct = exports.updateProduct = function updateProduct(product, changes) {
+	  return {
+	    type: 'UPDATE_ PRODUCT',
+	    product: product,
+	    changes: changes
+	  };
+	};
+	
+	//REMOVE PRODUCT
+	var removeProduct = exports.removeProduct = function removeProduct(product) {
+	  return {
+	    type: 'REMOVE_PRODUCT',
+	    product: product
+	  };
+	};
+	
+	//CLEAR PRODUCT
+	var clearProduct = exports.clearProduct = function clearProduct() {
+	  return {
+	    type: 'CLEAR_PRODUCT'
+	  };
+	};
+	
+	//SELECT PRODUCTS
+	var selectProducts = function selectProducts(products) {
+	  return {
+	    type: 'SELECT_PRODUCTS',
+	    products: products
+	  };
+	};
+	
+	//SEARCH FOR PRODUCTS
+	var searchForProducts = function searchForProducts(products) {
+	  return {
+	    type: 'SEARCH_FOR_PRODUCTS',
+	    products: products
+	  };
+	};
+	
+	//SELECT FEATURED PRODUCTS
+	var selectFeaturedProducts = exports.selectFeaturedProducts = function selectFeaturedProducts(products) {
+	  return {
+	    type: ' SELECT_FEATURED_PRODUCTS',
+	    products: products
+	  };
+	};
+	
+	//DELOAD PRODUCTS
+	var deloadProducts = exports.deloadProducts = function deloadProducts() {
+	  return {
+	    type: 'DELOAD'
+	  };
+	};
+	
+	/*----- CART -----*/
+	
+	//ADD TO CART
+	var addToCart = exports.addToCart = function addToCart(cart, product, quantity) {
+	  return {
+	    type: 'ADD_TO_CART',
+	    cart: cart,
+	    product: product,
+	    quantity: quantity
+	  };
+	};
+	
+	//REMOVE FROM CART
+	var removeFromCart = exports.removeFromCart = function removeFromCart(cart, product) {
+	  return {
+	    type: 'REMOVE_FROM_CART',
+	    cart: cart,
+	    product: product
+	  };
+	};
+	
+	//CHANGE QUANTITY
+	var changeQuantity = exports.changeQuantity = function changeQuantity(cart, product, quantity) {
+	  return {
+	    type: 'CHANGE_QUANTITY',
+	    cart: cart,
+	    product: product,
+	    quantity: quantity
+	  };
+	};
+	
+	//CLEAR CART
+	var clearCart = exports.clearCart = function clearCart() {
+	  return {
+	    type: 'CLEAR_CART'
+	  };
+	};
+	
+	/*----- SUBSCRIBE -----*/
+	
+	//SUBSCRIBE
+	var subscribe = exports.subscribe = function subscribe(user) {
+	  return {
+	    type: 'SUBSCRIBE',
+	    user: user
+	  };
+	};
+	
+	/*----- DESIGN SERVICES -----*/
+	var addDesignFormInfo = exports.addDesignFormInfo = function addDesignFormInfo(info) {
+	  return {
+	    type: 'ADD_DESIGN_FORM_INFO',
+	    info: info
+	  };
+	};
+	
+	/*----- CONTACT FORM -----*/
+	var addContactFormInfo = exports.addContactFormInfo = function addContactFormInfo(info) {
+	  return {
+	    type: 'ADD_CONTACT_FORM_INFO',
+	    info: info
+	  };
+	};
+	
+	/*----- ORDERS -----*/
+	var loadOrders = exports.loadOrders = function loadOrders(user, orders) {
+	  return {
+	    type: 'LOAD_ORDERS',
+	    user: user,
+	    orders: orders
+	  };
+	};
+	
+	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+	  return {
+	    type: 'DELOAD_ORDERS'
+	  };
+	};
+	
+	var selectOrder = exports.selectOrder = function selectOrder(order) {
+	  return {
+	    type: 'SELECT_ORDER',
+	    order: order
+	  };
+	};
+	
+	// export const clearOrder = () => {
+	//   return {
+	//     type: 'CLEAR_ORDER',
+	//   }
+	// }
 
 /***/ })
 /******/ ]);

@@ -6,14 +6,13 @@ import { connect } from 'react-redux';
 
 const DumbUploader = ({_handleSubmit, _handleImageChange, closeImageUploader, imgUrl}) => (
   <div className="previewComponent">
-    <form onSubmit={(e)=>_handleSubmit(e)}>
+    <form method="post" enctype="multipart/form-data" action="upload/">
       <input className="fileInput"
         type="file"
         name="images"
         onChange={(e)=>_handleImageChange(e)} />
       <button className="submitButton"
-        type="submit"
-        onClick={(e)=>_handleSubmit(e)}>UPLOAD IMAGE
+        type="submit">UPLOAD IMAGE
       </button>
       <button className="submitButton" onClick={closeImageUploader}>
         CANCEL

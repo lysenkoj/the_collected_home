@@ -1,25 +1,18 @@
 import axios from 'axios';
-
-/* -----------------    ACTIONS     ------------------ */
-
-const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
-const ADD_CATEGORY = 'ADD_CATEGORY';
-
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-const loadCategory = categories => ({
-  type: LOAD_CATEGORIES,
-  categories
-});
-
+import { loadCategories } from '../actionCreators';
 
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (previousState = [], action) {
   switch (action.type) {
 
-    case LOAD_CATEGORIES:
+    case 'LOAD_CATEGORIES':
+      return action.categories;
+
+    case 'ADD_CATEGORIES':
+      return action.categories;
+
+    case 'REMOVE_CATEGORY':
       return action.categories;
 
     default:
@@ -33,7 +26,7 @@ export default function reducer (previousState = [], action) {
 export const fetchAndStoreCategories = () => {
   return dispatch => {
     axios.get(`/api/categories`)
-      .then(categories => dispatch(loadCategory(categories.data)))
+      .then(categories => dispatch(loadCategories(categories.data)))
       .catch(err => console.error('Fetching categories failed', err))
   }
 }

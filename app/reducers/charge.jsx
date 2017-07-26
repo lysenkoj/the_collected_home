@@ -2,24 +2,6 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { clearCart } from './cart';
 
-/* -----------------    ACTIONS     ------------------ */
-
-const RECEIVE_CHARGE = 'RECEIVE_CHARGE';
-const DELOAD_CHARGE = 'DELOAD_CHARGE';
-
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-const receiveCharge = charge => ({
-  type: RECEIVE_CHARGE,
-  charge
-});
-
-export const deloadCharge = () => ({
-  type: DELOAD_CHARGE
-})
-
-
 /* ------------       REDUCER     ------------------ */
 
 const defaultState = {
@@ -30,10 +12,10 @@ const defaultState = {
 export default function reducer (previousState = defaultState, action) {
   switch (action.type) {
 
-    case RECEIVE_CHARGE:
+    case 'RECEIVE_CHARGE':
       return { received: true, chargeData: action.charge };
 
-    case DELOAD_CHARGE:
+    case 'DELOAD_CHARGE':
       return defaultState;
 
     default:

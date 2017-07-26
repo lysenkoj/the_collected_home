@@ -1,16 +1,17 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router';
 
-// Action Creators
-const AUTHENTICATED = 'AUTHENTICATED'
-export const authenticated = user => ({
-  type: AUTHENTICATED, user
-})
+export const authenticated = user => {
+  return{
+    type: 'AUTHENTICATED',
+    user
+  }
+}
 
 // Reducer
 const reducer = (state='', action) => {
   switch(action.type) {
-  case AUTHENTICATED:
+  case 'AUTHENTICATED':
     return action.user
   }
   return state

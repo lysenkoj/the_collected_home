@@ -2,61 +2,22 @@ import axios from 'axios';
 import {browserHistory} from "react-router";
 
 
-
-/* -----------------    ACTIONS     ------------------ */
-
-const LOAD_PRODUCT = 'LOAD_PRODUCT';
-const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
-const SAVE_PHOTO = 'SAVE_PHOTO';
-const ADD_PRODUCT = 'ADD_PRODUCT';
-// const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
-
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-const loadProduct = product => ({
-  type: LOAD_PRODUCT,
-  product
-});
-
-// const updateProduct = product => ({
-//   type: UPDATE_PRODUCT,
-//   product
-// });
-export const addProduct = (product) => ({
-  type: ADD_PRODUCT,
-  product
-})
-
-export const savePhoto = (photo) => ({
-  type: SAVE_PHOTO,
-  photo
-})
-
-export const clearProduct = () => ({
-  type: CLEAR_PRODUCT
-});
-
-
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (previousState = {}, action) {
   switch (action.type) {
 
-    case LOAD_PRODUCT:
+    case 'LOAD_PRODUCT':
       return action.product;
 
-    case CLEAR_PRODUCT:
+    case 'CLEAR_PRODUCT':
       return {};
 
-    case SAVE_PHOTO:
-      return action.photo;
-
-    case ADD_PRODUCT:
+    case 'ADD_PRODUCT':
       return action.product;
 
-    // case UPDATE_PRODUCT:
-    //   return Object.assign({}, previousState, action.product}
+    case 'UPDATE_PRODUCT':
+      return Object.assign({}, previousState, action.product);
 
     default:
       return previousState;
@@ -99,17 +60,8 @@ export const addNewProduct = (product, categoryProduct) => {
 
 export const addPhoto = (image) => {
   return dispatch => {
-    request
-      .post('api/upload')
-      .attach('images', 'public/images')
-      .end(function(err, res){
-        if(err) {
-          console.log("Error: " + err);
-        }
-  })
-      .then(image => {
-          dispatch(savePhoto(image.data))
-        })
-      // .catch(err => console.error('Photo Failed to Post', err))
+    axios.post('/api/uploads', image)
+      .then(image => dispatch(savePhoto(image.data)))
+      .catch(err => console.error('Photo Failed to Post', err))
   }
 }

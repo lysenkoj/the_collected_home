@@ -1,25 +1,42 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { browserHistory } from 'react-router';
+
 import rootReducer from './reducers';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
+// import data
 import {whoami} from './reducers/auth';
 
 import persistState from 'redux-localstorage'
 
 const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
 
-// added this for redux chrome devtools
-// needs to be the 'same shape' as our store
-// https://github.com/reactjs/redux/blob/master/docs/api/createStore.md
-const preloadedState = {currentProduct: {}};
-// BUT DEVTOOLS STILL NOT WORKING AGGGHHHH
-// lol
+const defualtState = {
+  cart: [],
+  categories: [],
+  charge: {
+    received: false,
+    chargeData: {}
+  },
+  currentProduct: {},
+  designForm: {},
+  orders: [],
+  selectedOrder: {},
+  selectedProduct: [],
+  subscriber: {},
+  user: {}
+
+};
 
 
-const store = createStore(rootReducer, preloadedState, composeEnhancers(
+
+const store = createStore(rootReducer, defualtState, composeEnhancers(
 	applyMiddleware(createLogger(), thunkMiddleware), persistState("cart", {key: "greatShopperCart"})
 ));
+
+export const history = syncHistoryWithStore(browserHistory, store);
 
 export default store;
 

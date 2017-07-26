@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory} from 'react-router';
+import { history } from './store';
 
 /* -----------------    COMPONENTS     ------------------ */
 import Root from './components/Root';
@@ -38,7 +39,7 @@ import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onA
 
 
 export default () => (
-	<Router history={browserHistory}>
+	<Router history={history}>
     {/*<Route path="/" component={FinalSplash} />
     <Route path="/subscribe" component={Subscribe} />*/}
     <Route path="/" component={Root} onEnter={loadCategories}>

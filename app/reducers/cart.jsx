@@ -1,35 +1,5 @@
 import axios from 'axios';
 
-/* -----------------    ACTIONS     ------------------ */
-
-const ADD_ITEM = 'ADD_ITEM';
-const REMOVE_ITEM = 'REMOVE_ITEM';
-const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
-const CLEAR_CART = 'CLEAR_CART';
-
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-export const addItem = (product, quantity) => ({
-  type: ADD_ITEM,
-  productAndQuantity: {product, quantity}
-});
-
-export const removeItem = item => {
-  return {
-    type: REMOVE_ITEM,
-    item
-  };
-};
-
-export const changeQuantity = (product, quantity) => ({
-  type: CHANGE_QUANTITY,
-  productAndQuantity: {product, quantity}
-});
-export const clearCart = () => ({
-  type: CLEAR_CART
-});
-
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (previousState = [], action) {

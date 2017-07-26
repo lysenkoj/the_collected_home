@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { addCategory } from '../reducers/categories'
 import { addNewProduct } from '../reducers/currentProduct';
-import ImageUpload from './imageUpload';
+import ImageUpload from './ImageUpload';
+import ImageUpload2 from './ImageUpload2';
 import { addPhoto } from '../reducers/currentProduct';
 
 /*
@@ -342,7 +343,7 @@ class Admin extends Component{
             </div>
             <button type="submit" onClick={this.makeProduct}>CREATE</button>
           </form>
-          <ImageUpload _handleImageChange={this._handleImageChange} _handleSubmit={this._handleSubmit} imgUrl={this.state.product.imageUrl} />
+          <ImageUpload2 _handleImageChange={this._handleImageChange} _handleSubmit={this._handleSubmit} imgUrl={this.state.product.imageUrl} />
           </div>
         </div>
        </div>

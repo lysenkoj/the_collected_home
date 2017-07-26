@@ -1,31 +1,24 @@
 import axios from 'axios';
 
-/* -----------------    ACTIONS     ------------------ */
-
-const SELECT_ORDERS = 'SELECT_ORDERS';
-const DELOAD = 'DELOAD';
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-const selectOrders = orders => ({ type: SELECT_ORDERS, orders });
-
-export const deloadAllOrders = () => ({
-  type: DELOAD
-});
-
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (state = [], action) {
+export default function reducer (previousState = [], action) {
   switch (action.type) {
 
-    case SELECT_ORDERS:
+    case 'SELECT_ORDERS':
       return action.orders;
 
-    case DELOAD:
+    case 'LOAD_ORDERS':
+      return action.orders;
+
+    // case 'CLEAR_ORDER':
+    //   return previousState;
+
+    case 'DELOAD':
       return [];
 
     default:
-      return state;
+      return previousState;
   }
 }
 
