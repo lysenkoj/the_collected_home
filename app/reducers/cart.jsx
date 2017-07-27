@@ -24,7 +24,7 @@ export default function reducer (previousState = [], action) {
 
     case 'REMOVE_FROM_CART':
       return previousState.filter(item => (
-        item.product.sku !== action.product.sku
+        item.product.sku !== action.product.product.sku
       ));
 
     case 'CLEAR_CART':

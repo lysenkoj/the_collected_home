@@ -31896,7 +31896,7 @@
 	
 	    case 'REMOVE_FROM_CART':
 	      return previousState.filter(function (item) {
-	        return item.product.sku !== action.product.sku;
+	        return item.product.sku !== action.product.product.sku;
 	      });
 	
 	    case 'CLEAR_CART':
