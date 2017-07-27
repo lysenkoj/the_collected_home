@@ -24,7 +24,7 @@ const defualtState = {
   designForm: {},
   orders: [],
   selectedOrder: {},
-  selectedProduct: [],
+  selectedProducts: [],
   subscriber: {},
   user: {}
 

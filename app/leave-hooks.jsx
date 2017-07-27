@@ -1,10 +1,6 @@
 import store from './store';
 
-import { clearProduct } from './reducers/currentProduct';
-import { clearOrder } from './reducers/selectedOrder';
-import { deloadProducts} from './reducers/selectedProducts';
-import { deloadAllOrders} from './reducers/orders';
-import { deloadCharge } from './reducers/charge'
+import { clearProduct, clearOrder, deloadProducts, deloadAllOrders, deloadCharge } from './actionCreators';
 
 
 export const onProductLeave = () => {

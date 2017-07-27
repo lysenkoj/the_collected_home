@@ -5,8 +5,8 @@ import axios from 'axios';
 export default function reducer (previousState = [], action) {
   switch (action.type) {
 
-    case 'SELECT_ORDERS':
-      return action.orders;
+    // case 'SELECT_ORDERS':
+    //   return action.orders;
 
     case 'LOAD_ORDERS':
       return action.orders;

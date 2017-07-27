@@ -23742,7 +23742,7 @@
 	  designForm: {},
 	  orders: [],
 	  selectedOrder: {},
-	  selectedProduct: [],
+	  selectedProducts: [],
 	  subscriber: {},
 	  user: {}
 	
@@ -23819,12 +23819,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var rootReducer = (0, _redux.combineReducers)({
+	  cart: _cart2.default,
 	  categories: _categories2.default,
 	  charge: _charge2.default,
 	  currentProduct: _currentProduct2.default,
 	  designForm: _designForm2.default,
 	  orders: _orders2.default,
-	
+	  selectedOrder: _selectedOrder2.default,
+	  selectedProducts: _selectedProducts2.default,
+	  subscriber: _subscribe2.default,
+	  user: _auth2.default,
 	  routing: _reactRouterRedux.routerReducer
 	});
 	
@@ -23839,7 +23843,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchAndGoToFeaturedProducts = exports.fetchAndGoToQueriedProducts = exports.fetchAndGoToProducts = exports.deloadProducts = undefined;
+	exports.fetchAndGoToFeaturedProducts = exports.fetchAndGoToQueriedProducts = exports.fetchAndGoToProducts = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -23848,40 +23852,9 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
+	var _actionCreators = __webpack_require__(780);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var SELECT_PRODUCTS = 'SELECT_PRODUCTS';
-	var SEARCH_FOR_PRODUCTS = 'SEARCH_FOR_PRODUCTS';
-	var SELECT_FEATURED_PRODUCTS = 'SELECT_FEATURED_PRODUCTS';
-	var DELOAD = 'DELOAD';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var selectProducts = function selectProducts(products) {
-	  return { type: SELECT_PRODUCTS, products: products };
-	};
-	
-	var searchForProducts = function searchForProducts(products) {
-	  return {
-	    type: SEARCH_FOR_PRODUCTS,
-	    products: products
-	  };
-	};
-	
-	var selectFeaturedProducts = function selectFeaturedProducts(products) {
-	  return {
-	    type: SELECT_FEATURED_PRODUCTS,
-	    products: products
-	  };
-	};
-	
-	var deloadProducts = exports.deloadProducts = function deloadProducts() {
-	  return {
-	    type: DELOAD
-	  };
-	};
 	
 	/* ------------       REDUCER     ------------------ */
 	
@@ -23891,16 +23864,16 @@
 	
 	  switch (action.type) {
 	
-	    case SELECT_PRODUCTS:
+	    case 'SELECT_PRODUCTS':
 	      return action.products;
 	
-	    case SEARCH_FOR_PRODUCTS:
+	    case 'SEARCH_FOR_PRODUCTS':
 	      return action.products;
 	
-	    case SELECT_FEATURED_PRODUCTS:
+	    case 'SELECT_FEATURED_PRODUCTS':
 	      return action.products;
 	
-	    case DELOAD:
+	    case 'DELOAD':
 	      return [];
 	
 	    default:
@@ -23913,7 +23886,7 @@
 	var fetchAndGoToProducts = exports.fetchAndGoToProducts = function fetchAndGoToProducts(categoryName) {
 	  return function (dispatch) {
 	    _axios2.default.get('api/categories/' + categoryName).then(function (category) {
-	      dispatch(selectProducts(category.data[0] ? category.data[0].products : []));
+	      dispatch((0, _actionCreators.selectProducts)(category.data[0] ? category.data[0].products : []));
 	    });
 	  };
 	};
@@ -31104,7 +31077,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addPhoto = exports.addNewProduct = exports.updateProduct = exports.fetchAndGoToProduct = undefined;
+	exports.addNewProduct = exports.updateProduct = exports.fetchAndGoToProduct = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31112,6 +31085,8 @@
 	var _axios2 = _interopRequireDefault(_axios);
 	
 	var _reactRouter = __webpack_require__(242);
+	
+	var _actionCreators = __webpack_require__(780);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31145,7 +31120,7 @@
 	var fetchAndGoToProduct = exports.fetchAndGoToProduct = function fetchAndGoToProduct(sku) {
 	  return function (dispatch) {
 	    _axios2.default.get('/api/products/' + sku).then(function (product) {
-	      return dispatch(loadProduct(product.data));
+	      return dispatch((0, _actionCreators.loadProduct)(product.data));
 	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
 	    });
@@ -31170,16 +31145,6 @@
 	      dispatch(fetchAndGoToProduct(product.sku));
 	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
-	    });
-	  };
-	};
-	
-	var addPhoto = exports.addPhoto = function addPhoto(image) {
-	  return function (dispatch) {
-	    _axios2.default.post('/api/uploads', image).then(function (image) {
-	      return dispatch(savePhoto(image.data));
-	    }).catch(function (err) {
-	      return console.error('Photo Failed to Post', err);
 	    });
 	  };
 	};
@@ -31278,7 +31243,7 @@
 	
 	  switch (action.type) {
 	
-	    case ADD_ITEM:
+	    case 'ADD_ITEM':
 	      var _iteratorNormalCompletion = true;
 	      var _didIteratorError = false;
 	      var _iteratorError = undefined;
@@ -31308,7 +31273,7 @@
 	
 	      return [].concat(_toConsumableArray(previousState), [{ product: action.productAndQuantity.product, quantity: action.productAndQuantity.quantity }]);
 	
-	    case CHANGE_QUANTITY:
+	    case 'CHANGE_QUANTITY':
 	      return previousState.map(function (item) {
 	        if (item.product.sku === action.productAndQuantity.product.sku) {
 	          return { product: item.product, quantity: action.productAndQuantity.quantity };
@@ -31317,12 +31282,12 @@
 	        }
 	      });
 	
-	    case REMOVE_ITEM:
+	    case 'REMOVE_ITEM':
 	      return previousState.filter(function (item) {
 	        return item.product.sku !== action.item.product.sku;
 	      });
 	
-	    case CLEAR_CART:
+	    case 'CLEAR_CART':
 	      return [];
 	
 	    default:
@@ -31353,7 +31318,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.whoami = exports.logout = exports.login = exports.createOrFindUser = exports.authenticated = undefined;
+	exports.whoami = exports.logout = exports.login = exports.createOrFindUser = undefined;
 	
 	var _axios = __webpack_require__(217);
 	
@@ -31361,18 +31326,13 @@
 	
 	var _reactRouter = __webpack_require__(242);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _actionCreators = __webpack_require__(780);
 	
-	var authenticated = exports.authenticated = function authenticated(user) {
-	  return {
-	    type: 'AUTHENTICATED',
-	    user: user
-	  };
-	};
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Reducer
 	var reducer = function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
 	
 	  switch (action.type) {
@@ -31419,9 +31379,12 @@
 	  return function (dispatch) {
 	    return _axios2.default.get('/api/auth/whoami').then(function (response) {
 	      var user = response.data;
-	      dispatch(authenticated(user));
+	      if (user === '') {
+	        user = {};
+	      }
+	      dispatch((0, _actionCreators.authenticated)(user));
 	    }).catch(function (failed) {
-	      return dispatch(authenticated(null));
+	      return dispatch((0, _actionCreators.authenticated)(null));
 	    });
 	  };
 	};
@@ -31452,8 +31415,8 @@
 	
 	  switch (action.type) {
 	
-	    case 'SELECT_ORDERS':
-	      return action.orders;
+	    // case 'SELECT_ORDERS':
+	    //   return action.orders;
 	
 	    case 'LOAD_ORDERS':
 	      return action.orders;
@@ -31490,7 +31453,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchAndGoToOrder = exports.clearOrder = exports.selectOrder = undefined;
+	exports.fetchAndGoToOrder = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(217);
@@ -31501,23 +31464,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var SELECT_ORDER = 'SELECT_ORDER';
-	var CLEAR_ORDER = 'CLEAR_ORDER';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var selectOrder = exports.selectOrder = function selectOrder(order) {
-	  return { type: SELECT_ORDER, order: order };
-	};
-	
-	var clearOrder = exports.clearOrder = function clearOrder() {
-	  return {
-	    type: CLEAR_ORDER
-	  };
-	};
-	
 	/* ------------       REDUCER     ------------------ */
 	
 	function reducer() {
@@ -31526,11 +31472,11 @@
 	
 	  switch (action.type) {
 	
-	    case SELECT_ORDER:
+	    case 'SELECT_ORDER':
 	      return action.order;
 	
-	    case CLEAR_ORDER:
-	      return {};
+	    // case 'CLEAR_ORDER':
+	    //   return {};
 	
 	    default:
 	      return state;
@@ -31719,23 +31665,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addSubscriber = exports.subscriber = undefined;
+	exports.addSubscriber = undefined;
 	exports.default = reducer;
 	
 	var _reactRouter = __webpack_require__(242);
-	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var ADD_SUBSCRIBER = 'ADD_SUBSCRIBER';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var subscriber = exports.subscriber = function subscriber(email) {
-	  return {
-	    type: ADD_SUBSCRIBER,
-	    email: email
-	  };
-	};
 	
 	/* ------------       REDUCER     ------------------ */
 	
@@ -31745,7 +31678,7 @@
 	
 	  switch (action.type) {
 	
-	    case ADD_SUBSCRIBER:
+	    case 'SUBSCRIBE':
 	      return action.email;
 	
 	    default:
@@ -33340,7 +33273,7 @@
 	                  )
 	                ),
 	                _react2.default.createElement(_QuickLogin2.default, null),
-	                this.props.user ? _react2.default.createElement(
+	                this.props.user.email ? _react2.default.createElement(
 	                  'div',
 	                  null,
 	                  _react2.default.createElement(
@@ -33349,7 +33282,7 @@
 	                    '//'
 	                  )
 	                ) : null,
-	                this.props.user ? _react2.default.createElement(
+	                this.props.user.email ? _react2.default.createElement(
 	                  _reactRouter.Link,
 	                  { id: 'orderContainer', to: '/orders/' + (this.props.user && this.props.user.id) },
 	                  _react2.default.createElement(
@@ -33366,7 +33299,7 @@
 	              _react2.default.createElement(
 	                'div',
 	                { id: 'welcomeBanner' },
-	                this.props.user ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
+	                this.props.user.email ? 'Welcome back, ' + (this.props.user.firstName || this.props.user.email) + '!' : 'Guest'
 	              ),
 	              _react2.default.createElement(
 	                _reactRouter.Link,
@@ -40509,36 +40442,28 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _currentProduct = __webpack_require__(297);
-	
-	var _selectedOrder = __webpack_require__(302);
-	
-	var _selectedProducts = __webpack_require__(216);
-	
-	var _orders = __webpack_require__(301);
-	
-	var _charge = __webpack_require__(304);
+	var _actionCreators = __webpack_require__(780);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var onProductLeave = exports.onProductLeave = function onProductLeave() {
-		_store2.default.dispatch((0, _currentProduct.clearProduct)());
+		_store2.default.dispatch((0, _actionCreators.clearProduct)());
 	};
 	
 	var onOrderLeave = exports.onOrderLeave = function onOrderLeave() {
-		_store2.default.dispatch((0, _selectedOrder.clearOrder)());
+		_store2.default.dispatch((0, _actionCreators.clearOrder)());
 	};
 	
 	var deloadCategoryProducts = exports.deloadCategoryProducts = function deloadCategoryProducts() {
-		_store2.default.dispatch((0, _selectedProducts.deloadProducts)());
+		_store2.default.dispatch((0, _actionCreators.deloadProducts)());
 	};
 	
 	var deloadOrders = exports.deloadOrders = function deloadOrders() {
-		_store2.default.dispatch((0, _orders.deloadAllOrders)());
+		_store2.default.dispatch((0, _actionCreators.deloadAllOrders)());
 	};
 	
 	var deloadSingleCharge = exports.deloadSingleCharge = function deloadSingleCharge() {
-		_store2.default.dispatch((0, _charge.deloadCharge)());
+		_store2.default.dispatch((0, _actionCreators.deloadCharge)());
 	};
 
 /***/ }),
@@ -41095,7 +41020,7 @@
 	};
 	
 	//SELECT PRODUCTS
-	var selectProducts = function selectProducts(products) {
+	var selectProducts = exports.selectProducts = function selectProducts(products) {
 	  return {
 	    type: 'SELECT_PRODUCTS',
 	    products: products

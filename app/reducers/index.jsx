@@ -14,12 +14,16 @@ import subscriber from './subscribe';
 
 
 const rootReducer = combineReducers({
-	categories,
+	cart,
+  categories,
   charge,
   currentProduct,
   designForm,
   orders,
-
+  selectedOrder,
+  selectedProducts,
+  subscriber,
+  user,
   routing: routerReducer
 });
 

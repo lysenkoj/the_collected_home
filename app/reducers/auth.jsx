@@ -1,15 +1,9 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router';
-
-export const authenticated = user => {
-  return{
-    type: 'AUTHENTICATED',
-    user
-  }
-}
+import { authenticated } from '../actionCreators';
 
 // Reducer
-const reducer = (state='', action) => {
+const reducer = (state = {}, action) => {
   switch(action.type) {
   case 'AUTHENTICATED':
     return action.user
@@ -46,7 +40,10 @@ export const whoami = () =>
   dispatch =>
     axios.get('/api/auth/whoami')
       .then(response => {
-        const user = response.data
+        let user = response.data
+        if(user === ''){
+          user = {}
+        }
         dispatch(authenticated(user))
       })
       .catch(failed => dispatch(authenticated(null)))

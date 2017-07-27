@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from "react-router";
+import { loadProduct } from '../actionCreators';
 
 
 /* ------------       REDUCER     ------------------ */
@@ -54,14 +55,5 @@ export const addNewProduct = (product, categoryProduct) => {
         dispatch(fetchAndGoToProduct(product.sku))
       })
       .catch(err => console.error('Fetching product failed', err))
-  }
-}
-
-
-export const addPhoto = (image) => {
-  return dispatch => {
-    axios.post('/api/uploads', image)
-      .then(image => dispatch(savePhoto(image.data)))
-      .catch(err => console.error('Photo Failed to Post', err))
   }
 }

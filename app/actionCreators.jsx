@@ -115,7 +115,7 @@ export const clearProduct = () => {
 }
 
 //SELECT PRODUCTS
-const selectProducts = (products) => {
+export const selectProducts = (products) => {
   return {
     type: 'SELECT_PRODUCTS',
     products

@@ -1,49 +1,22 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-
-/* -----------------    ACTIONS     ------------------ */
-
-const SELECT_PRODUCTS = 'SELECT_PRODUCTS';
-const SEARCH_FOR_PRODUCTS = 'SEARCH_FOR_PRODUCTS';
-const SELECT_FEATURED_PRODUCTS = 'SELECT_FEATURED_PRODUCTS';
-const DELOAD = 'DELOAD';
-
-
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-const selectProducts = products => ({ type: SELECT_PRODUCTS, products });
-
-const searchForProducts = products => ({
-  type: SEARCH_FOR_PRODUCTS,
-  products
-});
-
-const selectFeaturedProducts = products => ({
-  type: SELECT_FEATURED_PRODUCTS,
-  products
-})
-
-export const deloadProducts = () => ({
-  type: DELOAD
-});
-
+import { selectProducts } from '../actionCreators';
 
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (state = [], action) {
   switch (action.type) {
 
-    case SELECT_PRODUCTS:
+    case 'SELECT_PRODUCTS':
       return action.products;
 
-    case SEARCH_FOR_PRODUCTS:
+    case 'SEARCH_FOR_PRODUCTS':
       return action.products;
 
-    case SELECT_FEATURED_PRODUCTS:
+    case 'SELECT_FEATURED_PRODUCTS':
       return action.products;
 
-    case DELOAD:
+    case 'DELOAD':
       return [];
 
     default:

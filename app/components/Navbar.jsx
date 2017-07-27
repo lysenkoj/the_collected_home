@@ -103,11 +103,11 @@ class Navigbar extends React.Component {
                 }
                 <QuickLogin />
                 {
-                  this.props.user ?
+                  this.props.user.email ?
                   <div><h5>//</h5></div> :
                   null
                 }
-                { this.props.user ?
+                { this.props.user.email ?
                   <Link id="orderContainer" to={`/orders/${this.props.user && this.props.user.id}`}>
                     <div id="orderButton">
                       <h5>{this.props.user && "Your Orders"}</h5>
@@ -118,7 +118,7 @@ class Navigbar extends React.Component {
               </div>
               <div id="welcomeBanner">
               {
-                  this.props.user ?
+                  this.props.user.email ?
                     `Welcome back, ${this.props.user.firstName || this.props.user.email}!`
                   :
                     'Guest'
