@@ -11,7 +11,9 @@ import {whoami} from './reducers/auth';
 
 import persistState from 'redux-localstorage'
 
-const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
 
 const defualtState = {
   cart: [],

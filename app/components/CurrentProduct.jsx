@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Notification from './Notification';
-import { addItem } from '../reducers/cart';
+import { addItem, updateProduct } from '../actionCreators';
 import ContentEditable from "react-contenteditable";
-import {updateProduct} from '../reducers/currentProduct';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 

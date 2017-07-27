@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeItem, changeQuantity, clearCart } from '../reducers/cart';
+import { removeFromCart, changeQuantity, clearCart } from '../actionCreators';
 import { Link } from 'react-router';
 import QuickCartItem from './QuickCartItem';
 
@@ -63,7 +63,7 @@ function Cart({ cart, remove, change, clear }){
 
 const mapStateToProps = ({ cart }) => ({ cart });
 const mapDispatchToProps = (dispatch) => ({
-	remove: (item) => dispatch(removeItem(item)),
+	remove: (item) => dispatch(removeFromCart(item)),
 	change: (product, quantity) => dispatch(changeQuantity(product, quantity)),
 	clear: () => dispatch(clearCart())
 });

@@ -149,29 +149,26 @@ export const deloadProducts = () => {
 /*----- CART -----*/
 
 //ADD TO CART
-export const addToCart = (cart, product, quantity) => {
+export const addItem = (product, quantity) => {
   return {
     type: 'ADD_TO_CART',
-    cart,
     product,
     quantity
   }
 }
 
 //REMOVE FROM CART
-export const removeFromCart = (cart, product) => {
+export const removeFromCart = (product) => {
   return {
     type: 'REMOVE_FROM_CART',
-    cart,
     product
   }
 }
 
 //CHANGE QUANTITY
-export const changeQuantity = (cart, product, quantity) => {
+export const changeQuantity = (product, quantity) => {
   return {
     type: 'CHANGE_QUANTITY',
-    cart,
     product,
     quantity
   }

@@ -5,26 +5,26 @@ import axios from 'axios';
 export default function reducer (previousState = [], action) {
   switch (action.type) {
 
-    case 'ADD_ITEM':
+    case 'ADD_TO_CART':
       for (let item of previousState)  {
-        if (item.product.sku === action.productAndQuantity.product.sku) {
+        if (item.product.sku === action.product.sku) {
           return previousState;
         }
       }
-      return [...previousState, {product: action.productAndQuantity.product, quantity: action.productAndQuantity.quantity}];
+      return [...previousState, {product: action.product, quantity: action.quantity}];
 
     case 'CHANGE_QUANTITY':
       return previousState.map((item) => {
-        if (item.product.sku === action.productAndQuantity.product.sku) {
-          return {product: item.product, quantity: action.productAndQuantity.quantity};
+        if (item.product.sku === action.product.sku) {
+          return {product: item.product, quantity: action.quantity};
         } else {
           return item;
         }
       });
 
-    case 'REMOVE_ITEM':
+    case 'REMOVE_FROM_CART':
       return previousState.filter(item => (
-        item.product.sku !== action.item.product.sku
+        item.product.sku !== action.product.sku
       ));
 
     case 'CLEAR_CART':
