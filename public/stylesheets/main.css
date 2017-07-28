@@ -3225,3 +3225,33 @@ input[type=submit]::-moz-focus-inner {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3); }
+
+.checkoutContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-left: 40px;
+  padding-right: 40px; }
+
+.cartPreview {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  background-color: lightblue;
+  align-items: center;
+  overflow-x: auto; }
+
+.cartPreviewItem {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid black;
+  width: 250px;
+  height: 180px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px; }
+  .cartPreviewItem img {
+    width: 140px;
+    height: 120px; }

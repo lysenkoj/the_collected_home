@@ -13,6 +13,16 @@ class Cart extends React.Component {
 			<div className="checkoutContainer">
 				<h2>Checkout</h2>
 				<div>Items in your cart: { this.props.cart && this.props.cart.length }</div>
+        {(this.props.cart.length > 0) ?
+        <div className="cartPreview">
+          {this.props.cart.map((item, index) => (
+            <div className='cartPreviewItem' key={index}>
+              <h5>{item.product.name}</h5>
+              <img src={item.product.img[0]}/>
+            </div>
+          ))}
+        </div> : null
+        }
 				{ this.props.children }
 			</div>
 		);

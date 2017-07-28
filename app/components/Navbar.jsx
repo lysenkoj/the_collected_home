@@ -55,7 +55,7 @@ class Navigbar extends React.Component {
 
     const quickCart = getQuickCart();
 
-    (this.props.user !== '') ? quickCart.style.right = '132px' : quickCart.style.right = '40px';
+    (this.props.user.email) ? quickCart.style.right = '132px' : quickCart.style.right = '40px';
 
     (quickCart.style.display === 'flex') ?
     quickCart.style.display = 'none' : quickCart.style.display = 'flex';

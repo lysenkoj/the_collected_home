@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { clearCart } from './cart';
+import { receiveCharge, clearCart } from '../actionCreators';
 
 /* ------------       REDUCER     ------------------ */
 

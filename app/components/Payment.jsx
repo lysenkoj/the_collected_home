@@ -10,16 +10,13 @@ require('APP/.env.js');
 export default class Payment extends Component{
   constructor(props){
     super(props);
+    this.state = {
+        scriptLoading: false,
+    		scriptLoadError: false
+      }
   }
 
     mixins = [ReactScriptLoaderMixin];
-
-    getInitialState() {
-    	return {
-    		scriptLoading: true,
-    		scriptLoadError: false
-    	};
-    }
 
     getScriptURL() {
        return 'https://js.stripe.com/v2/';

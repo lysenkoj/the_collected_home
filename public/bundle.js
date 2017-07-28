@@ -32175,7 +32175,7 @@
 	
 	var _reactRouter = __webpack_require__(220);
 	
-	var _cart = __webpack_require__(305);
+	var _actionCreators = __webpack_require__(302);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32211,10 +32211,10 @@
 	    _axios2.default.post('/api/payments/' + orderDataForStripe.token, { orderDataForStripe: orderDataForStripe, orderDataFromStore: orderDataFromStore }).then(function (charge) {
 	
 	      if (charge.data.id) {
-	        dispatch((0, _cart.clearCart)());
+	        dispatch((0, _actionCreators.clearCart)());
 	      }
 	
-	      dispatch(receiveCharge(charge.data));
+	      dispatch((0, _actionCreators.receiveCharge)(charge.data));
 	    }).then(_reactRouter.browserHistory.push('/checkout/aftersubmit')).catch(function (err) {
 	      return console.error(err);
 	    });
@@ -33792,7 +33792,7 @@
 	
 	      var quickCart = getQuickCart();
 	
-	      this.props.user !== '' ? quickCart.style.right = '132px' : quickCart.style.right = '40px';
+	      this.props.user.email ? quickCart.style.right = '132px' : quickCart.style.right = '40px';
 	
 	      quickCart.style.display === 'flex' ? quickCart.style.display = 'none' : quickCart.style.display = 'flex';
 	    }
@@ -36353,7 +36353,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -36375,49 +36375,65 @@
 	/* -----------------    COMPONENT     ------------------ */
 	
 	var Cart = function (_React$Component) {
-		_inherits(Cart, _React$Component);
+	  _inherits(Cart, _React$Component);
 	
-		function Cart() {
-			_classCallCheck(this, Cart);
+	  function Cart() {
+	    _classCallCheck(this, Cart);
 	
-			return _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).apply(this, arguments));
-		}
+	    return _possibleConstructorReturn(this, (Cart.__proto__ || Object.getPrototypeOf(Cart)).apply(this, arguments));
+	  }
 	
-		_createClass(Cart, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				window.scrollTo(0, 0);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'checkoutContainer' },
-					_react2.default.createElement(
-						'h2',
-						null,
-						'Checkout'
-					),
-					_react2.default.createElement(
-						'div',
-						null,
-						'Items in your cart: ',
-						this.props.cart && this.props.cart.length
-					),
-					this.props.children
-				);
-			}
-		}]);
+	  _createClass(Cart, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.scrollTo(0, 0);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'checkoutContainer' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Checkout'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          'Items in your cart: ',
+	          this.props.cart && this.props.cart.length
+	        ),
+	        this.props.cart.length > 0 ? _react2.default.createElement(
+	          'div',
+	          { className: 'cartPreview' },
+	          this.props.cart.map(function (item, index) {
+	            return _react2.default.createElement(
+	              'div',
+	              { className: 'cartPreviewItem', key: index },
+	              _react2.default.createElement(
+	                'h5',
+	                null,
+	                item.product.name
+	              ),
+	              _react2.default.createElement('img', { src: item.product.img[0] })
+	            );
+	          })
+	        ) : null,
+	        this.props.children
+	      );
+	    }
+	  }]);
 	
-		return Cart;
+	  return Cart;
 	}(_react2.default.Component);
 	
 	/* -----------------    CONTAINER     ------------------ */
 	
 	var mapProps = function mapProps(_ref) {
-		var cart = _ref.cart;
-		return { cart: cart };
+	  var cart = _ref.cart;
+	  return { cart: cart };
 	};
 	
 	// const mapDispatch = dispatch => ({
@@ -37987,18 +38003,15 @@
 	    var _this = _possibleConstructorReturn(this, (Payment.__proto__ || Object.getPrototypeOf(Payment)).call(this, props));
 	
 	    _this.mixins = [_reactScriptLoader.ReactScriptLoaderMixin];
+	
+	    _this.state = {
+	      scriptLoading: false,
+	      scriptLoadError: false
+	    };
 	    return _this;
 	  }
 	
 	  _createClass(Payment, [{
-	    key: 'getInitialState',
-	    value: function getInitialState() {
-	      return {
-	        scriptLoading: true,
-	        scriptLoadError: false
-	      };
-	    }
-	  }, {
 	    key: 'getScriptURL',
 	    value: function getScriptURL() {
 	      return 'https://js.stripe.com/v2/';
