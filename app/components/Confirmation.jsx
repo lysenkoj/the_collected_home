@@ -4,7 +4,7 @@ import { submitOrder } from '../reducers/charge';
 
 
 /* -----------------    DUMB COMPONENT     ------------------ */
-
+// need to set up shipping address on the store so that i can pull it in here later
 
 
 class Confirmation extends Component {
