@@ -30927,7 +30927,7 @@
 	  };
 	};
 	
-	var deloadOrders = exports.deloadOrders = function deloadOrders() {
+	var deloadAllOrders = exports.deloadAllOrders = function deloadAllOrders() {
 	  return {
 	    type: 'DELOAD_ORDERS'
 	  };
@@ -31295,11 +31295,11 @@
 	
 	  switch (action.type) {
 	
-	    // case 'SELECT_ORDERS':
-	    //   return action.orders;
+	    case 'SELECT_ORDERS':
+	      return action.order;
 	
 	    case 'LOAD_ORDERS':
-	      return action.orders;
+	      return action.order;
 	
 	    // case 'CLEAR_ORDER':
 	    //   return previousState;
@@ -31376,7 +31376,7 @@
 	        console.log('myObj is', myObj);
 	        return myObj;
 	      }).then(function (combinedOrder) {
-	        dispatch((0, _actionCreators.selectOrder)(combinedOrder));
+	        dispatch((0, _actionCreators.selectOrders)(combinedOrder));
 	      }).catch(function (err) {
 	        return console.error('Stripe call failure', err);
 	      });
@@ -32849,7 +32849,7 @@
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadOrders }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadAllOrders }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),

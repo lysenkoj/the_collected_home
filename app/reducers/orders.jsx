@@ -6,11 +6,11 @@ import {selectOrders} from '../actionCreators';
 export default function reducer (previousState = [], action) {
   switch (action.type) {
 
-    // case 'SELECT_ORDERS':
-    //   return action.orders;
+    case 'SELECT_ORDERS':
+      return action.order;
 
     case 'LOAD_ORDERS':
-      return action.orders;
+      return action.order;
 
     // case 'CLEAR_ORDER':
     //   return previousState;

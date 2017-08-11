@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import {selectOrder} from '../actionCreators';
+import {selectOrders} from '../actionCreators';
 
 /* ------------       REDUCER     ------------------ */
 
@@ -33,7 +33,7 @@ export const fetchAndGoToOrder = (orderNumber) => {
             return myObj;
           })
           .then(combinedOrder => {
-            dispatch(selectOrder(combinedOrder))
+            dispatch(selectOrders(combinedOrder))
           })
           .catch(err => console.error('Stripe call failure', err))
       })

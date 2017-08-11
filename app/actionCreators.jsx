@@ -214,7 +214,7 @@ export const loadOrders = (user, orders) => {
   }
 }
 
-export const deloadOrders = () => {
+export const deloadAllOrders = () => {
   return {
     type: 'DELOAD_ORDERS'
   }
