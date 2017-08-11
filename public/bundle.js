@@ -22855,7 +22855,8 @@
 	  selectedOrder: {},
 	  selectedProducts: [],
 	  subscriber: {},
-	  user: {}
+	  user: {},
+	  shippingAddress: {}
 	
 	};
 	
@@ -29131,6 +29132,7 @@
 	  selectedProducts: _selectedProducts2.default,
 	  subscriber: _subscribe2.default,
 	  user: _auth2.default,
+	  shippingAddress: _shippingAddress2.default,
 	  routing: _reactRouterRedux.routerReducer
 	});
 	
@@ -29196,7 +29198,7 @@
 	var fetchAndGoToQueriedProducts = exports.fetchAndGoToQueriedProducts = function fetchAndGoToQueriedProducts(search) {
 	  return function (dispatch) {
 	    _axios2.default.get('/api/products/search/' + search).then(function (products) {
-	      dispatch(searchForProducts(products.data));
+	      dispatch((0, _actionCreators.searchForProducts)(products.data));
 	      _reactRouter.browserHistory.push('/search/' + search);
 	    }).catch(function (err) {
 	      return console.error('Fetching product failed', err);
@@ -29207,7 +29209,7 @@
 	var fetchAndGoToFeaturedProducts = exports.fetchAndGoToFeaturedProducts = function fetchAndGoToFeaturedProducts() {
 	  return function (dispatch) {
 	    _axios2.default.get('api/products/featured').then(function (products) {
-	      dispatch(selectFeaturedProducts(products.data));
+	      dispatch((0, _actionCreators.selectFeaturedProducts)(products.data));
 	    });
 	  };
 	};
@@ -30723,10 +30725,9 @@
 	};
 	
 	//ADD MAILING ADDRESS
-	var addMailingAddress = exports.addMailingAddress = function addMailingAddress(user, address) {
+	var addMailingAddress = exports.addMailingAddress = function addMailingAddress(address) {
 	  return {
 	    type: 'ADD_MAILING_ADDRESS',
-	    user: user,
 	    address: address
 	  };
 	};
@@ -30735,7 +30736,6 @@
 	var addBillingAddress = exports.addBillingAddress = function addBillingAddress(user, address) {
 	  return {
 	    type: 'ADD_BILLING_ADDRESS',
-	    user: user,
 	    address: address
 	  };
 	};
@@ -30835,7 +30835,7 @@
 	};
 	
 	//SEARCH FOR PRODUCTS
-	var searchForProducts = function searchForProducts(products) {
+	var searchForProducts = exports.searchForProducts = function searchForProducts(products) {
 	  return {
 	    type: 'SEARCH_FOR_PRODUCTS',
 	    products: products
@@ -30845,7 +30845,7 @@
 	//SELECT FEATURED PRODUCTS
 	var selectFeaturedProducts = exports.selectFeaturedProducts = function selectFeaturedProducts(products) {
 	  return {
-	    type: ' SELECT_FEATURED_PRODUCTS',
+	    type: 'SELECT_FEATURED_PRODUCTS',
 	    products: products
 	  };
 	};
@@ -30933,9 +30933,9 @@
 	  };
 	};
 	
-	var selectOrder = exports.selectOrder = function selectOrder(order) {
+	var selectOrders = exports.selectOrders = function selectOrders(order) {
 	  return {
-	    type: 'SELECT_ORDER',
+	    type: 'SELECT_ORDERS',
 	    order: order
 	  };
 	};
@@ -31283,6 +31283,8 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _actionCreators = __webpack_require__(302);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/* ------------       REDUCER     ------------------ */
@@ -31315,7 +31317,7 @@
 	var fetchAndGoToOrders = exports.fetchAndGoToOrders = function fetchAndGoToOrders(userid) {
 	  return function (dispatch) {
 	    _axios2.default.get('/api/orders/user/' + userid).then(function (orders) {
-	      dispatch(selectOrders(orders.data));
+	      dispatch((0, _actionCreators.selectOrders)(orders.data));
 	    }).catch(function (err) {
 	      return console.error('Fetching orders failed', err);
 	    });
@@ -31339,6 +31341,8 @@
 	var _axios2 = _interopRequireDefault(_axios);
 	
 	var _reactRouter = __webpack_require__(220);
+	
+	var _actionCreators = __webpack_require__(302);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31372,7 +31376,7 @@
 	        console.log('myObj is', myObj);
 	        return myObj;
 	      }).then(function (combinedOrder) {
-	        dispatch(selectOrder(combinedOrder));
+	        dispatch((0, _actionCreators.selectOrder)(combinedOrder));
 	      }).catch(function (err) {
 	        return console.error('Stripe call failure', err);
 	      });
@@ -31392,32 +31396,19 @@
 	  value: true
 	});
 	exports.default = reducer;
-	
-	/* -----------------    ACTIONS     ------------------ */
-	
-	var SET_SHIPPING_ADDRESS = 'SET_SHIPPING_ADDRESS';
-	
-	/* ------------   ACTION CREATORS     ------------------ */
-	
-	var setShippingAddress = exports.setShippingAddress = function setShippingAddress(address) {
-	  return { type: SET_SHIPPING_ADDRESS, address: address };
-	};
-	
 	/* ------------       REDUCER     ------------------ */
 	
-	var defaultState = {};
-	
 	function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+	  var defaultState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
 	
 	  switch (action.type) {
 	
-	    case SET_SHIPPING_ADDRESS:
-	      return action.address;
+	    case 'ADD_MAILING_ADDRESS':
+	      return Object.assign({}, defaultState, action.address);
 	
 	    default:
-	      return state;
+	      return defaultState;
 	  }
 	}
 	
@@ -31472,7 +31463,7 @@
 	/* ------------       DISPATCHERS     ------------------ */
 	
 	var submitOrder = exports.submitOrder = function submitOrder(orderDataForStripe, orderDataFromStore) {
-	  console.log(orderDataForStripe);
+	
 	  return function (dispatch) {
 	    _axios2.default.post('/api/payments/' + orderDataForStripe.token, { orderDataForStripe: orderDataForStripe, orderDataFromStore: orderDataFromStore }).then(function (charge) {
 	
@@ -33112,7 +33103,7 @@
 	                  _react2.default.createElement(
 	                    'div',
 	                    { id: 'cartLink' },
-	                    _react2.default.createElement('img', { id: 'shoppingImg', src: 'images/shopping-cart.png' }),
+	                    _react2.default.createElement('img', { id: 'shoppingImg', src: 'images/shopping-cart-empty-side-view.svg' }),
 	                    _react2.default.createElement(
 	                      'h5',
 	                      null,
@@ -33576,6 +33567,16 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function toggleQuickCart() {
+	  var getQuickCart = function getQuickCart() {
+	    return document.querySelector('div.quickCart');
+	  };
+	
+	  var quickCart = getQuickCart();
+	
+	  quickCart.style.display === 'flex' ? quickCart.style.display = 'none' : quickCart.style.display = 'flex';
+	}
+	
 	/* -----------------    COMPONENT     ------------------ */
 	
 	function Cart(_ref) {
@@ -33640,7 +33641,7 @@
 	            { to: '/checkout/shipping' },
 	            _react2.default.createElement(
 	              'button',
-	              null,
+	              { onClick: toggleQuickCart },
 	              'CHECKOUT'
 	            )
 	          ),
@@ -35733,7 +35734,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _shippingAddress = __webpack_require__(309);
+	var _actionCreators = __webpack_require__(302);
 	
 	var _reactRouter = __webpack_require__(220);
 	
@@ -35900,7 +35901,7 @@
 	var mapDispatch = function mapDispatch(dispatch) {
 		return {
 			updateAddress: function updateAddress(address) {
-				return dispatch((0, _shippingAddress.setShippingAddress)(address));
+				return dispatch((0, _actionCreators.addMailingAddress)(address));
 			}
 		};
 	};
@@ -37328,9 +37329,8 @@
 	        hiddenInput.setAttribute('name', 'stripeToken');
 	        hiddenInput.setAttribute('value', token.id);
 	        form.appendChild(hiddenInput);
-	
 	        // Submit the form
-	        _reactRouter.browserHistory.push('/checkout/confirmation/' + token);
+	        _reactRouter.browserHistory.push('/checkout/confirmation/' + token.id);
 	      }
 	
 	      stripe.createToken(card).then(function (result) {
@@ -37614,7 +37614,7 @@
 						'p',
 						null,
 						'YOU WILL BE CHARGED: ',
-						amount
+						'$ ' + amount / 100 + '.00'
 					),
 					_react2.default.createElement(
 						'h3',
@@ -39900,10 +39900,9 @@
 	
 	var _selectedOrder = __webpack_require__(308);
 	
+	var _actionCreators = __webpack_require__(302);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//import { selectOrder } from './reducers/selectedOrder'
-	
 	
 	var loadOrders = exports.loadOrders = function loadOrders(_ref) {
 		var params = _ref.params;

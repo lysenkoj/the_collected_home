@@ -28,7 +28,8 @@ const defualtState = {
   selectedOrder: {},
   selectedProducts: [],
   subscriber: {},
-  user: {}
+  user: {},
+  shippingAddress: {}
 
 };
 

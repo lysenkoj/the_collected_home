@@ -11,10 +11,9 @@ export const authenticated = user => {
 }
 
 //ADD MAILING ADDRESS
-export const addMailingAddress = (user, address) => {
+export const addMailingAddress = (address) => {
   return {
     type: 'ADD_MAILING_ADDRESS',
-    user,
     address
   }
 }
@@ -23,7 +22,6 @@ export const addMailingAddress = (user, address) => {
 export const addBillingAddress = (user, address) => {
   return {
     type: 'ADD_BILLING_ADDRESS',
-    user,
     address
   }
 }
@@ -123,7 +121,7 @@ export const selectProducts = (products) => {
 }
 
 //SEARCH FOR PRODUCTS
-const searchForProducts = (products) => {
+export const searchForProducts = (products) => {
   return {
     type: 'SEARCH_FOR_PRODUCTS',
     products
@@ -133,7 +131,7 @@ const searchForProducts = (products) => {
 //SELECT FEATURED PRODUCTS
 export const selectFeaturedProducts = (products) => {
   return {
-    type:' SELECT_FEATURED_PRODUCTS',
+    type: 'SELECT_FEATURED_PRODUCTS',
     products
   }
 }
@@ -222,9 +220,9 @@ export const deloadOrders = () => {
   }
 }
 
-export const selectOrder = (order) => {
+export const selectOrders = (order) => {
   return {
-    type: 'SELECT_ORDER',
+    type: 'SELECT_ORDERS',
     order
   }
 }

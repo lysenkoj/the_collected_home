@@ -61,9 +61,8 @@ createToken() {
   hiddenInput.setAttribute('name', 'stripeToken');
   hiddenInput.setAttribute('value', token.id);
   form.appendChild(hiddenInput);
-
   // Submit the form
-  browserHistory.push(`/checkout/confirmation/${token}`);
+  browserHistory.push(`/checkout/confirmation/${token.id}`);
   }
 
   stripe.createToken(card).then(function(result) {

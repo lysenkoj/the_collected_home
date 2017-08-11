@@ -82,8 +82,10 @@
     justify-content: center;
     align-items: center; }
   #shoppingImg {
-    width: 30px;
-    height: 30px; }
+    width: 25px;
+    height: 25px;
+    margin-top: 3px;
+    margin-right: 3px; }
   #orderContainer {
     display: flex;
     margin-left: 5px; }
@@ -243,8 +245,10 @@
     justify-content: center;
     align-items: center; }
   #shoppingImg {
-    width: 30px;
-    height: 30px; }
+    width: 25px;
+    height: 25px;
+    margin-top: 3px;
+    margin-right: 3px; }
   #orderContainer {
     display: flex;
     margin-left: 5px; }
@@ -412,8 +416,10 @@
     width: 50%;
     margin-right: 4vw; }
   #shoppingImg {
-    width: 30px;
-    height: 30px; }
+    width: 25px;
+    height: 25px;
+    margin-top: 3px;
+    margin-right: 3px; }
   #orderContainer {
     display: flex;
     margin-left: 5px; }

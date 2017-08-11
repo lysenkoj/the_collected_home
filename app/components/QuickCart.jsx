@@ -4,6 +4,17 @@ import { removeFromCart, changeQuantity, clearCart } from '../actionCreators';
 import { Link } from 'react-router';
 import QuickCartItem from './QuickCartItem';
 
+  function toggleQuickCart(){
+    const getQuickCart = function(){
+      return document.querySelector('div.quickCart');
+    };
+
+    const quickCart = getQuickCart();
+
+
+    (quickCart.style.display === 'flex') ?
+    quickCart.style.display = 'none' : quickCart.style.display = 'flex';
+  }
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -44,7 +55,7 @@ function Cart({ cart, remove, change, clear }){
               <button>CART</button>
             </Link>
             <Link to="/checkout/shipping">
-              <button>CHECKOUT</button>
+              <button onClick={toggleQuickCart}>CHECKOUT</button>
             </Link>
             <button onClick={clear}>CLEAR CART</button>
           </div>

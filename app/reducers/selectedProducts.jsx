@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { selectProducts } from '../actionCreators';
+import { selectProducts, searchForProducts, selectFeaturedProducts } from '../actionCreators';
 
 /* ------------       REDUCER     ------------------ */
 

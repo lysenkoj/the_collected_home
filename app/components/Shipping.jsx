@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setShippingAddress } from '../reducers/shippingAddress';
+import { addMailingAddress } from '../actionCreators';
 import { browserHistory } from 'react-router';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
@@ -94,7 +94,7 @@ class Shipping extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapDispatch = dispatch => ({
-  updateAddress: address => dispatch(setShippingAddress(address))
+  updateAddress: address => dispatch(addMailingAddress(address))
 })
 
 export default connect(null, mapDispatch)(Shipping);

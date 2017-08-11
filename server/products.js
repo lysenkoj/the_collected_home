@@ -80,7 +80,6 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
 //featured
 
 customProductRoutes.get("/featured", function(req,res,next) {
-  console.log("HERE IN THE PRODUCT ROUTES")
   const featured = Product.findAll({
     where: {
       featured: true

@@ -24,6 +24,7 @@ const rootReducer = combineReducers({
   selectedProducts,
   subscriber,
   user,
+  shippingAddress,
   routing: routerReducer
 });
 

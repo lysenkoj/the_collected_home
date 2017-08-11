@@ -1,25 +1,14 @@
-
-/* -----------------    ACTIONS     ------------------ */
-
-const SET_SHIPPING_ADDRESS = 'SET_SHIPPING_ADDRESS';
-
-/* ------------   ACTION CREATORS     ------------------ */
-
-export const setShippingAddress = address => ({ type: SET_SHIPPING_ADDRESS, address });
-
-
 /* ------------       REDUCER     ------------------ */
 
-const defaultState = {};
 
-export default function reducer (state = defaultState, action) {
+export default function reducer (defaultState = {}, action) {
   switch (action.type) {
 
-    case SET_SHIPPING_ADDRESS:
-      return action.address;
+    case 'ADD_MAILING_ADDRESS':
+      return Object.assign({}, defaultState, action.address);
 
     default:
-      return state;
+      return defaultState;
   }
 }
 

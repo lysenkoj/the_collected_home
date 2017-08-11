@@ -29,7 +29,7 @@ export default function reducer (previousState = defaultState, action) {
 
 
 export const submitOrder = (orderDataForStripe, orderDataFromStore) => {
-  console.log(orderDataForStripe)
+
   return dispatch => {
     axios.post(`/api/payments/${orderDataForStripe.token}`, {orderDataForStripe, orderDataFromStore})
       .then(charge => {

@@ -4,7 +4,7 @@ import { fetchAndStoreCategories } from './reducers/categories';
 import { fetchAndGoToProducts, fetchAndGoToQueriedProducts, fetchAndGoToFeaturedProducts} from './reducers/selectedProducts';
 import { fetchAndGoToOrders} from './reducers/orders';
 import { fetchAndGoToOrder} from './reducers/selectedOrder';
-//import { selectOrder } from './reducers/selectedOrder'
+import {selectOrders} from './actionCreators';
 
 
 export const loadOrders = ({ params }) => {

@@ -86,7 +86,7 @@ class Navigbar extends React.Component {
               <div className="shoppingContainer">
                 <button id="cartButton" onClick={this.toggleQuickCart}>
                   <div id="cartLink">
-                    <img id="shoppingImg" src="images/shopping-cart.png"/>
+                    <img id="shoppingImg" src="images/shopping-cart-empty-side-view.svg"/>
                     <h5>({this.props.cart && this.props.cart.length})</h5>
                   </div>
                 </button>

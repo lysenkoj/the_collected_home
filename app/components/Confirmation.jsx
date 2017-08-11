@@ -40,7 +40,7 @@ class Confirmation extends Component {
 		const { cart, amount } = this.props;
 		return(
 			<div className="confirmationContainer">
-				<p>YOU WILL BE CHARGED: { amount }</p>
+				<p>YOU WILL BE CHARGED: { `$ ${amount/100}.00` }</p>
 				<h3>stripe token: {this.props.params.token}</h3>
 				<h3>MAKE SHOPPING GREAT AGAIN</h3>
 				<button onClick={ this.sendOrder }>SUBMIT</button>
