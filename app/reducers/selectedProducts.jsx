@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { selectProducts, searchForProducts, selectFeaturedProducts } from '../actionCreators';
+import { selectProducts, searchForProducts, selectFeaturedProducts, loadAllProducts } from '../actionCreators';
 
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (state = [], action) {
   switch (action.type) {
+
+    case 'LOAD_ALL_PRODUCTS':
+      return action.products;
 
     case 'SELECT_PRODUCTS':
       return action.products;
@@ -34,6 +37,16 @@ export const fetchAndGoToProducts = (categoryName) => {
         dispatch(selectProducts(category.data[0] ? category.data[0].products : []));
       });
   };
+}
+
+export const fetchAllProducts = () => {
+  return dispatch => {
+    axios.get(`api/products/`)
+      .then(products => {
+        dispatch(loadAllProducts(products.data));
+      })
+      .catch(err => console.error('FETCHING PRODUCTS FAILED, err'))
+  }
 }
 
 export const fetchAndGoToQueriedProducts = search => {

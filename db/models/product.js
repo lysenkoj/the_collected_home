@@ -3,6 +3,8 @@ const db = require('APP/db');
 
 const Product = db.define('products', {
 
+/* -----------------------  Inventory Overview ----------------------- */
+
 	sku: {
 		type: Sequelize.STRING,
 		allowNull: false,
@@ -10,56 +12,100 @@ const Product = db.define('products', {
 		primaryKey: true
 	},
 
-	quantity: {
-		type: Sequelize.INTEGER,
-		allowNull: false,
-		defaultValue: 0
-	},
+  productNum: {
+    type: Sequelize.STRING,
+		allowNull: false
+  },
 
 	name: {
-		type: Sequelize.STRING,
+    type: Sequelize.STRING,
 		allowNull: false
-	},
-
-	imageUrl: {
-		type: Sequelize.ARRAY(Sequelize.STRING),
-    defualtValue: ['/images/Image-Coming-Soon-Placeholder.png']
-	},
-
-  mainImg: {
-		type: Sequelize.STRING
 	},
 
 	color: {
-		type: Sequelize.STRING
+    type: Sequelize.STRING
+  },
+
+  size: {
+    type: Sequelize.STRING,
 	},
 
-	price: {
-		type: Sequelize.DECIMAL(15, 2),
-		allowNull: false
+  status: {
+    type: Sequelize.ENUM("warehouse", "upholsterer", "home", "enroute", "sold"),
+		allowNull: false,
+		defaultValue: "warehouse"
 	},
 
-	size: {
-		type: Sequelize.STRING,
+  purchaseDate: {
+    type: Sequelize.DATEONLY,
+    allowNull: true,
+    defaultValue: null
+  },
+
+  purchasePrice: {
+    type: Sequelize.DECIMAL(15, 2),
+    allowNull: false
+  },
+
+  repairCost: {
+    type: Sequelize.DECIMAL(15, 2),
     allowNull: false,
-    defaultValue: '1 x 1 x 1" H'
-	},
+    defaultValue: 0
+  },
 
-	location: {
-		type: Sequelize.STRING
-	},
+  retailPrice: {
+    type: Sequelize.DECIMAL(15, 2),
+		allowNull: false
+  },
 
-	manufacturer: {
-		type: Sequelize.STRING
-	},
+  dateSold: {
+    type: Sequelize.DATEONLY,
+    allowNull: true,
+    defaultValue: null
+  },
 
-	description: {
-		type: Sequelize.TEXT
-	},
+  quantity: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+
+/* -----------------------  Product Details ----------------------- */
+  location: {
+    type: Sequelize.STRING
+  },
+
+  condition: {
+    type: Sequelize.ENUM("NR", "RFS")
+  },
+
+  imageUrl: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defualtValue: ['/images/Image-Coming-Soon-Placeholder.png']
+  },
+
+  mainImg: {
+    type: Sequelize.STRING
+  },
+
+  description: {
+    type: Sequelize.TEXT
+  },
 
   quote: {
-		type: Sequelize.TEXT
-	},
+    type: Sequelize.TEXT
+  },
+
+  dimensions: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: '1 x 1 x 1" H'
+  },
+
+  material:{
+    type: Sequelize.STRING
+  },
+
 
   featured: {
     type: Sequelize.BOOLEAN,

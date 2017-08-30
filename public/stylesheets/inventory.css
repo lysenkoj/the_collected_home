@@ -34,15 +34,71 @@
 
 .inventoryGrid {
   display: flex;
+  flex-direction: column;
   outline: 1px solid black;
   background-color: lightblue;
   width: 90%;
-  height: 500px;
   margin-top: 10px;
   align-self: center; }
 
 .inventoryLabels {
+  display: flex;
   width: 100%;
   height: 30px;
   background-color: lightgray;
   align-self: flex-start; }
+
+.columnHeader {
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: 0.8em;
+  height: 100%; }
+
+.columnHeader:focus {
+  outline: none; }
+
+.productCell {
+  outline: 1px solid black;
+  height: 20px; }
+
+.inventoryRow {
+  display: flex; }
+
+.productSku {
+  width: 13%; }
+
+.productNumber {
+  width: 7%; }
+
+.productName {
+  width: 13%; }
+
+.invCategory {
+  width: 10%; }
+
+.invSize {
+  width: 4%; }
+
+.invColor {
+  width: 7%; }
+
+.invStatus {
+  width: 7%; }
+
+.purchaseDate {
+  width: 7%; }
+
+.purchasePrice {
+  width: 7%; }
+
+.repairCost {
+  width: 7%; }
+
+.retailPrice {
+  width: 7%; }
+
+.dateSold {
+  width: 7%; }
+
+.invQuantity {
+  width: 4%; }

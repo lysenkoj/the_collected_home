@@ -36,7 +36,7 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
                 />
         <h5 className="productSku">SKU { currentProduct.sku }</h5>
         <ContentEditable className=""
-                  html={`<h3> $ ${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h3>`}
+                  html={`<h3> $ ${ currentProduct.retailPrice}</h3>`}
                   disabled={!(user && user.isAdmin)}
                   onChange={changePriceField}
                 />
@@ -51,7 +51,7 @@ const DumbCurrentProduct = ({selectImage, modifyProduct, state, changeNameField,
                   onChange={changeQuoteField}
                 />
         <ContentEditable className="productSize"
-                  html={`<p>${currentProduct.size }</p>`}
+                  html={`<p>${currentProduct.dimensions }</p>`}
                   disabled={!(user && user.isAdmin)}
                   onChange={changeDescriptionField}
                 />

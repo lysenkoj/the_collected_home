@@ -1,7 +1,7 @@
 import store from './store';
 import { fetchAndGoToProduct } from './reducers/currentProduct';
 import { fetchAndStoreCategories } from './reducers/categories';
-import { fetchAndGoToProducts, fetchAndGoToQueriedProducts, fetchAndGoToFeaturedProducts} from './reducers/selectedProducts';
+import { fetchAndGoToProducts, fetchAndGoToQueriedProducts, fetchAndGoToFeaturedProducts, fetchAllProducts} from './reducers/selectedProducts';
 import { fetchAndGoToOrders} from './reducers/orders';
 import { fetchAndGoToOrder} from './reducers/selectedOrder';
 import {selectOrders} from './actionCreators';
@@ -22,6 +22,10 @@ export const onProductSelect = ({ params }) => {
 export const loadCategories = () => {
 	store.dispatch(fetchAndStoreCategories());
 };
+
+export const loadAllProducts = () => {
+  store.dispatch(fetchAllProducts())
+}
 
 export const loadCategoryProducts = ({ params }) => {
   console.log(params)

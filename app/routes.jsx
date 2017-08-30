@@ -34,7 +34,7 @@ import Subscribe from './components/Subscribe';
 import Inventory from './components/Inventory';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
-import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
+import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadFeaturedProducts, loadOrders, onOrderSelect, loadAdmin, loadAllProducts } from './enter-hooks';
 /* -----------------    ON-LEAVE HOOKS     ------------------ */
 import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadAllOrders, onAdminLeave, deloadSingleCharge} from './leave-hooks';
 
@@ -47,7 +47,7 @@ export default () => (
       <IndexRoute component={Main} />
       <Route path="/signup" component={Signup} />
       <Route path="/admin" component={Admin}/>
-      <Route path="/inventory" component={Inventory}/>
+      <Route path="/inventory" component={Inventory} onEnter={loadAllProducts}/>
       <Route path="/orders/:id" component={Orders} onEnter={loadOrders} onLeave={deloadAllOrders}/>
       <Route path="/order/:orderNumber" component={SelectedOrder} onEnter={onOrderSelect} onLeave={onOrderLeave}/>
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} onLeave={onProductLeave} />

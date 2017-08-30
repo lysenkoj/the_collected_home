@@ -112,6 +112,14 @@ export const clearProduct = () => {
   }
 }
 
+//SELECT ALL PRODUCTS
+export const loadAllProducts = (products) => {
+  return {
+    type: 'LOAD_ALL_PRODUCTS',
+    products
+  }
+}
+
 //SELECT PRODUCTS
 export const selectProducts = (products) => {
   return {

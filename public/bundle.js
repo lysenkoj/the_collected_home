@@ -29516,7 +29516,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchAndGoToFeaturedProducts = exports.fetchAndGoToQueriedProducts = exports.fetchAndGoToProducts = undefined;
+	exports.fetchAndGoToFeaturedProducts = exports.fetchAndGoToQueriedProducts = exports.fetchAllProducts = exports.fetchAndGoToProducts = undefined;
 	exports.default = reducer;
 	
 	var _axios = __webpack_require__(278);
@@ -29536,6 +29536,9 @@
 	  var action = arguments[1];
 	
 	  switch (action.type) {
+	
+	    case 'LOAD_ALL_PRODUCTS':
+	      return action.products;
 	
 	    case 'SELECT_PRODUCTS':
 	      return action.products;
@@ -29560,6 +29563,16 @@
 	  return function (dispatch) {
 	    _axios2.default.get('api/categories/' + categoryName).then(function (category) {
 	      dispatch((0, _actionCreators.selectProducts)(category.data[0] ? category.data[0].products : []));
+	    });
+	  };
+	};
+	
+	var fetchAllProducts = exports.fetchAllProducts = function fetchAllProducts() {
+	  return function (dispatch) {
+	    _axios2.default.get('api/products/').then(function (products) {
+	      dispatch((0, _actionCreators.loadAllProducts)(products.data));
+	    }).catch(function (err) {
+	      return console.error('FETCHING PRODUCTS FAILED, err');
 	    });
 	  };
 	};
@@ -31192,6 +31205,14 @@
 	var clearProduct = exports.clearProduct = function clearProduct() {
 	  return {
 	    type: 'CLEAR_PRODUCT'
+	  };
+	};
+	
+	//SELECT ALL PRODUCTS
+	var loadAllProducts = exports.loadAllProducts = function loadAllProducts(products) {
+	  return {
+	    type: 'LOAD_ALL_PRODUCTS',
+	    products: products
 	  };
 	};
 	
@@ -33227,7 +33248,7 @@
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Main2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/admin', component: _Admin2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/inventory', component: _Inventory2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/inventory', component: _Inventory2.default, onEnter: _enterHooks.loadAllProducts }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/orders/:id', component: _Orders2.default, onEnter: _enterHooks.loadOrders, onLeave: _leaveHooks.deloadAllOrders }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/order/:orderNumber', component: _SelectedOrder2.default, onEnter: _enterHooks.onOrderSelect, onLeave: _leaveHooks.onOrderLeave }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/product/:sku', component: _CurrentProduct2.default, onEnter: _enterHooks.onProductSelect, onLeave: _leaveHooks.onProductLeave }),
@@ -35204,7 +35225,7 @@
 	          currentProduct.sku
 	        ),
 	        _react2.default.createElement(_reactContenteditable2.default, { className: '',
-	          html: '<h3> $ ' + (currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')) + '</h3>',
+	          html: '<h3> $ ' + currentProduct.retailPrice + '</h3>',
 	          disabled: !(user && user.isAdmin),
 	          onChange: changePriceField
 	        }),
@@ -35219,7 +35240,7 @@
 	          onChange: changeQuoteField
 	        }),
 	        _react2.default.createElement(_reactContenteditable2.default, { className: 'productSize',
-	          html: '<p>' + currentProduct.size + '</p>',
+	          html: '<p>' + currentProduct.dimensions + '</p>',
 	          disabled: !(user && user.isAdmin),
 	          onChange: changeDescriptionField
 	        })
@@ -42727,7 +42748,8 @@
 	    var _this = _possibleConstructorReturn(this, (Inventory.__proto__ || Object.getPrototypeOf(Inventory)).call(this, props));
 	
 	    _this.state = {
-	      date: null
+	      date: null,
+	      products: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 	    };
 	    return _this;
 	  }
@@ -42735,6 +42757,7 @@
 	  _createClass(Inventory, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	
 	      window.scrollTo(0, 0);
 	
 	      var today = new Date();
@@ -42798,8 +42821,146 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'inventoryGrid' },
-	            _react2.default.createElement('div', { className: 'inventoryLabels' }),
-	            _react2.default.createElement('div', { className: 'inventoryRow' })
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'inventoryLabels' },
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader productSku' },
+	                'Product Sku'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader productNumber' },
+	                'Product #'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader productName' },
+	                'Product Name'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader invCategory' },
+	                'Category'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader invSize' },
+	                'Size'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader invColor' },
+	                'Color'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader invStatus' },
+	                'Status'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader purchaseDate' },
+	                'Purchase Date'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader purchasePrice' },
+	                'Purchase Price'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader repairCost' },
+	                'Repair Cost'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader retailPrice' },
+	                'Retail Price'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader dateSold' },
+	                'Date Sold'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader invQuantity' },
+	                'Quantity'
+	              )
+	            ),
+	            this.props.selectedProducts.map(function (product) {
+	              return _react2.default.createElement(
+	                'div',
+	                { className: 'inventoryRow' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell productSku' },
+	                  product.sku
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell productNumber' },
+	                  product.productNum
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell productName' },
+	                  product.name
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell invCategory' },
+	                  'NEED2RESEARCH'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell invSize' },
+	                  product.size
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell invColor' },
+	                  product.color
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell invStatus' },
+	                  product.status
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell purchaseDate' },
+	                  product.purchaseDate.slice(0, 10)
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell purchasePrice' },
+	                  product.purchasePrice
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell repairCost' },
+	                  product.repairCost
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell retailPrice' },
+	                  product.retailPrice
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell dateSold' },
+	                  product.dateSold
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productCell invQuantity' },
+	                  product.quantity
+	                )
+	              );
+	            })
 	          )
 	        ) : _react2.default.createElement(
 	          'div',
@@ -42818,23 +42979,10 @@
 	}(_react.Component);
 	
 	var mapProps = function mapProps(_ref) {
-	  var user = _ref.user;
-	  return { user: user };
+	  var user = _ref.user,
+	      selectedProducts = _ref.selectedProducts;
+	  return { user: user, selectedProducts: selectedProducts };
 	};
-	
-	// const mapDispatch = (dispatch) => ({
-	//   signout: () => {
-	//     const getQuickCart = function(){
-	//       return document.querySelector('div.quickCart');
-	//     };
-	
-	//     const quickCart = getQuickCart();
-	
-	//     quickCart.style.right = '40px';
-	
-	//     dispatch(logout())
-	//   }
-	// })
 	
 	exports.default = (0, _reactRedux.connect)(mapProps, null)(Inventory);
 
@@ -42847,7 +42995,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
+	exports.loadQueriedProducts = exports.loadFeaturedProducts = exports.loadCategoryProducts = exports.loadAllProducts = exports.loadCategories = exports.onProductSelect = exports.onOrderSelect = exports.loadOrders = undefined;
 	
 	var _store = __webpack_require__(216);
 	
@@ -42887,6 +43035,10 @@
 	
 	var loadCategories = exports.loadCategories = function loadCategories() {
 		_store2.default.dispatch((0, _categories.fetchAndStoreCategories)());
+	};
+	
+	var loadAllProducts = exports.loadAllProducts = function loadAllProducts() {
+		_store2.default.dispatch((0, _selectedProducts.fetchAllProducts)());
 	};
 	
 	var loadCategoryProducts = exports.loadCategoryProducts = function loadCategoryProducts(_ref4) {

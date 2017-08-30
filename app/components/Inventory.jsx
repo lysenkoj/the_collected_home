@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 /* -----------------    COMPONENT     ------------------ */
 
 class Inventory extends Component {
   constructor(props){
     super(props);
     this.state = {
-      date : null
+      date : null,
+      products: [0,1,2,3,4,5,6,7,8,9]
     }
   }
 
   componentDidMount () {
+
     window.scrollTo(0, 0)
 
     let today = new Date();
@@ -35,6 +38,7 @@ class Inventory extends Component {
     });
   }
 
+
 	render(){
 		return (
 			<div className="inventoryMain">
@@ -50,10 +54,40 @@ class Inventory extends Component {
             </div>
           </div>
           <div className='inventoryGrid'>
-            <div className='inventoryLabels'></div>
-            <div className='inventoryRow'>
-              {/* link to product info component */}
+            <div className='inventoryLabels'>
+              <button className='columnHeader productSku'>Product Sku</button>
+              <button className='columnHeader productNumber'>Product #</button>
+              <button className='columnHeader productName'>Product Name</button>
+              <button className='columnHeader invCategory'>Category</button>
+              <button className='columnHeader invSize'>Size</button>
+              <button className='columnHeader invColor'>Color</button>
+              <button className='columnHeader invStatus'>Status</button>
+              <button className='columnHeader purchaseDate'>Purchase Date</button>
+              <button className='columnHeader purchasePrice'>Purchase Price</button>
+              <button className='columnHeader repairCost'>Repair Cost</button>
+              <button className='columnHeader retailPrice'>Retail Price</button>
+              <button className='columnHeader dateSold'>Date Sold</button>
+              <button className='columnHeader invQuantity'>Quantity</button>
             </div>
+            { this.props.selectedProducts.map( product =>
+
+            <div className='inventoryRow'>
+              <div className='productCell productSku'>{product.sku}</div>
+              <div className='productCell productNumber'>{product.productNum}</div>
+              <div className='productCell productName'>{product.name}</div>
+              <div className='productCell invCategory'>NEED2RESEARCH</div>
+              <div className='productCell invSize'>{product.size}</div>
+              <div className='productCell invColor'>{product.color}</div>
+              <div className='productCell invStatus'>{product.status}</div>
+              <div className='productCell purchaseDate'>{product.purchaseDate.slice(0, 10)}</div>
+              <div className='productCell purchasePrice'>{product.purchasePrice}</div>
+              <div className='productCell repairCost'>{product.repairCost}</div>
+              <div className='productCell retailPrice'>{product.retailPrice}</div>
+              <div className='productCell dateSold'>{product.dateSold}</div>
+              <div className='productCell invQuantity'>{product.quantity}</div>
+            </div>
+
+            )}
           </div>
         </div>
         :
@@ -66,20 +100,7 @@ class Inventory extends Component {
 	}
 }
 
-const mapProps = ({user}) => ({user});
+const mapProps = ({user, selectedProducts}) => ({user, selectedProducts});
 
-// const mapDispatch = (dispatch) => ({
-//   signout: () => {
-//     const getQuickCart = function(){
-//       return document.querySelector('div.quickCart');
-//     };
-
-//     const quickCart = getQuickCart();
-
-//     quickCart.style.right = '40px';
-
-//     dispatch(logout())
-//   }
-// })
 
 export default connect(mapProps, null)(Inventory);
