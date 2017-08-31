@@ -9,12 +9,14 @@ class Inventory extends Component {
     super(props);
     this.state = {
       date : null,
-      products: [0,1,2,3,4,5,6,7,8,9]
+      totalPurchasePrice: null,
+      totalRepairCost: null,
+      totalRetailPrice: null,
+      totalInventory: null
     }
   }
 
   componentDidMount () {
-
     window.scrollTo(0, 0)
 
     let today = new Date();
@@ -38,6 +40,39 @@ class Inventory extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps){
+    let nextProducts = nextProps.selectedProducts;
+    if(nextProducts !== this.props.selectedProducts){
+      this.totalInventory(nextProducts);
+      console.log(this.state)
+    }
+  }
+
+  //make functions that when toggle button look at array and sort properties and put them back in product
+  //each column will need a new wat to sort/group objects
+
+  totalInventory(products){
+    let purchasePrice = 0;
+    let repairCost = 0;
+    let retailPrice = 0;
+    let totalInventory = 0;
+
+    products.map( product => {
+      purchasePrice += parseFloat(product.purchasePrice);
+      repairCost += parseFloat(product.repairCost);
+      retailPrice += parseFloat(product.retailPrice);
+      totalInventory += product.quantity;
+    })
+
+    this.setState((previousState) => {
+      previousState.totalPurchasePrice = purchasePrice;
+      previousState.totalRepairCost = repairCost;
+      previousState.totalRetailPrice = retailPrice;
+      previousState.totalInventory = totalInventory;
+      return previousState;
+    });
+  }
+
 
 	render(){
 		return (
@@ -55,6 +90,7 @@ class Inventory extends Component {
           </div>
           <div className='inventoryGrid'>
             <div className='inventoryLabels'>
+              <button className='columnHeader index'>#</button>
               <button className='columnHeader productSku'>Product Sku</button>
               <button className='columnHeader productNumber'>Product #</button>
               <button className='columnHeader productName'>Product Name</button>
@@ -67,12 +103,13 @@ class Inventory extends Component {
               <button className='columnHeader repairCost'>Repair Cost</button>
               <button className='columnHeader retailPrice'>Retail Price</button>
               <button className='columnHeader dateSold'>Date Sold</button>
-              <button className='columnHeader invQuantity'>Quantity</button>
+              <button className='columnHeader invQuantity'>Qty</button>
             </div>
-            { this.props.selectedProducts.map( product =>
+            { this.props.selectedProducts.map( (product, index) =>
 
-            <div className='inventoryRow'>
-              <div className='productCell productSku'>{product.sku}</div>
+            <div className='inventoryRow' key={index}>
+              <div className='productCell index'>{index + 1}</div>
+              <button className='productCell productSku'>{product.sku}</button>
               <div className='productCell productNumber'>{product.productNum}</div>
               <div className='productCell productName'>{product.name}</div>
               <div className='productCell invCategory'>NEED2RESEARCH</div>
@@ -88,6 +125,21 @@ class Inventory extends Component {
             </div>
 
             )}
+            <div className='invTotals inventoryRow'>
+              <div className='productSku'>TOTAL</div>
+              <div className='productNumber'></div>
+              <div className='productName'></div>
+              <div className='invCategory'></div>
+              <div className='invSize'></div>
+              <div className='invColor'></div>
+              <div className='invStatus'></div>
+              <div className='purchaseDate'></div>
+              <div className='productCell purchasePrice'>{this.state.totalPurchasePrice}</div>
+              <div className='productCell repairCost'>{this.state.totalRepairCost}</div>
+              <div className='productCell retailPrice'>{this.state.totalRetailPrice}</div>
+              <div className='dateSold'></div>
+              <div className='productCell invQuantity'>{this.state.totalInventory}</div>
+            </div>
           </div>
         </div>
         :

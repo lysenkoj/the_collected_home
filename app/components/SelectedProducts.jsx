@@ -27,7 +27,7 @@ class SelectedProducts extends React.Component {
                 <img className="imgThumb" src={product.img[0]} />
                 <div className="productThumbInfoContainer">
                   <h3 id="productName">{product.name.toUpperCase()}</h3>
-                  <p id="productPrice">${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                  <p id="productPrice">${product.retailPrice}</p>
                 </div>
               </Link>
             ))

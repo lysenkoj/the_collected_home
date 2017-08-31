@@ -35728,7 +35728,7 @@
 	                    'p',
 	                    { id: 'productPrice' },
 	                    '$',
-	                    product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+	                    product.retailPrice
 	                  )
 	                )
 	              );
@@ -42749,7 +42749,10 @@
 	
 	    _this.state = {
 	      date: null,
-	      products: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+	      totalPurchasePrice: null,
+	      totalRepairCost: null,
+	      totalRetailPrice: null,
+	      totalInventory: null
 	    };
 	    return _this;
 	  }
@@ -42757,7 +42760,6 @@
 	  _createClass(Inventory, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	
 	      window.scrollTo(0, 0);
 	
 	      var today = new Date();
@@ -42777,6 +42779,42 @@
 	
 	      this.setState(function (previousState) {
 	        previousState.date = today;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var nextProducts = nextProps.selectedProducts;
+	      if (nextProducts !== this.props.selectedProducts) {
+	        this.totalInventory(nextProducts);
+	        console.log(this.state);
+	      }
+	    }
+	
+	    //make functions that when toggle button look at array and sort properties and put them back in product
+	    //each column will need a new wat to sort/group objects
+	
+	  }, {
+	    key: 'totalInventory',
+	    value: function totalInventory(products) {
+	      var purchasePrice = 0;
+	      var repairCost = 0;
+	      var retailPrice = 0;
+	      var totalInventory = 0;
+	
+	      products.map(function (product) {
+	        purchasePrice += parseFloat(product.purchasePrice);
+	        repairCost += parseFloat(product.repairCost);
+	        retailPrice += parseFloat(product.retailPrice);
+	        totalInventory += product.quantity;
+	      });
+	
+	      this.setState(function (previousState) {
+	        previousState.totalPurchasePrice = purchasePrice;
+	        previousState.totalRepairCost = repairCost;
+	        previousState.totalRetailPrice = retailPrice;
+	        previousState.totalInventory = totalInventory;
 	        return previousState;
 	      });
 	    }
@@ -42824,6 +42862,11 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'inventoryLabels' },
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'columnHeader index' },
+	                '#'
+	              ),
 	              _react2.default.createElement(
 	                'button',
 	                { className: 'columnHeader productSku' },
@@ -42887,15 +42930,20 @@
 	              _react2.default.createElement(
 	                'button',
 	                { className: 'columnHeader invQuantity' },
-	                'Quantity'
+	                'Qty'
 	              )
 	            ),
-	            this.props.selectedProducts.map(function (product) {
+	            this.props.selectedProducts.map(function (product, index) {
 	              return _react2.default.createElement(
 	                'div',
-	                { className: 'inventoryRow' },
+	                { className: 'inventoryRow', key: index },
 	                _react2.default.createElement(
 	                  'div',
+	                  { className: 'productCell index' },
+	                  index + 1
+	                ),
+	                _react2.default.createElement(
+	                  'button',
 	                  { className: 'productCell productSku' },
 	                  product.sku
 	                ),
@@ -42960,7 +43008,44 @@
 	                  product.quantity
 	                )
 	              );
-	            })
+	            }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'invTotals inventoryRow' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'productSku' },
+	                'TOTAL'
+	              ),
+	              _react2.default.createElement('div', { className: 'productNumber' }),
+	              _react2.default.createElement('div', { className: 'productName' }),
+	              _react2.default.createElement('div', { className: 'invCategory' }),
+	              _react2.default.createElement('div', { className: 'invSize' }),
+	              _react2.default.createElement('div', { className: 'invColor' }),
+	              _react2.default.createElement('div', { className: 'invStatus' }),
+	              _react2.default.createElement('div', { className: 'purchaseDate' }),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'productCell purchasePrice' },
+	                this.state.totalPurchasePrice
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'productCell repairCost' },
+	                this.state.totalRepairCost
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'productCell retailPrice' },
+	                this.state.totalRetailPrice
+	              ),
+	              _react2.default.createElement('div', { className: 'dateSold' }),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'productCell invQuantity' },
+	                this.state.totalInventory
+	              )
+	            )
 	          )
 	        ) : _react2.default.createElement(
 	          'div',

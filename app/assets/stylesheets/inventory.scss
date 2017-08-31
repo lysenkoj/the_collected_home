@@ -69,12 +69,54 @@
 }
 
 .productCell{
+  text-align: center;
   outline: 1px solid black;
   height: 20px;
 }
 
 .inventoryRow{
   display: flex;
+
+  button{
+    border: none;
+    background-color: transparent;
+    color: blue;
+  }
+
+  button:hover{
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+.invTotals{
+  background-color: white;
+  height: 20px;
+  width: 100%;
+  border-top: 1px solid black;
+
+  .productSku{
+    width: 15%;
+  }
+  .purchasePrice{
+    background-color: lightgoldenrodyellow;
+  }
+
+  .repairCost{
+    background-color: lightgoldenrodyellow;
+  }
+
+  .retailPrice{
+    background-color: lightgoldenrodyellow;
+  }
+
+  .invQuantity{
+    background-color: lightgoldenrodyellow;
+  }
+}
+
+.index{
+  width: 2%
 }
 
 .productSku{
@@ -91,7 +133,7 @@
   width: 10%;
 }
 .invSize{
-  width: 4%;
+  width: 3%;
 }
 .invColor{
   width: 7%;
@@ -115,5 +157,5 @@
   width: 7%;
 }
 .invQuantity{
-  width: 4%;
+  width: 3%;
 }
