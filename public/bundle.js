@@ -42752,8 +42752,21 @@
 	      totalPurchasePrice: null,
 	      totalRepairCost: null,
 	      totalRetailPrice: null,
-	      totalInventory: null
+	      totalInventory: null,
+	      selectedItem: {},
+	      selectedProducts: []
 	    };
+	
+	    _this.setCurrentItem = _this.setCurrentItem.bind(_this);
+	    _this.closeSingleItem = _this.closeSingleItem.bind(_this);
+	
+	    _this.sortProductNum = _this.sortProductNum.bind(_this);
+	    _this.sortPurchaseDate = _this.sortPurchaseDate.bind(_this);
+	    _this.sortDateSold = _this.sortDateSold.bind(_this);
+	    _this.sortPurchasePrice = _this.sortPurchasePrice.bind(_this);
+	    _this.sortRepairCost = _this.sortRepairCost.bind(_this);
+	    _this.sortRetailPrice = _this.sortRetailPrice.bind(_this);
+	    _this.sortQuantity = _this.sortQuantity.bind(_this);
 	    return _this;
 	  }
 	
@@ -42764,7 +42777,7 @@
 	
 	      var today = new Date();
 	      var dd = today.getDate();
-	      var mm = today.getMonth() + 1; //January is 0!
+	      var mm = today.getMonth() + 1;
 	      var yyyy = today.getFullYear();
 	
 	      if (dd < 10) {
@@ -42788,7 +42801,10 @@
 	      var nextProducts = nextProps.selectedProducts;
 	      if (nextProducts !== this.props.selectedProducts) {
 	        this.totalInventory(nextProducts);
-	        console.log(this.state);
+	        this.setState(function (previousState) {
+	          previousState.selectedProducts = nextProducts;
+	          return previousState;
+	        });
 	      }
 	    }
 	
@@ -42819,231 +42835,624 @@
 	      });
 	    }
 	  }, {
+	    key: 'setCurrentItem',
+	    value: function setCurrentItem(evt) {
+	      var _this2 = this;
+	
+	      var singleItemPage = document.querySelector('div.singleItemInv');
+	
+	      singleItemPage.style.display = 'flex';
+	
+	      var products = this.props.selectedProducts;
+	
+	      var _loop = function _loop(i) {
+	        if (evt.target.innerText === products[i].sku) {
+	          _this2.setState(function (previousState) {
+	            previousState.selectedItem = products[i];
+	            return previousState;
+	          });
+	        }
+	      };
+	
+	      for (var i = 0; i < products.length; i++) {
+	        _loop(i);
+	      }
+	    }
+	  }, {
+	    key: 'closeSingleItem',
+	    value: function closeSingleItem() {
+	      var singleItemPage = document.querySelector('div.singleItemInv');
+	      singleItemPage.style.display = 'none';
+	    }
+	
+	    /*-----------SORT FUNCTIONS------------*/
+	
+	  }, {
+	    key: 'sortProductNum',
+	    value: function sortProductNum() {
+	      var products = this.state.selectedProducts;
+	      var toggle;
+	
+	      if (products[0].productNum.slice(1) > products[products.length - 1].productNum.slice(1)) {
+	        toggle = false;
+	      } else {
+	        toggle = true;
+	      }
+	
+	      if (!toggle) {
+	        products = products.concat().sort(function (a, b) {
+	          return a.productNum.slice(1) - b.productNum.slice(1);
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return b.productNum.slice(1) - a.productNum.slice(1);
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortPurchaseDate',
+	    value: function sortPurchaseDate() {
+	      var products = this.state.selectedProducts;
+	      var toggle;
+	
+	      if (new Date(products[0].purchaseDate).getTime() > new Date(products[products.length - 1].purchaseDate).getTime()) {
+	        toggle = false;
+	      } else {
+	        toggle = true;
+	      }
+	
+	      if (!toggle) {
+	        products = products.concat().sort(function (a, b) {
+	          return new Date(a.purchaseDate).getTime() - new Date(b.purchaseDate).getTime();
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return new Date(b.purchaseDate).getTime() - new Date(a.purchaseDate).getTime();
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortDateSold',
+	    value: function sortDateSold() {
+	      var products = this.state.selectedProducts;
+	      var toggle;
+	
+	      if (new Date(products[0].dateSold).getTime() > new Date(products[products.length - 1].dateSold).getTime()) {
+	        toggle = false;
+	      } else {
+	        toggle = true;
+	      }
+	
+	      if (!toggle) {
+	        products = products.concat().sort(function (a, b) {
+	          return new Date(a.dateSold).getTime() - new Date(b.dateSold).getTime();
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return new Date(b.dateSold).getTime() - new Date(a.dateSold).getTime();
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortPurchasePrice',
+	    value: function sortPurchasePrice() {
+	      var products = this.state.selectedProducts;
+	      var toggle;
+	
+	      if (products[0].purchasePrice > products[products.length - 1].purchasePrice) {
+	        toggle = false;
+	      } else {
+	        toggle = true;
+	      }
+	
+	      if (!toggle) {
+	        products = products.concat().sort(function (a, b) {
+	          return a.purchasePrice - b.purchasePrice;
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return b.purchasePrice - a.purchasePrice;
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortRepairCost',
+	    value: function sortRepairCost() {
+	      var products = this.state.selectedProducts;
+	      var toggle;
+	
+	      if (products[0].repairCost > products[products.length - 1].repairCost) {
+	        toggle = false;
+	      } else {
+	        toggle = true;
+	      }
+	
+	      if (!toggle) {
+	        products = products.concat().sort(function (a, b) {
+	          return a.repairCost - b.repairCost;
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return b.repairCost - a.repairCost;
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortQuantity',
+	    value: function sortQuantity() {
+	      var products = this.state.selectedProducts;
+	      var toggleQty;
+	
+	      if (products[0].quantity > products[products.length - 1].quantity) {
+	        toggleQty = false;
+	      } else {
+	        toggleQty = true;
+	      }
+	
+	      if (!toggleQty) {
+	        products = products.concat().sort(function (a, b) {
+	          return a.quantity - b.quantity;
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return b.quantity - a.quantity;
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortRetailPrice',
+	    value: function sortRetailPrice() {
+	      var products = this.state.selectedProducts;
+	      var toggleRP;
+	
+	      if (products[0].retailPrice > products[products.length - 1].retailPrice) {
+	        toggleRP = false;
+	      } else {
+	        toggleRP = true;
+	      }
+	
+	      if (toggleRP) {
+	        products = products.concat().sort(function (a, b) {
+	          return a.retailPrice - b.retailPrice;
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return b.retailPrice - a.retailPrice;
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
+	    key: 'sortQuantity',
+	    value: function sortQuantity() {
+	      var products = this.state.selectedProducts;
+	      var toggleQty;
+	
+	      if (products[0].quantity > products[products.length - 1].quantity) {
+	        toggleQty = false;
+	      } else {
+	        toggleQty = true;
+	      }
+	
+	      if (!toggleQty) {
+	        products = products.concat().sort(function (a, b) {
+	          return a.quantity - b.quantity;
+	        });
+	      } else {
+	        products = products.concat().sort(function (a, b) {
+	          return b.quantity - a.quantity;
+	        });
+	      }
+	
+	      this.setState(function (previousState) {
+	        previousState.selectedProducts = products;
+	        return previousState;
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this3 = this;
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'inventoryMain' },
 	        this.props.user && this.props.user.isAdmin ? _react2.default.createElement(
 	          'div',
-	          { className: 'inventoryContainer' },
+	          { className: 'invPage' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'inventoryHeader' },
+	            { className: 'singleItemInv' },
 	            _react2.default.createElement(
-	              'div',
-	              { id: 'headerLeft' },
+	              'button',
+	              { className: 'invDeleteButton', onClick: this.closeSingleItem },
 	              _react2.default.createElement(
-	                'h3',
+	                'h5',
 	                null,
-	                'Inventory Management'
+	                'X'
 	              )
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { id: 'headerRight' },
+	              { className: 'singleItemTop' },
 	              _react2.default.createElement(
-	                'h5',
-	                null,
-	                'Date: ',
-	                this.state.date
+	                'div',
+	                { className: 'singleItemTL' },
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'NAME: ',
+	                  this.state.selectedItem.name
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'SKU: ',
+	                  this.state.selectedItem.sku
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'COLOR: ',
+	                  this.state.selectedItem.color
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'SIZE: ',
+	                  this.state.selectedItem.size
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'STATUS: ',
+	                  this.state.selectedItem.status
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'PURCHASE DATE: ',
+	                  this.state.selectedItem.purchaseDate
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'PURCHASE PRICE: ',
+	                  this.state.selectedItem.purchasePrice
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'REPAIR COST: ',
+	                  this.state.selectedItem.repairCost
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'RETAIL PRICE: ',
+	                  this.state.selectedItem.retailPrice
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'DATE SOLD: ',
+	                  this.state.selectedItem.dateSold
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  'QTY: ',
+	                  this.state.selectedItem.quantity
+	                )
 	              ),
 	              _react2.default.createElement(
-	                'h5',
+	                'div',
+	                { className: 'singleItemTR' },
+	                _react2.default.createElement('img', { src: this.state.selectedItem.mainImg })
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'singleItemBottom' },
+	              _react2.default.createElement(
+	                'div',
 	                null,
-	                'User Name: ',
-	                this.props.user.firstName + ' ' + this.props.user.lastName
+	                'LOCATION: ',
+	                this.state.selectedItem.location
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'CONDITION: ',
+	                this.state.selectedItem.condition
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'DESCRIPTION: ',
+	                this.state.selectedItem.description
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'QUOTE: ',
+	                this.state.selectedItem.quote
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'DIMENSIONS: ',
+	                this.state.selectedItem.dimensions
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'MATERIAL: ',
+	                this.state.selectedItem.material
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                'FEATURED: ',
+	                this.state.selectedItem.featured
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'inventoryGrid' },
+	            { className: 'inventoryContainer' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'inventoryLabels' },
+	              { className: 'inventoryHeader' },
 	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader index' },
-	                '#'
+	                'div',
+	                { id: 'headerLeft' },
+	                _react2.default.createElement(
+	                  'h3',
+	                  null,
+	                  'Inventory Management'
+	                )
 	              ),
 	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader productSku' },
-	                'Product Sku'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader productNumber' },
-	                'Product #'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader productName' },
-	                'Product Name'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader invCategory' },
-	                'Category'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader invSize' },
-	                'Size'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader invColor' },
-	                'Color'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader invStatus' },
-	                'Status'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader purchaseDate' },
-	                'Purchase Date'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader purchasePrice' },
-	                'Purchase Price'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader repairCost' },
-	                'Repair Cost'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader retailPrice' },
-	                'Retail Price'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader dateSold' },
-	                'Date Sold'
-	              ),
-	              _react2.default.createElement(
-	                'button',
-	                { className: 'columnHeader invQuantity' },
-	                'Qty'
+	                'div',
+	                { id: 'headerRight' },
+	                _react2.default.createElement(
+	                  'h5',
+	                  null,
+	                  'Date: ',
+	                  this.state.date
+	                ),
+	                _react2.default.createElement(
+	                  'h5',
+	                  null,
+	                  'User Name: ',
+	                  this.props.user.firstName + ' ' + this.props.user.lastName
+	                )
 	              )
 	            ),
-	            this.props.selectedProducts.map(function (product, index) {
-	              return _react2.default.createElement(
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'inventoryGrid' },
+	              _react2.default.createElement(
 	                'div',
-	                { className: 'inventoryRow', key: index },
+	                { className: 'inventoryLabels' },
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell index' },
-	                  index + 1
+	                  'button',
+	                  { className: 'columnHeader index' },
+	                  '#'
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { className: 'productCell productSku' },
-	                  product.sku
+	                  { className: 'columnHeader productSku' },
+	                  'Product Sku'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell productNumber' },
-	                  product.productNum
+	                  'button',
+	                  { className: 'columnHeader productNumber', onClick: this.sortProductNum },
+	                  'Product #'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell productName' },
-	                  product.name
+	                  'button',
+	                  { className: 'columnHeader productName' },
+	                  'Product Name'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell invCategory' },
-	                  'NEED2RESEARCH'
+	                  'button',
+	                  { className: 'columnHeader invCategory' },
+	                  'Category'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell invSize' },
-	                  product.size
+	                  'button',
+	                  { className: 'columnHeader invSize' },
+	                  'Size'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell invColor' },
-	                  product.color
+	                  'button',
+	                  { className: 'columnHeader invColor' },
+	                  'Color'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell invStatus' },
-	                  product.status
+	                  'button',
+	                  { className: 'columnHeader invStatus' },
+	                  'Status'
 	                ),
 	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell purchaseDate' },
-	                  product.purchaseDate.slice(0, 10)
+	                  'button',
+	                  { className: 'columnHeader purchaseDate', onClick: this.sortPurchaseDate },
+	                  'Purchase Date'
 	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'columnHeader purchasePrice', onClick: this.sortPurchasePrice },
+	                  'Purchase Price'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'columnHeader repairCost', onClick: this.sortRepairCost },
+	                  'Repair Cost'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'columnHeader retailPrice', onClick: this.sortRetailPrice },
+	                  'Retail Price'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'columnHeader dateSold', onClick: this.sortDateSold },
+	                  'Date Sold'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { className: 'columnHeader invQuantity', onClick: this.sortQuantity },
+	                  'Qty'
+	                )
+	              ),
+	              this.state.selectedProducts.map(function (product, index) {
+	                return _react2.default.createElement(
+	                  'div',
+	                  { className: 'inventoryRow', key: index },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell index' },
+	                    index + 1
+	                  ),
+	                  _react2.default.createElement(
+	                    'button',
+	                    { className: 'productCell productSku', onClick: _this3.setCurrentItem },
+	                    product.sku
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell productNumber' },
+	                    product.productNum
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell productName' },
+	                    product.name
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell invCategory' },
+	                    'NEED2RESEARCH'
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell invSize' },
+	                    product.size
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell invColor' },
+	                    product.color
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell invStatus' },
+	                    product.status
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell purchaseDate' },
+	                    product.purchaseDate.slice(0, 10)
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell purchasePrice' },
+	                    product.purchasePrice
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell repairCost' },
+	                    product.repairCost
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell retailPrice' },
+	                    product.retailPrice
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell dateSold' },
+	                    product.dateSold
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'productCell invQuantity' },
+	                    product.quantity
+	                  )
+	                );
+	              }),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'invTotals inventoryRow' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'productSku' },
+	                  'TOTAL'
+	                ),
+	                _react2.default.createElement('div', { className: 'productNumber' }),
+	                _react2.default.createElement('div', { className: 'productName' }),
+	                _react2.default.createElement('div', { className: 'invCategory' }),
+	                _react2.default.createElement('div', { className: 'invSize' }),
+	                _react2.default.createElement('div', { className: 'invColor' }),
+	                _react2.default.createElement('div', { className: 'invStatus' }),
+	                _react2.default.createElement('div', { className: 'purchaseDate' }),
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'productCell purchasePrice' },
-	                  product.purchasePrice
+	                  this.state.totalPurchasePrice
 	                ),
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'productCell repairCost' },
-	                  product.repairCost
+	                  this.state.totalRepairCost
 	                ),
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'productCell retailPrice' },
-	                  product.retailPrice
+	                  this.state.totalRetailPrice
 	                ),
-	                _react2.default.createElement(
-	                  'div',
-	                  { className: 'productCell dateSold' },
-	                  product.dateSold
-	                ),
+	                _react2.default.createElement('div', { className: 'dateSold' }),
 	                _react2.default.createElement(
 	                  'div',
 	                  { className: 'productCell invQuantity' },
-	                  product.quantity
+	                  this.state.totalInventory
 	                )
-	              );
-	            }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'invTotals inventoryRow' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'productSku' },
-	                'TOTAL'
-	              ),
-	              _react2.default.createElement('div', { className: 'productNumber' }),
-	              _react2.default.createElement('div', { className: 'productName' }),
-	              _react2.default.createElement('div', { className: 'invCategory' }),
-	              _react2.default.createElement('div', { className: 'invSize' }),
-	              _react2.default.createElement('div', { className: 'invColor' }),
-	              _react2.default.createElement('div', { className: 'invStatus' }),
-	              _react2.default.createElement('div', { className: 'purchaseDate' }),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'productCell purchasePrice' },
-	                this.state.totalPurchasePrice
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'productCell repairCost' },
-	                this.state.totalRepairCost
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'productCell retailPrice' },
-	                this.state.totalRetailPrice
-	              ),
-	              _react2.default.createElement('div', { className: 'dateSold' }),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'productCell invQuantity' },
-	                this.state.totalInventory
 	              )
 	            )
 	          )
